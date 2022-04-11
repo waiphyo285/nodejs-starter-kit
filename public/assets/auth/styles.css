@@ -44,18 +44,19 @@ body {
   background: var(--back-white);
   box-shadow: 0 0 5px var(--back-gray);
   -webkit-box-shadow: 0 0 5px var(--back-gray);
-  /* -3px -3px 3px #bbb; */
 }
 
 .logo {
   display: block;
   margin-left: auto;
   margin-right: auto;
+  border-radius: 50%;
   width: 80px;
   height: 80px;
   padding: 5px;
-  border-radius: 50%;
-  /* background: #555; */
+  filter: gray;
+  -webkit-filter: grayscale(1);
+  -webkit-transition: all .5s ease-in-out;
   box-shadow:
     /* logo shadow */ 0px 0px 3px var(--back-gray),
     /* offset shadow */ 0px 0px 0px 3px var(--back-gray),
@@ -63,8 +64,15 @@ body {
     /* top left shadhow */ 0px 0px 0px var(--back-gray);
 }
 
+.logo:hover {
+  filter: none;
+  -webkit-filter: grayscale(0);
+  -webkit-transform: scale(1);
+  cursor: zoom-in;
+}
+
 .title {
-  font-size: 28px;
+  font-size: 24px;
   margin-top: 18px;
   margin-bottom: 10px;
   letter-spacing: 0.5px;
@@ -74,7 +82,7 @@ body {
 
 .sub-title {
   font-size: 18px;
-  margin-bottom: 18px;
+  margin-bottom: 12px;
   letter-spacing: 3px;
   text-align: center;
   text-transform: lowercase;
@@ -100,6 +108,7 @@ body {
 .iti {
   width: 100%;
 }
+
 .fields svg {
   height: 22px;
   margin: 0 10px -3px 25px;

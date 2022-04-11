@@ -35,7 +35,7 @@ app.set("view engine", "pug");
 app.use(cors(corsOptions));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(logger(`:date[iso] :method :url :status :response-time ms`));
+app.use(logger(`:date[clf] :method :url :status :response-time ms`));
 app.use(cookieParser(COOKIE_SECRET));
 app.use(cookieConfig);
 

@@ -30,9 +30,9 @@
     "http-errors": "~1.6.3",
     "http-status": "^1.5.0",
     "joi": "^14.3.1",
-    "js-beautify": "^1.14.2",
+    "js-beautify": "^1.14.3",
     "jsonwebtoken": "^8.5.1",
-    "knex": "^0.15.2",
+    "knex": "^1.0.5",
     "moment": "^2.29.2",
     "mongoose": "^5.13.14",
     "morgan": "~1.9.1",
@@ -41,13 +41,13 @@
     "passport": "^0.4.1",
     "passport-local": "^1.0.0",
     "pluralize": "^8.0.0",
-    "pug": "2.0.0-beta11",
+    "pug": "^3.0.2",
     "redis": "^2.8.0",
     "socket.io": "^4.4.1",
     "yargs-parser": "^13.1.1"
   },
   "devDependencies": {
     "chai": "^4.3.6",
-    "mocha": "^6.2.0"
+    "mocha": "^9.2.2"
   }
 }

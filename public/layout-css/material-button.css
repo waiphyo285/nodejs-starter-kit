@@ -1,0 +1,30 @@
+.material-primary {
+  color: var(--text-white) !important;
+  background: var(--primary);
+}
+
+.material-secondary {
+  color: var(--text-black) !important;
+  background: var(--back-white);
+}
+
+.material-button {
+  position: relative;
+  display: inline-block;
+  box-sizing: border-box;
+  height: 30px;
+  min-width: 30px;
+  padding: 0px 6px;
+  border-radius: 4px;
+  color: var(--text-white);
+  vertical-align: middle;
+  text-align: center;
+  text-overflow: ellipsis;
+  text-transform: uppercase;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 30px;
+  overflow: hidden;
+  outline: none;
+  cursor: pointer;
+}

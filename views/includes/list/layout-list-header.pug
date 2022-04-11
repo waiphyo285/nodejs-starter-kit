@@ -1,0 +1,9 @@
+include ../other/layout-breadcrumb
+  block items
+    if page.list.breadcrumb.length > 0
+      each breadcrumbObj, index in page.list.breadcrumb
+        li.breadcrumb-item
+          a(href=breadcrumbObj.url) #{breadcrumbObj.text}
+
+include ./layout-list-alert
+include ./layout-list-filter

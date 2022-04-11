@@ -1,0 +1,38 @@
+const Register = require("../../../databases/mongodb/models/register");
+const serialize = require("../../serializer"); // switch custom
+
+const listData = () => {
+  return Register.find({}).then(serialize);
+};
+
+const findData = async (prop, val) => {
+  if (prop === "id") prop = "_id";
+  return Register.find({ [prop]: val }).then((resp) => {
+    return serialize(resp[0]);
+  });
+};
+
+const findDataBy = (params) => {
+  return Register.find(params).then(serialize);
+};
+
+const addData = (dataObj) => {
+  return Register.create(dataObj).then(serialize);
+};
+
+const updateData = (id, dataObj) => {
+  return Register.findByIdAndUpdate(id, dataObj).then(serialize);
+};
+
+const deleteData = (id) => {
+  return Register.findByIdAndDelete(id).then(serialize);
+};
+
+module.exports = {
+  listData,
+  findData,
+  findDataBy,
+  addData,
+  updateData,
+  deleteData,
+};

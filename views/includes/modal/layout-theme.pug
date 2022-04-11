@@ -1,0 +1,87 @@
+div.modal.fade#dialogSetTheme(tabindex='-1', role='dialog', aria-labelledby='dialogSetTheme')
+  div.modal-dialog.modal-dialog-centered.modal-lg(role='document')
+    div.modal-content
+      div.modal-header
+        h4.modal-title Change Theme
+        button.close(type='button', data-dismiss='modal', aria-label='Close')
+          span(aria-hidden='true') &times;
+      
+      div.modal-body
+        div#theme-container.d-flex.justify-content-start.flex-wrap
+          .theme.default
+            label
+              input(type='radio' name="theme_name" value='default')
+              span Default
+          .theme.action
+            label
+              input(type='radio' name="theme_name" value='action')
+              span Action
+          .theme.comedy
+            label
+              input(type='radio' name="theme_name" value='comedy')
+              span Comedy
+          .theme.crime
+            label
+              input(type='radio' name="theme_name" value='crime')
+              span Crime
+          .theme.history
+            label
+              input(type='radio' name="theme_name" value='history')
+              span History
+          .theme.reality
+            label
+              input(type='radio' name="theme_name" value='reality')
+              span Reality
+          .theme.news
+            label
+              input(type='radio' name="theme_name" value='news')
+              span News
+          .theme.sports
+            label
+              input(type='radio' name="theme_name" value='sports')
+              span Sports
+  
+      div.modal-footer.justify-content-md-center
+        button.btn.material-button.material-secondary#dialogCancel(type='button', data-dismiss='modal')
+          |  CANCEL
+        button.btn.material-button.material-primary#dialogTheme(type='button', data-dismiss='modal')
+          i.bi.bi-save
+          |  CHANGE
+
+script.
+  $(document).ready(function() {
+    $("#dialogTheme").on('click', function(){ 
+      $.ajax({
+        type: "PUT",
+        url: `/api/user-no-pass/${userId}`,
+        headers: {
+          "userrole": role,
+          "x-access-method": signJwtMethod,
+          "authorization": "Bearer " + token,
+        },
+        data: { theme: $('input[name=theme_name]:checked').val() } ,
+        success: function (response) {
+          response.status != 'SUCCESS' 
+          ? swalWarning({
+              title: "Warning Message",
+              description: "Your theme is not changed.", 
+            })
+          : Swal.fire({
+              icon: "success",
+              position: "center",
+              title: 'Success Message',
+              text: "You have to logout to see new theme.",
+              confirmButtonText: 'LOGOUT',
+              customClass: "swal-style",
+            }).then((result) => {
+              if (result.isConfirmed) {
+                window.location.replace("/logout");
+              } 
+            })
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+          alert(errorThrown);
+        },
+      });
+    })
+  });

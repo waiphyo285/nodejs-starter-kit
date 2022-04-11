@@ -1,0 +1,249 @@
+[
+  {
+    "menuid": "dashMenu",
+    "url": "/",
+    "title": "Dashboard",
+    "icon": "bi bi-speedometer",
+    "access": false,
+    "active": false,
+    "submenu": []
+  },
+  {
+    "menuid": "adminMenu",
+    "url": "#",
+    "title": "Administrative",
+    "icon": "bi bi-folder",
+    "access": false,
+    "active": false,
+    "submenu": [
+      {
+        "menuid": "userSubMenu",
+        "url": "/users",
+        "title": "System User",
+        "icon": "bi bi-list",
+        "access": false,
+        "active": false,
+        "list": {
+          "url": "/users",
+          "title": "System User List",
+          "breadcrumb": [
+            {
+              "url": "",
+              "text": "System User List"
+            }
+          ]
+        },
+        "entry": {
+          "url": "/user",
+          "title": "System User Entry",
+          "breadcrumb": [
+            {
+              "url": "/users",
+              "text": "System User List"
+            },
+            {
+              "url": "",
+              "text": "System User Entry"
+            }
+          ]
+        },
+        "actions": "1,1,1"
+      }
+    ]
+  },
+  {
+    "menuid": "registerMenu",
+    "url": "#",
+    "title": "Registration",
+    "icon": "bi bi-folder",
+    "access": false,
+    "active": false,
+    "submenu": [
+      {
+        "menuid": "registerSubMenu",
+        "url": "/registers",
+        "title": "Public User",
+        "icon": "bi bi-list",
+        "access": false,
+        "active": false,
+        "list": {
+          "url": "/registers",
+          "title": "Public User List",
+          "breadcrumb": [
+            {
+              "url": "",
+              "text": "Public User List"
+            }
+          ]
+        },
+        "entry": {
+          "url": "/register",
+          "title": "Public User Entry",
+          "breadcrumb": [
+            {
+              "url": "/registers",
+              "text": "Public User List"
+            },
+            {
+              "url": "",
+              "text": "Public User Entry"
+            }
+          ]
+        },
+        "actions": "1,1,1"
+      }
+    ]
+  },
+  {
+    "menuid": "generalMenu",
+    "url": "#",
+    "title": "General Setup",
+    "icon": "bi bi-folder",
+    "access": false,
+    "active": false,
+    "submenu": [
+      {
+        "menuid": "townshipSubMenu",
+        "url": "/townships",
+        "title": "Township",
+        "icon": "bi bi-list",
+        "access": false,
+        "active": false,
+        "list": {
+          "url": "/townships",
+          "title": "Township List",
+          "breadcrumb": [
+            {
+              "url": "",
+              "text": "Township List"
+            }
+          ]
+        },
+        "entry": {
+          "url": "/township",
+          "title": "Township Entry",
+          "breadcrumb": [
+            {
+              "url": "/townships",
+              "text": "Township List"
+            },
+            {
+              "url": "",
+              "text": "Township Entry"
+            }
+          ]
+        },
+        "actions": "1,1,1"
+      },
+      {
+        "menuid": "citySubMenu",
+        "url": "/cities",
+        "title": "City/Region",
+        "icon": "bi bi-list",
+        "access": false,
+        "active": false,
+        "list": {
+          "url": "/cities",
+          "title": "City/Region List",
+          "breadcrumb": [
+            {
+              "url": "",
+              "text": "City/Region List"
+            }
+          ]
+        },
+        "entry": {
+          "url": "/city",
+          "title": "City/Region Entry",
+          "breadcrumb": [
+            {
+              "url": "/cities",
+              "text": "City/Region List"
+            },
+            {
+              "url": "",
+              "text": "City/Region Entry"
+            }
+          ]
+        },
+        "actions": "1,1,1"
+      }
+    ]
+  },
+  {
+    "menuid": "courseMenu",
+    "url": "#",
+    "title": "Demo Course",
+    "icon": "bi bi-folder",
+    "access": false,
+    "active": false,
+    "submenu": [
+      {
+        "menuid": "teacherSubMenu",
+        "url": "/teachers",
+        "title": "Teacher",
+        "icon": "bi bi-list",
+        "access": false,
+        "active": false,
+        "list": {
+          "url": "/teachers",
+          "title": "Teacher List",
+          "breadcrumb": [
+            {
+              "url": "",
+              "text": "Teacher List"
+            }
+          ]
+        },
+        "entry": {
+          "url": "/teacher",
+          "title": "Teacher Entry",
+          "breadcrumb": [
+            {
+              "url": "/teachers",
+              "text": "Teacher List"
+            },
+            {
+              "url": "",
+              "text": "Teacher Entry"
+            }
+          ]
+        },
+        "actions": "1,1,1"
+      },
+      {
+        "menuid": "studentSubMenu",
+        "url": "/students",
+        "title": "Student",
+        "icon": "bi bi-list",
+        "access": false,
+        "active": false,
+        "list": {
+          "url": "/students",
+          "title": "Student List",
+          "breadcrumb": [
+            {
+              "url": "",
+              "text": "Student List"
+            }
+          ]
+        },
+        "entry": {
+          "url": "/student",
+          "title": "Student Entry",
+          "breadcrumb": [
+            {
+              "url": "/students",
+              "text": "Student List"
+            },
+            {
+              "url": "",
+              "text": "Student Entry"
+            }
+          ]
+        },
+        "actions": "1,1,1"
+      }
+    ]
+  }
+]

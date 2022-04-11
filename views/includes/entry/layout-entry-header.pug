@@ -1,0 +1,15 @@
+include ../other/layout-breadcrumb
+  block items
+    if page.entry.breadcrumb.length > 0
+      each breadcrumbObj, index in page.entry.breadcrumb
+        li.breadcrumb-item
+          a(href=breadcrumbObj.url) #{breadcrumbObj.text}
+
+div.d-flex.justify-content-between.flex-wrap.flex-md-nowrap.align-items-center.pb-2
+  h5 !{page.entry.title}
+
+div.alert.alert-dismissible#alertHandler(role='alert' style="display:none;")
+  strong.alert-title#alertTitle
+  span#alertMessage
+  button.close(type='button', data-hide='alert', aria-label='Close')
+    span(aria-hidden='true') &times;

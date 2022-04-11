@@ -1,0 +1,142 @@
+extends ../includes/layout-main
+block content
+  main.card.m-3.p-3(role='main')
+    .d-flex
+      h5.animate-typing.mr-auto Welcome Back 👋🏻
+      h5.show-date-time Jan 01 00:00 AM
+
+    .row
+      .col-md-3(onclick="location.href='/users';")
+        .card-counter.primary
+          i.bi.bi-person-check
+          span.count-numbers !{data[0]}
+          span.count-name Administrators
+      .col-md-3(onclick="location.href='/registers';")
+        .card-counter.purple
+          i.bi.bi-people
+          span.count-numbers !{data[1]}
+          span.count-name Public Users
+      .col-md-3(onclick="location.href='/cities';")
+        .card-counter.success
+          i.bi.bi-building
+          span.count-numbers !{data[2]}
+          span.count-name Cities/Regions
+      .col-md-3(onclick="location.href='/townships';")
+        .card-counter.info
+          i.bi.bi-signpost
+          span.count-numbers !{data[3]}
+          span.count-name Townships
+
+    hr
+    .col-md-12
+      .row
+        .col-md-4.my-2
+          .panel.panel-default
+            .panel-heading
+              h4.panel-title
+            .panel-content.text-center
+              canvas#teamChart.chart(height='380')
+            .panel-footer.text-center
+              p.pt-3 A simple Team Chart with basic settings
+
+        .col-md-4.my-2
+          .panel.panel-default
+            .panel-heading
+              h4.panel-title
+            .panel-content.text-center
+              canvas#saleChart.chart(height='380')
+            .panel-footer.text-center 
+              p.pt-3 A sample Sale Chart with basic settings
+
+        .col-md-4.my-2
+          .panel.panel-default
+            .panel-heading
+              h4.panel-title 
+            .panel-content.text-center
+              canvas#lineChart.chart(height='380')
+            .panel-footer.text-center 
+              p.pt-3 A sample Line Chart with basic settings
+
+        .col-md-4.my-2
+          .panel.panel-default
+            .panel-heading
+              h4.panel-title 
+            .panel-content.text-center
+              canvas#singelBarChart.chart(height='380')
+            .panel-footer.text-center 
+              p.pt-3 A sample Single Bar Chart with basic settings
+        
+        .col-md-4.my-2
+          .panel.panel-default
+            .panel-heading
+              h4.panel-title
+            .panel-content.text-center
+              canvas#barChart.chart(height='380')
+            .panel-footer.text-center 
+              p.pt-3 A sample Bar Chart with basic settings
+
+        .col-md-4.my-2
+          .panel.panel-default
+            .panel-heading
+              h4.panel-title
+            .panel-content.text-center
+              canvas#radarChart.chart(height='380')
+            .panel-footer.text-center 
+              p.pt-3 A sample Radar Chart with basic settings
+
+        .col-md-4.my-2
+          .panel.panel-default
+            .panel-heading
+              h4.panel-title 
+            .panel-content.text-center
+              canvas#pieChart.chart(height='380')
+            .panel-footer.text-center 
+              p.pt-3 A sample Pie Chart with basic settings
+
+        .col-md-4.my-2
+          .panel.panel-default
+            .panel-heading
+              h4.panel-title 
+            .panel-content.text-center
+              canvas#doughutChart.chart(height='380')
+            .panel-footer.text-center 
+              p.pt-3 A sample Doughut Chart with basic settings
+
+        .col-md-4.my-2
+          .panel.panel-default
+            .panel-heading
+              h4.panel-title 
+            .panel-content.text-center
+              canvas#polarChart.chart(height='380')
+            .panel-footer.text-center 
+              p.pt-3 A sample Polar Chart with basic settings
+
+  script(src='../layout-js/lib/chart-js/chart.bundle.min.js')
+  script(src='../layout-js/lib/chart-js/chart-init.js')
+  script.
+    $(document).ready(function() {
+      $('.count-numbers').each(function () {
+        const $this = $(this);
+        jQuery({ Counter: 0 }).animate({ Counter: $this.text() }, {
+          duration: 1200,
+          easing: 'swing',
+          step: function () {
+            $this.text(Math.ceil(this.Counter));
+          }
+        });
+      });
+
+      // initial set value
+      $(".show-date-time").text(
+        moment(new Date()).format('MMM DD hh:mm A') 
+      );
+
+      // set interval 1min
+      setInterval(() => {
+        const now = new Date();
+        $(".show-date-time").text(
+          moment(now).format('MMM DD hh:mm A') 
+        )
+      }, 1000 * 60);
+    });
+    

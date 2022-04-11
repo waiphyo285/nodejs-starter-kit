@@ -1,0 +1,72 @@
+/* Theme checkbox as button */
+
+.theme {
+  margin: 5px;
+  padding: 5px;
+  text-align: center;
+  border-radius: 5px;
+  background-color: var(--back-white);
+  border: 3px solid var(--back-gray);
+  overflow: hidden;
+}
+
+.theme label {
+  width: 4em;
+  height: 3em;
+  line-height: 3em;
+}
+
+.theme label span {
+  padding: 3px 0;
+  display: block;
+  text-align: center;
+}
+
+.theme label input {
+  position: absolute;
+  display: none;
+}
+
+.theme label input + span {
+  color: var(--text-black);
+}
+
+.theme input:checked + span {
+  color: var(--text-white);
+}
+
+/* Theme color */
+.default input:checked + span {
+  background-color: #666699;
+}
+
+.action input:checked + span {
+  background-color: #f55b5b;
+}
+
+.comedy input:checked + span {
+  background-color: #0bb0f5;
+}
+
+.crime input:checked + span {
+  background-color: #d5d55d;
+}
+
+.history input:checked + span {
+  background-color: #85d55d;
+}
+
+.reality input:checked + span {
+  background-color: #f5b5df;
+}
+
+.news input:checked + span {
+  background-color: #5d0b0b;
+}
+
+.sports input:checked + span {
+  background-color: #225b00;
+}
+/* End - Theme color */
+
+/* End - Theme checkbox as button */

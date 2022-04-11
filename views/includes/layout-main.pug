@@ -1,0 +1,168 @@
+doctype html
+head
+  meta(charset='utf-8')
+  meta(name='description' content='')
+  meta(name='author' content='Wai Phyo')
+  meta(name='viewport' content='width=device-width, initial-scale=1, shrink-to-fit=no')
+  link(rel="icon" type="image/png" href="../images/auth/it-logo-2.png")
+
+  title !{app.NAME}
+
+  // Dashboard CSS
+  //- link(href='https://getbootstrap.com/docs/4.5/examples/dashboard/' rel='canonical')
+
+  // Bootstrap Core CSS
+  link(href='/assets/dist/css/bootstrap.min.css' rel='stylesheet')
+
+  // Data Table CSS
+  link(href="/layout-css/lib/data-table/jquery.dataTables.min.css" rel="stylesheet")
+
+  // Layout/Lib
+  link(href='/layout-css/lib/select2/select2.min.css' rel='stylesheet')
+  link(href='/layout-css/lib/sweetalert2/sweetalert2.min.css' rel='stylesheet')
+  link(href='/layout-css/lib/datepicker/bootstrap-datepicker3.min.css' rel='stylesheet')
+  link(href="https://cdn.jsdelivr.net/npm/froala-editor@latest/css/froala_editor.pkgd.min.css" rel="stylesheet" type="text/css")
+  link(rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/5.3.0/ekko-lightbox.css' integrity='sha512-Velp0ebMKjcd9RiCoaHhLXkR1sFoCCWXNp6w4zj1hfMifYB5441C+sKeBl/T/Ka6NjBiRfBBQRaQq65ekYz3UQ==' crossorigin='anonymous' referrerpolicy='no-referrer')
+
+  //Tabinputs
+  link(href='/assets/dist/css/tagsinput.css' rel='stylesheet')
+
+  // Layout CSS
+  link(href='/layout-css/theme-config.css' rel='stylesheet')
+  link(href=`/layout-css/theme-${user.theme}.css` rel='stylesheet')
+  link(href='/layout-css/material-button.css' rel='stylesheet')
+  link(href='/layout-css/dashboard.css' rel='stylesheet')
+
+  // Font Bootstrap
+  link(rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css")
+
+  // Font Awesome
+  //- link(href="/layout-css/lib/font-awesome/css/font-awesome.min.css" rel="stylesheet" crossorigin="anonymous")
+
+  // Font Feather
+  //- script(src='/layout-js/lib/feather/feather.min.js')
+
+  // Jquery Core
+  script(src="/layout-js/lib/jquery.min.js")
+
+#wrapper.d-flex
+  include layout-sidebar
+  #page-content-wrapper
+    include layout-navbar
+    .container-fluid
+      block content
+    .footer.bg-white
+      footer#sticky-footer.flex-shrink-0.py-3
+        .container.text-center
+          span Copyright &copy;
+            a(href="https://waiphyonaing.me") 
+              | Wai Phyo Naing
+
+script.
+  // Global Variable
+  var table, pageEntry;
+  var token = '!{user.latmat}';
+  var userId = '!{user._id}';
+  var role = '!{user.role}';
+  var signJwtMethod = "one";
+  var maxImageCount = 5;
+
+  // request permission to user but not still use
+  //- if (Notification.permission != "granted") {
+  //-   Notification.requestPermission(); 
+  //- }
+
+  function dataTableDef (curPage) { 
+    const buttons = [
+      'excel',
+      'pdf', 
+      'print'
+    ];
+
+    const options = {
+      exportOptions: {
+        modifier: {
+          order: 'index',
+          page: 'all',
+          search: 'none'
+        },
+        columns: ':visible'
+      }
+    };
+
+    const langOptions = {
+      "searchPlaceholder": "Search",
+      "paginate": {
+        "previous": "<",
+        "next": ">"
+      }
+    };
+
+    const buttonOptions  = buttons.map((button) => { 
+      return {
+        filename: curPage,
+        extend: button,
+        ...options
+      }
+    });
+
+    return {
+      "destroy": true,
+      "scrollX": true,
+      "autoWidth": true,
+      "serverSide": true,
+      //- "processing": true,
+      "pagingType": "full_numbers",
+      "language": langOptions,
+      "buttons": buttonOptions
+    };
+  }
+
+  function fetchDataDef (curUrl) {
+    return {
+      "url": "./api" + curUrl,
+      "headers": {
+        "x-access-method": signJwtMethod,
+        "authorization": "Bearer " + token
+      },
+      "dataSrc": "data",
+    };
+  }
+
+<!-- Layout JS/ Lib -->
+script(src='/layout-js/lib/moment/moment.js')
+script(src='/layout-js/lib/select2/select2.full.min.js')
+script(src='/layout-js/lib/sweetalert2/sweetalert2.min.js')
+
+script(src='/assets/dist/js/bootstrap.bundle.min.js')
+script(src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.min.js')
+
+<!-- Data Table JS -->
+script(src="/layout-js/lib/data-table/jquery.datatables.min.js")
+script(src="/layout-js/lib/data-table/datatables.buttons.min.js")
+script(src="/layout-js/lib/data-table/buttons.html5.min.js")
+script(src="/layout-js/lib/data-table/buttons.print.min.js")
+script(src="/layout-js/lib/data-table/pdfmake.min.js")
+script(src="/layout-js/lib/data-table/jszip.min.js")
+script(src="/layout-js/lib/data-table/vfs_fonts.js")
+
+<!-- Datetime JS -->
+script(src="/layout-js/lib/datepicker/bootstrap-datepicker.min.js")
+
+<!-- Layout JS -->
+script(src='/layout-js/common.js')
+
+// Menu Toggle Script
+script.
+  $("#menu-toggle").click(function(e) {
+    e.preventDefault();
+    $("#wrapper").toggleClass("toggled");
+  });
+
+  //- setInterval(() => 
+  //-   swalWarning({
+  //-     icon: "info",
+  //-     title: "ဟယ်လို 👋🏻",
+  //-     description: "‌‌ဂေါင်းကြီးရေ ကောက်ဖီ သောက်လိုက်ပါဦး",
+  //-   })
+  //-  , 3600000);

@@ -1,0 +1,36 @@
+div.modal.fade#dialogDeleteConfirm(tabindex='-1', role='dialog', aria-labelledby='deleteConfirm')
+  div.modal-dialog.modal-dialog-centered.modal-md(role='document')
+    div.modal-content
+      div.modal-header
+        h5.modal-title 
+          | Comfirm Message
+        button.close(type='button', data-dismiss='modal', aria-label='Close')
+          span(aria-hidden='true') &times;
+      div.modal-body
+        h1.text-center
+          i.bi.bi-trash.text-danger
+        p.text-center You will lost this permanently. Are you sure to delete?
+      div.modal-footer.justify-content-md-center
+        button.btn.material-button.material-secondary#dialogCancel(type='button', data-dismiss='modal')
+          |  CANCEL
+        button.btn.material-button.material-primary#dialogDelete(type='button', data-dismiss='modal')
+          i.bi.bi-trash
+          |  DELETE
+
+div.alert.alert-success.alert-dismissible#alertActionSuccess(role='alert' style="display:none;")
+  strong Success:
+  span#delSuccessMsg  Action Successful.
+  button.close(type='button', data-hide='alert', aria-label='Close')
+    span(aria-hidden='true') &times;
+
+div.alert.alert-danger.alert-dismissible#alertActionError(role='alert' style="display:none;")
+  strong Error:
+  span#delErrorMsg  Action Unsuccessful.
+  button.close(type='button', data-hide='alert', aria-label='Close')
+    span(aria-hidden='true') &times;
+
+div.alert.alert-dismissible#alertHandler(role='alert' style="display:none;")
+  strong.alert-title#alertTitle 
+  span#alertMessage
+  button.close(type='button', data-hide='alert', aria-label='Close')
+    span(aria-hidden='true') &times;

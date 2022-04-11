@@ -1,0 +1,55 @@
+@import url("https://fonts.googleapis.com/css2?family=Questrial&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Ubuntu+Mono&display=swap");
+
+* {
+  font-family: "Questrial", sans-serif, "Ubuntu Mono", monospace;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+body {
+  padding: 0;
+  margin: 0;
+}
+
+#notfound {
+  position: relative;
+  height: 100vh;
+}
+
+#notfound .notfound {
+  left: 50%;
+  top: 50%;
+  position: absolute;
+  -webkit-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+
+.notfound {
+  width: 100vw;
+  max-width: 720px;
+  font-size: 16px;
+  padding: 16px;
+  line-height: 1.4;
+  text-align: center;
+}
+
+.notfound .f0f .ltp {
+  margin: 0 auto;
+}
+
+.notfound .link a {
+  color: #fdfdfd;
+  background: #3f3f3f;
+  margin: 10px 5px;
+  padding: 10px 30px;
+  border-radius: 30px;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.notfound a:hover {
+  color: #fdfdfd;
+  background: #0f0f0f;
+}

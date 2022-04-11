@@ -1,0 +1,388 @@
+/*!
+ * Start Bootstrap - Simple Sidebar (https://startbootstrap.com/template/simple-sidebar)
+ * Licensed under MIT (https://github.com/StartBootstrap/startbootstrap-simple-sidebar/blob/master/LICENSE)
+ */
+
+@import url("https://fonts.googleapis.com/css2?family=Questrial&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Ubuntu+Mono&display=swap");
+
+/* Bootstrap class override here */
+
+/* Setup font */
+body {
+  font-size: 14px;
+  font-family: "Questrial", sans-serif, "Ubuntu Mono", monospace;
+}
+/* End - Setup font */
+
+/* Nav & nav-item */
+nav.navbar {
+  background: var(--primary);
+}
+
+.sidebar-heading {
+  margin-top: 5px;
+}
+
+.list-group .list-group-item.active {
+  color: var(--secondary);
+  background: var(--back-white);
+  border-top: 1.5px solid var(--back-gray);
+  border-bottom: 1.5px solid var(--back-gray) !important;
+}
+
+.user-nav-items > .nav-item {
+  margin: 0 3px;
+  line-height: 1.3;
+  border-radius: 0.2rem;
+  background: var(--back-white);
+}
+
+.user-nav-items > .nav-item > a {
+  color: var(--secondary);
+  font-weight: 500;
+}
+/* End - Nav & nav-item */
+
+/* Dropdown */
+.nav-item.dropdown > .dropdown-menu {
+  top: 44px;
+  left: -110px;
+}
+
+.nav-item.dropdown > .dropdown-menu > a {
+  padding: 5px 10px;
+  margin: 3px auto;
+  font-size: 14px;
+}
+
+.nav-item.dropdown > .dropdown-menu > a:hover,
+.nav-item.dropdown > .dropdown-menu > a:focus {
+  color: var(--primary);
+  background-color: var(--back-white);
+}
+
+.nav-item.dropdown > .dropdown-menu > .dropdown-divider {
+  background-color: var(--back-gray);
+}
+/* End - dropdown */
+
+/* Container fulide */
+.container-fluid {
+  min-height: 92vh;
+  max-height: 92vh;
+  overflow-y: scroll;
+  padding: 3rem 0 1.5rem 0;
+}
+/* End - Container fulide */
+
+/* Select 2 */
+.select2-selection__rendered {
+  line-height: 36px !important;
+}
+
+.select2-container .select2-selection--single {
+  height: 36px !important;
+}
+
+.select2-selection__arrow {
+  height: 36px !important;
+}
+/* End - Select 2 */
+
+/* Sweet alert 2 */
+.swal-style {
+  width: 500px !important;
+  font-size: 14px !important;
+  margin: 1.5em 0 0 0 !important;
+}
+
+.swal2-styled.swal2-confirm,
+.swal2-styled.swal2-cancel {
+  width: auto;
+  height: 30px;
+  line-height: 0.8px;
+}
+
+.swal2-styled.swal2-confirm {
+  background-color: var(--primary) !important;
+}
+
+.swal2-styled.swal2-cancel {
+  background-color: var(--secondary) !important;
+}
+
+.swal2-styled.swal2-confirm:focus,
+.swal2-styled.swal2-cancel:focus {
+  outline: none;
+  box-shadow: none !important;
+}
+/* End - Sweet alert 2 */
+
+/* Input radio */
+input[type="radio"] {
+  width: 15px;
+  height: 15px;
+  padding: 3px;
+  margin-top: 5px;
+  display: inline-block;
+  border-radius: 50%;
+  border: 1.5px solid var(--back-gray);
+  background-color: var(--back-white);
+  background-clip: content-box;
+  transform: scale(1.5);
+  -ms-transform: scale(1.5);
+  -webkit-transform: scale(1.5);
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+
+input[type="radio"][value="1"]:checked {
+  background-color: var(--primary);
+}
+
+input[type="radio"][value="0"]:checked {
+  background-color: var(--back-black);
+}
+/* End - Input radio */
+
+/* Scrollbar  */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px var(--back-gray);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--back-gray);
+}
+/* End - Scrollbar  */
+
+/* Text selection */
+::selection {
+  color: var(--text-white);
+  background: var(--primary);
+}
+
+::-moz-selection {
+  color: var(--text-white);
+  background: var(--primary);
+}
+/* End - Text selection */
+
+/* Input focus */
+input:focus,
+.form-control:focus {
+  outline: none !important;
+  border-color: var(--primary);
+  box-shadow: 0 0 1.2px var(--primary);
+}
+
+textarea:focus {
+  outline: none !important;
+  border-color: var(--primary);
+  box-shadow: 0 0 1.2px var(--primary);
+}
+/* End - Input focus */
+
+/* End - Bootstrap class override here */
+
+/* Customer css here */
+
+/* Layout */
+#wrapper {
+  overflow-x: hidden;
+}
+
+#sidebar-wrapper {
+  min-height: 100vh;
+  margin-top: -15px;
+  margin-left: -15rem;
+  border-right: 0.5px solid var(--back-gray);
+  -webkit-transition: margin 0.25s ease-out;
+  -moz-transition: margin 0.25s ease-out;
+  -o-transition: margin 0.25s ease-out;
+  transition: margin 0.25s ease-out;
+}
+
+#sidebar-wrapper .sidebar-heading {
+  margin-top: 4.2rem;
+  font-size: 1.2rem;
+}
+
+#sidebar-wrapper .list-group {
+  width: 15rem;
+}
+
+#page-content-wrapper {
+  min-width: 100vw;
+}
+
+#wrapper.toggled #sidebar-wrapper {
+  margin-left: 0;
+}
+
+@media (min-width: 768px) {
+  #sidebar-wrapper {
+    margin-left: 0;
+  }
+
+  #page-content-wrapper {
+    min-width: 0;
+    width: 100%;
+  }
+
+  #wrapper.toggled #sidebar-wrapper {
+    margin-left: -15rem;
+  }
+}
+
+/* End - Layout */
+
+/* Welcome text */
+
+.animate-typing {
+  width: 15ch;
+  overflow: hidden;
+  white-space: nowrap;
+  /* border-right: 1.8px solid var(--primary); */
+  animation: typing 2s steps(22), blink 1s step-end infinite;
+}
+
+@keyframes typing {
+  from {
+    width: 0
+  }
+}
+
+@keyframes blink {
+  50% {
+    border-color: transparent
+  }
+}
+
+/* End - Welcome text */
+
+/* Card design */
+
+.card {
+  background-image: linear-gradient(to right,
+      rgba(255, 255, 255, 1),
+      rgba(250, 250, 250, 1));
+  box-shadow: 3px 3px 5px rgb(244, 244, 244);
+}
+
+/* End - Card design */
+
+/* Card counter */
+.card-counter {
+  height: 110px;
+  margin: 5px 0;
+  padding: 16px 10px;
+  border-radius: 5px;
+  transition: 0.3s linear all;
+}
+
+.card-counter:hover {
+  cursor: pointer;
+  color: var(--text-white) !important;
+  background-color: var(--primary);
+}
+
+.card-counter.primary {
+  border: 3px solid var(--secondary);
+  color: var(--secondary);
+}
+
+.card-counter.purple {
+  border: 3px solid var(--secondary);
+  color: var(--secondary);
+}
+
+.card-counter.success {
+  border: 3px solid var(--secondary);
+  color: var(--secondary);
+}
+
+.card-counter.info {
+  border: 3px solid var(--secondary);
+  color: var(--secondary);
+}
+
+.card-counter i {
+  font-size: 4em;
+  opacity: 0.4;
+}
+
+.card-counter .count-numbers {
+  position: absolute;
+  top: 22px;
+  right: 36px;
+  font-size: 32px;
+  display: block;
+}
+
+.card-counter .count-name {
+  position: absolute;
+  top: 66px;
+  right: 36px;
+  opacity: 0.6;
+  display: block;
+  font-size: 18px;
+  font-style: italic;
+  text-transform: capitalize;
+}
+/* End - Card counter */
+
+/* Image container */
+.img-container {
+  position: relative;
+  cursor: pointer;
+}
+
+.img-container img {
+  width: 100%;
+  height: auto;
+}
+
+.img-container .btn {
+  top: 50%;
+  left: 50%;
+  opacity: 0;
+  position: absolute;
+  color: var(--text-white);
+  background-color: var(--primary);
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+}
+
+.img-container:hover .img {
+  opacity: 0.3;
+}
+
+.img-container:hover .btn {
+  opacity: 1;
+}
+
+.add-img-wrapper {
+  border-radius: 8px;
+  border: 5px dashed var(--back-gray);
+}
+/* End - Image container */
+
+/* Chart.js */
+canvas {
+  height: 100%;
+  width: 100%;
+  margin: 0 auto;
+  position: relative;
+  display: inline-block;
+  vertical-align: middle;
+}
+/* End - Chart.js */
+
+/* End - Customer css here */

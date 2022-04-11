@@ -1,0 +1,66 @@
+extends ../includes/layout-main
+block content
+  main.card.m-3.p-3(role='main')
+    include ./../includes/entry/layout-entry-header
+    include ./../includes/entry/layout-entry-form
+      block inputs
+
+        div.form-group.row
+          div.col-sm-6.mb-3
+            label.control-label(for='phone') Phone
+            input.form-control.input-sm#phone(type='tel', name='phone', value=data.phone, maxlength="55" autocomplete="off" required autofocus)
+          
+          div.col-sm-6.mb-3
+            label.control-label(for='username') Username
+            input.form-control.input-sm#username(type='text', name='username', value=data.username, maxlength="55" autocomplete="off" required)
+          
+          div.col-sm-6.mb-3
+            label.control-label(for='password') Password
+            div.input-group
+              input.form-control.input-sm#password(type='password', name='password', role='password' value="" data-toggle="password-validator" data-match-pass=".conf-pass" data-target=".pwd-errors" required)
+              div.input-group-append
+                div.input-group-text
+                  i.bi.bi-eye-slash(aria-hidden='true')
+      
+          div.col-sm-6.mb-3
+            label.control-label(for='role') Role
+            select.form-control.input-sm.selectpicker#roleid(name='role' value=data.role data-value=data.role, data-live-search="true", data-size="8" required)
+          
+          div.col-sm-6.mb-3
+            label.control-label(for='status') Status
+            div.radio.radio-toolbar.row
+              div.col-sm-6.col-xl-3
+                input#statusActive.radiobox(type='radio', name='active', value="1" checked=data.active)
+                label.ml-1(for='statusActive') &nbsp; Active
+              div.col-sm-6.col-xl-3
+                input#statusInactive.radiobox(type='radio', name='active', value="0" checked=!data.active)
+                label.ml-1(for='statusInactive') &nbsp; Inactive
+
+        include ./../includes/entry/layout-entry-btn
+
+    form#postSuccessForm(method='GET', action=page.list.url)
+
+  script.
+    $(document).ready(function() {
+      ajaxLoadOption({
+        type: "GET",
+        url:"/api/user-roles",
+        selectId: "#roleid",
+        filterObj: {},
+        token: token
+      });
+
+      $(".input-group-append").on('click', function(event) {
+        event.preventDefault();
+        if($("#password").attr("type") == "password"){
+          $("#password").prop("type", "text");
+          $('.input-group-text i').addClass( "bi-eye" );
+          $('.input-group-text i').removeClass( "bi-eye-slash" );
+        }
+        else if($("#password").attr("type") == "text"){
+          $("#password").prop("type", "password");
+          $('.input-group-text i').addClass( "bi-eye-slash" );
+          $('.input-group-text i').removeClass( "bi-eye" );
+        }
+      });
+    });

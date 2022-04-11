@@ -1,0 +1,10 @@
+div.mb-2
+  div#tableButton.d-flex
+    block extend-btns
+      div.list-header.mr-auto(style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis")
+        h5 !{page.list.title}
+      .btn-group.btn-group-sm(role='group' aria-label='Basic example')
+        include ./layout-list-export
+          if ((page.actions[0] && page.actions[1]) == true)
+            block append
+              include ./layout-list-plus

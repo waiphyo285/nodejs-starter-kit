@@ -1,0 +1,39 @@
+doctype html
+html(lang="en")
+head
+  title !{title}
+  meta(charset='utf-8')
+  meta(name='description' content='')
+  meta(name='author' content='Wai Phyo')
+  meta(name='viewport' content='width=device-width, initial-scale=1, shrink-to-fit=no')
+  link(rel="shortcut icon" type="image/png" href="../images/auth/it-logo-2.png")
+
+  link(href='/layout-css/theme-default.css' rel='stylesheet')
+  link(rel='stylesheet', href='/assets/auth/styles.css')
+
+  // Font Bootstrap
+  link(rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css")
+
+  // Intl phone input css
+  //- link(href='/layout-css/lib/intl-phone/intl-phone.min.css' rel='stylesheet')
+  link(rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/css/intlTelInput.css')
+  
+  // Intl phone input js
+  //- script(src='https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/intlTelInput.min.js')
+  script(src="/layout-js/lib/intl-phone/intl-phone.min.js")
+
+body
+  div.login-wrapper
+    div.login-div
+      block content
+      label#error-message
+  
+  script.
+    const errorMessage = document.getElementById("error-message");
+    const urlParams = new URLSearchParams(window.location.search);
+    const message = urlParams.get('message');
+
+    if(message) {
+      errorMessage.innerText = message;
+      errorMessage.style.display = "block";
+    }

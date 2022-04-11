@@ -1,0 +1,47 @@
+extends ../includes/layout-main
+block content
+  main.card.m-3.p-3(role='main')
+
+    include ./../includes/list/layout-list-header
+
+    table#example.table.table-striped(style='width:100%')
+      thead
+        tr
+          th #
+          th Name
+          th Age
+          th Grade
+          th Active
+          th Updated Time
+          th.text-right Actions
+      tbody
+  script.
+    $(document).ready(function() {
+      pageEntry = '!{page.entry.url}';
+      $.fn.dataTable.ext.errMode = 'none';
+      $.fn.dataTable.ext.classes.sPageButton = 'btn material-button material-primary m-1'; 
+
+      table = $('#example').on('error.dt', dataTableCallback)
+        .DataTable({
+          ...dataTableDef('!{page.list.title}'),
+          "ajax": fetchDataDef('!{page.list.url}'),
+          "columns": [
+            { "data": "_id" },
+            { "data": "name"},
+            { "data": "age" },
+            { "data": "grade" },
+            { "data": "prefect" },
+            { "data": "updated_at" },
+            { "data": "actions" },
+          ],
+          "columnDefs": [
+            { targets: 0, render: dataTableIndexRenderer() },
+            { targets: 4, orderable: false, render: dataTableActiveRenderer() },
+            { targets: 5, orderable: false, render: dataTableDateTimeRenderer() },
+            { targets: 6, orderable: false, render: dataTableActionsRenderer(
+                ".!{page.entry.url}", "!{page.actions}"
+              )
+            }
+          ]
+      });
+    });

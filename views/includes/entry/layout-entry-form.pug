@@ -1,0 +1,6 @@
+-var recordForm = data.form || { id: "" };
+-var recordId = data.id || recordForm.id;
+-var method = recordId ? "put" : "post";
+form#entryForm.form-horizontal.border.p-3(method=method, action=page.entry.url)
+  input.form-control.input-sm#record_id(type='hidden', name='id', value=data.id)
+  block inputs

@@ -1,0 +1,103 @@
+extends ../includes/layout-main
+block content
+  main.card.m-3.p-3(role='main')
+    include ./../includes/entry/layout-entry-header
+
+    //- this is single file upload
+    form.d-none#uploadForm(method='POST' action='/file/upload/students' enctype="multipart/form-data")
+      input#file-input(type='file' name='uploaded_file')
+      //- input#file-input-btn(type='submit' name='uploaded_file_btn' value='Upload')
+
+    //- this is multiple files upload
+    //- form(method='POST' action='/file/multiUpload/multitest' enctype='multipart/form-data')
+    //-   input(type='file' name='uploaded_files' multiple='')
+    //-   input(type='submit' name='uploaded_files_btn' value='Upload')
+
+    include ./../includes/entry/layout-entry-form
+      block inputs
+
+        div.form-group.d-none 
+          div.row.remove-img-list
+
+        div.form-group  
+          div.row.img-list
+            .col-xs-6.col-sm-6.col-md-6.col-lg-2.img-container
+              img.m-1.p-3.add-img-wrapper#add-image(src="/images/icons/flat-image.svg", alt="", srcset="" width="360" height="360")
+
+            - var imageArray = data.profile_images || [];
+            if imageArray.length > 0
+              each progfile_image in data.profile_images
+                .col-xs-6.col-sm-6.col-md-6.col-lg-2.d-flex.justify-content-center.img-container
+                  input.uploaded-files(type="hidden", name="profile_images[]", value=`${progfile_image}`)
+                  img.m-1.img.img-thumbnail(src=`${progfile_image}`, alt="", srcset="" width="360" height="360")
+                  button.btn.btn-sm.remove-file(type="button")
+                    i.bi.bi-trash
+
+        div.form-group.row
+          div.col-sm-6.mb-3
+            label.control-label(for='name') Name
+            input.form-control.input-sm#name(type='text', name='name', value=data.name, maxlength="55" required autofocus)
+          
+          div.col-sm-6.mb-3
+            label.control-label(for='age') Age
+            input.form-control.input-sm#age(type='number', name='age', role='number', min='16' max='120' onkeyup="if(parseInt(this.value)>120){ this.value =120; return false; }" value=data.age autocomplete="off" required)
+      
+          div.col-sm-6.mb-3
+            - var cityid =  data.cityid || "#";
+            label.control-label(for='city') City
+            select.form-control.selectpicker#cityid(name='cityid' value=cityid._id data-value=cityid._id, data-live-search="true", data-size="8" required)
+          
+          div.col-sm-6.mb-3
+            - var townshipid =  data.townshipid || "#";
+            label.control-label(for='township') Township
+            select.form-control.input-sm.selectpicker#townshipid(name='townshipid' value=townshipid._id data-value=townshipid._id, data-live-search="true", data-size="8" required)
+      
+          div.col-sm-6.mb-3
+            label.control-label(for='grade') Grade
+            input.form-control.input-sm#grade(type='number', name='grade', role='number', min='1' max='11' onkeyup="if(parseInt(this.value)>11){ this.value =11; return false; }" value=data.grade autocomplete="off" required)
+
+          div.col-sm-6.mb-3
+            label.control-label(for='prefect') Prefect
+            div.radio.radio-toolbar.row
+              div.col-sm-6.col-xl-3
+                input#prefectActive.radiobox(type='radio', name='prefect', value="1" checked=data.prefect)
+                label.ml-1(for='prefectActive') &nbsp; Active
+              div.col-sm-6.col-xl-3
+                input#prefectInactive.radiobox(type='radio', name='prefect', value="0" checked=!data.prefect)
+                label.ml-1(for='prefectInactive') &nbsp; Inactive
+
+        include ./../includes/entry/layout-entry-btn
+
+    form#postSuccessForm(method='GET', action=page.list.url)
+
+  script(src="/layout-js/pages/img-upload.js") 
+  script.
+    $(document).ready(function() {
+      var editMode = $("input[name='id']").val();
+
+      ajaxLoadOption({
+        type: "GET",
+        url:"/api/cities",
+        selectId: "#cityid",
+        showKey: "city_mm",
+        filterObj: { },
+        token: token
+      });
+
+      $('#cityid').on('change', function() {
+        var cityid = $(this).val() || // get value [new entry]
+                     $(this).data('value'); // get value [edit entry]
+        ajaxLoadOption({
+          type: "GET",
+          url:"/api/township",
+          selectId: "#townshipid",
+          showKey: "township_mm",
+          filterObj: { cityid: cityid },
+          token: token
+        });
+      });
+
+      if (editMode && typeof editMode === "string") {
+        $('#cityid').trigger('change');
+      }
+    });

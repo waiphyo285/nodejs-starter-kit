@@ -46,8 +46,7 @@ const listData = (params) => {
 };
 
 const findData = (prop, val) => {
-  if (prop === "id") prop = "_id";
-  return Student.find({ [prop]: val })
+  return Student.find({ _id: val })
     .populate({
       path: "cityid",
       model: "city",

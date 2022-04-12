@@ -1,5 +1,8 @@
-const args = require("yargs-parser")(process.argv.slice(2));
-const studentsDb = require("../../controllers/students/index");
+// const args = require("yargs-parser")(process.argv.slice(2));
+const yargs = require("yargs/yargs");
+const { hideBin } = require("yargs/helpers");
+const args = yargs(hideBin(process.argv)).argv;
+const citiesDb = require("../../controllers/cities/index");
 
 const printHelp = function () {
   console.log(`
@@ -18,13 +21,13 @@ if (args.help || !valid) {
 }
 
 if (args.index) {
-  studentsDb
+  citiesDb
     .listData()
     .then((data) => {
-      console.log(`Data ${data}`);
+      console.log("Data ", data);
     })
     .catch((err) => {
-      console.log(`Error ${err}`);
+      console.log("Error ", err);
     })
     .finally(() => {
       process.exit(1);
@@ -32,13 +35,13 @@ if (args.index) {
 }
 
 if (args.show) {
-  studentsDb
+  citiesDb
     .findData("id", args.show)
     .then((data) => {
-      console.log(`Data ${data}`);
+      console.log("Data ", data);
     })
     .catch((err) => {
-      console.log(`Error ${err}`);
+      console.log("Error ", err);
     })
     .finally(() => {
       process.exit(1);

@@ -12,8 +12,7 @@ const listData = () => {
 };
 
 const findData = async (prop, val) => {
-  if (prop === "id") prop = "_id";
-  return Township.find({ [prop]: val })
+  return Township.find({ _id: val })
     .populate({
       path: "cityid",
       model: "city",

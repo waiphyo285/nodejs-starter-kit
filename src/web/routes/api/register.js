@@ -19,10 +19,10 @@ registers.create = (req, res, next) => {
     err || !data
       ? res.status(status[500].code).json(handleError(err))
       : res.status(status[200].code).json(
-          createResponse("SUCCESS", {
-            data: { data },
-          })
-        );
+        createResponse("SUCCESS", {
+          data: { data },
+        })
+      );
   });
 };
 
@@ -32,17 +32,17 @@ registers.login = (req, res, next) => {
     err || !data
       ? res.status(status[500].code).json(handleError(err))
       : data.comparePassword(password, (err, isMatch) => {
-          err || !isMatch
-            ? res.status(status[403].code).json(
-                createResponse("MISMATCH", {
-                  data: { message: "No user found" },
-                })
-              )
-            : res.status(status[200].code).json(
-                createResponse("SUCCESS", {
-                  data: { data },
-                })
-              );
-        });
+        err || !isMatch
+          ? res.status(status[403].code).json(
+            createResponse("MISMATCH", {
+              data: { message: "No user found" },
+            })
+          )
+          : res.status(status[200].code).json(
+            createResponse("SUCCESS", {
+              data: { data },
+            })
+          );
+      });
   });
 };

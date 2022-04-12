@@ -62,7 +62,9 @@ router
             password: user.password,
           });
           req.session.user = user;
-          res.redirect("/");
+          const redirectTo = req.session.redirectTo;
+          delete req.session.redirectTo;
+          res.redirect(redirectTo || "/");
         });
       }
     )(req, res, next);

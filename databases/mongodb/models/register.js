@@ -29,18 +29,19 @@ const makeSchema = new Schema({
 });
 
 makeSchema.pre("save", function (next) {
-  passwordHashOnSave(this, next);
+  const _ = this;
+  return generatePassword(_, next)
 });
 
-makeSchema.pre("findOneAndUpdate", function (next) {
-  passwordHashOnUpdate(this, next);
+makeSchema.pre("findOneAndUpdate", (next) => {
+  const _ = this.getUpdate();
+  return generatePassword(_, next)
 });
 
-makeSchema.methods.comparePassword = function (candidatePassword, cb) {
-  bcrypt.compare(candidatePassword, this.password, function (err, isMatch) {
-    if (err) return cb(err);
-    cb(undefined, isMatch);
-  });
+makeSchema.methods.comparePassword = function (candidatePass, cb) {
+  const _ = this;
+  const callBack = (err, isMatch) => err ? cb(err) : cb(null, isMatch);
+  bcrypt.compare(candidatePass, _.password, callBack)
 };
 
 // Remove password from the response
@@ -53,41 +54,14 @@ makeSchema.set("toJSON", {
 
 makeSchema.plugin(SchemaPlugin);
 
-const passwordHashOnSave = function (_this, next) {
-  const user = _this;
-  // only hash the password if it has been modified (or is new)
-  if (!user.isModified("password")) return next();
-  // generate a salt
-  bcrypt.genSalt(10, function (err, salt) {
-    if (err) return next(err);
-    // hash the password using our new salt
-    bcrypt.hash(user.password, salt, function (err, hash) {
-      if (err) return next(err);
-      // override the cleartext password with the hashed one
-      user.password = hash;
-      // return next
-      return next();
-    });
-  });
-};
-
-const passwordHashOnUpdate = function (_this, next) {
-  const user = _this;
-  const password = user.getUpdate().$set.password;
-  if (!password) {
-    return next();
-  }
-  try {
-    // hash the password using our new salt
-    const salt = bcrypt.genSaltSync(10);
-    const hash = bcrypt.hashSync(password, salt);
-    // override the cleartext password with the hashed one
-    user.getUpdate().$set.password = hash;
-    // return next
-    return next();
-  } catch (error) {
-    return next(error);
-  }
-};
+const generatePassword = (_, next) => {
+  const callNext = (res) => next(res);
+  const userPass = (hash) => (_.password = hash, callNext());
+  const checkErr = (err, val, fn) => (err ? callNext(err) : fn(val));
+  const hashPass = (salt) => bcrypt.hash(_.password, salt, (err, hash) => checkErr(err, hash, userPass));
+  const checkHash = (round) => bcrypt.genSalt(round, (err, salt) => checkErr(err, salt, hashPass));
+  const checkPass = (pass, fn) => (!pass ? callNext() : fn(10));
+  return checkPass(_.password, checkHash);
+}
 
 module.exports = mongoose.model("register", makeSchema);

@@ -6,8 +6,7 @@ const listData = () => {
 };
 
 const findData = async (prop, val) => {
-  if (prop === "id") prop = "_id";
-  return Register.find({ [prop]: val }).then((resp) => {
+  return Register.find({ _id: val }).then((resp) => {
     return serialize(resp[0]);
   });
 };

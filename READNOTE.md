@@ -354,8 +354,7 @@ const listData = () => {
 };
 
 const findData = (prop, val) => {
-  if (prop === "id") prop = "_id";
-  return Student.find({ [prop]: val }).then((resp) => {
+  return Student.find({ _id: val }).then((resp) => {
     return serialize(resp[0]);
   });
 };

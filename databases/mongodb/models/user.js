@@ -39,46 +39,30 @@ const makeSchema = new Schema({
 makeSchema.plugin(SchemaPlugin);
 
 makeSchema.pre("save", function (next) {
-  const user = this;
-  if (!user.isModified("password")) return next();
-
-  bcrypt.genSalt(10, function (err, salt) {
-    if (err) return next(err);
-
-    bcrypt.hash(user.password, salt, function (err, hash) {
-      if (err) return next(err);
-      user.password = hash;
-      // next function
-      return next();
-    });
-  });
+  const _ = this;
+  return generatePassword(_, next)
 });
 
 makeSchema.pre("findOneAndUpdate", function (next) {
-  const user = this;
-  const password = user.getUpdate().password;
-
-  if (!password) return next();
-
-  try {
-    // hash the password using our new salt
-    const salt = bcrypt.genSaltSync(10);
-    const hash = bcrypt.hashSync(password, salt);
-    // override the cleartext password with the hashed one
-    user.getUpdate().password = hash;
-    // next function
-    return next();
-  } catch (error) {
-    return next(error);
-  }
+  const _ = this.getUpdate();
+  return generatePassword(_, next)
 });
 
-makeSchema.methods.comparePassword = function (candidatePassword, cb) {
-  bcrypt.compare(candidatePassword, this.password, function (err, isMatch) {
-    if (err) return cb(err);
-    cb(null, isMatch);
-  });
+makeSchema.methods.comparePassword = function (candidatePass, cb) {
+  const _ = this;
+  const callBack = (err, isMatch) => err ? cb(err) : cb(null, isMatch);
+  bcrypt.compare(candidatePass, _.password, callBack)
 };
+
+const generatePassword = (_, next) => {
+  const callNext = (res) => next(res);
+  const userPass = (hash) => (_.password = hash, callNext());
+  const checkErr = (err, val, fn) => (err ? callNext(err) : fn(val));
+  const hashPass = (salt) => bcrypt.hash(_.password, salt, (err, hash) => checkErr(err, hash, userPass));
+  const checkHash = (round) => bcrypt.genSalt(round, (err, salt) => checkErr(err, salt, hashPass));
+  const checkPass = (pass, fn) => (!pass ? callNext() : fn(10));
+  return checkPass(_.password, checkHash);
+}
 
 const User = mongoose.model("user", makeSchema);
 

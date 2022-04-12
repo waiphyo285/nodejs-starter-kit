@@ -19,11 +19,11 @@ passport.deserializeUser(function (user, done) {
 passport.use(
   new LocalStrategy(
     { usernameField: "username", passwordField: "password" },
-    function (username, password, done) {
-      UserModel.findOne({ username: username }, function (err, user) {
+    (username, password, done) => {
+      UserModel.findOne({ username: username }, (err, user) => {
         if (err) return done(err, false);
         if (!user) return done(null, false);
-        user.comparePassword(password, function (err, match) {
+        user.comparePassword(password, (err, match) => {
           if (err) return done(err, false);
           if (match) return done(null, user);
           return done(null, false);

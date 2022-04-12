@@ -47,15 +47,15 @@ const sumPermission = (role) =>
 const GenerateToken = (req, res) => {
   checkPayload(req.body)
     ? res.status(status[200].code).json(
-        createResponse("SUCCESS", {
-          data: { token: getSignMethod(signJwtToken, req.body) },
-        })
-      )
+      createResponse("SUCCESS", {
+        data: { token: getSignMethod(signJwtToken, req.body) },
+      })
+    )
     : res.status(status[401].code).json(
-        createResponse("FAIL", {
-          data: { message: "Authentication is failed" },
-        })
-      );
+      createResponse("FAIL", {
+        data: { message: "Authentication is failed" },
+      })
+    );
 };
 
 const checkPayload = ({ username, password, userrole, method_id }) => {
@@ -77,8 +77,7 @@ const getSignMethod = (obj, { username, password, userrole, method_id }) => {
 
 const signJwtToken = {
   // dev: expires in 24h for method 1 && 2
-  method_1: (payload) =>
-    jwt.sign(payload, JWT_SECRET, { expiresIn: JWT_EXPIRY }),
+  method_1: (payload) => jwt.sign(payload, JWT_SECRET, { expiresIn: JWT_EXPIRY }),
   method_2: (payload) => jwt.sign(payload, privateKEY, signOption),
 };
 
@@ -96,15 +95,15 @@ const checkJwtToken = (req, res, next) => {
     ? (decode = getVerifyMethod(verifyJwtToken, { token, method_id }))
       ? ((req.headers.userrole = decode.userrole), next()) // ok and next()
       : res.status(status[401].code).json(
-          createResponse("FAIL", {
-            data: { message: "Auth token is invalid" },
-          })
-        )
-    : res.status(status[401].code).json(
         createResponse("FAIL", {
-          data: { message: "Auth token is required" },
+          data: { message: "Auth token is invalid" },
         })
-      );
+      )
+    : res.status(status[401].code).json(
+      createResponse("FAIL", {
+        data: { message: "Auth token is required" },
+      })
+    );
 };
 
 const getVerifyMethod = (obj, { token, method_id }) => {
@@ -116,14 +115,12 @@ const getVerifyMethod = (obj, { token, method_id }) => {
 };
 
 const verifyJwtToken = {
-  method_1: (token) =>
-    jwt.verify(token, JWT_SECRET, (err, decode) => {
-      return err ? null : decode;
-    }),
-  method_2: (token) =>
-    jwt.verify(token, publicKEY, signOption, (err, decode) => {
-      return err ? null : decode;
-    }),
+  method_1: (token) => jwt.verify(token, JWT_SECRET, (err, decode) => {
+    return err ? null : decode;
+  }),
+  method_2: (token) => jwt.verify(token, publicKEY, signOption, (err, decode) => {
+    return err ? null : decode;
+  }),
 };
 
 // Authorized Methods

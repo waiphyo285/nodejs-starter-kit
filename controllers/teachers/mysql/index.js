@@ -30,24 +30,14 @@ const updateData = (id, dataObj) => {
   return knex("teachers")
     .where("id", "=", id)
     .update(dataObj)
-    .then((data) => {
-      if (data === 1) {
-        return serialize({ id: id });
-      }
-      return null;
-    });
+    .then((data) => (data === 1 ? serialize({ id: id }) : null));
 };
 
 const deleteData = (id) => {
   return knex("teachers")
     .where("id", id)
     .del()
-    .then((data) => {
-      if (data === 1) {
-        return serialize({ id: id });
-      }
-      return null;
-    });
+    .then((data) => (data === 1 ? serialize({ id: id }) : null));
 };
 
 const dropAll = () => {

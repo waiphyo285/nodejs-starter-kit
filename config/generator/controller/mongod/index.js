@@ -6,8 +6,7 @@ const listData = () => {
 };
 
 const findData = (prop, val) => {
-  if (prop === "id") prop = "_id";
-  return Controller.find({ [prop]: val }).then((resp) => {
+  return Controller.find({ _id: val }).then((resp) => {
     return serialize(resp[0]);
   });
 };

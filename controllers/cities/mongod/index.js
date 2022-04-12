@@ -6,8 +6,7 @@ const listData = () => {
 };
 
 const findData = (prop, val) => {
-  if (prop === "id") prop = "_id";
-  return City.find({ [prop]: val }).then((resp) => {
+  return City.find({ _id: val }).then((resp) => {
     return serialize(resp[0]);
   });
 };

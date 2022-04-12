@@ -1,6 +1,6 @@
-const client = require("../connection");
-const mongoose = require("mongoose");
 const util = require("util");
+const mongoose = require("mongoose");
+const client = require("../connection");
 
 client.hget = util.promisify(client.hget);
 const exec = mongoose.Query.prototype.exec;
@@ -9,7 +9,6 @@ mongoose.Query.prototype.cache = function (options = { time: 60 }) {
   this.useCache = true;
   this.time = options.time;
   this.hashKey = JSON.stringify(options.key || this.mongooseCollection.name);
-
   return this;
 };
 
@@ -18,26 +17,30 @@ mongoose.Query.prototype.exec = async function () {
     return await exec.apply(this, arguments);
   }
 
-  const key = JSON.stringify({
-    ...this.getQuery(),
-  });
+  const key = JSON.stringify({ ...this.getQuery() });
 
   const cacheValue = await client.hget(this.hashKey, key);
 
-  if (cacheValue) {
-    console.info("GET Response from Redis");
-    const doc = JSON.parse(cacheValue);
-    return Array.isArray(doc)
-      ? doc.map((d) => new this.model(d))
-      : new this.model(doc);
-  }
+  const checkCache = (value, fnOne, fnTwo) =>
+    value ? fnOne(JSON.parse(value)) : fnTwo();
 
-  const result = await exec.apply(this, arguments);
-  console.info(`SET Expired after ${this.time}s`);
-  console.info("GET Response from MongoDB");
+  const existCache = (cache) =>
+    Array.isArray(cache)
+      ? cache.map((doc) => new this.model(doc))
+      : new this.model(cache);
 
-  client.hset(this.hashKey, key, JSON.stringify(result));
-  client.expire(this.hashKey, this.time);
+  const notExistCache = async (reponse) => {
+    const result = await exec.apply(this, reponse);
+    client.hset(this.hashKey, key, JSON.stringify(result));
+    client.expire(this.hashKey, this.time);
+    return result;
+  };
+
+  const result = checkCache(
+    cacheValue,
+    (documents) => existCache(documents),
+    () => notExistCache(arguments)
+  );
 
   return result;
 };

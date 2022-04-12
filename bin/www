@@ -5,6 +5,7 @@
  */
 const http = require("http");
 const app = require("../app");
+const { matches } = require("z");
 const config = require("../config/index");
 const clr = require("../helpers/console_color");
 const debug = require("debug")("kholine-backend:server");
@@ -34,18 +35,16 @@ server.on("listening", onListening);
  * Normalize a port into a number, string, or false.
  */
 
+function checkPort({ port, val }) {
+  return matches({ port, val })(
+    (x = Object) => (isNaN(x) ? x.val : false),
+    (x = Object) => (x.port >= 0 ? x.port : false)
+  );
+}
+
 function normalizePort(val) {
   const port = parseInt(val, 10);
-
-  if (isNaN(port)) {
-    // named pipe
-    return val;
-  }
-  if (port >= 0) {
-    // port number
-    return port;
-  }
-  return false;
+  return checkPort({ port, val });
 }
 
 /**

@@ -7,8 +7,7 @@ const listUsers = () => {
 };
 
 const findUser = (prop, val) => {
-  if (prop === "id") prop = "_id";
-  return User.find({ [prop]: val }).then((resp) => {
+  return User.find({ _id: val }).then((resp) => {
     return serialize(resp[0]);
   });
 };

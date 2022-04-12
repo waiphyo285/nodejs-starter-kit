@@ -73,27 +73,25 @@ block content
   script(src="/layout-js/pages/img-upload.js") 
   script.
     $(document).ready(function() {
-      var editMode = $("input[name='id']").val();
+      const editMode = $("input[name='id']").val();
 
       ajaxLoadOption({
         type: "GET",
         url:"/api/cities",
         selectId: "#cityid",
         showKey: "city_mm",
-        filterObj: { },
-        token: token
+        filterObj: {},
       });
 
       $('#cityid').on('change', function() {
-        var cityid = $(this).val() || // get value [new entry]
-                     $(this).data('value'); // get value [edit entry]
+        const cityid = $(this).val() ||       // get value [new entry]
+                       $(this).data('value'); // get value [edit entry]
         ajaxLoadOption({
           type: "GET",
           url:"/api/township",
           selectId: "#townshipid",
           showKey: "township_mm",
-          filterObj: { cityid: cityid },
-          token: token
+          filterObj: { cityid },
         });
       });
 

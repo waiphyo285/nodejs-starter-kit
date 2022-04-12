@@ -2,6 +2,12 @@
  * Common Scripts
  */
 
+const headers = {
+  "userrole": role,
+  "x-access-method": signJwtMethod,
+  "authorization": "Bearer " + token,
+};
+
 function dataTableCallback(e, settings, techNote, message) {
   console.log("Fetch Error ", message);
   swalWarning({
@@ -219,7 +225,7 @@ $("#dialogDeleteConfirm").on("show.bs.modal", function (event) {
     .find("#dialogDelete")
     .on("click", function (ev) {
       var deleteUrl = `./api${pageEntry}/${id}`;
-      handleAction(deleteUrl, token, function () {
+      submitAction(deleteUrl, function () {
         table.ajax.reload();
       });
     });
@@ -234,11 +240,7 @@ $("#entryForm").submit(function (e) {
     url: $(this).attr("action"),
     type: $(this).attr("method"),
     data: $(this).serialize(),
-    headers: {
-      userrole: role,
-      "x-access-method": signJwtMethod,
-      authorization: "Bearer " + token,
-    },
+    headers: headers,
     success: function (data) {
       handleAlert(data);
     },
@@ -248,15 +250,11 @@ $("#entryForm").submit(function (e) {
   });
 });
 
-function handleAction(url, token, callback) {
+function submitAction(url, callback) {
   $.ajax({
     url: url,
     type: "delete",
-    headers: {
-      userrole: role,
-      "x-access-method": signJwtMethod,
-      authorization: "Bearer " + token,
-    },
+    headers: headers,
     success: function (data) {
       if (data && data.status == "SUCCESS") {
         $("#alertActionError").hide();
@@ -264,7 +262,7 @@ function handleAction(url, token, callback) {
         if (typeof callback === "function") {
           callback();
         }
-      } else if (data && data.status == "FAIL") {
+      } else {
         $("#alertActionSuccess").hide();
         $("#alertActionError").show();
       }
@@ -300,21 +298,15 @@ function ajaxLoadOption(args) {
     type = args.type || "GET",
     showKey = args.showKey || "",
     selectId = args.selectId || "#",
-    filerObj = args.filterObj || {},
-    token = args.token;
+    filerObj = args.filterObj || {};
   $.ajax({
-    type: type,
     url: url,
-    headers: {
-      userrole: role,
-      "x-access-method": signJwtMethod,
-      authorization: "Bearer " + token,
-    },
+    type: type,
+    headers: headers,
     data: { ...filerObj },
     success: function (data) {
       var items = "";
-      items +=
-        "<option value='' disabled selected> -- Please Select -- </option>";
+      items += "<option value='' disabled selected>-- Please Select --</option>";
       if (data.status == "SUCCESS" && $.isArray(data.data)) {
         $.each(data.data, function (i, item) {
           items += `<option value="${item["_id"]}">${item[showKey]}</option>`;
@@ -331,17 +323,12 @@ function ajaxLoadOption(args) {
 
 function ajaxUploadForm(args) {
   var imgParentDiv = args.imgParentDiv,
-    _this = args._this,
-    token = args.token;
+    _this = args._this;
   // multi/part  form submit
   $.ajax({
     url: $(_this).attr("action"),
     type: $(_this).attr("method"),
-    headers: {
-      userrole: role,
-      "x-access-method": signJwtMethod,
-      authorization: "Bearer " + token,
-    },
+    headers: headers,
     cache: false,
     contentType: false,
     processData: false,

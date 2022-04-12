@@ -3,12 +3,12 @@
 /**
  * Module dependencies.
  */
+
 const http = require("http");
 const app = require("../app");
-const { matches } = require("z");
 const config = require("../config/index");
 const clr = require("../helpers/console_color");
-const debug = require("debug")("kholine-backend:server");
+const debug = require("debug")("it-backend:server");
 
 /**
  * Get port from environment and store in Express.
@@ -35,16 +35,9 @@ server.on("listening", onListening);
  * Normalize a port into a number, string, or false.
  */
 
-function checkPort({ port, val }) {
-  return matches({ port, val })(
-    (x = Object) => (isNaN(x) ? x.val : false),
-    (x = Object) => (x.port >= 0 ? x.port : false)
-  );
-}
-
 function normalizePort(val) {
   const port = parseInt(val, 10);
-  return checkPort({ port, val });
+  return isNaN(port) ? val : port >= 0 ? port : false
 }
 
 /**
@@ -52,25 +45,24 @@ function normalizePort(val) {
  */
 
 function onError(error) {
-  if (error.syscall !== "listen") {
-    throw error;
-  }
-
-  const bind = typeof port === "string" ? "Pipe " + port : "Port " + port;
+  const checkListen = (msg, code, fn) => (
+    msg !== "listen" ? function () { throw error; }() : fn(code)
+  );
 
   // handle specific listen errors with friendly messages
-  switch (error.code) {
-    case "EACCES":
-      console.error(bind + " requires elevated privileges");
-      process.exit(1);
-      break;
-    case "EADDRINUSE":
-      console.error(bind + " is already in use");
-      process.exit(1);
-      break;
-    default:
-      throw error;
-  }
+  const switchError = (code) => ({
+    "EACCES": () => (
+      console.error(`Port ${port} requires elevated privileges`),
+      process.exit(1)
+    ),
+    "EADDRINUSE": () => (
+      console.error(`Port ${port} is already in use`),
+      process.exit(1)
+    ),
+    "DEFAULT": () => { throw error; }
+  })[code || "DEFAULT"]();
+
+  checkListen(error.syscall, error.code, switchError);
 }
 
 /**
@@ -80,7 +72,6 @@ function onError(error) {
 function onListening() {
   const addr = server.address();
   const bind = typeof addr === "string" ? "pipe " + addr : "port " + addr.port;
-
   console.log(`${clr.fg.magenta}Server  : 🚀 Listening on ` + bind);
   debug("Listening on " + bind);
 }

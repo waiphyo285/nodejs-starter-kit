@@ -56,8 +56,7 @@ const getProgram = (userRole, pageId) => {
             // split submenu action
             subMenuObj.actions = subMenuAccess.split(",").slice(1);
             // submenu active true
-            subMenuObj.active =
-              activeMenuArr[1] == subMenuObj.menuid ? true : false;
+            subMenuObj.active = activeMenuArr[1] == subMenuObj.menuid ? true : false;
           }
         });
       }

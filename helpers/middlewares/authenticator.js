@@ -1,9 +1,10 @@
 const fs = require("fs");
 const path = require("path");
+const crypto = require("crypto");
 const express = require("express");
 const router = express.Router();
 const jwt = require("jsonwebtoken");
-const config = require("../../config");
+const config = require("./auth_config");
 const { status, createResponse } = require("../../helpers/handle_response");
 
 // use 'utf8' to get string instead of byte array  (512 bit key)
@@ -17,52 +18,69 @@ const privateKEY = fs.readFileSync(
   { encoding: "utf-8" }
 );
 
-const JWT_SECRET = config.JWT.SECRET;
-const JWT_EXPIRY = config.JWT.SIGN_OPTION.EXP1;
-
-const defineUserRole = config.APP.ROLES;
-const mockedUsername = config.JWT.CREDENTIAL.USER;
-const mockedPassword = config.JWT.CREDENTIAL.PASS;
-
-const signOption = {
-  issuer: config.JWT.SIGN_OPTION.ISSR,
-  subject: config.JWT.SIGN_OPTION.SUBJ,
-  audience: config.JWT.SIGN_OPTION.AUDI,
-  expiresIn: config.JWT.SIGN_OPTION.EXP2,
-  algorithm: config.JWT.SIGN_OPTION.ALGO,
-};
-
-const UserRoleAccess = {
-  admin: "1,1,1",
-  manager: "1,1,0",
-  cashier: "1,0,0",
-};
-
 // Compare permssion
 const sumPermission = (role) =>
-  UserRoleAccess[role].split(",").reduce((sum, cur) => +sum + +cur, 0);
+  config.userRoleAccess[role].split(",").reduce((sum, cur) => +sum + +cur, 0);
 
 // Generate methods
 
-const GenerateToken = (req, res) => {
+const encryptTime = (req, res) => {
   checkPayload(req.body)
     ? res.status(status[200].code).json(
-      createResponse("SUCCESS", {
-        data: { token: getSignMethod(signJwtToken, req.body) },
-      })
-    )
+        createResponse("SUCCESS", {
+          data: { data: encryptData(`${Date.now()}`) },
+        })
+      )
     : res.status(status[401].code).json(
-      createResponse("FAIL", {
-        data: { message: "Authentication is failed" },
-      })
-    );
+        createResponse("FAIL", {
+          data: { message: "Encrypted time is failed" },
+        })
+      );
+};
+
+const encryptData = (message) => {
+  const algorithm = config.encodeAlg;
+  const initVectr = crypto.randomBytes(16);
+  const secretKey = crypto.randomBytes(32);
+  const cipher = crypto.createCipheriv(algorithm, secretKey, initVectr);
+  return {
+    init_vectr: initVectr.toString("base64"),
+    secret_key: secretKey.toString("base64"),
+    random: cipher.update(message, "utf-8", "hex") + cipher.final("hex"),
+  };
+};
+
+const decryptData = ({ init_vectr, secret_key, random }) => {
+  const algorithm = config.encodeAlg;
+  const initVectr = Buffer.from(init_vectr, "base64");
+  const secretKey = Buffer.from(secret_key, "base64");
+  const decipher = crypto.createDecipheriv(algorithm, secretKey, initVectr);
+  return decipher.update(random, "hex", "utf-8") + decipher.final("utf8");
+};
+
+const generateToken = (req, res) => {
+  // 1 min = 60000 ms
+  const datetime = Date.now();
+  const hashprop = req.params.timehash;
+  const prevtime = decryptData({ ...req.body, random: hashprop });
+  datetime - prevtime <= 60000 && checkPayload(req.body)
+    ? res.status(status[200].code).json(
+        createResponse("SUCCESS", {
+          data: { token: getSignMethod(signJwtToken, req.body) },
+        })
+      )
+    : res.status(status[401].code).json(
+        createResponse("FAIL", {
+          data: { message: "Authentication is failed" },
+        })
+      );
 };
 
 const checkPayload = ({ username, password, userrole, method_id }) => {
   return (
-    defineUserRole.indexOf(userrole) !== -1 &&
-    mockedUsername === username &&
-    mockedPassword === password &&
+    config.defineUserRole.indexOf(userrole) !== -1 &&
+    config.mockedUsername === username &&
+    config.mockedPassword === password &&
     method_id
   );
 };
@@ -77,8 +95,9 @@ const getSignMethod = (obj, { username, password, userrole, method_id }) => {
 
 const signJwtToken = {
   // dev: expires in 24h for method 1 && 2
-  method_1: (payload) => jwt.sign(payload, JWT_SECRET, { expiresIn: JWT_EXPIRY }),
-  method_2: (payload) => jwt.sign(payload, privateKEY, signOption),
+  method_1: (payload) =>
+    jwt.sign(payload, config.jwtSecret, { expiresIn: config.jwtExpiry }),
+  method_2: (payload) => jwt.sign(payload, privateKEY, config.signOption),
 };
 
 // Verify methods
@@ -95,15 +114,15 @@ const checkJwtToken = (req, res, next) => {
     ? (decode = getVerifyMethod(verifyJwtToken, { token, method_id }))
       ? ((req.headers.userrole = decode.userrole), next()) // ok and next()
       : res.status(status[401].code).json(
-        createResponse("FAIL", {
-          data: { message: "Auth token is invalid" },
-        })
-      )
+          createResponse("FAIL", {
+            data: { message: "Auth token is invalid" },
+          })
+        )
     : res.status(status[401].code).json(
-      createResponse("FAIL", {
-        data: { message: "Auth token is required" },
-      })
-    );
+        createResponse("FAIL", {
+          data: { message: "Auth token is required" },
+        })
+      );
 };
 
 const getVerifyMethod = (obj, { token, method_id }) => {
@@ -115,12 +134,12 @@ const getVerifyMethod = (obj, { token, method_id }) => {
 };
 
 const verifyJwtToken = {
-  method_1: (token) => jwt.verify(token, JWT_SECRET, (err, decode) => {
-    return err ? null : decode;
-  }),
-  method_2: (token) => jwt.verify(token, publicKEY, signOption, (err, decode) => {
-    return err ? null : decode;
-  }),
+  method_1: (token) =>
+    jwt.verify(token, config.jwtSecret, (err, decode) => (err ? null : decode)),
+  method_2: (token) =>
+    jwt.verify(token, publicKEY, config.signOption, (err, decode) =>
+      err ? null : decode
+    ),
 };
 
 // Authorized Methods
@@ -141,7 +160,8 @@ const isAuth = (target) => {
 };
 
 // Generate Route Token
-router.post("/u-bar", GenerateToken);
+router.post("/u-tsh/", encryptTime);
+router.post("/u-bar/:timehash?", generateToken);
 
 module.exports = {
   isAuth: isAuth,

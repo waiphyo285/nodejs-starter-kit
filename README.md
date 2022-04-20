@@ -17,7 +17,7 @@ Before you go, [you can visit demo here.](http://itmin.unlocksth.site)
 | 7   | Media Files             | Write, unlink file for physical contents |        |
 | 8   | Redis Memory            | In-memory cache to decrease latency      |        |
 | 9   | Multi Databases         | MySQL and MongoDB switching usage        |        |
-| 10  | Test Driven Development | Testing to fewer bugs and errors in devs |        |
+| 10  | Test Driven Development | Testing to fewer bugs and errors in dev  |        |
 
 ### Technologies
 

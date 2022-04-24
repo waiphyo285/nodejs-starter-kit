@@ -17,18 +17,24 @@ body {
 
 /* Nav & nav-item */
 nav.navbar {
+  padding: 0.2rem 1rem;
   background: var(--primary);
 }
 
-.sidebar-heading {
-  margin-top: 5px;
+.list-group-item {
+  border: none;
+  height: 40px !important;
+  padding: 0.6rem 1.25rem;
+}
+
+.list-group-item span {
+  font-size: 14px;
 }
 
 .list-group .list-group-item.active {
   color: var(--secondary);
   background: var(--back-white);
-  border-top: 1.5px solid var(--back-gray);
-  border-bottom: 1.5px solid var(--back-gray) !important;
+  border-right: 3px solid var(--primary);
 }
 
 .user-nav-items > .nav-item {
@@ -46,14 +52,14 @@ nav.navbar {
 
 /* Dropdown */
 .nav-item.dropdown > .dropdown-menu {
-  top: 44px;
+  top: 38px;
   left: -110px;
 }
 
 .nav-item.dropdown > .dropdown-menu > a {
+    font-size: 14px;
   padding: 5px 10px;
   margin: 3px auto;
-  font-size: 14px;
 }
 
 .nav-item.dropdown > .dropdown-menu > a:hover,
@@ -210,7 +216,7 @@ textarea:focus {
 }
 
 #sidebar-wrapper .sidebar-heading {
-  margin-top: 4.2rem;
+  margin-top: 3.8rem;
   font-size: 1.2rem;
 }
 

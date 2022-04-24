@@ -6,26 +6,29 @@ block content
       h5.show-date-time Jan 01 00:00 AM
 
     .row
-      .col-md-3(onclick="location.href='/users';")
-        .card-counter.primary
-          i.bi.bi-person-check
-          span.count-numbers !{data[0]}
-          span.count-name Administrators
-      .col-md-3(onclick="location.href='/registers';")
-        .card-counter.purple
-          i.bi.bi-people
-          span.count-numbers !{data[1]}
-          span.count-name Public Users
-      .col-md-3(onclick="location.href='/cities';")
-        .card-counter.success
-          i.bi.bi-building
-          span.count-numbers !{data[2]}
-          span.count-name Cities/Regions
-      .col-md-3(onclick="location.href='/townships';")
-        .card-counter.info
-          i.bi.bi-signpost
-          span.count-numbers !{data[3]}
-          span.count-name Townships
+      .card-counter.col-md-3(onclick="location.href='/users';")
+        .wrap
+          h4.card-counter-title 
+            span.bi.bi-person-check  Administrators
+          span.card-counter-number !{data[0]}
+            
+      .card-counter.col-md-3(onclick="location.href='/registers';")
+        .wrap
+          h4.card-counter-title
+            span.bi.bi-people  Public Users
+          span.card-counter-number !{data[1]}
+      
+      .card-counter.col-md-3(onclick="location.href='/cities';")
+        .wrap
+          h4.card-counter-title
+            span.bi.bi-building  Cities/Regions
+          span.card-counter-number !{data[2]}
+      
+      .card-counter.col-md-3(onclick="location.href='/townships';")
+        .wrap
+          h4.card-counter-title
+            span.bi.bi-signpost  Townships
+          span.card-counter-number !{data[3]}
 
     hr
     .col-md-12

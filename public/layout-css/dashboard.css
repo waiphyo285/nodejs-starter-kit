@@ -27,13 +27,9 @@ nav.navbar {
   padding: 0.6rem 1.25rem;
 }
 
-.list-group-item span {
-  font-size: 14px;
-}
-
 .list-group .list-group-item.active {
-  color: var(--secondary);
-  background: var(--back-white);
+  color: var(--primary);
+  background: #f8f9f9;
   border-right: 3px solid var(--primary);
 }
 
@@ -57,7 +53,7 @@ nav.navbar {
 }
 
 .nav-item.dropdown > .dropdown-menu > a {
-    font-size: 14px;
+  font-size: 14px;
   padding: 5px 10px;
   margin: 3px auto;
 }
@@ -286,61 +282,60 @@ textarea:focus {
 
 /* Card counter */
 .card-counter {
-  height: 110px;
-  margin: 5px 0;
-  padding: 16px 10px;
-  border-radius: 5px;
-  transition: 0.3s linear all;
+  margin-top: 15px;
+  margin-bottom: 15px;
 }
 
-.card-counter:hover {
-  cursor: pointer;
-  color: var(--text-white) !important;
-  background-color: var(--primary);
+.card-counter .wrap {
+  height: 100%;
+  padding: 30px 20px 15px;
+  background: var(--back-white);
+  box-shadow: 1px 2px 3px var(--back-gray);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
 }
 
-.card-counter.primary {
-  border: 3px solid var(--secondary);
-  color: var(--secondary);
-}
-
-.card-counter.purple {
-  border: 3px solid var(--secondary);
-  color: var(--secondary);
-}
-
-.card-counter.success {
-  border: 3px solid var(--secondary);
-  color: var(--secondary);
-}
-
-.card-counter.info {
-  border: 3px solid var(--secondary);
-  color: var(--secondary);
-}
-
-.card-counter i {
-  font-size: 4em;
-  opacity: 0.4;
-}
-
-.card-counter .count-numbers {
+.card-counter .wrap:after {
+  display: block;
   position: absolute;
-  top: 22px;
-  right: 36px;
-  font-size: 32px;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 10px;
+  content: "";
+}
+
+.card-counter span {
   display: block;
 }
 
-.card-counter .count-name {
-  position: absolute;
-  top: 66px;
-  right: 36px;
-  opacity: 0.6;
-  display: block;
-  font-size: 18px;
-  font-style: italic;
-  text-transform: capitalize;
+.card-counter-title {
+  color: #6c6c6c;
+  font-size: 1.18em;
+}
+
+.card-counter-number {
+  font-weight: 600;
+  font-size: 2.5em;
+  line-height: 64px;
+  color: #323c43;
+}
+
+.card-counter:nth-child(1) .wrap:after {
+  background: linear-gradient(90deg, #4499BB 0%, #4499BB 100%);
+}
+
+.card-counter:nth-child(2) .wrap:after {
+  background: linear-gradient(90deg, #A144BB 0%, #A144BB 100%);
+}
+
+.card-counter:nth-child(3) .wrap:after {
+  background: linear-gradient(90deg, #BB6644 0%, #BB6644 100%);
+}
+
+.card-counter:nth-child(4) .wrap:after {
+  background: linear-gradient(90deg, #5EBB44 0%, #5EBB44 100%);
 }
 /* End - Card counter */
 
@@ -392,3 +387,4 @@ canvas {
 /* End - Chart.js */
 
 /* End - Customer css here */
+

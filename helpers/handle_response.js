@@ -35,20 +35,20 @@ const handleValidateError = (err) => {
 };
 
 const handleError = (err) => {
-  let handler_response = {
+  let create_response = {
     status: "ERROR",
     message: "Something went wrong.",
   };
   if (err.code && err.code === 11000) {
-    handler_response = handleDuplicate(err);
+    create_response = handleDuplicate(err);
   }
   if (err.name && err.name === "CastError") {
-    handler_response = handleCastError(err);
+    create_response = handleCastError(err);
   }
   if (err.name && err.name === "ValidationError") {
-    handler_response = handleValidateError(err);
+    create_response = handleValidateError(err);
   }
-  return handler_response;
+  return create_response;
 };
 
 const handleDatabase = (getDb, utils, res) => {
@@ -66,10 +66,10 @@ const handleDatabase = (getDb, utils, res) => {
 };
 
 const handleResponse = (data, utils) => {
-  const handler_response = !utils(data)
+  const create_response = !utils(data)
     ? createResponse("SUCCESS", { data })
     : createResponse("FAIL", { data: { message: "Something went wrong." } });
-  return handler_response;
+  return create_response;
 };
 
 const createResponse = (status, rest) => {

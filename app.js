@@ -9,8 +9,8 @@ const passport = require("passport");
 
 // config app
 const config = require("./config/index");
-const { corsOptions } = require("./config/general/cors");
-const { cookieConfig } = require("./config/general/cookies");
+const { corsOptions } = require("./config/settings/cors");
+const { cookieConfig } = require("./config/settings/cookies");
 
 // jwt middleware
 const { tokenRouter } = require("./helpers/middlewares/authenticator");
@@ -71,7 +71,7 @@ app.use("/file", verifyToken, fileRouter);
 app.use("/d-mar", tokenRouter);
 
 // import passport local auth
-require("./config/general/passport");
+require("./config/settings/passport");
 
 // catch 404 and hanlde error
 app.use(function (req, res, next) {

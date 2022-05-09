@@ -1,4 +1,4 @@
-const knex = require("../../../databases/postgresdb/connection");
+const knex = require("../../../models/postgresdb/connection");
 
 const listData = () => {
   return knex.raw(`SELECT * FROM students;`).then((data) => data.rows);

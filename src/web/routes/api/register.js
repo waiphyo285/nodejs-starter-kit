@@ -1,4 +1,4 @@
-const RegisterModel = require("../../../../databases/mongodb/models/register");
+const RegisterModel = require("../../../../models/mongodb/models/register");
 const {
   status,
   createResponse,

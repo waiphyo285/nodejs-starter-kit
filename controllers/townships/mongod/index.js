@@ -1,4 +1,4 @@
-const Township = require("../../../databases/mongodb/models/township");
+const Township = require("../../../models/mongodb/models/township");
 const serialize = require("../../serializer"); // switch custom
 
 const listData = () => {

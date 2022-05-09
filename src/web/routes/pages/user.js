@@ -7,7 +7,7 @@ const {
   handleRenderer,
   handleDatabase,
 } = require("../../../../helpers/handle_response");
-const { isAuth } = require("../../../../helpers/middlewares/authenticator");
+const { isAuth } = require("../../../../middlewares/authenticator");
 
 router
   .get("/get_user", checkAuth, isAuth("admin"), (req, res, next) => {

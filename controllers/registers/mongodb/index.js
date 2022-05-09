@@ -1,4 +1,4 @@
-const Register = require("../../../databases/mongodb/models/register");
+const Register = require("../../../models/mongodb/models/register");
 const serialize = require("../../serializer"); // switch custom
 
 const listData = () => {

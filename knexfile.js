@@ -19,10 +19,10 @@ module.exports = {
       database: config.APP.DATABASE,
     },
     migrations: {
-      directory: __dirname + "/databases/mysqldb/migrations",
+      directory: __dirname + "/models/mysqldb/migrations",
     },
     seeds: {
-      directory: __dirname + "/databases/mysqldb/seeds/development",
+      directory: __dirname + "/models/mysqldb/seeds/development",
     },
   },
   production: {
@@ -36,10 +36,10 @@ module.exports = {
       ssl: true,
     },
     migrations: {
-      directory: __dirname + "/databases/mysqldb/migrations",
+      directory: __dirname + "/models/mysqldb/migrations",
     },
     seeds: {
-      directory: __dirname + "/databases/mysqldb/seeds/production",
+      directory: __dirname + "/models/mysqldb/seeds/production",
     },
   },
 };

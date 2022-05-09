@@ -1,4 +1,4 @@
-const knex = require("../../../databases/mysqldb/connection");
+const knex = require("../../../models/mysqldb/connection");
 const utils = require("../../../helpers/common");
 const serialize = require("../../serializer");
 

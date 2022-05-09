@@ -5,16 +5,16 @@ const express = require("express");
 const router = express.Router();
 const jwt = require("jsonwebtoken");
 const config = require("./auth_config");
-const { status, createResponse } = require("../../helpers/handle_response");
+const { status, createResponse } = require("../helpers/handle_response");
 
 // use 'utf8' to get string instead of byte array  (512 bit key)
-const publicKEY = fs.readFileSync(
-  path.join(__dirname, "../../config/rsa-ssh/public.key"),
+const publicKey = fs.readFileSync(
+  path.join(__dirname, "../config/rsa-ssh/public.key"),
   { encoding: "utf-8" }
 );
 
-const privateKEY = fs.readFileSync(
-  path.join(__dirname, "../../config/rsa-ssh/private.key"),
+const privateKey = fs.readFileSync(
+  path.join(__dirname, "../config/rsa-ssh/private.key"),
   { encoding: "utf-8" }
 );
 
@@ -27,15 +27,15 @@ const sumPermission = (role) =>
 const encryptTime = (req, res) => {
   checkPayload(req.body)
     ? res.status(status[200].code).json(
-        createResponse("SUCCESS", {
-          data: { data: encryptData(`${Date.now()}`) },
-        })
-      )
+      createResponse("SUCCESS", {
+        data: { data: encryptData(`${Date.now()}`) },
+      })
+    )
     : res.status(status[401].code).json(
-        createResponse("FAIL", {
-          data: { message: "Encrypted time is failed" },
-        })
-      );
+      createResponse("FAIL", {
+        data: { message: "Encrypted time is failed" },
+      })
+    );
 };
 
 const encryptData = (message) => {
@@ -65,15 +65,15 @@ const generateToken = (req, res) => {
   const prevtime = decryptData({ ...req.body, random: hashprop });
   datetime - prevtime <= 60000 && checkPayload(req.body)
     ? res.status(status[200].code).json(
-        createResponse("SUCCESS", {
-          data: { token: getSignMethod(signJwtToken, req.body) },
-        })
-      )
+      createResponse("SUCCESS", {
+        data: { token: getSignMethod(signJwtToken, req.body) },
+      })
+    )
     : res.status(status[401].code).json(
-        createResponse("FAIL", {
-          data: { message: "Authentication is failed" },
-        })
-      );
+      createResponse("FAIL", {
+        data: { message: "Authentication is failed" },
+      })
+    );
 };
 
 const checkPayload = ({ username, password, userrole, method_id }) => {
@@ -97,7 +97,7 @@ const signJwtToken = {
   // dev: expires in 24h for method 1 && 2
   method_1: (payload) =>
     jwt.sign(payload, config.jwtSecret, { expiresIn: config.jwtExpiry }),
-  method_2: (payload) => jwt.sign(payload, privateKEY, config.signOption),
+  method_2: (payload) => jwt.sign(payload, privateKey, config.signOption),
 };
 
 // Verify methods
@@ -114,15 +114,15 @@ const checkJwtToken = (req, res, next) => {
     ? (decode = getVerifyMethod(verifyJwtToken, { token, method_id }))
       ? ((req.headers.userrole = decode.userrole), next()) // ok and next()
       : res.status(status[401].code).json(
-          createResponse("FAIL", {
-            data: { message: "Auth token is invalid" },
-          })
-        )
-    : res.status(status[401].code).json(
         createResponse("FAIL", {
-          data: { message: "Auth token is required" },
+          data: { message: "Auth token is invalid" },
         })
-      );
+      )
+    : res.status(status[401].code).json(
+      createResponse("FAIL", {
+        data: { message: "Auth token is required" },
+      })
+    );
 };
 
 const getVerifyMethod = (obj, { token, method_id }) => {
@@ -137,7 +137,7 @@ const verifyJwtToken = {
   method_1: (token) =>
     jwt.verify(token, config.jwtSecret, (err, decode) => (err ? null : decode)),
   method_2: (token) =>
-    jwt.verify(token, publicKEY, config.signOption, (err, decode) =>
+    jwt.verify(token, publicKey, config.signOption, (err, decode) =>
       err ? null : decode
     ),
 };

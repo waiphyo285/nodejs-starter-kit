@@ -1,5 +1,5 @@
-const { clearKey } = require("../../../databases/cache/services/index");
-const User = require("../../../databases/mongodb/models/user");
+const { clearKey } = require("../../../models/cache/services/index");
+const User = require("../../../models/mongodb/models/user");
 const serialize = require("../../serializer"); // switch custom
 
 const listUsers = () => {

@@ -1,12 +1,9 @@
 {
   "name": "itemplate-backend",
   "description": "Itemplate Backend Project",
+  "author": "Wai Phyo (waiphyo.dev@gmail.com)",
   "version": "1.0.0",
   "private": true,
-  "author": {
-    "name": "Wai Phyo Naing",
-    "email": "waiphyo.dev@gmail.com"
-  },
   "keywords": [
     "itemplate",
     "backend"

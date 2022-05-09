@@ -1,4 +1,4 @@
-const City = require("../../../databases/mongodb/models/city");
+const City = require("../../../models/mongodb/models/city");
 const serialize = require("../../serializer"); // switch custom
 
 const listData = () => {

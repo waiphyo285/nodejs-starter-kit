@@ -1,4 +1,4 @@
-let STUDENTS = require("../../../databases/memory/students");
+let STUDENTS = require("../../../models/memory/students");
 const utils = require("../../../helpers/common");
 const serialize = require("./serializer"); // switch custom
 

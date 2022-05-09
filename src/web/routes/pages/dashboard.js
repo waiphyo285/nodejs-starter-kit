@@ -6,10 +6,10 @@ const config = require("../../../../config/index");
 const { getProgram } = require("../../../../helpers/menu_access");
 
 // Import Models
-const User = require("../../../../databases/mongodb/models/user");
-const City = require("../../../../databases/mongodb/models/city");
-const Township = require("../../../../databases/mongodb/models/township");
-const Register = require("../../../../databases/mongodb/models/register");
+const User = require("../../../../models/mongodb/models/user");
+const City = require("../../../../models/mongodb/models/city");
+const Township = require("../../../../models/mongodb/models/township");
+const Register = require("../../../../models/mongodb/models/register");
 
 const dashbordCard = async () => {
   const countUser = function (callback) {

@@ -13,7 +13,7 @@ Before you go, [you can visit demo here.](http://itmin.unlocksth.site)
 | 3   | Custom Theme            | Switch theme (defaut, sports, etc)       |        |
 | 4   | AuthN, AuthZ            | Protect API with JWT for sercuring       |        |
 | 5   | Chart                   | Support chart.js lib (bars, lines, etc)  |        |
-| 6   | CRUD API                | Genereate template based on schema       |        |
+| 6   | CRUD APIs               | Genereate easily default APIs from UI    |        |
 | 7   | Media Files             | Write, unlink file for physical contents |        |
 | 8   | Redis Memory            | In-memory cache to decrease latency      |        |
 | 9   | Multi Databases         | MySQL and MongoDB switching usage        |        |

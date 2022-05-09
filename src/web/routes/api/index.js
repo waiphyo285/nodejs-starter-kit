@@ -16,10 +16,12 @@ const registers = require("./register");
 const userRoles = require("./user_role");
 const userRegisters = require("./user_register");
 
-// schema vialidation
-const { isAuth } = require("../../../../helpers/middlewares/authenticator");
-const validateWare = require("../../../../helpers/middlewares/data_validator");
-const studentSchema = require("../../../../helpers/validations/student.schema");
+// middlewares
+const { isAuth } = require("../../../../middlewares/authenticator");
+const validateWare = require("../../../../middlewares/data_validator");
+
+// schema validations
+const studentSchema = require("../../../../models/mongodb/validations/student.schema");
 
 module.exports = router;
 

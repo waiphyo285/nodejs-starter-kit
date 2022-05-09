@@ -1,6 +1,6 @@
-const clr = require("../../helpers/console_color");
-const config = require("../../config");
 const mongoose = require("mongoose");
+const config = require("../../config");
+const clr = require("../../helpers/handle_color_logs");
 
 // Use ES6 Promises for mongoose
 mongoose.Promise = global.Promise;
@@ -28,7 +28,7 @@ mongoose.connect(connect_urls[env]);
 // Signal connection
 mongoose.connection
   .once("open", function () {
-    console.log(`${clr.fg.magenta}Database: 😃 MongoDB is connected`);
+    console.log(`${clr.fg.magenta}Database: 😃 MongoDB is connected!`);
   })
   .on("error", function (error) {
     console.log(`${clr.fg.red}Database: 😡 MongoDB connection error`, error);

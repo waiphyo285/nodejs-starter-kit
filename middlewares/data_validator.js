@@ -7,11 +7,10 @@ const validateWare = (schema, property) => {
     const prev = () => {
       const { details } = error;
       const message = details.map((i) => i.message).join(",");
-      res.status(status[422].code).json(
-        createResponse("ERROR", {
-          data: { message },
-        })
-      );
+      const handle_response = createResponse("ERROR", {
+        data: { message },
+      });
+      res.status(status[422].code).json(handle_response);
     };
     error === null ? next() : prev();
   };

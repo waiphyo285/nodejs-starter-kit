@@ -4,7 +4,7 @@ const express = require("express");
 const router = express.Router();
 const pluralize = require("pluralize");
 const beautify = require("js-beautify").js;
-const clr = require("./helpers/console_color");
+const clr = require("./helpers/handle_color_logs");
 const utils = require("./helpers/common");
 
 const newTemplate = (req, res, next) => {

@@ -7,7 +7,7 @@
 const http = require("http");
 const app = require("../app");
 const config = require("../config/index");
-const clr = require("../helpers/console_color");
+const clr = require("../helpers/handle_color_logs");
 const debug = require("debug")("it-backend:server");
 
 /**
@@ -37,7 +37,7 @@ server.on("listening", onListening);
 
 function normalizePort(val) {
   const port = parseInt(val, 10);
-  return isNaN(port) ? val : port >= 0 ? port : false
+  return isNaN(port) ? val : port >= 0 ? port : false;
 }
 
 /**
@@ -45,22 +45,27 @@ function normalizePort(val) {
  */
 
 function onError(error) {
-  const checkListen = (msg, code, fn) => (
-    msg !== "listen" ? function () { throw error; }() : fn(code)
-  );
+  const checkListen = (msg, code, fn) =>
+    msg !== "listen"
+      ? (function () {
+          throw error;
+        })()
+      : fn(code);
 
   // handle specific listen errors with friendly messages
-  const switchError = (code) => ({
-    "EACCES": () => (
-      console.error(`Port ${port} requires elevated privileges`),
-      process.exit(1)
-    ),
-    "EADDRINUSE": () => (
-      console.error(`Port ${port} is already in use`),
-      process.exit(1)
-    ),
-    "DEFAULT": () => { throw error; }
-  })[code || "DEFAULT"]();
+  const switchError = (code) =>
+    ({
+      EACCES: () => (
+        console.error(`Port ${port} requires elevated privileges`),
+        process.exit(1)
+      ),
+      EADDRINUSE: () => (
+        console.error(`Port ${port} is already in use`), process.exit(1)
+      ),
+      DEFAULT: () => {
+        throw error;
+      },
+    }[code || "DEFAULT"]());
 
   checkListen(error.syscall, error.code, switchError);
 }

@@ -68,14 +68,10 @@ const handleDatabase = (getDb, utils, res) => {
 const handleResponse = (data, utils) => {
   const create_response = !utils(data)
     ? createResponse("SUCCESS", { data })
-    : createResponse("FAIL", { data: { message: "Something went wrong." } });
+    : createResponse("FAIL", {
+        data: { message: "Something went wrong." },
+      });
   return create_response;
-};
-
-const createResponse = (status, rest) => {
-  // create final json format to response
-  // console.log({ status, ...rest.data });
-  return { status, ...rest.data };
 };
 
 const handleRenderer = (user, pages, res) => {
@@ -86,6 +82,12 @@ const handleRenderer = (user, pages, res) => {
     ...getPageData,
     ...getProgramMenu,
   });
+};
+
+const createResponse = (status, rest) => {
+  // create final json format to response
+  // console.log({ status, ...rest.data });
+  return { status, ...rest.data };
 };
 
 module.exports = {

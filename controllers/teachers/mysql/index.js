@@ -3,7 +3,9 @@ const utils = require("../../../helpers/common");
 const serialize = require("../../serializer");
 
 const listData = () => {
-  return knex.raw(`SELECT * FROM teachers;`).then((data) => serialize(data[0]));
+  return knex
+    .raw(`SELECT * FROM teachers;`)
+    .then((data) => serialize(data[0]));
 };
 
 const findData = (prop, val) => {
@@ -23,21 +25,27 @@ const addData = (dataObj) => {
   return knex("teachers")
     .insert(dataObj)
     .returning("*")
-    .then((data) => serialize({ id: data[0] }));
+    .then((data) =>
+      serialize({ id: data[0] })
+    );
 };
 
 const updateData = (id, dataObj) => {
   return knex("teachers")
     .where("id", "=", id)
     .update(dataObj)
-    .then((data) => (data === 1 ? serialize({ id: id }) : null));
+    .then((data) => (
+      data === 1 ? serialize({ id: id }) : null)
+    );
 };
 
 const deleteData = (id) => {
   return knex("teachers")
     .where("id", id)
     .del()
-    .then((data) => (data === 1 ? serialize({ id: id }) : null));
+    .then((data) =>
+      (data === 1 ? serialize({ id: id }) : null)
+    );
 };
 
 const dropAll = () => {

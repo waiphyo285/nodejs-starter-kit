@@ -57,9 +57,9 @@ const findData = (prop, val) => {
       model: "township",
       select: "township_mm township_en",
     })
-    .then((resp) => {
-      return serialize(resp[0]);
-    });
+    .then((resp) =>
+      serialize(resp[0])
+    );
 };
 
 const findDataBy = (params) => {

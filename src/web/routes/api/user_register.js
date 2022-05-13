@@ -38,8 +38,8 @@ userRegisters.delete = (req, res, next) => {
 userRegisters.deleteAll = (req, res, next) => {
   registersDb
     .dropAll()
-    .then((data) => {
-      res.send(data);
-    })
+    .then((data) =>
+      res.send(data)
+    )
     .catch(next);
 };

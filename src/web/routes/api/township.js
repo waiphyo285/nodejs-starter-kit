@@ -38,8 +38,8 @@ townships.delete = (req, res, next) => {
 townships.deleteAll = (req, res, next) => {
   townshipsDb
     .dropAll()
-    .then((data) => {
-      res.send(data);
-    })
+    .then((data) =>
+      res.send(data)
+    )
     .catch(next);
 };

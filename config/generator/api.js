@@ -38,8 +38,8 @@ genExport.delete = (req, res, next) => {
 genExport.deleteAll = (req, res, next) => {
   genDatabase
     .dropAll()
-    .then((data) => {
-      res.send(data);
-    })
+    .then((data) =>
+      res.send(data)
+    )
     .catch(next);
 };

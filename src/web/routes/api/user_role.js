@@ -13,7 +13,8 @@ userRoles.index = (req, res, next) => {
     res
       .status(status[200].code)
       .json(createResponse("SUCCESS", { data: { data } }));
-  } catch (error) {
+  }
+  catch (error) {
     console.log(`Error ${err}`);
     res.status(status[500].code).json(handleError(err));
   }

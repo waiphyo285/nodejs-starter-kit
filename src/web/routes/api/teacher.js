@@ -38,8 +38,8 @@ teachers.delete = (req, res, next) => {
 teachers.deleteAll = (req, res, next) => {
   teachersDb
     .dropAll()
-    .then((data) => {
-      res.send(data);
-    })
+    .then((data) =>
+      res.send(data)
+    )
     .catch(next);
 };

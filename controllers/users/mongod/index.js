@@ -14,12 +14,11 @@ const findUser = (prop, val) => {
 
 const addUser = (dataObj) => {
   const user = new User(dataObj);
-  return user
-    .save()
-    .then((resp) => {
-      clearKey(User.collection.collectionName);
-      return resp;
-    })
+  return user.save().then((resp) => {
+    // set data in redis memocache
+    clearKey(User.collection.collectionName);
+    return resp;
+  })
     .then(serialize);
 };
 

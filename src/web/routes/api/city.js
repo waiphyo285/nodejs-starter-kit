@@ -38,8 +38,8 @@ cities.delete = (req, res, next) => {
 cities.deleteAll = (req, res, next) => {
   citiesDb
     .dropAll()
-    .then((data) => {
-      res.send(data);
-    })
+    .then((data) =>
+      res.send(data)
+    )
     .catch(next);
 };

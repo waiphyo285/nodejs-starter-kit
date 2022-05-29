@@ -124,6 +124,7 @@ script.
     return {
       "url": "./api" + curUrl,
       "headers": {
+        "userrole": role,
         "x-access-method": signJwtMethod,
         "authorization": "Bearer " + token
       },

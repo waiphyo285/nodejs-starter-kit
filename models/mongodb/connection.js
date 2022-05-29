@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 const config = require("../../config");
-const clr = require("../../helpers/handle_color_logs");
+const clr = require("../../helpers/handlers/handle_color_logs");
 
 // Use ES6 Promises for mongoose
 mongoose.Promise = global.Promise;

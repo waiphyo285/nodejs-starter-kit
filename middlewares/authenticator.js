@@ -5,7 +5,7 @@ const express = require("express");
 const router = express.Router();
 const jwt = require("jsonwebtoken");
 const config = require("./auth_config");
-const { status, createResponse } = require("../helpers/handle_response");
+const { createResponse } = require("../helpers/handlers/handle_response");
 
 // use 'utf8' to get string instead of byte array  (512 bit key)
 const publicKey = fs.readFileSync(
@@ -19,22 +19,22 @@ const privateKey = fs.readFileSync(
 );
 
 // Compare permssion
-const sumPermission = (role) =>
-  config.userRoleAccess[role].split(",").reduce((sum, cur) => +sum + +cur, 0);
+const sumPermission = (role) => {
+  return config.userRoleAccess[role].split(",").reduce((sum, cur) => +sum + +cur, 0);
+
+}
 
 // Generate methods
 
 const encryptTime = (req, res) => {
   checkPayload(req.body)
-    ? res.status(status[200].code).json(
-      createResponse("SUCCESS", {
+    ? res.status(200).json(
+      createResponse(200, {
         data: { data: encryptData(`${Date.now()}`) },
       })
     )
-    : res.status(status[401].code).json(
-      createResponse("FAIL", {
-        data: { message: "Encrypted time is failed" },
-      })
+    : res.status(401).json(
+      createResponse(401, {})
     );
 };
 
@@ -64,15 +64,13 @@ const generateToken = (req, res) => {
   const hashprop = req.params.timehash;
   const prevtime = decryptData({ ...req.body, random: hashprop });
   datetime - prevtime <= 60000 && checkPayload(req.body)
-    ? res.status(status[200].code).json(
-      createResponse("SUCCESS", {
+    ? res.status(200).json(
+      createResponse(200, {
         data: { token: getSignMethod(signJwtToken, req.body) },
       })
     )
-    : res.status(status[401].code).json(
-      createResponse("FAIL", {
-        data: { message: "Authentication is failed" },
-      })
+    : res.status(401).json(
+      createResponse(401, {})
     );
 };
 
@@ -95,9 +93,12 @@ const getSignMethod = (obj, { username, password, userrole, method_id }) => {
 
 const signJwtToken = {
   // dev: expires in 24h for method 1 && 2
-  method_1: (payload) =>
-    jwt.sign(payload, config.jwtSecret, { expiresIn: config.jwtExpiry }),
-  method_2: (payload) => jwt.sign(payload, privateKey, config.signOption),
+  method_1: (payload) => {
+    return jwt.sign(payload, config.jwtSecret, { expiresIn: config.jwtExpiry });
+  },
+  method_2: (payload) => {
+    return jwt.sign(payload, privateKey, config.signOption);
+  },
 };
 
 // Verify methods
@@ -113,15 +114,11 @@ const checkJwtToken = (req, res, next) => {
   token && method_id
     ? (decode = getVerifyMethod(verifyJwtToken, { token, method_id }))
       ? ((req.headers.userrole = decode.userrole), next()) // ok and next()
-      : res.status(status[401].code).json(
-        createResponse("FAIL", {
-          data: { message: "Auth token is invalid" },
-        })
+      : res.status(401).json(
+        createResponse(401, {})
       )
-    : res.status(status[401].code).json(
-      createResponse("FAIL", {
-        data: { message: "Auth token is required" },
-      })
+    : res.status(401).json(
+      createResponse(401, {})
     );
 };
 
@@ -134,12 +131,16 @@ const getVerifyMethod = (obj, { token, method_id }) => {
 };
 
 const verifyJwtToken = {
-  method_1: (token) =>
-    jwt.verify(token, config.jwtSecret, (err, decode) => (err ? null : decode)),
-  method_2: (token) =>
-    jwt.verify(token, publicKey, config.signOption, (err, decode) =>
+  method_1: (token) => {
+    return jwt.verify(token, config.jwtSecret, (err, decode) =>
       err ? null : decode
-    ),
+    );
+  },
+  method_2: (token) => {
+    return jwt.verify(token, publicKey, config.signOption, (err, decode) =>
+      err ? null : decode
+    );
+  },
 };
 
 // Authorized Methods
@@ -149,17 +150,15 @@ const isAuth = (target) => {
     const targetAccess = sumPermission(target);
     const permitAccess = sumPermission(req.headers.userrole);
     const prev = () => {
-      res.status(status[401].code).json(
-        createResponse("FAIL", {
-          data: { message: "Auth permission is required" },
-        })
+      res.status(401).json(
+        createResponse(401, {})
       );
     };
     permitAccess >= targetAccess ? next() : prev();
   };
 };
 
-// Generate Route Token
+// Generate Token Routes
 router.post("/u-tsh/", encryptTime);
 router.post("/u-bar/:timehash?", generateToken);
 

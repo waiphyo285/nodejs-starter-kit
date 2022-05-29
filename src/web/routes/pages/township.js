@@ -1,12 +1,12 @@
 const express = require("express");
 const router = express.Router();
 const checkAuth = require("../check_auth");
-const utils = require("../../../../helpers/common");
+const utils = require("../../../../helpers/utils");
 const townshipsDb = require("../../../../controllers/townships");
 const {
   handleRenderer,
   handleDatabase,
-} = require("../../../../helpers/handle_response");
+} = require("../../../../helpers/handlers/handle_response");
 
 router
   .get("/townships", checkAuth, (req, res, next) => {
@@ -27,12 +27,10 @@ router
     handleRenderer(req.user.role, pages, res);
   })
   .post("/township", (req, res, next) => {
-    // insert data
     const insertDb = townshipsDb.addData(req.body);
     handleDatabase(insertDb, utils.isEmptyObject, res);
   })
   .put("/township/:id?", (req, res, next) => {
-    // update data
     const { ["id"]: rmId, ...data } = req.body;
     const updateDb = townshipsDb.updateData(rmId, data);
     handleDatabase(updateDb, utils.isEmptyObject, res);

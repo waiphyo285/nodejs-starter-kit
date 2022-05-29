@@ -1,6 +1,8 @@
-const utils = require("../../../../helpers/common");
+const utils = require("../../../../helpers/utils");
 const genDatabase = require("../../../../controllers/generators");
-const { handleDatabase } = require("../../../../helpers/handle_response");
+const {
+  handleDatabase,
+} = require("../../../../helpers/handlers/handle_response");
 
 const genExport = (module.exports = {});
 
@@ -38,8 +40,6 @@ genExport.delete = (req, res, next) => {
 genExport.deleteAll = (req, res, next) => {
   genDatabase
     .dropAll()
-    .then((data) =>
-      res.send(data)
-    )
+    .then((data) => res.send(data))
     .catch(next);
 };

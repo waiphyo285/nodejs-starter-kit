@@ -4,8 +4,8 @@ const express = require("express");
 const router = express.Router();
 const pluralize = require("pluralize");
 const beautify = require("js-beautify").js;
-const clr = require("./helpers/handle_color_logs");
-const utils = require("./helpers/common");
+const clr = require("./helpers/handlers/handle_color_logs");
+const utils = require("./helpers/utils");
 
 const newTemplate = (req, res, next) => {
   const templateName = req.params.name || "test";

@@ -256,7 +256,7 @@ function submitAction(url, callback) {
     type: "delete",
     headers: headers,
     success: function (data) {
-      if (data && data.status == "SUCCESS") {
+      if (data && data.code == "200") {
         $("#alertActionError").hide();
         $("#alertActionSuccess").show();
         if (typeof callback === "function") {
@@ -274,7 +274,7 @@ function submitAction(url, callback) {
 }
 
 function handleAlert(args, redirect = true) {
-  if (args.status == "SUCCESS") {
+  if (args.code == "200") {
     $("#alertTitle").html("Success: ");
     $("#alertMessage").html("Save Successful.");
     $("#alertHandler").addClass("alert-success").show();
@@ -307,11 +307,11 @@ function ajaxLoadOption(args) {
     success: function (data) {
       var items = "";
       items += "<option value='' disabled selected>-- Please Select --</option>";
-      if (data.status == "SUCCESS" && $.isArray(data.data)) {
+      if (data.code == "200" && $.isArray(data.data)) {
         $.each(data.data, function (i, item) {
           items += `<option value="${item["_id"]}">${item[showKey]}</option>`;
         });
-      } else if (data.status == "SUCCESS") {
+      } else if (data.code == "200") {
         $.each(Object.entries(data.data), function (i, item) {
           items += `<option value="${item[0]}">${item[0]}</option>`;
         });
@@ -334,7 +334,7 @@ function ajaxUploadForm(args) {
     processData: false,
     data: new FormData(_this),
     success: function (data) {
-      if (data.status == "SUCCESS") {
+      if (data.code == "200") {
         var setSrc = data.data.path.replace("public", "");
         var makeImage = makeDivImage(setSrc);
         $(imgParentDiv).append(makeImage);

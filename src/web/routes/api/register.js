@@ -3,7 +3,7 @@ const {
   status,
   createResponse,
   handleError,
-} = require("../../../../helpers/handle_response");
+} = require("../../../../helpers/handlers/handle_response");
 
 const registers = (module.exports = {});
 
@@ -17,9 +17,9 @@ registers.create = (req, res, next) => {
   // save the user to database
   registerModel.save((err, data) => {
     err || !data
-      ? res.status(status[500].code).json(handleError(err))
-      : res.status(status[200].code).json(
-        createResponse("SUCCESS", {
+      ? res.status(500).json(handleError(err))
+      : res.status(200).json(
+        createResponse(200, {
           data: { data },
         })
       );
@@ -30,16 +30,14 @@ registers.login = (req, res, next) => {
   const { username, password } = req.body;
   RegisterModel.findOne({ username }).exec(async (err, data) => {
     err || !data
-      ? res.status(status[500].code).json(handleError(err))
+      ? res.status(500).json(handleError(err))
       : data.comparePassword(password, (err, isMatch) => {
         err || !isMatch
-          ? res.status(status[403].code).json(
-            createResponse("MISMATCH", {
-              data: { message: "No user found" },
-            })
+          ? res.status(403).json(
+            createResponse(403, {})
           )
-          : res.status(status[200].code).json(
-            createResponse("SUCCESS", {
+          : res.status(200).json(
+            createResponse(200, {
               data: { data },
             })
           );

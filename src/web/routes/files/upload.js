@@ -6,7 +6,7 @@ const config = require("../../../../config/index");
 const {
   status,
   createResponse,
-} = require("../../../../helpers/handle_response");
+} = require("../../../../helpers/handlers/handle_response");
 
 const upload = (module.exports = {});
 
@@ -44,36 +44,35 @@ upload.index = (req, res, next) => {
     // req.body contains information of text fields, if there were any
 
     if (req.fileValidationError) {
-      return res.status(status[400].code).json(
-        createResponse("FAIL", {
+      return res.status(400).json(
+        createResponse(400, {
           data: { message: req.fileValidationError },
         })
       );
     } else if (!req.file) {
-      return res.status(status[400].code).json(
-        createResponse("FAIL", {
+      return res.status(400).json(
+        createResponse(400, {
           data: { message: "Please select an image to upload" },
         })
       );
     } else if (err instanceof multer.MulterError) {
-      return res.status(status[400].code).json(
-        createResponse("FAIL", {
+      return res.status(400).json(
+        createResponse(400, {
           data: { message: err },
         })
       );
     } else if (err) {
-      return res.status(status[400].code).json(
-        createResponse("FAIL", {
+      return res.status(400).json(
+        createResponse(400, {
           data: { message: err },
         })
       );
     }
 
     // Display uploaded image for user validation
-    res.status(status[200].code).json(
-      createResponse("SUCCESS", {
+    res.status(200).json(
+      createResponse(200, {
         data: {
-          message: "Successful upload file",
           data: req.file,
         },
       })
@@ -91,34 +90,34 @@ upload.multiUpload = (req, res, next) => {
 
   uploadWithMulter(req, res, function (err) {
     if (req.fileValidationError) {
-      return res.status(status[400].code).json(
-        createResponse("FAIL", {
+      return res.status(400).json(
+        createResponse(400, {
           data: { message: req.fileValidationError },
         })
       );
     } else if (!req.files) {
-      return res.status(status[400].code).json(
-        createResponse("FAIL", {
+      return res.status(400).json(
+        createResponse(400, {
           data: { message: "Please select images to upload" },
         })
       );
     } else if (err instanceof multer.MulterError) {
-      return res.status(status[400].code).json(
-        createResponse("FAIL", {
+      return res.status(400).json(
+        createResponse(400, {
           data: { message: err },
         })
       );
     } else if (err) {
-      return res.status(status[400].code).json(
-        createResponse("FAIL", {
+      return res.status(400).json(
+        createResponse(400, {
           data: { message: err },
         })
       );
     }
 
     // Display uploaded image for user validation
-    res.status(status[200].code).json(
-      createResponse("SUCCESS", {
+    res.status(200).json(
+      createResponse(200, {
         data: {
           message: "Successful upload file",
           data: req.files,

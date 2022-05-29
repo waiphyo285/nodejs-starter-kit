@@ -1,5 +1,5 @@
-const programMenu = require("../config/program-menu.json");
-const programAccess = require("../config/program-access.json");
+const programMenu = require("../../config/program-menu.json");
+const programAccess = require("../../config/program-access.json");
 
 const getProgram = (userRole, pageId) => {
   const programMenuJson = JSON.parse(JSON.stringify(programMenu));
@@ -56,7 +56,8 @@ const getProgram = (userRole, pageId) => {
             // split submenu action
             subMenuObj.actions = subMenuAccess.split(",").slice(1);
             // submenu active true
-            subMenuObj.active = activeMenuArr[1] == subMenuObj.menuid ? true : false;
+            subMenuObj.active =
+              activeMenuArr[1] == subMenuObj.menuid ? true : false;
           }
         });
       }

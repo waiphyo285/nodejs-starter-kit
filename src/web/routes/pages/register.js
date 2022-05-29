@@ -1,14 +1,12 @@
 const express = require("express");
 const router = express.Router();
 const checkAuth = require("../check_auth");
-const config = require("../../../../config/index");
-const utils = require("../../../../helpers/common");
+const utils = require("../../../../helpers/utils");
 const registersDb = require("../../../../controllers/registers");
-const { getProgram } = require("../../../../helpers/menu_access");
 const {
   handleRenderer,
   handleDatabase,
-} = require("../../../../helpers/handle_response");
+} = require("../../../../helpers/handlers/handle_response");
 
 router
   .get("/registers", checkAuth, (req, res, next) => {
@@ -34,7 +32,7 @@ router
     handleDatabase(insertDb, utils.isEmptyObject, res);
   })
   .put("/register/:id?", (req, res, next) => {
-    // update data
+
     const { ["id"]: rmId, ...data } = req.body;
     const updateDb = registersDb.updateData(rmId, data);
     handleDatabase(updateDb, utils.isEmptyObject, res);

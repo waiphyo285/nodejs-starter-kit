@@ -1,6 +1,8 @@
-const utils = require("../../../../helpers/common");
+const utils = require("../../../../helpers/utils");
 const usersDb = require("../../../../controllers/users");
-const { handleDatabase } = require("../../../../helpers/handle_response");
+const {
+  handleDatabase,
+} = require("../../../../helpers/handlers/handle_response");
 
 const users = (module.exports = {});
 

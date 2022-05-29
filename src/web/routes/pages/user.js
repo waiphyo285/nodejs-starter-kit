@@ -1,12 +1,12 @@
 const express = require("express");
 const router = express.Router();
 const checkAuth = require("../check_auth");
-const utils = require("../../../../helpers/common");
+const utils = require("../../../../helpers/utils");
 const usersDb = require("../../../../controllers/users");
 const {
   handleRenderer,
   handleDatabase,
-} = require("../../../../helpers/handle_response");
+} = require("../../../../helpers/handlers/handle_response");
 const { isAuth } = require("../../../../middlewares/authenticator");
 
 router
@@ -36,12 +36,10 @@ router
     handleRenderer(req.user.role, pages, res);
   })
   .post("/user", isAuth("admin"), (req, res, next) => {
-    // insert data
     const insertDb = usersDb.addUser(req.body);
     handleDatabase(insertDb, utils.isEmptyObject, res);
   })
   .put("/user/:id?", isAuth("admin"), (req, res, next) => {
-    // update data
     const { ["id"]: rmId, ...data } = req.body;
     const updateDb = usersDb.updateWithPass(rmId, data);
     handleDatabase(updateDb, utils.isEmptyObject, res);

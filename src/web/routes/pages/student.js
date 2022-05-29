@@ -1,9 +1,12 @@
 const express = require("express");
 const router = express.Router();
 const checkAuth = require("../check_auth");
-const utils = require("../../../../helpers/common");
+const utils = require("../../../../helpers/utils");
 const studentsDb = require("../../../../controllers/students");
-const { handleRenderer, handleDatabase } = require("../../../../helpers/handle_response");
+const {
+  handleRenderer,
+  handleDatabase,
+} = require("../../../../helpers/handlers/handle_response");
 
 router
   .get("/students", checkAuth, (req, res, next) => {
@@ -24,23 +27,19 @@ router
     handleRenderer(req.user.role, pages, res);
   })
   .post("/student", (req, res, next) => {
-    let remove_images = req.body.remove_images || [];
-    req.body.profile_images = req.body.profile_images || [];
-    utils.removeImages(remove_images).then((result) => {
-      // insert data
-      const insertDb = studentsDb.addData(req.body);
-      handleDatabase(insertDb, utils.isEmptyObject, res);
-    });
+    utils.removeImages(req.body.remove_images || [])
+      .then((result) => {
+        const insertDb = studentsDb.addData(req.body);
+        handleDatabase(insertDb, utils.isEmptyObject, res);
+      });
   })
   .put("/student/:id?", (req, res, next) => {
-    let remove_images = req.body.remove_images || [];
-    req.body.profile_images = req.body.profile_images || [];
-    utils.removeImages(remove_images).then((result) => {
-      // update data
-      const { ["id"]: rmId, ...data } = req.body;
-      const updateDb = studentsDb.updateData(rmId, data);
-      handleDatabase(updateDb, utils.isEmptyObject, res);
-    });
+    utils.removeImages(req.body.remove_images || [])
+      .then((result) => {
+        const { ["id"]: rmId, ...data } = req.body;
+        const updateDb = studentsDb.updateData(rmId, data);
+        handleDatabase(updateDb, utils.isEmptyObject, res);
+      });
   });
 
 module.exports = router;

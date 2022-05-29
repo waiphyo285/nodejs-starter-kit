@@ -1,6 +1,6 @@
-const utils = require("../../../../helpers/common");
+const utils = require("../../../../helpers/utils");
 const teachersDb = require("../../../../controllers/teachers");
-const { handleDatabase } = require("../../../../helpers/handle_response");
+const { handleDatabase, } = require("../../../../helpers/handlers/handle_response");
 
 const teachers = (module.exports = {});
 
@@ -38,8 +38,6 @@ teachers.delete = (req, res, next) => {
 teachers.deleteAll = (req, res, next) => {
   teachersDb
     .dropAll()
-    .then((data) =>
-      res.send(data)
-    )
+    .then((data) => res.send(data))
     .catch(next);
 };

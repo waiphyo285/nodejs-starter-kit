@@ -7,7 +7,7 @@
 const http = require("http");
 const app = require("../app");
 const config = require("../config/index");
-const clr = require("../helpers/handle_color_logs");
+const clr = require("../helpers/handlers/handle_color_logs");
 const debug = require("debug")("it-backend:server");
 
 /**

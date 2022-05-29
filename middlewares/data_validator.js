@@ -1,5 +1,5 @@
 const Joi = require("joi");
-const { status, createResponse } = require("../helpers/handle_response");
+const { createResponse } = require("../helpers/handlers/handle_response");
 
 const validateWare = (schema, property) => {
   return (req, res, next) => {
@@ -7,10 +7,11 @@ const validateWare = (schema, property) => {
     const prev = () => {
       const { details } = error;
       const message = details.map((i) => i.message).join(",");
-      const handle_response = createResponse("ERROR", {
-        data: { message },
-      });
-      res.status(status[422].code).json(handle_response);
+      res.status(422).json(
+        createResponse(422, {
+          data: { message },
+        })
+      );
     };
     error === null ? next() : prev();
   };

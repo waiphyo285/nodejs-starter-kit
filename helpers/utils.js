@@ -2,13 +2,12 @@ const fs = require("fs");
 const os = require("os");
 const _ = require("lodash");
 const crypto = require("crypto");
-const handle_tz = require("./handle_timezone");
+const handle_tz = require("./handlers/handle_timezone");
 
 /**
  * Utils Functions
  */
 
-/* Helper Methods */
 module.exports.isEmpty = function (val) {
   return _.isEmpty(val);
 };
@@ -36,7 +35,7 @@ module.exports.isArray = function (arr) {
 module.exports.isEmail = function (email) {
   const regex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
   return email.match(regex) ? true : false;
-}
+};
 
 module.exports.getTimeZone = function (utc = "+06:30") {
   return handle_tz.find((tz, idx) => tz.utc === utc);
@@ -147,7 +146,7 @@ module.exports.removeImages = function (remove_images) {
           else console.log(`File ${file} is removed`), (canDelete = true);
         });
       });
-      canDelete ? resolve() : reject();
     }
+    canDelete ? resolve() : reject();
   });
 };

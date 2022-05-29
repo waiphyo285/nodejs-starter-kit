@@ -1,6 +1,6 @@
-const utils = require("../../../../helpers/common");
+const utils = require("../../../../helpers/utils");
 const townshipsDb = require("../../../../controllers/townships");
-const { handleDatabase } = require("../../../../helpers/handle_response");
+const { handleDatabase, } = require("../../../../helpers/handlers/handle_response");
 
 const townships = (module.exports = {});
 
@@ -38,8 +38,6 @@ townships.delete = (req, res, next) => {
 townships.deleteAll = (req, res, next) => {
   townshipsDb
     .dropAll()
-    .then((data) =>
-      res.send(data)
-    )
+    .then((data) => res.send(data))
     .catch(next);
 };

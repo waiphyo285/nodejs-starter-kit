@@ -4,14 +4,20 @@ const express = require("express");
 const router = express.Router();
 const pluralize = require("pluralize");
 const beautify = require("js-beautify").js;
-const clr = require("./helpers/handlers/handle_color_logs");
 const utils = require("./helpers/utils");
+const clr = require("./helpers/handlers/handle_color_logs");
 
 const newTemplate = (req, res, next) => {
+  const bodyData = req.body.data;
   const templateName = req.params.name || "test";
   const renderPage = req.query.is_page || false;
-  const propData = req.body.data || {};
-  const menuData = req.body.menu || {};
+  const propData = bodyData.data || {};
+  const menuData = bodyData.menu || {};
+
+  console.log("Tempalte Name", templateName)
+  console.log("Render Page", renderPage)
+  console.log("propData", propData)
+  console.log("menuData", menuData)
 
   const templateString = templateName.split("_").join(" ");
   const templateCamel = utils.toCamelCase(templateString);
@@ -43,7 +49,10 @@ const newTemplate = (req, res, next) => {
       `./config/generator/api.js`,
       `./src/web/routes/api/${templateName}.js`,
     ],
-    route: [`./config/generator/route.js`, `./src/web/routes/api/index.js`],
+    route: [
+      `./config/generator/route.js`,
+      `./src/web/routes/api/index.js`
+    ],
     page: [
       `./config/generator/page.js`,
       `./src/web/routes/pages/${templateName}.js`,

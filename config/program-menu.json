@@ -48,6 +48,39 @@
           ]
         },
         "actions": "1,1,1"
+      },
+      {
+        "menuid": "roleSubMenu",
+        "url": "/roles",
+        "title": "System Role",
+        "icon": "bi bi-list",
+        "access": false,
+        "active": false,
+        "list": {
+          "url": "/roles",
+          "title": "System Role List",
+          "breadcrumb": [
+            {
+              "url": "",
+              "text": "System Role List"
+            }
+          ]
+        },
+        "entry": {
+          "url": "/role",
+          "title": "System Role Entry",
+          "breadcrumb": [
+            {
+              "url": "/roles",
+              "text": "System Role List"
+            },
+            {
+              "url": "",
+              "text": "System Role Entry"
+            }
+          ]
+        },
+        "actions": "1,1,1"
       }
     ]
   },

@@ -27,8 +27,15 @@ div.modal.fade#dialogNewTemplate(tabindex='-1', role='dialog', aria-labelledby='
 script.
   $(document).ready(function() {
     $("#dialogGenerate").on('click', function(){
-      const modal_data = JSON.parse($('#modal_data').val());
       const modal_name = $('#modal_name').val();
+      //- console.log("Modal name ", modal_name)
+
+      const string_val = $('#modal_data').val();
+      //- console.log("String Val ", string_val);
+
+      const modal_data = JSON.parse(string_val)
+      //- console.log("Modal data ", modal_data)
+
       $.ajax({
         type: "POST",
         dataType: 'json',
@@ -38,7 +45,9 @@ script.
           "x-access-method": signJwtMethod,
           "authorization": "Bearer " + token,
         },
-        data: modal_data,
+        data: {
+          data: modal_data
+        },
         success: function (response) {
           response.status != 'SUCCESS' 
           ? swalWarning({

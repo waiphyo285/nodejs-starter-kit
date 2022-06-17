@@ -61,7 +61,7 @@ script.
         },
         data: { theme: $('input[name=theme_name]:checked').val() } ,
         success: function (response) {
-          response.status != 'SUCCESS' 
+          response.code != 200 
           ? swalWarning({
               title: "Warning Message",
               description: "Your theme is not changed.", 

@@ -1,20 +1,30 @@
 {
   "admin": "*",
   "manager": {
-    "menu": ["dashMenu", "generalMenu", "courseMenu", "registerMenu"],
+    "menu": [
+      "dashMenu",
+      "generalMenu",
+      "courseMenu",
+      "registerMenu"
+    ],
     "submenu": [
-      "townshipSubMenu,1,1,0",
       "citySubMenu,1,1,0",
+      "townshipSubMenu,1,1,0",
       "teacherSubMenu,1,1,1",
       "studentSubMenu,1,1,1",
       "registerSubMenu,1,1,1"
     ]
   },
   "cashier": {
-    "menu": ["dashMenu", "generalMenu", "courseMenu", "registerMenu"],
+    "menu": [
+      "dashMenu",
+      "generalMenu",
+      "courseMenu",
+      "registerMenu"
+    ],
     "submenu": [
-      "townshipSubMenu,1,1,0",
       "citySubMenu,1,1,0",
+      "townshipSubMenu,1,1,0",
       "teacherSubMenu,1,0,0",
       "studentSubMenu,1,0,0",
       "registerSubMenu,1,1,0"

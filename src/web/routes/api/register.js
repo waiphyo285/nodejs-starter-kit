@@ -3,7 +3,7 @@ const {
   status,
   createResponse,
   handleError,
-} = require("../../../../helpers/handlers/handle_response");
+} = require("../../../../helpers/handlers/json_response");
 
 const registers = (module.exports = {});
 

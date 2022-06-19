@@ -1,318 +1,396 @@
 {
-  "info": {
-    "_postman_id": "5cba3d48-2bde-4155-99a8-0698b3948207",
-    "name": "ITemplate",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
-  },
-  "item": [
-    {
-      "name": "Auth",
-      "item": [
-        {
-          "name": "GenToken",
-          "request": {
-            "auth": {
-              "type": "noauth"
-            },
-            "method": "POST",
-            "header": [
-              {
-                "key": "Authorization",
-                "value": "Bearer {{token}}",
-                "type": "text"
-              },
-              {
-                "key": "x-access-method",
-                "value": "{{sign_method}}",
-                "type": "text"
-              }
-            ],
-            "body": {
-              "mode": "urlencoded",
-              "urlencoded": [
-                {
-                  "key": "username",
-                  "value": "9E0HU8L48",
-                  "type": "text"
-                },
-                {
-                  "key": "password",
-                  "value": "123098321",
-                  "type": "text"
-                },
-                {
-                  "key": "method_id",
-                  "value": "{{sign_method}}",
-                  "type": "text"
-                },
-                {
-                  "key": "userrole",
-                  "value": "{{user_role}}",
-                  "type": "text"
-                },
-                {
-                  "key": "init_vectr",
-                  "value": "{{init_vectr}}",
-                  "type": "text"
-                },
-                {
-                  "key": "secret_key",
-                  "value": "{{secret_key}}",
-                  "type": "text"
-                }
-              ]
-            },
-            "url": {
-              "raw": "{{lip}}/d-mar/u-bar/{{time_hash}}",
-              "host": ["{{lip}}"],
-              "path": ["d-mar", "u-bar", "{{time_hash}}"]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "HashTime",
-          "request": {
-            "auth": {
-              "type": "noauth"
-            },
-            "method": "POST",
-            "header": [
-              {
-                "key": "Authorization",
-                "value": "Bearer {{token}}",
-                "type": "text"
-              },
-              {
-                "key": "x-access-method",
-                "value": "{{sign_method}}",
-                "type": "text"
-              }
-            ],
-            "body": {
-              "mode": "urlencoded",
-              "urlencoded": [
-                {
-                  "key": "username",
-                  "value": "9E0HU8L48",
-                  "type": "text"
-                },
-                {
-                  "key": "password",
-                  "value": "123098321",
-                  "type": "text"
-                },
-                {
-                  "key": "method_id",
-                  "value": "{{sign_method}}",
-                  "type": "text"
-                },
-                {
-                  "key": "userrole",
-                  "value": "{{user_role}}",
-                  "type": "text"
-                }
-              ]
-            },
-            "url": {
-              "raw": "{{lip}}/d-mar/u-tsh",
-              "host": ["{{lip}}"],
-              "path": ["d-mar", "u-tsh"]
-            }
-          },
-          "response": []
-        }
-      ]
-    },
-    {
-      "name": "City",
-      "item": [
-        {
-          "name": "List",
-          "request": {
-            "auth": {
-              "type": "noauth"
-            },
-            "method": "GET",
-            "header": [
-              {
-                "key": "Authorization",
-                "value": "Bearer {{token}}",
-                "type": "text"
-              },
-              {
-                "key": "x-access-method",
-                "value": "{{sign_method}}",
-                "type": "text"
-              }
-            ],
-            "url": {
-              "raw": "{{lip}}/api/cities",
-              "host": ["{{lip}}"],
-              "path": ["api", "cities"]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "ObjById",
-          "request": {
-            "auth": {
-              "type": "noauth"
-            },
-            "method": "GET",
-            "header": [
-              {
-                "key": "Authorization",
-                "value": "Bearer {{token}}",
-                "type": "text"
-              },
-              {
-                "key": "x-access-method",
-                "value": "{{sign_method}}",
-                "type": "text"
-              }
-            ],
-            "url": {
-              "raw": "{{lip}}/api/city/623d5cca34782685107b04fa",
-              "host": ["{{lip}}"],
-              "path": ["api", "city", "623d5cca34782685107b04fa"]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "ListByAny",
-          "request": {
-            "auth": {
-              "type": "noauth"
-            },
-            "method": "GET",
-            "header": [
-              {
-                "key": "Authorization",
-                "value": "Bearer {{token}}",
-                "type": "text"
-              },
-              {
-                "key": "x-access-method",
-                "value": "{{sign_method}}",
-                "type": "text"
-              }
-            ],
-            "url": {
-              "raw": "{{lip}}/api/city",
-              "host": ["{{lip}}"],
-              "path": ["api", "city"],
-              "query": [
-                {
-                  "key": "filter[status]",
-                  "value": "true",
-                  "disabled": true
-                },
-                {
-                  "key": "page[limit]",
-                  "value": "10",
-                  "disabled": true
-                },
-                {
-                  "key": "page[skip]",
-                  "value": "0",
-                  "disabled": true
-                },
-                {
-                  "key": "sort[updated_at]",
-                  "value": "-1",
-                  "disabled": true
-                },
-                {
-                  "key": "start_date",
-                  "value": "2021-11-14",
-                  "disabled": true
-                },
-                {
-                  "key": "end_date",
-                  "value": "2021-11-15",
-                  "disabled": true
-                }
-              ]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "ObjCreate",
-          "request": {
-            "auth": {
-              "type": "noauth"
-            },
-            "method": "POST",
-            "header": [
-              {
-                "key": "Authorization",
-                "value": "Bearer {{token}}",
-                "type": "text"
-              },
-              {
-                "key": "x-access-method",
-                "value": "{{sign_method}}",
-                "type": "text"
-              }
-            ],
-            "body": {
-              "mode": "raw",
-              "raw": "{\r\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            },
-            "url": {
-              "raw": "{{lip}}/api/city",
-              "host": ["{{lip}}"],
-              "path": ["api", "city"]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "ObjUpdateById",
-          "request": {
-            "auth": {
-              "type": "noauth"
-            },
-            "method": "POST",
-            "header": [
-              {
-                "key": "Authorization",
-                "value": "Bearer {{token}}",
-                "type": "text"
-              },
-              {
-                "key": "x-access-method",
-                "value": "{{sign_method}}",
-                "type": "text"
-              }
-            ],
-            "body": {
-              "mode": "raw",
-              "raw": "",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            },
-            "url": {
-              "raw": "{{lip}}/api/city/6161661885e7d41902ea448d",
-              "host": ["{{lip}}"],
-              "path": ["api", "city", "6161661885e7d41902ea448d"]
-            }
-          },
-          "response": []
-        }
-      ]
-    }
-  ]
+	"info": {
+		"_postman_id": "5cba3d48-2bde-4155-99a8-0698b3948207",
+		"name": "ITemplate",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "10018411"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "GenToken",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							},
+							{
+								"key": "x-access-method",
+								"value": "{{sign_method}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "username",
+									"value": "9E0HU8L48",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "123098321",
+									"type": "text"
+								},
+								{
+									"key": "method_id",
+									"value": "{{sign_method}}",
+									"type": "text"
+								},
+								{
+									"key": "userrole",
+									"value": "{{user_role}}",
+									"type": "text"
+								},
+								{
+									"key": "init_vectr",
+									"value": "{{init_vectr}}",
+									"type": "text"
+								},
+								{
+									"key": "secret_key",
+									"value": "{{secret_key}}",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{lip}}/d-mar/u-bar/{{time_hash}}",
+							"host": [
+								"{{lip}}"
+							],
+							"path": [
+								"d-mar",
+								"u-bar",
+								"{{time_hash}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "HashTime",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							},
+							{
+								"key": "x-access-method",
+								"value": "{{sign_method}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "username",
+									"value": "9E0HU8L48",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "123098321",
+									"type": "text"
+								},
+								{
+									"key": "method_id",
+									"value": "{{sign_method}}",
+									"type": "text"
+								},
+								{
+									"key": "userrole",
+									"value": "{{user_role}}",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{lip}}/d-mar/u-tsh",
+							"host": [
+								"{{lip}}"
+							],
+							"path": [
+								"d-mar",
+								"u-tsh"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "City",
+			"item": [
+				{
+					"name": "List",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							},
+							{
+								"key": "x-access-method",
+								"value": "{{sign_method}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{lip}}/api/cities",
+							"host": [
+								"{{lip}}"
+							],
+							"path": [
+								"api",
+								"cities"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ObjById",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							},
+							{
+								"key": "x-access-method",
+								"value": "{{sign_method}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{lip}}/api/city/623d5cca34782685107b04fa",
+							"host": [
+								"{{lip}}"
+							],
+							"path": [
+								"api",
+								"city",
+								"623d5cca34782685107b04fa"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ListByAny",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							},
+							{
+								"key": "x-access-method",
+								"value": "{{sign_method}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{lip}}/api/city",
+							"host": [
+								"{{lip}}"
+							],
+							"path": [
+								"api",
+								"city"
+							],
+							"query": [
+								{
+									"key": "filter[status]",
+									"value": "true",
+									"disabled": true
+								},
+								{
+									"key": "page[limit]",
+									"value": "10",
+									"disabled": true
+								},
+								{
+									"key": "page[skip]",
+									"value": "0",
+									"disabled": true
+								},
+								{
+									"key": "sort[updated_at]",
+									"value": "-1",
+									"disabled": true
+								},
+								{
+									"key": "start_date",
+									"value": "2021-11-14",
+									"disabled": true
+								},
+								{
+									"key": "end_date",
+									"value": "2021-11-15",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ObjCreate",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							},
+							{
+								"key": "x-access-method",
+								"value": "{{sign_method}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{lip}}/api/city",
+							"host": [
+								"{{lip}}"
+							],
+							"path": [
+								"api",
+								"city"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ObjUpdateById",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							},
+							{
+								"key": "x-access-method",
+								"value": "{{sign_method}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{lip}}/api/city/6161661885e7d41902ea448d",
+							"host": [
+								"{{lip}}"
+							],
+							"path": [
+								"api",
+								"city",
+								"6161661885e7d41902ea448d"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Template",
+			"item": [
+				{
+					"name": "CreateOne",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"data\": {\r\n        \"name\": \"String\",\r\n        \"type\": \"String\"\r\n    },\r\n    \"menu\": {\r\n        \"list\": \"cats\",\r\n        \"entry\": \"cat\"\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{lip}}/d-mar/new-template/cat?is_page=true",
+							"host": [
+								"{{lip}}"
+							],
+							"path": [
+								"d-mar",
+								"new-template",
+								"cat"
+							],
+							"query": [
+								{
+									"key": "is_page",
+									"value": "true"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
 }

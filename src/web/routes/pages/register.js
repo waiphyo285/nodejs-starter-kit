@@ -6,7 +6,7 @@ const registersDb = require("../../../../controllers/registers");
 const {
   handleRenderer,
   handleDatabase,
-} = require("../../../../helpers/handlers/handle_response");
+} = require("../../../../helpers/handlers/json_response");
 
 router
   .get("/registers", checkAuth, (req, res, next) => {

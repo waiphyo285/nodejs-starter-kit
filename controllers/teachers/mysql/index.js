@@ -3,7 +3,9 @@ const utils = require("../../../helpers/utils");
 const serialize = require("../../serializer");
 
 const listData = () => {
-  return knex.raw(`SELECT * FROM teachers;`).then((data) => serialize(data[0]));
+  return knex
+    .raw(`SELECT * FROM teachers;`)
+    .then((data) => serialize(data[0]));
 };
 
 const findData = (prop, val) => {

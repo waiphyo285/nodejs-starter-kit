@@ -6,7 +6,7 @@ const genDatabase = require("../../../../controllers/generators");
 const {
   handleRenderer,
   handleDatabase,
-} = require("../../../../helpers/handlers/handle_response");
+} = require("../../../../helpers/handlers/json_response");
 
 router
   .get("/routings", checkAuth, (req, res, next) => {

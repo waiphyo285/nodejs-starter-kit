@@ -24,7 +24,8 @@ const listData = (params) => {
     }
   }
 
-  return Student.find({})
+  return Student
+    .find({})
     .or({ $or: w_regx })
     .sort(sort)
     .skip(skip)
@@ -46,7 +47,8 @@ const listData = (params) => {
 };
 
 const findData = (prop, val) => {
-  return Student.find({ _id: val })
+  return Student
+    .find({ _id: val })
     .populate({
       path: "cityid",
       model: "city",
@@ -63,7 +65,8 @@ const findData = (prop, val) => {
 };
 
 const findDataBy = (params) => {
-  return Student.find(params)
+  return Student
+    .find(params)
     .populate({
       path: "cityid",
       model: "city",
@@ -78,19 +81,26 @@ const findDataBy = (params) => {
 };
 
 const addData = (dataObj) => {
-  return Student.create(dataObj).then(serialize);
+  return Student
+    .create(dataObj)
+    .then(serialize);
 };
 
 const updateData = (id, dataObj) => {
-  return Student.findByIdAndUpdate(id, dataObj).then(serialize);
+  return Student
+    .findByIdAndUpdate(id, dataObj)
+    .then(serialize);
 };
 
 const deleteData = (id) => {
-  return Student.findByIdAndDelete(id).then(serialize);
+  return Student
+    .findByIdAndDelete(id)
+    .then(serialize);
 };
 
 const dropAll = () => {
-  return Student.remove();
+  return Student
+    .remove();
 };
 
 module.exports = {

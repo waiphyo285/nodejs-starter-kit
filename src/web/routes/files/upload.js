@@ -6,7 +6,7 @@ const config = require("../../../../config/index");
 const {
   status,
   createResponse,
-} = require("../../../../helpers/handlers/handle_response");
+} = require("../../../../helpers/handlers/json_response");
 
 const upload = (module.exports = {});
 

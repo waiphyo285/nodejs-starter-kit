@@ -2,7 +2,8 @@ const Township = require("../../../models/mongodb/models/township");
 const serialize = require("../../serializer"); // switch custom
 
 const listData = () => {
-  return Township.find({})
+  return Township
+    .find({})
     .populate({
       path: "cityid",
       model: "city",
@@ -12,7 +13,8 @@ const listData = () => {
 };
 
 const findData = async (prop, val) => {
-  return Township.find({ _id: val })
+  return Township
+    .find({ _id: val })
     .populate({
       path: "cityid",
       model: "city",
@@ -24,8 +26,8 @@ const findData = async (prop, val) => {
 };
 
 const findDataBy = (params) => {
-  // if (prop === "id") prop = "_id";
-  return Township.find(params)
+  return Township
+    .find(params)
     .populate({
       path: "cityid",
       model: "city",
@@ -35,15 +37,21 @@ const findDataBy = (params) => {
 };
 
 const addData = (dataObj) => {
-  return Township.create(dataObj).then(serialize);
+  return Township
+    .create(dataObj)
+    .then(serialize);
 };
 
 const updateData = (id, dataObj) => {
-  return Township.findByIdAndUpdate(id, dataObj).then(serialize);
+  return Township
+    .findByIdAndUpdate(id, dataObj)
+    .then(serialize);
 };
 
 const deleteData = (id) => {
-  return Township.findByIdAndDelete(id).then(serialize);
+  return Township
+    .findByIdAndDelete(id)
+    .then(serialize);
 };
 
 const dropAll = () => {

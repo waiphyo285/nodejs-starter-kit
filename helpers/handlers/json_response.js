@@ -1,6 +1,6 @@
 const config = require("../../config/index");
-const status = require("./handle_http_code");
-const { getProgram } = require("./handle_menu");
+const status = require("./http_code");
+const { getProgram } = require("./menu_access");
 
 /** Sample response
  *

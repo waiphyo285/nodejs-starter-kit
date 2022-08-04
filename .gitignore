@@ -6,6 +6,9 @@
 # Node artifact files
 node_modules/
 
+# Environments
+.env
+
 # Public uploads dir
 public/uploads/*
 

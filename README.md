@@ -14,12 +14,12 @@ I am introduced a simple API template for backend developers using clean archite
 - access menu permission based on role,
 - switch custom theme (action, comedy, ..)
 - secure data with authN and authZ,
-- integrate with chart.js lib,
+- integrate with chart.js library,
 - generate easily CRUD API,
 - upload media files,
 - cache with redis memory,
 - switch multi databases and,
-- design for TDD.
+- design for test driven development.
 
 **The followings must be pre-installed on your machine:**
 

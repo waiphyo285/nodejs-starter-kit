@@ -202,22 +202,25 @@ textarea:focus {
 
 #sidebar-wrapper {
   min-height: 100vh;
-  margin-top: -15px;
   margin-left: -15rem;
   border-right: 0.5px solid var(--back-gray);
-  -webkit-transition: margin 0.25s ease-out;
+  /* -webkit-transition: margin 0.25s ease-out;
   -moz-transition: margin 0.25s ease-out;
   -o-transition: margin 0.25s ease-out;
-  transition: margin 0.25s ease-out;
+  transition: margin 0.25s ease-out; */
 }
 
 #sidebar-wrapper .sidebar-heading {
-  margin-top: 3.8rem;
+  margin-top: 3.3rem;
   font-size: 1.2rem;
 }
 
 #sidebar-wrapper .list-group {
   width: 15rem;
+  margin-top: -11.3px;
+  min-height: 92vh;
+  max-height: 92vh;
+  overflow-y: scroll;
 }
 
 #page-content-wrapper {

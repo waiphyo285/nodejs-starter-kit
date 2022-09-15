@@ -1,6 +1,6 @@
 const utils = require("../../../../helpers/utils");
 const citiesDb = require("../../../../controllers/cities");
-const { handleDatabase } = require("../../../../helpers/handlers/json_response");
+const { handleDatabase } = require("../../../../helpers/handlers/response_json");
 
 const cities = (module.exports = {});
 

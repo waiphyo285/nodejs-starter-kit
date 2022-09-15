@@ -3,7 +3,7 @@ const router = express.Router();
 const async = require("async");
 const checkAuth = require("../check_auth");
 const config = require("../../../../config/index");
-const { getProgram } = require("../../../../helpers/handlers/menu_access");
+const { getProgram } = require("../../../../helpers/handlers/access_user");
 
 // Import Models
 const User = require("../../../../models/mongodb/models/user");

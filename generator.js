@@ -5,7 +5,7 @@ const router = express.Router();
 const pluralize = require("pluralize");
 const beautify = require("js-beautify").js;
 const utils = require("./helpers/utils");
-const clr = require("./helpers/handlers/color_logs");
+const clr = require("./helpers/handlers/logging_color");
 
 const newTemplate = (req, res, next) => {
   const bodyData = req.body.data;
@@ -37,24 +37,24 @@ const newTemplate = (req, res, next) => {
 
   const configPath = {
     model: [
-      `./config/generator/model.js`,
+      `./generator/model.js`,
       `./models/mongodb/models/${templateName}.js`,
     ],
     controller: [
-      `./config/generator/controller`,
+      `./generator/controller`,
       `./controllers/${templateNames}`,
       `./controllers/${templateNames}/mongod/index.js`,
     ],
     api: [
-      `./config/generator/api.js`,
+      `./generator/api.js`,
       `./src/web/routes/api/${templateName}.js`,
     ],
     route: [
-      `./config/generator/route.js`,
+      `./generator/route.js`,
       `./src/web/routes/api/index.js`
     ],
     page: [
-      `./config/generator/page.js`,
+      `./generator/page.js`,
       `./src/web/routes/pages/${templateName}.js`,
     ],
   };

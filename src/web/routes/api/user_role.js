@@ -2,7 +2,7 @@ const programAccess = require("../../../../config/program-access.json");
 const {
   createResponse,
   handleError,
-} = require("../../../../helpers/handlers/json_response");
+} = require("../../../../helpers/handlers/response_json");
 
 const userRoles = (module.exports = {});
 

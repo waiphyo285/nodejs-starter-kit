@@ -5,7 +5,7 @@ const express = require("express");
 const router = express.Router();
 const jwt = require("jsonwebtoken");
 const config = require("./auth_config");
-const { createResponse } = require("../helpers/handlers/json_response");
+const { createResponse } = require("../helpers/handlers/response_json");
 
 // use 'utf8' to get string instead of byte array  (512 bit key)
 const publicKey = fs.readFileSync(

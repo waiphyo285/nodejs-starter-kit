@@ -2,7 +2,7 @@ const utils = require("../../../../helpers/utils");
 const usersDb = require("../../../../controllers/users");
 const {
   handleDatabase,
-} = require("../../../../helpers/handlers/json_response");
+} = require("../../../../helpers/handlers/response_json");
 
 const users = (module.exports = {});
 

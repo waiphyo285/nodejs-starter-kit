@@ -6,7 +6,7 @@ const townshipsDb = require("../../../../controllers/townships");
 const {
   handleRenderer,
   handleDatabase,
-} = require("../../../../helpers/handlers/json_response");
+} = require("../../../../helpers/handlers/response_json");
 
 router
   .get("/townships", checkAuth, (req, res, next) => {

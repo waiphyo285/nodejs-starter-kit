@@ -1,5 +1,5 @@
 const config = require("../../config");
-const clr = require("../../helpers/handlers/color_logs");
+const clr = require("../../helpers/handlers/logging_color");
 
 const environment = config.NODE_ENV || "development";
 const knexConfig = require("../../knexfile")[environment];

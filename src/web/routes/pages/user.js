@@ -6,7 +6,7 @@ const usersDb = require("../../../../controllers/users");
 const {
   handleRenderer,
   handleDatabase,
-} = require("../../../../helpers/handlers/json_response");
+} = require("../../../../helpers/handlers/response_json");
 const { isAuth } = require("../../../../middlewares/authenticator");
 
 router

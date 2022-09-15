@@ -6,7 +6,7 @@ const studentsDb = require("../../../../controllers/students");
 const {
   handleRenderer,
   handleDatabase,
-} = require("../../../../helpers/handlers/json_response");
+} = require("../../../../helpers/handlers/response_json");
 
 router
   .get("/students", checkAuth, (req, res, next) => {

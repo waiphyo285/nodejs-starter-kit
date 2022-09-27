@@ -5,7 +5,7 @@ const router = express.Router();
 const pluralize = require("pluralize");
 const beautify = require("js-beautify").js;
 const utils = require("./helpers/utils");
-const clr = require("./helpers/handlers/logging_color");
+const clr = require("./helpers/config/log_color");
 
 const newTemplate = (req, res, next) => {
   const bodyData = req.body.data;
@@ -30,8 +30,8 @@ const newTemplate = (req, res, next) => {
 
   if (checkData) {
     return res.send({
-      status: "FAIL",
-      data: "Need model properties",
+      status: "400",
+      data: "Need model properties.",
     });
   }
 
@@ -125,8 +125,8 @@ const newTemplate = (req, res, next) => {
     });
   }
   res.send({
-    status: "SUCCESS",
-    data: "A new template is generated",
+    status: "200",
+    data: "A new template is generated.",
   });
 };
 
@@ -134,7 +134,6 @@ const copyFile = (params) => {
   const { origPath, destFile } = params;
   fs.copyFile(origPath, destFile, (err) => {
     if (err) throw err;
-    // file is successfully coplied
     console.log(`${clr.fg.cyan}GEN: 📝 ${origPath} is copied`);
     console.log(`${clr.fg.cyan}GEN: 📝 ${destFile} is pasted`);
     readFile(params);
@@ -145,7 +144,6 @@ const copyFolder = (params) => {
   const { origPath, destPath } = params;
   fsx.copy(origPath, destPath, (err) => {
     if (err) throw err;
-    // folder is successfully coplied
     console.log(`${clr.fg.cyan}GEN: 📝 ${origPath} is copied`);
     console.log(`${clr.fg.cyan}GEN: 📝 ${destPath} is pasted`);
     readFile(params);
@@ -156,11 +154,8 @@ const readFile = (params) => {
   const { destFile, regexStr, mapObj } = params;
   fs.readFile(destFile, "utf8", (err, data) => {
     if (err) throw err;
-    // file is successfully read
     console.log(`${clr.fg.cyan}GEN: 📝 ${destFile} is read`);
-    // replace with regex
     const content = data.replace(regexStr, (matched) => mapObj[matched]);
-    // write modified content
     writeFile({ destFile, content });
   });
 };
@@ -171,7 +166,6 @@ const writeFile = ({ destFile, content }) => {
     beautify(content, { indent_size: 2, space_in_empty_paren: true }),
     (err) => {
       if (err) throw err;
-      // file is successfully saved
       console.log(`${clr.fg.cyan}GEN: 📝 ${destFile} is saved`);
     }
   );
@@ -181,9 +175,7 @@ const replaceFile = (params) => {
   const { origPath, destFile, regexStr, mapObj } = params;
   fs.readFile(origPath, "utf8", (err, data) => {
     if (err) throw err;
-    // file is successfully read
     console.log(`${clr.fg.cyan}GEN: 📝 ${origPath} is read`);
-    // replace with regex
     const content = data.replace(regexStr, (matched) => mapObj[matched]);
     appendFile({ destFile, content });
   });
@@ -198,7 +190,6 @@ const appendFile = ({ destFile, content }) => {
     }),
     (err) => {
       if (err) throw err;
-      // file is successfully appended
       console.log(`${clr.fg.cyan}GEN: 📝 ${destFile} is appended`);
     }
   );

@@ -49,14 +49,14 @@ script.
           data: modal_data
         },
         success: function (response) {
-          response.status != 'SUCCESS' 
+          response.status !== '200' 
           ? swalWarning({
-              title: "Warning Message",
-              description: "Your template is not generated.",
+              title: "Warning",
+              description: "Your template was not generated.",
             })
           : swalWarning({
               icon: "success",
-              title: "Success Message",
+              title: "Success",
               description: "Your template is successfully generated.",
             });
         }

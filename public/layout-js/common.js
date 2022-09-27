@@ -11,7 +11,7 @@ const headers = {
 function dataTableCallback(e, settings, techNote, message) {
   console.log("Fetch Error ", message);
   swalWarning({
-    title: "Warning Message",
+    title: "Warning",
     description: "Fetch data error is found. Try again.",
   });
 }
@@ -165,7 +165,8 @@ $("input.fromdate").datepicker({
   var toid = $(this).attr("to");
   if (typeof toid !== "undefined" && toid != "") {
     $("input[id='" + toid + "']").datepicker("setStartDate", e.date);
-  } else {
+  }
+  else {
     $("input.todate").datepicker("setStartDate", e.date);
   }
 });
@@ -179,7 +180,8 @@ $("input.todate").datepicker({
   var fromid = $(this).attr("from");
   if (typeof fromid !== "undefined" && fromid != "") {
     $("input[id='" + fromid + "']").datepicker("setEndDate", e.date);
-  } else {
+  }
+  else {
     $("input.fromdate").datepicker("setEndDate", e.date);
   }
 });
@@ -187,7 +189,7 @@ $("input.todate").datepicker({
 $("#btnExcel").on("click", function (e) {
   if (!table.data().count()) {
     swalWarning({
-      title: "Warning Message",
+      title: "Warning",
       description: "No data available in table to export.",
     });
     return false;
@@ -198,7 +200,7 @@ $("#btnExcel").on("click", function (e) {
 $("#btnPdf").on("click", function (e) {
   if (!table.data().count()) {
     swalWarning({
-      title: "Warning Message",
+      title: "Warning",
       description: "No data available in table to export.",
     });
     return false;
@@ -209,8 +211,8 @@ $("#btnPdf").on("click", function (e) {
 $("#btnPrint").on("click", function (e) {
   if (!table.data().count()) {
     swalWarning({
-      title: "Warning Message",
-      description: "No data available in table to print",
+      title: "Warning",
+      description: "No data available in table to print.",
     });
     return false;
   }
@@ -262,7 +264,8 @@ function submitAction(url, callback) {
         if (typeof callback === "function") {
           callback();
         }
-      } else {
+      }
+      else {
         $("#alertActionSuccess").hide();
         $("#alertActionError").show();
       }
@@ -283,7 +286,8 @@ function handleAlert(args, redirect = true) {
       if (redirect) postFrm.submit();
       $("#alertHandler").removeClass().hide();
     }, 1 * 1000);
-  } else {
+  }
+  else {
     $("#alertTitle").html("Error: ");
     $("#alertMessage").html("Save Unsuccessful.");
     $("#alertHandler").addClass("alert-danger").show();
@@ -358,9 +362,9 @@ function makeDivImage(setSrc) {
 function swalWarning(args) {
   const defaultObj = {
     icon: "warning",
+    title: "Warning",
     position: "center",
-    title: "Warning Message",
-    description: "Something went wrong.",
+    description: "Something went wrong. Please try again.",
   };
   const sign = Object.assign(defaultObj, args);
   Swal.fire({

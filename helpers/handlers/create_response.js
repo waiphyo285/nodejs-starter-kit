@@ -1,21 +1,11 @@
 const config = require("../../config/index");
-const status = require("./http_code");
+const status = require("../config/http_code");
 const { getProgram } = require("./access_user");
 
-/** Sample response
- *
- * SUCCESS  { status, data }
- * TOKEN    { status, token }
- * FAIL     { status, message }
- * ERROR    { status, message }
- * MISMATCH { status, messaage }
- *
- */
-
 const handleDuplicate = (err) => {
-  let message = `Some keys already exist`;
+  let message = `Some keys are already existed.`;
   const keys = Object.keys(err.keyValue);
-  if (keys) message = `${keys} already exist`;
+  if (keys) message = `${keys} is already existed.`;
   return message;
 };
 
@@ -25,7 +15,7 @@ const handleCastError = (err) => {
 };
 
 const handleValidateError = (err) => {
-  let message = "Invalid property or value";
+  let message = "Invalid property or value.";
   const key = Object.keys(err.errors);
   message = `Invalid ${err.errors[key[0]].path}: ${err.errors[key[0]].value}.`;
   if (err.errors[key[0]] && err.errors[key[0]].properties) {
@@ -35,7 +25,7 @@ const handleValidateError = (err) => {
 };
 
 const handleError = (err) => {
-  let message = "Something went wrong";
+  let message = "Something went wrong.";
   const { code, description } = status[500];
   if (err.code && err.code === 11000) {
     message = handleDuplicate(err);
@@ -88,7 +78,6 @@ const createResponse = (number, rest) => {
 };
 
 module.exports = {
-  status,
   handleError,
   handleResponse,
   handleRenderer,

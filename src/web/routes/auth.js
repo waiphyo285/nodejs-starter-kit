@@ -25,7 +25,8 @@ router
       if (err) {
         console.log("Registration Error ", err);
         res.redirect("/signup?message=" + errMsg);
-      } else {
+      }
+      else {
         user["latmat"] = signToken_1({
           userrole: user.role,
           username: user.username,
@@ -54,6 +55,7 @@ router
       function (err, user, info) {
         if (err) return next(err);
         if (!user) return res.redirect("/login?message=" + errMsg);
+
         req.logIn(user, function (err) {
           if (err) return next(err);
           user["latmat"] = signToken_1({
@@ -61,6 +63,7 @@ router
             username: user.username,
             password: user.password,
           });
+
           req.session.user = user;
           const redirectTo = req.session.redirectTo;
           delete req.session.redirectTo;

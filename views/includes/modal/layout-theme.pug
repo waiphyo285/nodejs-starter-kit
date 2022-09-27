@@ -63,17 +63,18 @@ script.
         success: function (response) {
           response.code != 200 
           ? swalWarning({
-              title: "Warning Message",
-              description: "Your theme is not changed.", 
+              title: "Warning",
+              description: "Sorry, your theme was not changed.", 
             })
           : Swal.fire({
               icon: "success",
+              title: "Success",
               position: "center",
-              title: 'Success Message',
               text: "You have to logout to see new theme.",
               confirmButtonText: 'LOGOUT',
               customClass: "swal-style",
-            }).then((result) => {
+            })
+            .then((result) => {
               if (result.isConfirmed) {
                 window.location.replace("/logout");
               } 

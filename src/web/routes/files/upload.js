@@ -3,10 +3,7 @@ const path = require("path");
 const multer = require("multer");
 const helpers = require("./helpers");
 const config = require("../../../../config/index");
-const {
-  status,
-  createResponse,
-} = require("../../../../helpers/handlers/response_json");
+const { createResponse } = require("../../../../helpers/handlers/create_response");
 
 const upload = (module.exports = {});
 
@@ -52,7 +49,7 @@ upload.index = (req, res, next) => {
     } else if (!req.file) {
       return res.status(400).json(
         createResponse(400, {
-          data: { message: "Please select an image to upload" },
+          data: { message: "Please select an image to upload." },
         })
       );
     } else if (err instanceof multer.MulterError) {
@@ -72,9 +69,7 @@ upload.index = (req, res, next) => {
     // Display uploaded image for user validation
     res.status(200).json(
       createResponse(200, {
-        data: {
-          data: req.file,
-        },
+        data: { data: req.file, },
       })
     );
   });
@@ -98,7 +93,7 @@ upload.multiUpload = (req, res, next) => {
     } else if (!req.files) {
       return res.status(400).json(
         createResponse(400, {
-          data: { message: "Please select images to upload" },
+          data: { message: "Please select images to upload." },
         })
       );
     } else if (err instanceof multer.MulterError) {
@@ -119,7 +114,7 @@ upload.multiUpload = (req, res, next) => {
     res.status(200).json(
       createResponse(200, {
         data: {
-          message: "Successful upload file",
+          message: "File is successfully uploaded.",
           data: req.files,
         },
       })

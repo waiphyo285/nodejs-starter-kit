@@ -3,10 +3,7 @@ const router = express.Router();
 const checkAuth = require("../check_auth");
 const utils = require("../../../../helpers/utils");
 const teachersDb = require("../../../../controllers/teachers");
-const {
-  handleRenderer,
-  handleDatabase,
-} = require("../../../../helpers/handlers/response_json");
+const { handleRenderer, handleDatabase, } = require("../../../../helpers/handlers/create_response");
 
 router
   .get("/teachers", checkAuth, (req, res, next) => {

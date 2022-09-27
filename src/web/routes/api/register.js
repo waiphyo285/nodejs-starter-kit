@@ -1,9 +1,5 @@
 const RegisterModel = require("../../../../models/mongodb/models/register");
-const {
-  status,
-  createResponse,
-  handleError,
-} = require("../../../../helpers/handlers/response_json");
+const { createResponse, handleError, } = require("../../../../helpers/handlers/create_response");
 
 const registers = (module.exports = {});
 
@@ -18,11 +14,8 @@ registers.create = (req, res, next) => {
   registerModel.save((err, data) => {
     err || !data
       ? res.status(500).json(handleError(err))
-      : res.status(200).json(
-        createResponse(200, {
-          data: { data },
-        })
-      );
+      : res.status(200).json(createResponse(200, { data: { data }, }));
+
   });
 };
 
@@ -33,14 +26,8 @@ registers.login = (req, res, next) => {
       ? res.status(500).json(handleError(err))
       : data.comparePassword(password, (err, isMatch) => {
         err || !isMatch
-          ? res.status(403).json(
-            createResponse(403, {})
-          )
-          : res.status(200).json(
-            createResponse(200, {
-              data: { data },
-            })
-          );
+          ? res.status(403).json(createResponse(403, {}))
+          : res.status(200).json(createResponse(200, { data: { data }, }));
       });
   });
 };

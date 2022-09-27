@@ -4,9 +4,9 @@ $("#add-image").on("click", function () {
   imgCount - 1 < maxImageCount
     ? $("#file-input").trigger("click")
     : swalWarning({
-        title: "Warning Message",
-        description: "The specified number of images has been reached.",
-      });
+      title: "Warning",
+      description: "The specified number of images has been reached.",
+    });
 });
 
 $("#file-input").on("change", function (e) {

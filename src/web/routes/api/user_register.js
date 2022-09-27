@@ -1,6 +1,6 @@
 const utils = require("../../../../helpers/utils");
 const registersDb = require("../../../../controllers/registers");
-const { handleDatabase, } = require("../../../../helpers/handlers/response_json");
+const { handleDatabase, } = require("../../../../helpers/handlers/create_response");
 
 const userRegisters = (module.exports = {});
 

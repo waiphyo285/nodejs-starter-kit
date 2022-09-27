@@ -1,6 +1,6 @@
 # Itemplate Backend
 
-<img src="./public/images/readme/readme-cover.png" width="480" height="270" >
+<img src="./public/images/readme/clean-architecture.jpeg" width="700" height="525" >
 
 ## Getting Started
 

@@ -2,7 +2,7 @@ const fs = require("fs");
 const os = require("os");
 const _ = require("lodash");
 const crypto = require("crypto");
-const handle_tz = require("./handlers/time_zone");
+const handle_tz = require("./config/time_zone");
 
 /**
  * Utils Functions

@@ -65,8 +65,14 @@
             },
             "url": {
               "raw": "{{lip}}/d-mar/u-bar/{{time_hash}}",
-              "host": ["{{lip}}"],
-              "path": ["d-mar", "u-bar", "{{time_hash}}"]
+              "host": [
+                "{{lip}}"
+              ],
+              "path": [
+                "d-mar",
+                "u-bar",
+                "{{time_hash}}"
+              ]
             }
           },
           "response": []
@@ -117,8 +123,13 @@
             },
             "url": {
               "raw": "{{lip}}/d-mar/u-tsh",
-              "host": ["{{lip}}"],
-              "path": ["d-mar", "u-tsh"]
+              "host": [
+                "{{lip}}"
+              ],
+              "path": [
+                "d-mar",
+                "u-tsh"
+              ]
             }
           },
           "response": []
@@ -149,8 +160,13 @@
             ],
             "url": {
               "raw": "{{lip}}/api/cities",
-              "host": ["{{lip}}"],
-              "path": ["api", "cities"]
+              "host": [
+                "{{lip}}"
+              ],
+              "path": [
+                "api",
+                "cities"
+              ]
             }
           },
           "response": []
@@ -176,8 +192,14 @@
             ],
             "url": {
               "raw": "{{lip}}/api/city/623d5cca34782685107b04fa",
-              "host": ["{{lip}}"],
-              "path": ["api", "city", "623d5cca34782685107b04fa"]
+              "host": [
+                "{{lip}}"
+              ],
+              "path": [
+                "api",
+                "city",
+                "623d5cca34782685107b04fa"
+              ]
             }
           },
           "response": []
@@ -203,8 +225,13 @@
             ],
             "url": {
               "raw": "{{lip}}/api/city",
-              "host": ["{{lip}}"],
-              "path": ["api", "city"],
+              "host": [
+                "{{lip}}"
+              ],
+              "path": [
+                "api",
+                "city"
+              ],
               "query": [
                 {
                   "key": "filter[status]",
@@ -271,8 +298,13 @@
             },
             "url": {
               "raw": "{{lip}}/api/city",
-              "host": ["{{lip}}"],
-              "path": ["api", "city"]
+              "host": [
+                "{{lip}}"
+              ],
+              "path": [
+                "api",
+                "city"
+              ]
             }
           },
           "response": []
@@ -307,8 +339,14 @@
             },
             "url": {
               "raw": "{{lip}}/api/city/6161661885e7d41902ea448d",
-              "host": ["{{lip}}"],
-              "path": ["api", "city", "6161661885e7d41902ea448d"]
+              "host": [
+                "{{lip}}"
+              ],
+              "path": [
+                "api",
+                "city",
+                "6161661885e7d41902ea448d"
+              ]
             }
           },
           "response": []
@@ -334,8 +372,14 @@
             },
             "url": {
               "raw": "{{lip}}/d-mar/new-template/cat?is_page=true",
-              "host": ["{{lip}}"],
-              "path": ["d-mar", "new-template", "cat"],
+              "host": [
+                "{{lip}}"
+              ],
+              "path": [
+                "d-mar",
+                "new-template",
+                "cat"
+              ],
               "query": [
                 {
                   "key": "is_page",

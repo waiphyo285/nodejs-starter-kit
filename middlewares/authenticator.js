@@ -5,7 +5,7 @@ const express = require("express");
 const router = express.Router();
 const jwt = require("jsonwebtoken");
 const config = require("./auth_config");
-const { createResponse } = require("../helpers/handlers/response_json");
+const { createResponse } = require("../helpers/handlers/create_response");
 
 // use 'utf8' to get string instead of byte array  (512 bit key)
 const publicKey = fs.readFileSync(
@@ -21,17 +21,15 @@ const privateKey = fs.readFileSync(
 // Compare permssion
 const sumPermission = (role) => {
   return config.userRoleAccess[role].split(",").reduce((sum, cur) => +sum + +cur, 0);
-
 }
 
 // Generate methods
 
 const encryptTime = (req, res) => {
+  const time = encryptData(`${Date.now()}`)
   checkPayload(req.body)
     ? res.status(200).json(
-      createResponse(200, {
-        data: { data: encryptData(`${Date.now()}`) },
-      })
+      createResponse(200, { data: { data: time }, })
     )
     : res.status(401).json(
       createResponse(401, {})
@@ -63,11 +61,11 @@ const generateToken = (req, res) => {
   const datetime = Date.now();
   const hashprop = req.params.timehash;
   const prevtime = decryptData({ ...req.body, random: hashprop });
+  const token = getSignMethod(signJwtToken, req.body);
+
   datetime - prevtime <= 60000 && checkPayload(req.body)
     ? res.status(200).json(
-      createResponse(200, {
-        data: { token: getSignMethod(signJwtToken, req.body) },
-      })
+      createResponse(200, { data: { token }, })
     )
     : res.status(401).json(
       createResponse(401, {})
@@ -149,11 +147,7 @@ const isAuth = (target) => {
   return (req, res, next) => {
     const targetAccess = sumPermission(target);
     const permitAccess = sumPermission(req.headers.userrole);
-    const prev = () => {
-      res.status(401).json(
-        createResponse(401, {})
-      );
-    };
+    const prev = () => { res.status(401).json(createResponse(401, {})); };
     permitAccess >= targetAccess ? next() : prev();
   };
 };
@@ -166,6 +160,6 @@ module.exports = {
   isAuth: isAuth,
   tokenRouter: router,
   verifyToken: checkJwtToken,
-  signToken_1: signJwtToken.method_1,
-  signToken_2: signJwtToken.method_2,
+  signToken_1: signJwtToken.method_1, // dashboard user lamat
+  signToken_2: signJwtToken.method_2, // explore api to other
 };

@@ -1,8 +1,6 @@
 const utils = require("../../../../helpers/utils");
 const genDatabase = require("../../../../controllers/generators");
-const {
-  handleDatabase,
-} = require("../../../../helpers/handlers/response_json");
+const { handleDatabase } = require("../../../../helpers/handlers/create_response");
 
 const genExport = (module.exports = {});
 

@@ -34,6 +34,11 @@ I am introduced a simple API template for backend developers using clean archite
 git clone https://github.com/waiphyo285/itemplate-backend.git
 ```
 
+**Visit Public Postman Collection**
+```
+https://documenter.getpostman.com/view/10018411/2s83mbr5iK
+```
+
 **Navigate root directory and install dependencies**
 
 ```bash

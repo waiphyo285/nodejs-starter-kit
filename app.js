@@ -22,6 +22,9 @@ const authRouter = require("./src/web/routes/auth");
 const apiRouter = require("./src/web/routes/api");
 const fileRouter = require("./src/web/routes/files");
 
+// app feature
+const { langI18n } = require("./helpers/locale")
+
 // get environment variables
 const COOKIE_SECRET = config.APP.COOKIE_SECRET;
 
@@ -37,6 +40,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(logger(`:date[clf] :method :url :status :response-time ms`));
 app.use(cookieParser(COOKIE_SECRET));
+app.use(langI18n.middleware());
 app.use(cookieConfig);
 
 app.use(passport.initialize());
@@ -56,19 +60,19 @@ app.use(function (req, res, next) {
   next();
 });
 
-// connect to routing files
+// connect to page routes
 app.use(routeModules);
 app.use(authRouter);
 app.use(genRouter);
+
+// connect to jwt routes
+app.use("/d-mar", tokenRouter);
 
 // connect to api routes
 app.use("/api", verifyToken, apiRouter);
 
 // connect to file routes
 app.use("/file", verifyToken, fileRouter);
-
-// connect to jwt routes
-app.use("/d-mar", tokenRouter);
 
 // import passport local auth
 require("./config/settings/passport");

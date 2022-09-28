@@ -6,9 +6,11 @@ const userRoles = (module.exports = {});
 userRoles.index = (req, res, next) => {
   try {
     const data = JSON.parse(JSON.stringify(programAccess));
+    const locales = res.locals.i18n.translations;
+
     res
       .status(200)
-      .json(createResponse(200, { data: { data } }));
+      .json(createResponse(200, { data: { data } }, locales));
   }
   catch (error) {
     console.log(`Error ${err}`);

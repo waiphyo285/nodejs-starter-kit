@@ -9,14 +9,15 @@ const upload = (module.exports = {});
 
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    var saveDir = req.params.folderName || "data";
-    var ifExistDir = "./public/uploads/" + saveDir;
+    const saveDir = req.params.folderName || "data";
+    const ifExistDir = "./public/uploads/" + saveDir;
 
     if (!fs.existsSync(ifExistDir)) {
       fs.mkdirSync(ifExistDir, {
         recursive: true,
       });
     }
+
     cb(null, ifExistDir);
   },
 
@@ -30,6 +31,8 @@ const storage = multer.diskStorage({
 });
 
 upload.index = (req, res, next) => {
+  const locales = res.locals.i18n.translations;
+
   // 'uploaded_file' is the name of our file input field in the HTML form
   const uploadWithMulter = multer({
     storage: storage,
@@ -44,38 +47,46 @@ upload.index = (req, res, next) => {
       return res.status(400).json(
         createResponse(400, {
           data: { message: req.fileValidationError },
-        })
+        }, locales)
       );
-    } else if (!req.file) {
+    }
+    else if (!req.file) {
       return res.status(400).json(
         createResponse(400, {
           data: { message: "Please select an image to upload." },
-        })
+        }, locales)
       );
-    } else if (err instanceof multer.MulterError) {
+    }
+    else if (err instanceof multer.MulterError) {
       return res.status(400).json(
         createResponse(400, {
           data: { message: err },
-        })
+        }, locales)
       );
-    } else if (err) {
+    }
+    else if (err) {
       return res.status(400).json(
         createResponse(400, {
           data: { message: err },
-        })
+        }, locales)
       );
     }
 
     // Display uploaded image for user validation
     res.status(200).json(
       createResponse(200, {
-        data: { data: req.file, },
-      })
+        data: {
+          message: "File is successfully uploaded.",
+          data: req.file,
+        },
+      }, locales)
     );
   });
 };
 
 upload.multiUpload = (req, res, next) => {
+  const locales = res.locals.i18n.translations;
+
   // 10 is the limit I've defined for number of uploaded files at once
   // 'uploaded_files' is the name of our file input field
   const uploadWithMulter = multer({
@@ -88,25 +99,28 @@ upload.multiUpload = (req, res, next) => {
       return res.status(400).json(
         createResponse(400, {
           data: { message: req.fileValidationError },
-        })
+        }, locales)
       );
-    } else if (!req.files) {
+    }
+    else if (!req.files) {
       return res.status(400).json(
         createResponse(400, {
           data: { message: "Please select images to upload." },
-        })
+        }, locales)
       );
-    } else if (err instanceof multer.MulterError) {
+    }
+    else if (err instanceof multer.MulterError) {
       return res.status(400).json(
         createResponse(400, {
           data: { message: err },
-        })
+        }, locales)
       );
-    } else if (err) {
+    }
+    else if (err) {
       return res.status(400).json(
         createResponse(400, {
           data: { message: err },
-        })
+        }, locales)
       );
     }
 
@@ -114,10 +128,10 @@ upload.multiUpload = (req, res, next) => {
     res.status(200).json(
       createResponse(200, {
         data: {
-          message: "File is successfully uploaded.",
+          message: "File are successfully uploaded.",
           data: req.files,
         },
-      })
+      }, locales)
     );
   });
 };

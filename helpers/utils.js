@@ -41,6 +41,18 @@ module.exports.getTimeZone = function (utc = "+06:30") {
   return handle_tz.find((tz, idx) => tz.utc === utc);
 };
 
+module.exports.objectId = function () {
+  const seconds = Math.floor(new Date() / 1000).toString(16);
+  const machineId = crypto
+    .createHash("md5")
+    .update(os.hostname())
+    .digest("hex")
+    .slice(0, 6);
+  const processId = process.pid.toString(16).slice(0, 4).padStart(4, "0");
+  const counter = process.hrtime()[1].toString(16).slice(0, 6).padStart(6, "0");
+  return seconds + machineId + processId + counter;
+};
+
 module.exports.urlEncode = function (text) {
   if (text == "") return text;
   return text
@@ -88,18 +100,6 @@ module.exports.urlDecode = function (text) {
     });
   }
   return text;
-};
-
-module.exports.objectId = function () {
-  const seconds = Math.floor(new Date() / 1000).toString(16);
-  const machineId = crypto
-    .createHash("md5")
-    .update(os.hostname())
-    .digest("hex")
-    .slice(0, 6);
-  const processId = process.pid.toString(16).slice(0, 4).padStart(4, "0");
-  const counter = process.hrtime()[1].toString(16).slice(0, 6).padStart(6, "0");
-  return seconds + machineId + processId + counter;
 };
 
 module.exports.nFormatter = function (num, digits) {

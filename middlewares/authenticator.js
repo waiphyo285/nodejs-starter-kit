@@ -27,12 +27,13 @@ const sumPermission = (role) => {
 
 const encryptTime = (req, res) => {
   const time = encryptData(`${Date.now()}`)
+  const locales = res.locals.i18n.translations;
   checkPayload(req.body)
     ? res.status(200).json(
-      createResponse(200, { data: { data: time }, })
+      createResponse(200, { data: { data: time } }, locales)
     )
     : res.status(401).json(
-      createResponse(401, {})
+      createResponse(401, {}, locales)
     );
 };
 
@@ -62,13 +63,14 @@ const generateToken = (req, res) => {
   const hashprop = req.params.timehash;
   const prevtime = decryptData({ ...req.body, random: hashprop });
   const token = getSignMethod(signJwtToken, req.body);
+  const locales = res.locals.i18n.translations;
 
   datetime - prevtime <= 60000 && checkPayload(req.body)
     ? res.status(200).json(
-      createResponse(200, { data: { token }, })
+      createResponse(200, { data: { token } }, locales)
     )
     : res.status(401).json(
-      createResponse(401, {})
+      createResponse(401, {}, locales)
     );
 };
 
@@ -104,6 +106,8 @@ const signJwtToken = {
 const checkJwtToken = (req, res, next) => {
   let token = req.headers["authorization"];
   let method_id = req.headers["x-access-method"];
+  const locales = res.locals.i18n.translations;
+
   token =
     token && token.startsWith("Bearer ")
       ? token.slice(7, token.length)
@@ -111,13 +115,9 @@ const checkJwtToken = (req, res, next) => {
 
   token && method_id
     ? (decode = getVerifyMethod(verifyJwtToken, { token, method_id }))
-      ? ((req.headers.userrole = decode.userrole), next()) // ok and next()
-      : res.status(401).json(
-        createResponse(401, {})
-      )
-    : res.status(401).json(
-      createResponse(401, {})
-    );
+      ? ((req.headers.userrole = decode.userrole), next()) // ok
+      : res.status(401).json(createResponse(401, {}, locales))
+    : res.status(401).json(createResponse(401, {}, locales));
 };
 
 const getVerifyMethod = (obj, { token, method_id }) => {
@@ -145,9 +145,12 @@ const verifyJwtToken = {
 
 const isAuth = (target) => {
   return (req, res, next) => {
+    const locales = res.locals.i18n.translations;
     const targetAccess = sumPermission(target);
     const permitAccess = sumPermission(req.headers.userrole);
-    const prev = () => { res.status(401).json(createResponse(401, {})); };
+    const prev = () => {
+      res.status(401).json(createResponse(401, {}, locales));
+    };
     permitAccess >= targetAccess ? next() : prev();
   };
 };

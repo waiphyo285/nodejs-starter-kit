@@ -39,10 +39,21 @@ const handleError = (err) => {
   return { code, message, description };
 };
 
+const handleRenderer = (user, pages, res) => {
+  const { runPage, runProgram, data } = pages;
+  const getProgramMenu = getProgram(user, runProgram);
+  const getPageData = { app: config.APP, data: data };
+  res.render(runPage, {
+    ...getPageData,
+    ...getProgramMenu,
+  });
+};
+
 const handleDatabase = (getDb, utils, res) => {
   getDb
     .then((data) => {
-      return handleResponse(data, utils);
+      const locales = res.locals.i18n.translations;
+      return handleResponse(data, utils, locales);
     })
     .then((response) => {
       res.status(response.code).json(response);
@@ -54,26 +65,16 @@ const handleDatabase = (getDb, utils, res) => {
     });
 };
 
-const handleResponse = (data, utils) => {
+const handleResponse = (data, utils, locales) => {
   const create_response = !utils(data)
-    ? createResponse(200, { data })
-    : createResponse(403, {});
+    ? createResponse(200, { data }, locales)
+    : createResponse(403, {}, locales);
   return create_response;
 };
 
-const handleRenderer = (user, pages, res) => {
-  const { runPage, runProgram, data } = pages;
-  const getProgramMenu = getProgram(user, runProgram);
-  const getPageData = { app: config.APP, data: data };
-  res.render(runPage, {
-    ...getPageData,
-    ...getProgramMenu,
-  });
-};
-
-const createResponse = (number, rest) => {
+const createResponse = (number, rest, locales) => {
   // create final json format to response
-  const { code, message, description } = status[number];
+  const { code, message, description } = locales[number];
   return { code, message, description, ...rest.data };
 };
 

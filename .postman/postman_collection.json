@@ -1,7 +1,7 @@
 {
   "info": {
     "_postman_id": "5cba3d48-2bde-4155-99a8-0698b3948207",
-    "name": "ITemplate",
+    "name": "ITemplate Backend",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
     "_exporter_id": "10018411"
   },
@@ -10,7 +10,7 @@
       "name": "Auth",
       "item": [
         {
-          "name": "GenToken",
+          "name": "FirstHashTime",
           "request": {
             "auth": {
               "type": "noauth"
@@ -18,13 +18,165 @@
             "method": "POST",
             "header": [
               {
-                "key": "Authorization",
-                "value": "Bearer {{token}}",
+                "key": "Accept-Language",
+                "value": "my_MM",
                 "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "key": "username",
+                  "value": "9E0HU8L48",
+                  "type": "text"
+                },
+                {
+                  "key": "password",
+                  "value": "123098321",
+                  "type": "text"
+                },
+                {
+                  "key": "method_id",
+                  "value": "{{sign_method}}",
+                  "type": "text"
+                },
+                {
+                  "key": "userrole",
+                  "value": "{{user_role}}",
+                  "type": "text"
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{lip}}/d-mar/u-tsh",
+              "host": [
+                "{{lip}}"
+              ],
+              "path": [
+                "d-mar",
+                "u-tsh"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "FirstHashTime",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Ik4zT1hVQkwxU04wVDYzM0siLCJpYXQiOjE2MzAyOTY4NTIsImV4cCI6MTYzMDM4MzI1Mn0.xxfgfbUJxPqs...",
+                    "type": "text",
+                    "disabled": true
+                  },
+                  {
+                    "key": "x-access-method",
+                    "value": "one",
+                    "type": "text",
+                    "disabled": true
+                  },
+                  {
+                    "key": "Accept-Language",
+                    "value": "my_MM",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "key": "username",
+                      "value": "9E0HU8L48",
+                      "type": "text"
+                    },
+                    {
+                      "key": "password",
+                      "value": "123098321",
+                      "type": "text"
+                    },
+                    {
+                      "key": "method_id",
+                      "value": "one",
+                      "type": "text"
+                    },
+                    {
+                      "key": "userrole",
+                      "value": "admin",
+                      "type": "text"
+                    }
+                  ]
+                },
+                "url": {
+                  "raw": "localhost:5000/d-mar/u-tsh",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "5000",
+                  "path": [
+                    "d-mar",
+                    "u-tsh"
+                  ]
+                }
               },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Vary",
+                  "value": "Origin"
+                },
+                {
+                  "key": "Access-Control-Allow-Credentials",
+                  "value": "true"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "318"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"13e-QwIwvTWi9V0Ea+Ppn4ziiagRkp4\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Wed, 28 Sep 2022 16:24:17 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"code\": \"200\",\n    \"message\": \"OK\",\n    \"description\": \"တောင်းဆိုမှု အောင်မြင်ကြောင်း ညွှန်ပြသည်။\",\n    \"data\": {\n        \"init_vectr\": \"IL1xFSwwxwgarfooqGfuPg==\",\n        \"secret_key\": \"YQGO8aHoN+HbtRsrkihwcavmtvcoyAkV2VeAtXaQ7pA=\",\n        \"random\": \"ea7f30bfb5f50ed7a54c3ef738238d6b\"\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "SecondGenToken",
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "POST",
+            "header": [
               {
-                "key": "x-access-method",
-                "value": "{{sign_method}}",
+                "key": "Accept-Language",
+                "value": "my_MM",
                 "type": "text"
               }
             ],
@@ -75,69 +227,126 @@
               ]
             }
           },
-          "response": []
-        },
-        {
-          "name": "HashTime",
-          "request": {
-            "auth": {
-              "type": "noauth"
-            },
-            "method": "POST",
-            "header": [
-              {
-                "key": "Authorization",
-                "value": "Bearer {{token}}",
-                "type": "text"
-              },
-              {
-                "key": "x-access-method",
-                "value": "{{sign_method}}",
-                "type": "text"
-              }
-            ],
-            "body": {
-              "mode": "urlencoded",
-              "urlencoded": [
-                {
-                  "key": "username",
-                  "value": "9E0HU8L48",
-                  "type": "text"
+          "response": [
+            {
+              "name": "SecondGenToken",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Ik4zT1hVQkwxU04wVDYzM0siLCJpYXQiOjE2MzAyOTY4NTIsImV4cCI6MTYzMDM4MzI1Mn0.xxfgfbUJxPqs...",
+                    "type": "text"
+                  },
+                  {
+                    "key": "x-access-method",
+                    "value": "one",
+                    "type": "text"
+                  },
+                  {
+                    "key": "Accept-Language",
+                    "value": "my_MM",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "key": "username",
+                      "value": "9E0HU8L48",
+                      "type": "text"
+                    },
+                    {
+                      "key": "password",
+                      "value": "123098321",
+                      "type": "text"
+                    },
+                    {
+                      "key": "method_id",
+                      "value": "one",
+                      "type": "text"
+                    },
+                    {
+                      "key": "userrole",
+                      "value": "admin",
+                      "type": "text"
+                    },
+                    {
+                      "key": "init_vectr",
+                      "value": "5pT2AodYrfQn6F1yV0DZOA==",
+                      "type": "text"
+                    },
+                    {
+                      "key": "secret_key",
+                      "value": "UT5GT6QWx6O/aMJYVqXa+wBroSq3s5cY5WxRuSRVTN8=",
+                      "type": "text"
+                    }
+                  ]
                 },
-                {
-                  "key": "password",
-                  "value": "123098321",
-                  "type": "text"
-                },
-                {
-                  "key": "method_id",
-                  "value": "{{sign_method}}",
-                  "type": "text"
-                },
-                {
-                  "key": "userrole",
-                  "value": "{{user_role}}",
-                  "type": "text"
+                "url": {
+                  "raw": "localhost:5000/d-mar/u-bar/cf6346a0b7ffda31542e84d5117e4d49",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "5000",
+                  "path": [
+                    "d-mar",
+                    "u-bar",
+                    "cf6346a0b7ffda31542e84d5117e4d49"
+                  ]
                 }
-              ]
-            },
-            "url": {
-              "raw": "{{lip}}/d-mar/u-tsh",
-              "host": [
-                "{{lip}}"
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Vary",
+                  "value": "Origin"
+                },
+                {
+                  "key": "Access-Control-Allow-Credentials",
+                  "value": "true"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "526"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"20e-xgV+/ojrHoU6ppmH79NBZugJeHM\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Wed, 28 Sep 2022 16:25:13 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
               ],
-              "path": [
-                "d-mar",
-                "u-tsh"
-              ]
+              "cookie": [],
+              "body": "{\n    \"code\": \"200\",\n    \"message\": \"OK\",\n    \"description\": \"တောင်းဆိုမှု အောင်မြင်ကြောင်း ညွှန်ပြသည်။\",\n    \"token\": \"eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IjlFMEhVOEw0OCIsInVzZXJyb2xlIjoiYWRtaW4iLCJwYXNzd29yZCI6IjEyMzA5ODMyMSIsImlhdCI6MTY2NDM4MjMxMywiZXhwIjoxNjY0MzgyMzczLCJhdWQiOiJ1c2VyQGl0ZW0ucGxhdGUiLCJpc3MiOiJJVGVtcGxhdGUgRGV2Iiwic3ViIjoiZGV2QGl0ZW0ucGxhdGUifQ.lha8QfBKj2ZV_1vecJCKaKxAHuBAznWbKbkpCXWzzDdV9PGPlKMUCT34NbiHFaubB05jlb6UJEkDHujTJhs2Tg\"\n}"
             }
-          },
-          "response": []
+          ]
         }
       ]
     },
     {
-      "name": "City",
+      "name": "CRUD City",
       "item": [
         {
           "name": "List",
@@ -156,6 +365,11 @@
                 "key": "x-access-method",
                 "value": "{{sign_method}}",
                 "type": "text"
+              },
+              {
+                "key": "Accept-Language",
+                "value": "my_MM",
+                "type": "text"
               }
             ],
             "url": {
@@ -169,7 +383,85 @@
               ]
             }
           },
-          "response": []
+          "response": [
+            {
+              "name": "List",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Ik4zT1hVQkwxU04wVDYzM0siLCJpYXQiOjE2MzAyOTY4NTIsImV4cCI6MTYzMDM4MzI1Mn0.xxfgfbUJxPqs...",
+                    "type": "text"
+                  },
+                  {
+                    "key": "x-access-method",
+                    "value": "one",
+                    "type": "text"
+                  },
+                  {
+                    "key": "Accept-Language",
+                    "value": "my_MM",
+                    "type": "text"
+                  }
+                ],
+                "url": {
+                  "raw": "localhost:5000/api/cities",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "5000",
+                  "path": [
+                    "api",
+                    "cities"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Vary",
+                  "value": "Origin"
+                },
+                {
+                  "key": "Access-Control-Allow-Credentials",
+                  "value": "true"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "619"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"26b-A9/kLlE8JF5/m/5VljaAa+erYso\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Wed, 28 Sep 2022 16:25:31 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"code\": \"200\",\n    \"message\": \"OK\",\n    \"description\": \"တောင်းဆိုမှု အောင်မြင်ကြောင်း ညွှန်ပြသည်။\",\n    \"data\": [\n        {\n            \"_id\": \"623d5cca34782685107b04fa\",\n            \"city_mm\": \"Myanmar\",\n            \"city_en\": \"Myanmar\",\n            \"code\": \"Myanmar\",\n            \"unit\": \"Myanmar\",\n            \"created_at\": \"2022-03-25T06:10:18.980Z\",\n            \"updated_at\": \"2022-09-27T01:28:02.233Z\",\n            \"__v\": 0\n        },\n        {\n            \"_id\": \"633472bc19aa762f849e5be1\",\n            \"city_mm\": \"နယူးမြင်းခြံ\",\n            \"city_en\": \"Myingyan\",\n            \"code\": \"MGN\",\n            \"unit\": \"D\",\n            \"created_at\": \"2022-09-28T16:13:48.916Z\",\n            \"updated_at\": \"2022-09-28T16:15:01.203Z\",\n            \"__v\": 0\n        }\n    ]\n}"
+            }
+          ]
         },
         {
           "name": "ObjById",
@@ -188,6 +480,11 @@
                 "key": "x-access-method",
                 "value": "{{sign_method}}",
                 "type": "text"
+              },
+              {
+                "key": "Accept-Language",
+                "value": "my_MM",
+                "type": "text"
               }
             ],
             "url": {
@@ -202,7 +499,86 @@
               ]
             }
           },
-          "response": []
+          "response": [
+            {
+              "name": "ObjById",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Ik4zT1hVQkwxU04wVDYzM0siLCJpYXQiOjE2MzAyOTY4NTIsImV4cCI6MTYzMDM4MzI1Mn0.xxfgfbUJxPqs...",
+                    "type": "text"
+                  },
+                  {
+                    "key": "x-access-method",
+                    "value": "one",
+                    "type": "text"
+                  },
+                  {
+                    "key": "Accept-Language",
+                    "value": "my_MM",
+                    "type": "text"
+                  }
+                ],
+                "url": {
+                  "raw": "localhost:5000/api/city/623d5cca34782685107b04fa",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "5000",
+                  "path": [
+                    "api",
+                    "city",
+                    "623d5cca34782685107b04fa"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Vary",
+                  "value": "Origin"
+                },
+                {
+                  "key": "Access-Control-Allow-Credentials",
+                  "value": "true"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "400"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"190-iyXwLcdYD7iGrtgbo5tFojLEFNg\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Wed, 28 Sep 2022 16:26:06 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"code\": \"200\",\n    \"message\": \"OK\",\n    \"description\": \"တောင်းဆိုမှု အောင်မြင်ကြောင်း ညွှန်ပြသည်။\",\n    \"data\": {\n        \"_id\": \"623d5cca34782685107b04fa\",\n        \"city_mm\": \"Myanmar\",\n        \"city_en\": \"Myanmar\",\n        \"code\": \"Myanmar\",\n        \"unit\": \"Myanmar\",\n        \"created_at\": \"2022-03-25T06:10:18.980Z\",\n        \"updated_at\": \"2022-09-27T01:28:02.233Z\",\n        \"__v\": 0\n    }\n}"
+            }
+          ]
         },
         {
           "name": "ListByAny",
@@ -221,10 +597,15 @@
                 "key": "x-access-method",
                 "value": "{{sign_method}}",
                 "type": "text"
+              },
+              {
+                "key": "Accept-Language",
+                "value": "my_MM",
+                "type": "text"
               }
             ],
             "url": {
-              "raw": "{{lip}}/api/city",
+              "raw": "{{lip}}/api/city?status=1",
               "host": [
                 "{{lip}}"
               ],
@@ -233,11 +614,6 @@
                 "city"
               ],
               "query": [
-                {
-                  "key": "filter[status]",
-                  "value": "true",
-                  "disabled": true
-                },
                 {
                   "key": "page[limit]",
                   "value": "10",
@@ -262,11 +638,124 @@
                   "key": "end_date",
                   "value": "2021-11-15",
                   "disabled": true
+                },
+                {
+                  "key": "status",
+                  "value": "1"
                 }
               ]
             }
           },
-          "response": []
+          "response": [
+            {
+              "name": "ListByAny",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Ik4zT1hVQkwxU04wVDYzM0siLCJpYXQiOjE2MzAyOTY4NTIsImV4cCI6MTYzMDM4MzI1Mn0.xxfgfbUJxPqs...",
+                    "type": "text"
+                  },
+                  {
+                    "key": "x-access-method",
+                    "value": "one",
+                    "type": "text"
+                  },
+                  {
+                    "key": "Accept-Language",
+                    "value": "my_MM",
+                    "type": "text"
+                  }
+                ],
+                "url": {
+                  "raw": "localhost:5000/api/city?unit=D",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "5000",
+                  "path": [
+                    "api",
+                    "city"
+                  ],
+                  "query": [
+                    {
+                      "key": "page[limit]",
+                      "value": "10",
+                      "disabled": true
+                    },
+                    {
+                      "key": "page[skip]",
+                      "value": "0",
+                      "disabled": true
+                    },
+                    {
+                      "key": "sort[updated_at]",
+                      "value": "-1",
+                      "disabled": true
+                    },
+                    {
+                      "key": "start_date",
+                      "value": "2021-11-14",
+                      "disabled": true
+                    },
+                    {
+                      "key": "end_date",
+                      "value": "2021-11-15",
+                      "disabled": true
+                    },
+                    {
+                      "key": "unit",
+                      "value": "D"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Vary",
+                  "value": "Origin"
+                },
+                {
+                  "key": "Access-Control-Allow-Credentials",
+                  "value": "true"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "391"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"187-88JLoVThfCqGWm81s1I0DI4lUt4\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Wed, 28 Sep 2022 16:26:39 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"code\": \"200\",\n    \"message\": \"OK\",\n    \"description\": \"တောင်းဆိုမှု အောင်မြင်ကြောင်း ညွှန်ပြသည်။\",\n    \"data\": [\n        {\n            \"_id\": \"633472bc19aa762f849e5be1\",\n            \"city_mm\": \"နယူးမြင်းခြံ\",\n            \"city_en\": \"Myingyan\",\n            \"code\": \"MGN\",\n            \"unit\": \"D\",\n            \"created_at\": \"2022-09-28T16:13:48.916Z\",\n            \"updated_at\": \"2022-09-28T16:15:01.203Z\",\n            \"__v\": 0\n        }\n    ]\n}"
+            }
+          ]
         },
         {
           "name": "ObjCreate",
@@ -285,11 +774,16 @@
                 "key": "x-access-method",
                 "value": "{{sign_method}}",
                 "type": "text"
+              },
+              {
+                "key": "Accept-Language",
+                "value": "my_MM",
+                "type": "text"
               }
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n}",
+              "raw": "{\r\n    \"city_mm\": \"နတ်ဘွယ်\",\r\n    \"city_en\": \"Natbwe\",\r\n    \"code\": \"NBE\",\r\n    \"unit\": \"T\"\r\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -307,7 +801,94 @@
               ]
             }
           },
-          "response": []
+          "response": [
+            {
+              "name": "ObjCreate",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Ik4zT1hVQkwxU04wVDYzM0siLCJpYXQiOjE2MzAyOTY4NTIsImV4cCI6MTYzMDM4MzI1Mn0.xxfgfbUJxPqs...",
+                    "type": "text"
+                  },
+                  {
+                    "key": "x-access-method",
+                    "value": "one",
+                    "type": "text"
+                  },
+                  {
+                    "key": "Accept-Language",
+                    "value": "my_MM",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"city_mm\": \"နတ်ဘွယ်\",\r\n    \"city_en\": \"Natbwe\",\r\n    \"code\": \"NBE\",\r\n    \"unit\": \"T\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "localhost:5000/api/city",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "5000",
+                  "path": [
+                    "api",
+                    "city"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Vary",
+                  "value": "Origin"
+                },
+                {
+                  "key": "Access-Control-Allow-Credentials",
+                  "value": "true"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "372"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"174-NQSdSYxqSgPm4ofT28sq72maSwY\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Wed, 28 Sep 2022 16:27:33 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"code\": \"200\",\n    \"message\": \"OK\",\n    \"description\": \"တောင်းဆိုမှု အောင်မြင်ကြောင်း ညွှန်ပြသည်။\",\n    \"data\": {\n        \"_id\": \"633475f5e3ee342d18bbfd27\",\n        \"city_mm\": \"နတ်ဘွယ်\",\n        \"city_en\": \"Natbwe\",\n        \"code\": \"NBE\",\n        \"unit\": \"T\",\n        \"created_at\": \"2022-09-28T16:27:33.127Z\",\n        \"updated_at\": \"2022-09-28T16:27:33.127Z\",\n        \"__v\": 0\n    }\n}"
+            }
+          ]
         },
         {
           "name": "ObjUpdateById",
@@ -315,6 +896,143 @@
             "auth": {
               "type": "noauth"
             },
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}",
+                "type": "text"
+              },
+              {
+                "key": "x-access-method",
+                "value": "{{sign_method}}",
+                "type": "text"
+              },
+              {
+                "key": "Accept-Language",
+                "value": "my_MM",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"city_mm\": \"နယူးမြင်းခြံ\",\r\n    \"city_en\": \"Myingyan\",\r\n    \"code\": \"MGN\",\r\n    \"unit\": \"D\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{lip}}/api/city/633472bc19aa762f849e5be1",
+              "host": [
+                "{{lip}}"
+              ],
+              "path": [
+                "api",
+                "city",
+                "633472bc19aa762f849e5be1"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "ObjUpdateById",
+              "originalRequest": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Ik4zT1hVQkwxU04wVDYzM0siLCJpYXQiOjE2MzAyOTY4NTIsImV4cCI6MTYzMDM4MzI1Mn0.xxfgfbUJxPqs...",
+                    "type": "text"
+                  },
+                  {
+                    "key": "x-access-method",
+                    "value": "one",
+                    "type": "text"
+                  },
+                  {
+                    "key": "Accept-Language",
+                    "value": "my_MM",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"city_mm\": \"နယူးမြင်းခြံ\",\r\n    \"city_en\": \"Myingyan\",\r\n    \"code\": \"MGN\",\r\n    \"unit\": \"D\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "localhost:5000/api/city/633472bc19aa762f849e5be1",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "5000",
+                  "path": [
+                    "api",
+                    "city",
+                    "633472bc19aa762f849e5be1"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Vary",
+                  "value": "Origin"
+                },
+                {
+                  "key": "Access-Control-Allow-Credentials",
+                  "value": "true"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "389"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"185-j5TP1HgWm5+veTSJm19qnEoqa8E\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Wed, 28 Sep 2022 16:27:44 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"code\": \"200\",\n    \"message\": \"OK\",\n    \"description\": \"တောင်းဆိုမှု အောင်မြင်ကြောင်း ညွှန်ပြသည်။\",\n    \"data\": {\n        \"_id\": \"633472bc19aa762f849e5be1\",\n        \"city_mm\": \"နယူးမြင်းခြံ\",\n        \"city_en\": \"Myingyan\",\n        \"code\": \"MGN\",\n        \"unit\": \"D\",\n        \"created_at\": \"2022-09-28T16:13:48.916Z\",\n        \"updated_at\": \"2022-09-28T16:15:01.203Z\",\n        \"__v\": 0\n    }\n}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Create Template",
+      "item": [
+        {
+          "name": "CreateOne",
+          "request": {
             "method": "POST",
             "header": [
               {
@@ -326,44 +1044,16 @@
                 "key": "x-access-method",
                 "value": "{{sign_method}}",
                 "type": "text"
+              },
+              {
+                "key": "Accept-Language",
+                "value": "my_MM",
+                "type": "text"
               }
             ],
             "body": {
               "mode": "raw",
-              "raw": "",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            },
-            "url": {
-              "raw": "{{lip}}/api/city/6161661885e7d41902ea448d",
-              "host": [
-                "{{lip}}"
-              ],
-              "path": [
-                "api",
-                "city",
-                "6161661885e7d41902ea448d"
-              ]
-            }
-          },
-          "response": []
-        }
-      ]
-    },
-    {
-      "name": "Template",
-      "item": [
-        {
-          "name": "CreateOne",
-          "request": {
-            "method": "POST",
-            "header": [],
-            "body": {
-              "mode": "raw",
-              "raw": "{\r\n    \"data\": {\r\n        \"name\": \"String\",\r\n        \"type\": \"String\"\r\n    },\r\n    \"menu\": {\r\n        \"list\": \"cats\",\r\n        \"entry\": \"cat\"\r\n    }\r\n}",
+              "raw": "{\r\n    \"data\": {\r\n        \"fullname\": \"String\",\r\n        \"address1\": \"String\"\r\n    },\r\n    \"menu\": {\r\n        \"list\": \"cats\",\r\n        \"entry\": \"cat\"\r\n    }\r\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -389,6 +1079,289 @@
             }
           },
           "response": []
+        }
+      ]
+    },
+    {
+      "name": "Upload Files/Img",
+      "item": [
+        {
+          "name": "UploadOne",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}",
+                "type": "text"
+              },
+              {
+                "key": "x-access-method",
+                "value": "{{sign_method}}",
+                "type": "text"
+              },
+              {
+                "key": "Accept-Language",
+                "value": "my_MM",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "uploaded_file",
+                  "type": "file",
+                  "src": "/C:/Users/ASUS/Downloads/Screenshot 2022-09-28 121222.png"
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{lip}}/file/upload/folderOne",
+              "host": [
+                "{{lip}}"
+              ],
+              "path": [
+                "file",
+                "upload",
+                "folderOne"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "UploadOne",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Ik4zT1hVQkwxU04wVDYzM0siLCJpYXQiOjE2MzAyOTY4NTIsImV4cCI6MTYzMDM4MzI1Mn0.xxfgfbUJxPqs...",
+                    "type": "text"
+                  },
+                  {
+                    "key": "x-access-method",
+                    "value": "one",
+                    "type": "text"
+                  },
+                  {
+                    "key": "Accept-Language",
+                    "value": "my_MM",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "key": "uploaded_file",
+                      "type": "file",
+                      "src": "/C:/Users/ASUS/Downloads/Screenshot 2022-09-28 121222.png"
+                    }
+                  ]
+                },
+                "url": {
+                  "raw": "localhost:5000/file/upload/folderOne",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "5000",
+                  "path": [
+                    "file",
+                    "upload",
+                    "folderOne"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Vary",
+                  "value": "Origin"
+                },
+                {
+                  "key": "Access-Control-Allow-Credentials",
+                  "value": "true"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "491"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"1eb-PTn34Lw2jTAerh/Pp1T//Urs6Nw\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Wed, 28 Sep 2022 16:23:23 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"code\": \"200\",\n    \"message\": \"File is successfully uploaded.\",\n    \"description\": \"တောင်းဆိုမှု အောင်မြင်ကြောင်း ညွှန်ပြသည်။\",\n    \"data\": {\n        \"fieldname\": \"uploaded_file\",\n        \"originalname\": \"Screenshot 2022-09-28 121222.png\",\n        \"encoding\": \"7bit\",\n        \"mimetype\": \"image/png\",\n        \"destination\": \"./public/uploads/folderOne\",\n        \"filename\": \"template-file-1664382203986.png\",\n        \"path\": \"public\\\\uploads\\\\folderOne\\\\template-file-1664382203986.png\",\n        \"size\": 69859\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "UploadMulti",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}",
+                "type": "text"
+              },
+              {
+                "key": "x-access-method",
+                "value": "{{sign_method}}",
+                "type": "text"
+              },
+              {
+                "key": "Accept-Language",
+                "value": "my_MM",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "uploaded_files",
+                  "type": "file",
+                  "src": "/C:/Users/ASUS/Downloads/Screenshot 2022-09-28 121222.png"
+                },
+                {
+                  "key": "uploaded_files",
+                  "type": "file",
+                  "src": "/C:/Users/ASUS/Downloads/Screenshot 2022-09-28 121222.png"
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{lip}}/file/multiUpload/folderTwo",
+              "host": [
+                "{{lip}}"
+              ],
+              "path": [
+                "file",
+                "multiUpload",
+                "folderTwo"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "UploadMulti",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Ik4zT1hVQkwxU04wVDYzM0siLCJpYXQiOjE2MzAyOTY4NTIsImV4cCI6MTYzMDM4MzI1Mn0.xxfgfbUJxPqs...",
+                    "type": "text"
+                  },
+                  {
+                    "key": "x-access-method",
+                    "value": "one",
+                    "type": "text"
+                  },
+                  {
+                    "key": "Accept-Language",
+                    "value": "my_MM",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "key": "uploaded_files",
+                      "type": "file",
+                      "src": "/C:/Users/ASUS/Downloads/Screenshot 2022-09-28 121222.png"
+                    },
+                    {
+                      "key": "uploaded_files",
+                      "type": "file",
+                      "src": "/C:/Users/ASUS/Downloads/Screenshot 2022-09-28 121222.png"
+                    }
+                  ]
+                },
+                "url": {
+                  "raw": "localhost:5000/file/multiUpload/folderTwo",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "5000",
+                  "path": [
+                    "file",
+                    "multiUpload",
+                    "folderTwo"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Vary",
+                  "value": "Origin"
+                },
+                {
+                  "key": "Access-Control-Allow-Credentials",
+                  "value": "true"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "787"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"313-qqByewTTXJVSuAMgIf1tnR+iFpQ\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Wed, 28 Sep 2022 16:23:05 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"code\": \"200\",\n    \"message\": \"File are successfully uploaded.\",\n    \"description\": \"တောင်းဆိုမှု အောင်မြင်ကြောင်း ညွှန်ပြသည်။\",\n    \"data\": [\n        {\n            \"fieldname\": \"uploaded_files\",\n            \"originalname\": \"Screenshot 2022-09-28 121222.png\",\n            \"encoding\": \"7bit\",\n            \"mimetype\": \"image/png\",\n            \"destination\": \"./public/uploads/folderTwo\",\n            \"filename\": \"template-file-1664382185546.png\",\n            \"path\": \"public\\\\uploads\\\\folderTwo\\\\template-file-1664382185546.png\",\n            \"size\": 69859\n        },\n        {\n            \"fieldname\": \"uploaded_files\",\n            \"originalname\": \"Screenshot 2022-09-28 121222.png\",\n            \"encoding\": \"7bit\",\n            \"mimetype\": \"image/png\",\n            \"destination\": \"./public/uploads/folderTwo\",\n            \"filename\": \"template-file-1664382185547.png\",\n            \"path\": \"public\\\\uploads\\\\folderTwo\\\\template-file-1664382185547.png\",\n            \"size\": 69859\n        }\n    ]\n}"
+            }
+          ]
         }
       ]
     }

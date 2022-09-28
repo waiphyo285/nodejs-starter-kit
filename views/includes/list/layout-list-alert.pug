@@ -3,18 +3,18 @@ div.modal.fade#dialogDeleteConfirm(tabindex='-1', role='dialog', aria-labelledby
     div.modal-content
       div.modal-header
         h5.modal-title 
-          | Comfirm Message
+          | Warning
         button.close(type='button', data-dismiss='modal', aria-label='Close')
           span(aria-hidden='true') &times;
       div.modal-body
         h1.text-center
-          i.bi.bi-trash.text-danger
+          i.bi.bi-trash3.text-danger
         p.text-center You will lost this permanently. Are you sure to delete?
       div.modal-footer.justify-content-md-center
         button.btn.material-button.material-secondary#dialogCancel(type='button', data-dismiss='modal')
           |  CANCEL
         button.btn.material-button.material-primary#dialogDelete(type='button', data-dismiss='modal')
-          i.bi.bi-trash
+          i.bi.bi-trash3
           |  DELETE
 
 div.alert.alert-success.alert-dismissible#alertActionSuccess(role='alert' style="display:none;")

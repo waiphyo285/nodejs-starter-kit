@@ -355,7 +355,7 @@ function makeDivImage(setSrc) {
     <div class="col-xs-6 col-sm-6 col-md-6 col-lg-2 item d-flex justify-content-center img-container">
       <input class="uploaded-files" type="hidden" name="profile_images[]" value=${setSrc} />
       <img class="m-1 img img-thumbnail" src=${setSrc} alt="" srcset="" width="360" height="360"/>
-      <button type="button" class="btn btn-sm remove-file"><i class="bi bi-trash"/></button>
+      <button type="button" class="btn btn-sm remove-file"><i class="bi bi-trash3"/></button>
     </div>`;
 }
 

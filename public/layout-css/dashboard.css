@@ -6,14 +6,14 @@
 @import url("https://fonts.googleapis.com/css2?family=Questrial&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Ubuntu+Mono&display=swap");
 
-/* Bootstrap class override here */
 
 /* Setup font */
 body {
   font-size: 14px;
   font-family: "Questrial", sans-serif, "Ubuntu Mono", monospace;
 }
-/* End - Setup font */
+
+/* Bootstrap class override here */
 
 /* Nav & nav-item */
 nav.navbar {
@@ -33,41 +33,39 @@ nav.navbar {
   border-right: 3px solid var(--primary);
 }
 
-.user-nav-items > .nav-item {
+.user-nav-items>.nav-item {
   margin: 0 3px;
   line-height: 1.3;
   border-radius: 0.2rem;
   background: var(--back-white);
 }
 
-.user-nav-items > .nav-item > a {
+.user-nav-items>.nav-item>a {
   color: var(--secondary);
   font-weight: 500;
 }
-/* End - Nav & nav-item */
 
 /* Dropdown */
-.nav-item.dropdown > .dropdown-menu {
+.nav-item.dropdown>.dropdown-menu {
   top: 38px;
   left: -110px;
 }
 
-.nav-item.dropdown > .dropdown-menu > a {
+.nav-item.dropdown>.dropdown-menu>a {
   font-size: 14px;
   padding: 5px 10px;
   margin: 3px auto;
 }
 
-.nav-item.dropdown > .dropdown-menu > a:hover,
-.nav-item.dropdown > .dropdown-menu > a:focus {
+.nav-item.dropdown>.dropdown-menu>a:hover,
+.nav-item.dropdown>.dropdown-menu>a:focus {
   color: var(--primary);
   background-color: var(--back-white);
 }
 
-.nav-item.dropdown > .dropdown-menu > .dropdown-divider {
+.nav-item.dropdown>.dropdown-menu>.dropdown-divider {
   background-color: var(--back-gray);
 }
-/* End - dropdown */
 
 /* Container fulide */
 .container-fluid {
@@ -76,7 +74,6 @@ nav.navbar {
   overflow-y: scroll;
   padding: 3rem 0 1.5rem 0;
 }
-/* End - Container fulide */
 
 /* Select 2 */
 .select2-selection__rendered {
@@ -90,7 +87,6 @@ nav.navbar {
 .select2-selection__arrow {
   height: 36px !important;
 }
-/* End - Select 2 */
 
 /* Sweet alert 2 */
 .swal-style {
@@ -119,7 +115,6 @@ nav.navbar {
   outline: none;
   box-shadow: none !important;
 }
-/* End - Sweet alert 2 */
 
 /* Input radio */
 input[type="radio"] {
@@ -136,8 +131,8 @@ input[type="radio"] {
   -ms-transform: scale(1.5);
   -webkit-transform: scale(1.5);
   appearance: none;
-  -webkit-appearance: none;
   -moz-appearance: none;
+  -webkit-appearance: none;
 }
 
 input[type="radio"][value="1"]:checked {
@@ -147,7 +142,6 @@ input[type="radio"][value="1"]:checked {
 input[type="radio"][value="0"]:checked {
   background-color: var(--back-black);
 }
-/* End - Input radio */
 
 /* Scrollbar  */
 ::-webkit-scrollbar {
@@ -162,7 +156,6 @@ input[type="radio"][value="0"]:checked {
 ::-webkit-scrollbar-thumb {
   background: var(--back-gray);
 }
-/* End - Scrollbar  */
 
 /* Text selection */
 ::selection {
@@ -174,7 +167,6 @@ input[type="radio"][value="0"]:checked {
   color: var(--text-white);
   background: var(--primary);
 }
-/* End - Text selection */
 
 /* Input focus */
 input:focus,
@@ -189,9 +181,6 @@ textarea:focus {
   border-color: var(--primary);
   box-shadow: 0 0 1.2px var(--primary);
 }
-/* End - Input focus */
-
-/* End - Bootstrap class override here */
 
 /* Customer css here */
 
@@ -204,10 +193,10 @@ textarea:focus {
   min-height: 100vh;
   margin-left: -15rem;
   border-right: 0.5px solid var(--back-gray);
-  /* -webkit-transition: margin 0.25s ease-out;
-  -moz-transition: margin 0.25s ease-out;
+  /* transition: margin 0.25s ease-out;
   -o-transition: margin 0.25s ease-out;
-  transition: margin 0.25s ease-out; */
+  -moz-transition: margin 0.25s ease-out;
+  -webkit-transition: margin 0.25s ease-out; */
 }
 
 #sidebar-wrapper .sidebar-heading {
@@ -246,15 +235,22 @@ textarea:focus {
   }
 }
 
-/* End - Layout */
+/* Develop mode  */
+.dev-mode {
+  position: absolute;
+  width: 30px;
+  right: 12px;
+  bottom: 18px;
+  font-size: larger;
+  color: goldenrod;
+  transform: rotate(-45deg);
+}
 
 /* Welcome text */
-
 .animate-typing {
   width: 15ch;
   overflow: hidden;
   white-space: nowrap;
-  /* border-right: 1.8px solid var(--primary); */
   animation: typing 2s steps(22), blink 1s step-end infinite;
 }
 
@@ -270,18 +266,13 @@ textarea:focus {
   }
 }
 
-/* End - Welcome text */
-
 /* Card design */
-
 .card {
   background-image: linear-gradient(to right,
       rgba(255, 255, 255, 1),
       rgba(250, 250, 250, 1));
   box-shadow: 3px 3px 5px rgb(244, 244, 244);
 }
-
-/* End - Card design */
 
 /* Card counter */
 .card-counter {
@@ -340,7 +331,6 @@ textarea:focus {
 .card-counter:nth-child(4) .wrap:after {
   background: linear-gradient(90deg, #5EBB44 0%, #5EBB44 100%);
 }
-/* End - Card counter */
 
 /* Image container */
 .img-container {
@@ -376,7 +366,6 @@ textarea:focus {
   border-radius: 8px;
   border: 5px dashed var(--back-gray);
 }
-/* End - Image container */
 
 /* Chart.js */
 canvas {
@@ -387,7 +376,3 @@ canvas {
   display: inline-block;
   vertical-align: middle;
 }
-/* End - Chart.js */
-
-/* End - Customer css here */
-

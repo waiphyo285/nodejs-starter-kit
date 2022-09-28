@@ -14,6 +14,6 @@ userRoles.index = (req, res, next) => {
   }
   catch (error) {
     console.log(`Error ${err}`);
-    res.status(500).json(handleError(err));
+    res.status(500).json(handleError(err, locales));
   }
 };

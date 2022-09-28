@@ -15,7 +15,7 @@ registers.create = (req, res, next) => {
   // save the user to database
   registerModel.save((err, data) => {
     err || !data
-      ? res.status(500).json(handleError(err))
+      ? res.status(500).json(handleError(err, locales))
       : res.status(200).json(createResponse(200, { data: { data } }, locales));
   });
 };
@@ -26,7 +26,7 @@ registers.login = (req, res, next) => {
 
   RegisterModel.findOne({ username }).exec(async (err, data) => {
     err || !data
-      ? res.status(500).json(handleError(err))
+      ? res.status(500).json(handleError(err, locales))
       : data.comparePassword(password, (err, isMatch) => {
         err || !isMatch
           ? res.status(403).json(createResponse(403, {}, locales))

@@ -69,7 +69,7 @@ app.use(genRouter);
 app.use("/d-mar", tokenRouter);
 
 // connect to api routes
-app.use("/api", verifyToken, apiRouter);
+app.use("/api", apiRouter);
 
 // connect to file routes
 app.use("/file", verifyToken, fileRouter);

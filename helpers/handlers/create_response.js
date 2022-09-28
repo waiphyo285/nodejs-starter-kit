@@ -1,5 +1,4 @@
 const config = require("../../config/index");
-const status = require("../config/http_code");
 const { getProgram } = require("./access_user");
 
 const handleDuplicate = (err) => {
@@ -24,9 +23,10 @@ const handleValidateError = (err) => {
   return message;
 };
 
-const handleError = (err) => {
+const handleError = (err, locales) => {
   let message = "Something went wrong.";
-  const { code, description } = status[500];
+  const { code, description } = locales[500];
+
   if (err.code && err.code === 11000) {
     message = handleDuplicate(err);
   }
@@ -50,9 +50,9 @@ const handleRenderer = (user, pages, res) => {
 };
 
 const handleDatabase = (getDb, utils, res) => {
+  const locales = res.locals.i18n.translations;
   getDb
     .then((data) => {
-      const locales = res.locals.i18n.translations;
       return handleResponse(data, utils, locales);
     })
     .then((response) => {
@@ -60,7 +60,7 @@ const handleDatabase = (getDb, utils, res) => {
     })
     .catch((err) => {
       console.log(`Error ${err}`);
-      const responseError = handleError(err);
+      const responseError = handleError(err, locales);
       res.status(responseError.code).json(responseError);
     });
 };

@@ -1,6 +1,6 @@
 # Itemplate Backend
 
-<img src="./public/images/readme/clean-architecture.jpeg" width="700" height="525" >
+<img src="./public/images/readme/readme-cover.jpg" >
 
 ## Getting Started
 
@@ -17,7 +17,7 @@ I am introduced a simple API template for backend developers using clean archite
 - integrate with chart.js library,
 - generate easily CRUD API,
 - upload media files,
-- cache with redis memory,
+- cache in redis memory,
 - switch multi databases and,
 - design for test driven development.
 

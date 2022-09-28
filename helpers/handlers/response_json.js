@@ -1,6 +1,6 @@
 const config = require("../../config/index");
-const status = require("./http_code");
 const { getProgram } = require("./access_user");
+let status;
 
 /** Sample response
  *
@@ -50,6 +50,8 @@ const handleError = (err) => {
 };
 
 const handleDatabase = (getDb, utils, res) => {
+  let accept_language = res.req.headers.accept_language || "eng";
+  status = require(`./http_code/${accept_language}`);
   getDb
     .then((data) => {
       return handleResponse(data, utils);

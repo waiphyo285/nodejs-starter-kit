@@ -1,17 +1,33 @@
 nav(class="navbar fixed-top")
   button.btn.material-button.material-secondary#menu-toggle
     i.bi.bi-menu-button
-  .user-nav-items.d-flex.align-items-end
+
+  .o-nav-items.d-flex.align-items-end
     .nav-item
       a.nav-link(href='#' role='button' title="View Profile")
         i.bi.bi-person
         |  !{user.username}
         span.sr-only
+
     .nav-item.dropdown
-      a.nav-link#navbarDropdown(href='#' role='button' data-toggle='dropdown' aria-expanded='false')
-        i.bi.bi-chevron-compact-down
-      .dropdown-menu(aria-labelledby='navbarDropdown')
-        a.dropdown-item(href="#" role='button' title="Setting", data-toggle="modal", data-target="#dialogSetTheme") 
+      a.nav-link#langDropdown(href='#' role='button' data-toggle='dropdown' aria-expanded='false')
+        i.bi.bi-translate
+      .dropdown-menu(aria-labelledby='langDropdown')
+        a.dropdown-item(href="#" role='button' title="English language")
+          img(src="https://img.icons8.com/color/48/000000/usa-circular.png" width="22" height="22")
+          | &nbsp; English
+        a.dropdown-item(href="#" role='button' title="Myanmar language") 
+          img(src="https://img.icons8.com/color/48/000000/myanmar-circular.png" width="22" height="22")
+          | &nbsp; Myanmar
+        
+        // free icon sources from icons8.com
+        // https://icons8.com/icons/set/flags
+
+    .nav-item.dropdown
+      a.nav-link#settingDropdown(href='#' role='button' data-toggle='dropdown' aria-expanded='false')
+        i.bi.bi-sliders
+      .dropdown-menu(aria-labelledby='settingDropdown')
+        a.dropdown-item(href="#" role='button' title="New theme", data-toggle="modal", data-target="#dialogSetTheme") 
           i.bi.bi-palette
           | &nbsp; Change theme
         a.dropdown-item(href="#" role='button' title="New template", data-toggle="modal", data-target="#dialogNewTemplate" )

@@ -10,16 +10,23 @@ I am introduced a simple API template for backend developers using clean archite
 
 **Main features**
 
-- admin dashboard with bootstrap v4,
+| Title               | Description |
+| -----               | ----------- |
+| User interface      | Design admin dashboard with bootstrap v4     |
+| Database design     | Support SQL (MySQL) and NoSQL (MongoDB)      |
+| Data security       | Secure API layer based on authN and authZ    |
+| Development         | Integrate test driven development (mocha)    |
+
+**Other features**
+
+These features help you reduce your time and cost to start a new project instead of `npm init`.
+
 - access menu permission based on role,
-- switch custom theme (action, comedy, ..)
-- secure data with authN and authZ,
+- switch custom theme (action, comedy, ...)
 - integrate with chart.js library,
 - generate easily CRUD API,
 - upload media files,
-- cache in redis memory,
-- switch multi databases and,
-- design for test driven development.
+- cache in redis memory
 
 **The followings must be pre-installed on your machine:**
 

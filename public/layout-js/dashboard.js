@@ -7,6 +7,7 @@
 
   // Graphs
   var ctx = document.getElementById("myChart");
+
   // eslint-disable-next-line no-unused-vars
   var myChart = new Chart(ctx, {
     type: "line",

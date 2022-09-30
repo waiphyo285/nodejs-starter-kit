@@ -12,16 +12,13 @@ head
   link(rel='icon' type='image/png' sizes='32x32' href='../images/favicon/favicon-32x32.png')
   link(rel='icon' type='image/png' sizes='16x16' href='../images/favicon/favicon-16x16.png')
 
-  // Dashboard CSS
-  //- link(href='https://getbootstrap.com/docs/4.5/examples/dashboard/' rel='canonical')
-
   // Bootstrap CSS
   link(href='/assets/dist/css/bootstrap.min.css' rel='stylesheet')
 
   // Data Table CSS
   link(href="/layout-css/lib/data-table/jquery.dataTables.min.css" rel="stylesheet")
 
-  // Layout/Lib
+  // Layout Lib
   link(href='/layout-css/lib/select2/select2.min.css' rel='stylesheet')
   link(href='/layout-css/lib/sweetalert2/sweetalert2.min.css' rel='stylesheet')
   link(href='/layout-css/lib/datepicker/bootstrap-datepicker3.min.css' rel='stylesheet')
@@ -39,12 +36,6 @@ head
 
   // Font Bootstrap
   link(rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css")
-
-  // Font Awesome
-  //- link(href="/layout-css/lib/font-awesome/css/font-awesome.min.css" rel="stylesheet" crossorigin="anonymous")
-
-  // Font Feather
-  //- script(src='/layout-js/lib/feather/feather.min.js')
 
   // Jquery Core
   script(src="/layout-js/lib/jquery.min.js")
@@ -141,7 +132,7 @@ script.
     };
   }
 
-<!-- Layout JS/ Lib -->
+<!-- Layout Lib -->
 script(src='/layout-js/lib/moment/moment.js')
 script(src='/layout-js/lib/select2/select2.full.min.js')
 script(src='/layout-js/lib/sweetalert2/sweetalert2.min.js')
@@ -162,7 +153,10 @@ script(src="/layout-js/lib/data-table/vfs_fonts.js")
 script(src="/layout-js/lib/datepicker/bootstrap-datepicker.min.js")
 
 <!-- Layout JS -->
+script(src='/layout-js/datatable.js')
 script(src='/layout-js/common.js')
+script(src='/layout-js/onload.js')
+script(src='/layout-js/helpers.js')
 
 // Menu Toggle Script
 script.

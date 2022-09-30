@@ -2,7 +2,7 @@
 
 .theme {
   margin: 5px;
-  padding: 5px;
+  padding: 25px;
   text-align: center;
   border-radius: 5px;
   background-color: var(--back-white);
@@ -11,9 +11,10 @@
 }
 
 .theme label {
-  width: 4em;
-  height: 3em;
-  line-height: 3em;
+  width: 8em;
+  height: 6em;
+  line-height: 6em;
+  font-weight: 800;
 }
 
 .theme label span {
@@ -27,46 +28,44 @@
   display: none;
 }
 
-.theme label input + span {
+.theme label input+span {
   color: var(--text-black);
 }
 
-.theme input:checked + span {
+.theme input:checked+span {
   color: var(--text-white);
 }
 
 /* Theme color */
-.default input:checked + span {
+
+.default input:checked+span {
   background-color: #666699;
 }
 
-.action input:checked + span {
+.action input:checked+span {
   background-color: #f55b5b;
 }
 
-.comedy input:checked + span {
+.comedy input:checked+span {
   background-color: #0bb0f5;
 }
 
-.crime input:checked + span {
+.crime input:checked+span {
   background-color: #d5d55d;
 }
 
-.history input:checked + span {
+.history input:checked+span {
   background-color: #85d55d;
 }
 
-.reality input:checked + span {
+.reality input:checked+span {
   background-color: #f5b5df;
 }
 
-.news input:checked + span {
+.news input:checked+span {
   background-color: #5d0b0b;
 }
 
-.sports input:checked + span {
+.sports input:checked+span {
   background-color: #225b00;
 }
-/* End - Theme color */
-
-/* End - Theme checkbox as button */

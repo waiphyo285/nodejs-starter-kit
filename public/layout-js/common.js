@@ -35,6 +35,7 @@ $("#entryForm").submit(function (e) {
     },
     error: function (error) {
       console.log("Error ", error);
+      handleAlert(error.responseJSON)
     },
   });
 });
@@ -58,7 +59,10 @@ function submitAction(url, callback) {
       }
     },
     error: function (jqXHR, textStatus, errorThrown) {
-      alert(errorThrown);
+      swalWarning({
+        title: "Warning",
+        description: errorThrown,
+      });
     },
   });
 }
@@ -71,7 +75,7 @@ function handleAlert(args, redirect = true) {
     var postFrm = $("#postSuccessForm");
     window.setTimeout(function () {
       if (redirect) postFrm.submit();
-      $("#alertHandler").removeClass().hide();
+      $("#alertHandler").removeClass("alert-success").hide();
     }, 1 * 1000);
   }
   else {
@@ -79,7 +83,7 @@ function handleAlert(args, redirect = true) {
     $("#alertMessage").html("Save Unsuccessful.");
     $("#alertHandler").addClass("alert-danger").show();
     window.setTimeout(function () {
-      $("#alertHandler").removeClass().hide();
+      $("#alertHandler").removeClass("alert-danger").hide();
     }, 1 * 1000);
   }
 }
@@ -90,7 +94,6 @@ function ajaxLoadOption(args) {
     showKey = args.showKey || "",
     selectId = args.selectId || "#",
     filerObj = args.filterObj || {};
-
   $.ajax({
     url: url,
     type: type,
@@ -117,7 +120,6 @@ function ajaxLoadOption(args) {
 function ajaxUploadForm(args) {
   var imgParentDiv = args.imgParentDiv,
     _this = args._this;
-
   // multi/part form submit
   $.ajax({
     url: $(_this).attr("action"),
@@ -156,7 +158,6 @@ function swalWarning(args) {
     position: "center",
     description: "Something went wrong. Please try again.",
   }, args);
-
   Swal.fire({
     icon: config.icon,
     title: config.title,

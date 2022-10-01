@@ -59,7 +59,13 @@ script.
               title: "Success",
               description: "Your template is successfully generated.",
             });
-        }
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+          swalWarning({
+            title: "Warning",
+            description: "Description: " + errorThrown,
+          });
+        },
       });
     })
   });

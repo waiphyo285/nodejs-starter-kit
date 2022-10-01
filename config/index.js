@@ -11,7 +11,7 @@ module.exports = {
     DATABASE: process.env.DATABASE_NAME,
     COOKIE_SECRET: process.env.COOKIE_SECRET,
     WHITELISTED_DOMAINS: process.env.WHITELISTED_DOMAINS,
-    ROLES: ["admin", "manager", "cashier"],
+    ROLES: ["admin", "manager", "staff"],
   },
   MONGO: {
     HOST: process.env.MONGO_HOST,

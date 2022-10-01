@@ -3,7 +3,7 @@ const router = express.Router();
 const checkAuth = require("../check_auth");
 const utils = require("../../../../helpers/utils");
 const usersDb = require("../../../../controllers/users");
-const { isAuth } = require("../../../../middlewares/authenticator");
+const { isAuth } = require("../../../../middlewares/authentication");
 const { handleRenderer, handleDatabase, } = require("../../../../helpers/handlers/create_response");
 
 router

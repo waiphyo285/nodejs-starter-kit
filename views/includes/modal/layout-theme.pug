@@ -5,42 +5,40 @@ div.modal.fade#dialogSetTheme(tabindex='-1', role='dialog', aria-labelledby='dia
         h5.modal-title Change theme
         button.close(type='button', data-dismiss='modal', aria-label='Close')
           span(aria-hidden='true') &times;
-      
       div.modal-body
         div#theme-container.d-flex.flex-wrap.justify-content-center
           .theme.default
             label
-              input(type='radio' name="theme_name" value='default')
+              input(type='radio' name="theme_name" value='default' checked=(user.theme === 'default'))
               span Default
           .theme.action
             label
-              input(type='radio' name="theme_name" value='action')
+              input(type='radio' name="theme_name" value='action' checked=(user.theme === 'action'))
               span Action
           .theme.comedy
             label
-              input(type='radio' name="theme_name" value='comedy')
+              input(type='radio' name="theme_name" value='comedy' checked=(user.theme === 'comedy'))
               span Comedy
           .theme.crime
             label
-              input(type='radio' name="theme_name" value='crime')
+              input(type='radio' name="theme_name" value='crime' checked=(user.theme === 'crime'))
               span Crime
           .theme.history
             label
-              input(type='radio' name="theme_name" value='history')
+              input(type='radio' name="theme_name" value='history' checked=(user.theme === 'history'))
               span History
           .theme.reality
             label
-              input(type='radio' name="theme_name" value='reality')
+              input(type='radio' name="theme_name" value='reality' checked=(user.theme === 'reality'))
               span Reality
           .theme.news
             label
-              input(type='radio' name="theme_name" value='news')
+              input(type='radio' name="theme_name" value='news' checked=(user.theme === 'news'))
               span News
           .theme.sports
             label
-              input(type='radio' name="theme_name" value='sports')
+              input(type='radio' name="theme_name" value='sports' checked=(user.theme === 'sports'))
               span Sports
-  
       div.modal-footer.justify-content-md-center
         button.btn.material-button.material-secondary#dialogCancel(type='button', data-dismiss='modal')
           |  CANCEL
@@ -50,39 +48,53 @@ div.modal.fade#dialogSetTheme(tabindex='-1', role='dialog', aria-labelledby='dia
 
 script.
   $(document).ready(function() {
-    $("#dialogTheme").on('click', function(){ 
-      $.ajax({
-        type: "PUT",
-        url: `/api/user-no-pass/${userId}`,
-        headers: {
-          "userrole": role,
-          "x-access-method": signJwtMethod,
-          "authorization": "Bearer " + token,
-        },
-        data: { theme: $('input[name=theme_name]:checked').val() } ,
-        success: function (response) {
-          response.code != 200 
-          ? swalWarning({
+    $("#dialogTheme").on('click', function(){
+      const currentTheme = '!{user.theme}';
+      const newTheme = $('input[name=theme_name]:checked').val();
+
+      if (newTheme !== currentTheme) {
+        $.ajax({
+          type: "PUT",
+          url: `/api/user-no-pass/${userId}`,
+          headers: {
+            "userrole": role,
+            "x-access-method": signJwtMethod,
+            "authorization": "Bearer " + token,
+          },
+          data: { theme: newTheme } ,
+          success: function (response) {
+            response.code != 200
+            ? swalWarning({
+                title: "Warning",
+                description: "Sorry, your theme was not changed.",
+              })
+            : Swal.fire({
+                icon: "success",
+                title: "Success",
+                position: "center",
+                text: "You have to logout to see new theme.",
+                confirmButtonText: 'LOGOUT',
+                customClass: "swal-style",
+              })
+              .then((result) => {
+                if (result.isConfirmed) {
+                  window.location.replace("/logout");
+                }
+              })
+          },
+          error: function (jqXHR, textStatus, errorThrown) {
+            swalWarning({
               title: "Warning",
-              description: "Sorry, your theme was not changed.", 
-            })
-          : Swal.fire({
-              icon: "success",
-              title: "Success",
-              position: "center",
-              text: "You have to logout to see new theme.",
-              confirmButtonText: 'LOGOUT',
-              customClass: "swal-style",
-            })
-            .then((result) => {
-              if (result.isConfirmed) {
-                window.location.replace("/logout");
-              } 
-            })
-        },
-        error: function (jqXHR, textStatus, errorThrown) {
-          alert(errorThrown);
-        },
-      });
+              description: "Description: " + errorThrown,
+            });
+          },
+        });
+      }
+      else {
+        swalWarning({
+          title: "Warning",
+          description: "Please select a different theme.",
+        });
+      }
     })
   });

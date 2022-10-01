@@ -13,8 +13,8 @@ const { corsOptions } = require("./config/settings/cors");
 const { cookieConfig } = require("./config/settings/cookies");
 
 // jwt middleware
-const { tokenRouter } = require("./middlewares/authenticator");
-const { verifyToken } = require("./middlewares/authenticator");
+const { tokenRouter } = require("./middlewares/authentication");
+const { verifyToken } = require("./middlewares/authentication");
 
 // api router
 const genRouter = require("./generator");

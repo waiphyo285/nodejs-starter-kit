@@ -17,7 +17,7 @@ const userRoles = require("./user_role");
 const userRegisters = require("./user_register");
 
 // middlewares
-const { isAuth } = require("../../../../middlewares/authenticator");
+const { isAuth } = require("../../../../middlewares/authentication");
 const validateWare = require("../../../../middlewares/data_validator");
 
 // schema validations

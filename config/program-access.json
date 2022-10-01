@@ -15,7 +15,7 @@
       "registerSubMenu,1,1,1"
     ]
   },
-  "cashier": {
+  "staff": {
     "menu": [
       "dashMenu",
       "generalMenu",

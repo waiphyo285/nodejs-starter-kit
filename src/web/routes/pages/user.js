@@ -18,7 +18,7 @@ router
   .get("/users", checkAuth, isAuth("admin"), (req, res, next) => {
     const pages = {
       runPage: "pages/user-list",
-      runProgram: "adminMenu.userSubMenu.list",
+      runProgram: "administrative.user.list",
     };
     handleRenderer(req.user.role, pages, res);
   })
@@ -28,7 +28,7 @@ router
     const pages = {
       data: data.data || {},
       runPage: "pages/user-entry",
-      runProgram: "adminMenu.userSubMenu.entry",
+      runProgram: "administrative.user.entry",
     };
     handleRenderer(req.user.role, pages, res);
   })

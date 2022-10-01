@@ -9,7 +9,7 @@ router
   .get("/cities", checkAuth, (req, res, next) => {
     const pages = {
       runPage: "pages/city-list",
-      runProgram: "generalMenu.citySubMenu.list",
+      runProgram: "general.region.list",
     };
     handleRenderer(req.user.role, pages, res);
   })
@@ -19,7 +19,7 @@ router
     const pages = {
       data: data.data || {},
       runPage: "pages/city-entry",
-      runProgram: "generalMenu.citySubMenu.entry",
+      runProgram: "general.region.entry",
     };
     handleRenderer(req.user.role, pages, res);
   })

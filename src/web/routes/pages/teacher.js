@@ -9,7 +9,7 @@ router
   .get("/teachers", checkAuth, (req, res, next) => {
     const pages = {
       runPage: "pages/teacher-list",
-      runProgram: "courseMenu.teacherSubMenu.list",
+      runProgram: "course.teacher.list",
     };
     handleRenderer(req.user.role, pages, res);
   })
@@ -19,7 +19,7 @@ router
     const pages = {
       data: data.data || {},
       runPage: "pages/teacher-entry",
-      runProgram: "courseMenu.teacherSubMenu.entry",
+      runProgram: "course.teacher.entry",
     };
     handleRenderer(req.user.role, pages, res);
   })

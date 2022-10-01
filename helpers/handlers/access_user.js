@@ -2,17 +2,17 @@ const programMenu = require("../../config/program-menu.json");
 const programAccess = require("../../config/program-access.json");
 
 const getProgram = (userRole, pageId) => {
-  const programMenuJson = JSON.parse(JSON.stringify(programMenu));
   const activeMenuArr = pageId.split(".");
+  const programMenuJson = JSON.parse(JSON.stringify(programMenu));
 
   const roleAcess = Object.entries(programAccess).find(
     ([key, value]) => key == userRole
   );
 
+  // admin role *
   if (roleAcess && typeof roleAcess[1] === "string") {
-    // admin role
     programMenuJson.forEach((menuObj, menuIdx) => {
-      // have access all program
+      // have access all 
       // menu access true
       menuObj.access = true;
       // menu active true
@@ -30,20 +30,26 @@ const getProgram = (userRole, pageId) => {
         });
       }
     });
+
+    console.log(programMenuJson[1])
+
     return {
       program: programMenuJson,
       page: getPageData(programMenuJson, pageId),
     };
-  } else if (roleAcess && typeof roleAcess[1] === "object") {
-    // manager or basic role
+  }
+
+  // manager or basic role
+  if (roleAcess && typeof roleAcess[1] === "object") {
     programMenuJson.forEach((menuObj, subMenuIdx) => {
-      // have access some program
+      // have access some 
       if (roleAcess[1].menu.includes(menuObj.menuid)) {
         // menu access true
         menuObj.access = true;
         // menu active true
         menuObj.active = activeMenuArr[0] == menuObj.menuid ? true : false;
       }
+
       if (menuObj.submenu && menuObj.submenu.length > 0) {
         menuObj.submenu.forEach((subMenuObj, subMenuIdx) => {
           const subMenuAccess = roleAcess[1].submenu.find(
@@ -62,17 +68,20 @@ const getProgram = (userRole, pageId) => {
         });
       }
     });
+
     return {
       program: programMenuJson,
       page: getPageData(programMenuJson, pageId),
     };
   }
+
   return;
 };
 
 const getPageData = (getProgramMenu, getPageId) => {
   if (getPageId !== undefined) {
     getPageId = getPageId.split(".");
+
     const pageObj = Object.entries(getProgramMenu).reduce(
       (pageObj, [key, value]) => {
         if (value.menuid == getPageId[0]) {
@@ -85,8 +94,10 @@ const getPageData = (getProgramMenu, getPageId) => {
       },
       {}
     );
+
     return pageObj;
   }
+
   return;
 };
 

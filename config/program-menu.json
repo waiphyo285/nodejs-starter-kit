@@ -1,6 +1,6 @@
 [
   {
-    "menuid": "dashMenu",
+    "menuid": "dashboard",
     "url": "/",
     "title": "Dashboard",
     "icon": "bi bi-speedometer",
@@ -9,7 +9,7 @@
     "submenu": []
   },
   {
-    "menuid": "adminMenu",
+    "menuid": "administrative",
     "url": "#",
     "title": "Administrative",
     "icon": "bi bi-folder",
@@ -17,7 +17,7 @@
     "active": false,
     "submenu": [
       {
-        "menuid": "userSubMenu",
+        "menuid": "user",
         "url": "/users",
         "title": "System User",
         "icon": "bi bi-list",
@@ -50,7 +50,7 @@
         "actions": "1,1,1"
       },
       {
-        "menuid": "roleSubMenu",
+        "menuid": "role",
         "url": "/user_roles",
         "title": "System Role",
         "icon": "bi bi-list",
@@ -85,7 +85,7 @@
     ]
   },
   {
-    "menuid": "registerMenu",
+    "menuid": "registration",
     "url": "#",
     "title": "Registration",
     "icon": "bi bi-folder",
@@ -93,7 +93,7 @@
     "active": false,
     "submenu": [
       {
-        "menuid": "registerSubMenu",
+        "menuid": "public_user",
         "url": "/registers",
         "title": "Public User",
         "icon": "bi bi-list",
@@ -128,7 +128,7 @@
     ]
   },
   {
-    "menuid": "generalMenu",
+    "menuid": "general",
     "url": "#",
     "title": "General Setup",
     "icon": "bi bi-folder",
@@ -136,7 +136,7 @@
     "active": false,
     "submenu": [
       {
-        "menuid": "townshipSubMenu",
+        "menuid": "township",
         "url": "/townships",
         "title": "Township",
         "icon": "bi bi-list",
@@ -169,7 +169,7 @@
         "actions": "1,1,1"
       },
       {
-        "menuid": "citySubMenu",
+        "menuid": "region",
         "url": "/cities",
         "title": "City/Region",
         "icon": "bi bi-list",
@@ -204,7 +204,7 @@
     ]
   },
   {
-    "menuid": "courseMenu",
+    "menuid": "course",
     "url": "#",
     "title": "Demo Course",
     "icon": "bi bi-folder",
@@ -212,7 +212,7 @@
     "active": false,
     "submenu": [
       {
-        "menuid": "teacherSubMenu",
+        "menuid": "teacher",
         "url": "/teachers",
         "title": "Teacher",
         "icon": "bi bi-list",
@@ -245,7 +245,7 @@
         "actions": "1,1,1"
       },
       {
-        "menuid": "studentSubMenu",
+        "menuid": "student",
         "url": "/students",
         "title": "Student",
         "icon": "bi bi-list",

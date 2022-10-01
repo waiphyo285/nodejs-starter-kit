@@ -13,16 +13,30 @@ const makeSchema = new Schema({
     type: String,
     required: true
   },
-  program: {
-    menu: {
-      type: Array,
-      default: []
+  program: [{
+    menuid: {
+      type: String,
+      required: true
     },
-    submenu: {
-      type: Array,
-      default: []
-    }
-  },
+    access: {
+      type: Boolean,
+      default: false,
+    },
+    submenu: [{
+      menuid: {
+        type: String,
+        required: true
+      },
+      access: {
+        type: Boolean,
+        default: false,
+      },
+      actions: {
+        type: String,
+        default: "0,0,0"
+      }
+    }]
+  }],
   status: {
     type: Boolean,
     default: true,

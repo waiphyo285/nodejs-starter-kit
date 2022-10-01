@@ -9,7 +9,7 @@ router
   .get("/townships", checkAuth, (req, res, next) => {
     const pages = {
       runPage: "pages/township-list",
-      runProgram: "generalMenu.townshipSubMenu.list",
+      runProgram: "general.township.list",
     };
     handleRenderer(req.user.role, pages, res);
   })
@@ -19,7 +19,7 @@ router
     const pages = {
       data: data.data || {},
       runPage: "pages/township-entry",
-      runProgram: "generalMenu.townshipSubMenu.entry",
+      runProgram: "general.township.entry",
     };
     handleRenderer(req.user.role, pages, res);
   })

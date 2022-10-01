@@ -2,32 +2,32 @@
   "admin": "*",
   "manager": {
     "menu": [
-      "dashMenu",
-      "generalMenu",
-      "courseMenu",
-      "registerMenu"
+      "dashboard",
+      "general",
+      "course",
+      "registration"
     ],
     "submenu": [
-      "citySubMenu,1,1,0",
-      "townshipSubMenu,1,1,0",
-      "teacherSubMenu,1,1,1",
-      "studentSubMenu,1,1,1",
-      "registerSubMenu,1,1,1"
+      "region,1,1,0",
+      "township,1,1,0",
+      "teacher,1,1,1",
+      "student,1,1,1",
+      "public_user,1,1,1"
     ]
   },
   "staff": {
     "menu": [
-      "dashMenu",
-      "generalMenu",
-      "courseMenu",
-      "registerMenu"
+      "dashboard",
+      "general",
+      "course",
+      "registration"
     ],
     "submenu": [
-      "citySubMenu,1,1,0",
-      "townshipSubMenu,1,1,0",
-      "teacherSubMenu,1,0,0",
-      "studentSubMenu,1,0,0",
-      "registerSubMenu,1,1,0"
+      "region,1,1,0",
+      "township,1,1,0",
+      "teacher,1,0,0",
+      "student,1,0,0",
+      "public_user,1,1,0"
     ]
   }
 }

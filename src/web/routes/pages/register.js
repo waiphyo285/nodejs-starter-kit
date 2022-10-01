@@ -9,7 +9,7 @@ router
   .get("/registers", checkAuth, (req, res, next) => {
     const pages = {
       runPage: "pages/user-register-list",
-      runProgram: "registerMenu.registerSubMenu.list",
+      runProgram: "registration.public_user.list",
     };
     handleRenderer(req.user.role, pages, res);
   })
@@ -19,7 +19,7 @@ router
     const pages = {
       data: data.data || {},
       runPage: "pages/user-register-entry",
-      runProgram: "registerMenu.registerSubMenu.entry",
+      runProgram: "registration.public_user.entry",
     };
     handleRenderer(req.user.role, pages, res);
   })

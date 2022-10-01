@@ -6,11 +6,11 @@ block content
       block inputs
 
         div.form-group.row
-          div.col-sm-6.mb-3
+          div.col-lg-6.mb-3
             label.control-label(for='role') ACCESS ROLE
             select.form-control.input-sm.selectpicker#roleid(name='role' value=data.role data-value=data.role, data-live-search="true", data-size="8" required)
         
-          div.col-sm-6
+          div.col-lg-6
             h6 Notes
             p.text-danger 
              | *** You have to choose ACCESS ROLE that is regarding to system. Please carefully consider to define access level based on your chosen role. That may cause
@@ -29,16 +29,66 @@ block content
               div.col-sm-6.col-xl-3
                 input#statusActive.radiobox(type='radio', name='status', value="1" checked=data.status)
                 label.ml-1(for='statusActive') &nbsp; Active
+              
               div.col-sm-6.col-xl-3
                 input#statusInactive.radiobox(type='radio', name='status', value="0" checked=!data.status)
                 label.ml-1(for='statusInactive') &nbsp; Inactive
 
-          
-        hr  
-        
-        div.form-group.row
-            div.col-sm-12.mb-3
-                p Program List - Coming Soon!
+        hr 
+
+        if (data.program && data.program.length > 0)
+          each menu, menuIdx in data.program 
+            div.form-group.row.mb-3
+              div.d-none
+                input.input-sm(type='text', name=`program[${menuIdx}][menuid]`, value=menu.menuid)
+
+              div.col-6.mb-3
+                span(class=menu.icon)
+                span.mx-2 !{menu.title}
+
+              div.col-6.mb-3
+                .btn-group.btn-group-toggle(data-toggle='buttons')
+                  label.btn.btn-outline-secondary.btn-toggle(class=`${menu.access == true ? "active" : ""}`)
+                    input(type='checkbox' name=`program[${menuIdx}][access]` checked=(menu.access == true))
+                    span.bi.bi-check2-square
+                    span.d-none.d-lg-inline  Access
+
+              if (menu.submenu && menu.submenu.length > 0)
+                each submenu, submenuIdx in menu.submenu 
+                  div.d-none
+                    input.input-sm(type='text', name=`program[${menuIdx}][submenu][${submenuIdx}][menuid]` value=submenu.menuid)
+
+                  div.col-6.mb-3
+                    input.form-control.input-sm(type='text', value=submenu.title readonly)
+
+                  -var actions = submenu.actions.split(",")
+
+                  div.col-6.mb-3
+                    .btn-group.btn-group-toggle(data-toggle='buttons')
+                      label.btn.btn-outline-secondary.btn-toggle(class=`${submenu.access == true ? "active" : ""}`)
+                        input(type='checkbox' name=`program[${menuIdx}][submenu][${submenuIdx}][access]` value=submenu.access autocomplete='off' checked=(submenu.access == true))
+                        span.bi.bi-check2-square
+                        span.d-none.d-lg-inline  Access
+
+                      label.btn.btn-outline-secondary.btn-toggle(class=`${actions[0] == 1 ? "active" : ""}`)
+                        input(type='checkbox' name=`program[${menuIdx}][submenu][${submenuIdx}][action0]` value="1" autocomplete='off' checked=(actions[0] == 1))
+                        span.bi-plus
+                        span.d-none.d-lg-inline  New
+
+                      label.btn.btn-outline-secondary.btn-toggle(class=`${actions[1] == 1 ? "active" : ""}`)
+                        input(type='checkbox' name=`program[${menuIdx}][submenu][${submenuIdx}][action1]` value="1" autocomplete='off' checked=(actions[1] == 1))
+                        span.bi-pencil
+                        span.d-none.d-lg-inline  Edit
+
+                      label.btn.btn-outline-secondary.btn-toggle(class=`${actions[2] == 1 ? "active" : ""}`)
+                        input(type='checkbox' name=`program[${menuIdx}][submenu][${submenuIdx}][action2]` value="1" autocomplete='off' checked=(actions[2] == 1))
+                        span.bi-trash3
+                        span.d-none.d-lg-inline  Remove
+              else
+                .col-12 
+                  span *** Currently this menu does not have sub menu! Please keep in touch with us.
+            
+            hr 
 
         include ./../includes/entry/layout-entry-btn
 

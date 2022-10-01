@@ -1,0 +1,16 @@
+{
+    "role": [
+        {
+            "_id": "admin",
+            "display": "Admin"
+        },
+        {
+            "_id": "manager",
+            "display": "Manager"
+        },
+        {
+            "_id": "staff",
+            "display": "Staff"
+        }
+    ]
+}

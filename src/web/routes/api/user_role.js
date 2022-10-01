@@ -1,13 +1,13 @@
 const utils = require("../../../../helpers/utils");
 const userRolesDb = require("../../../../controllers/user_roles");
-const programRole = require("../../../../config/program-role.json");
+const programConfig = require("../../../../config/program-config.json");
 const { createResponse, handleDatabase, handleError } = require("../../../../helpers/handlers/create_response");
 
 const userRole = (module.exports = {});
 
 userRole.mocks = (req, res, next) => {
   try {
-    const data = JSON.parse(JSON.stringify(programRole));
+    const data = JSON.parse(JSON.stringify(programConfig.role));
     const locales = res.locals.i18n.translations;
     res
       .status(200)

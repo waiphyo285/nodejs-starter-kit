@@ -51,13 +51,13 @@
       },
       {
         "menuid": "roleSubMenu",
-        "url": "/roles",
+        "url": "/user_roles",
         "title": "System Role",
         "icon": "bi bi-list",
         "access": false,
         "active": false,
         "list": {
-          "url": "/roles",
+          "url": "/user_roles",
           "title": "System Role List",
           "breadcrumb": [
             {
@@ -67,11 +67,11 @@
           ]
         },
         "entry": {
-          "url": "/role",
+          "url": "/user_role",
           "title": "System Role Entry",
           "breadcrumb": [
             {
-              "url": "/roles",
+              "url": "/user_roles",
               "text": "System Role List"
             },
             {

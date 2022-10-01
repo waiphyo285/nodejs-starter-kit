@@ -17,9 +17,11 @@ const makeSchema = new Schema({
   },
   password: {
     type: String,
+    required: true,
   },
   role: {
     type: String,
+    required: true,
   },
   theme: {
     type: String,

@@ -12,6 +12,7 @@ registers.create = (req, res, next) => {
     username,
     password,
   });
+
   // save the user to database
   registerModel.save((err, data) => {
     err || !data

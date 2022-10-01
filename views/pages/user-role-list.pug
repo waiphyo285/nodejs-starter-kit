@@ -1,0 +1,46 @@
+extends ../includes/layout-main
+block content
+  main.card.mx-3.p-3(role='main')
+
+    include ./../includes/list/layout-list-header
+
+    table#example.table.table-striped(style='width:100%')
+      thead
+        tr
+          th #
+          th Access_role
+          th Access_level
+          th Access_type
+          th Updated_at
+          th.text-right Actions
+      tbody
+  script.
+    $(document).ready(function() {
+      pageEntry = '!{page.entry.url}';
+      $.fn.dataTable.ext.errMode = 'none';
+      $.fn.dataTable.ext.classes.sPageButton = 'btn material-button material-primary m-1'; 
+
+      table = $('#example').on('error.dt', dataTableCallback)
+        .DataTable({
+          ...dataTableDef('!{page.list.title}'),
+          "ajax": fetchDataDef('!{page.list.url}'),
+          "columns":  [
+            { "data": "_id" },
+            { "data": "role"},
+            { "data": "level"},
+            { "data": "status"},
+            { "data": "updated_at"},
+            { "data": "actions", "className":"nowrap" }
+          ],
+          "columnDefs": [
+            { targets: 0, render: dataTableIndexRenderer() },
+            { targets: 3, render: dataTableActiveRenderer() },
+            { targets: 4, render: dataTableDateTimeRenderer() },
+            { targets: 5, orderable: false, render: dataTableActionsRenderer(
+                ".!{page.entry.url}", "!{page.actions}"
+              )
+            }
+          ],
+          "serverSide": false,
+      });
+    });

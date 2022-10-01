@@ -94,6 +94,7 @@ function ajaxLoadOption(args) {
     showKey = args.showKey || "",
     selectId = args.selectId || "#",
     filerObj = args.filterObj || {};
+
   $.ajax({
     url: url,
     type: type,
@@ -107,7 +108,7 @@ function ajaxLoadOption(args) {
           items += `<option value="${item["_id"]}">${item[showKey]}</option>`;
         });
       }
-      else if (data.code == "200") {
+      else if (data.code == "200") { // for userrole [deprecated]
         $.each(Object.entries(data.data), function (i, item) {
           items += `<option value="${item[0]}">${item[0]}</option>`;
         });
@@ -120,6 +121,7 @@ function ajaxLoadOption(args) {
 function ajaxUploadForm(args) {
   var imgParentDiv = args.imgParentDiv,
     _this = args._this;
+
   // multi/part form submit
   $.ajax({
     url: $(_this).attr("action"),
@@ -158,6 +160,7 @@ function swalWarning(args) {
     position: "center",
     description: "Something went wrong. Please try again.",
   }, args);
+
   Swal.fire({
     icon: config.icon,
     title: config.title,

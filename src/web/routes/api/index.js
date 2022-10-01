@@ -26,7 +26,7 @@ const studentSchema = require("../../../../models/mongodb/validations/student.sc
 module.exports = router;
 
 // working with json
-router.get("/user-roles", userRoles.index);
+router.get("/user-roles", userRoles.mocks);
 
 router.post("/sign-up", registers.create);
 router.post("/sign-in", registers.login);
@@ -78,3 +78,11 @@ router
   .post("/register", userRegisters.create)
   .put("/register/:id", userRegisters.update)
   .delete("/register/:id", userRegisters.delete);
+
+router
+  .get("/user_roles", userRoles.index)
+  .get("/user_role/:id", userRoles.show)
+  .get("/user_role", userRoles.showBy)
+  .post("/user_role", userRoles.create)
+  .post("/user_role/:id", userRoles.update)
+  .delete("/user_role/:id", userRoles.delete);

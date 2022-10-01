@@ -23,7 +23,7 @@ block content
                   i.bi.bi-eye-slash(aria-hidden='true')
       
           div.col-sm-6.mb-3
-            label.control-label(for='role') Role
+            label.control-label(for='role') Access Role
             select.form-control.input-sm.selectpicker#roleid(name='role' value=data.role data-value=data.role, data-live-search="true", data-size="8" required)
           
           div.col-sm-6.mb-3
@@ -46,6 +46,7 @@ block content
         type: "GET",
         url:"/api/user-roles",
         selectId: "#roleid",
+        showKey: "display",
         filterObj: {},
       });
 

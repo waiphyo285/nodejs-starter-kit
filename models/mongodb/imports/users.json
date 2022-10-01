@@ -1,35 +1,20 @@
-[{
-  "_id": {
-    "$oid": "6236a424487b4986f4924a2a"
-  },
-  "theme": "default",
-  "active": true,
-  "phone": "+959979797885",
-  "username": "minsoe",
-  "password": "$2b$10$8sbBy4VO.kdae97NrEk2PuNefuBg57h6ELbssqG6gOjZtix9gpcbC",
-  "role": "admin (access all)",
-  "created_at": {
-    "$date": "2022-03-20T03:48:52.556Z"
-  },
-  "updated_at": {
-    "$date": "2022-03-20T04:04:02.962Z"
-  },
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "6236a6cd4c17550e205b4250"
-  },
-  "theme": "default",
-  "active": true,
-  "phone": "admin",
-  "username": "admin",
-  "password": "$2b$10$EZ5azyqHQbMszTfub/0aheIIqVULph4ntmYqN/SzQktM4w5mT3OLa",
-  "role": "admin (access all)",
-  "created_at": {
-    "$date": "2022-03-20T04:00:13.479Z"
-  },
-  "updated_at": {
-    "$date": "2022-03-20T04:02:52.555Z"
-  },
-  "__v": 0
-}]
+[
+  {
+    "_id": {
+      "$oid": "6236a6cd4c17550e205b4250"
+    },
+    "theme": "default",
+    "active": true,
+    "role": "admin",
+    "phone": "+9592215345",
+    "username": "waiphyo285",
+    "password": "$2b$10$EZ5azyqHQbMszTfub/0aheIIqVULph4ntmYqN/SzQktM4w5mT3OLa",
+    "created_at": {
+      "$date": "2022-03-20T04:00:13.479Z"
+    },
+    "updated_at": {
+      "$date": "2022-03-20T04:02:52.555Z"
+    },
+    "__v": 0
+  }
+]

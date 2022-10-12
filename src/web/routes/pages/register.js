@@ -3,7 +3,7 @@ const router = express.Router();
 const checkAuth = require("../check_auth");
 const utils = require("../../../../helpers/utils");
 const registersDb = require("../../../../controllers/registers");
-const { handleRenderer, handleDatabase, } = require("../../../../helpers/handlers/create_response");
+const { handleRenderer, handleDatabase } = require("../../../../helpers/handlers/create_response");
 
 router
   .get("/registers", checkAuth, (req, res, next) => {
@@ -11,7 +11,7 @@ router
       runPage: "pages/user-register-list",
       runProgram: "registration.public_user.list",
     };
-    handleRenderer(req.user.role, pages, res);
+    handleRenderer(req.user, pages, res);
   })
   .get("/register/:id?", checkAuth, async (req, res, next) => {
     const id = req.params.id;
@@ -21,7 +21,7 @@ router
       runPage: "pages/user-register-entry",
       runProgram: "registration.public_user.entry",
     };
-    handleRenderer(req.user.role, pages, res);
+    handleRenderer(req.user, pages, res);
   })
   .post("/register", (req, res, next) => {
     // insert data
@@ -29,7 +29,6 @@ router
     handleDatabase(insertDb, utils.isEmptyObject, res);
   })
   .put("/register/:id?", (req, res, next) => {
-
     const { ["id"]: rmId, ...data } = req.body;
     const updateDb = registersDb.updateData(rmId, data);
     handleDatabase(updateDb, utils.isEmptyObject, res);

@@ -3,7 +3,7 @@ const router = express.Router();
 const checkAuth = require("../check_auth");
 const utils = require("../../../../helpers/utils");
 const teachersDb = require("../../../../controllers/teachers");
-const { handleRenderer, handleDatabase, } = require("../../../../helpers/handlers/create_response");
+const { handleRenderer, handleDatabase } = require("../../../../helpers/handlers/create_response");
 
 router
   .get("/teachers", checkAuth, (req, res, next) => {
@@ -11,7 +11,7 @@ router
       runPage: "pages/teacher-list",
       runProgram: "course.teacher.list",
     };
-    handleRenderer(req.user.role, pages, res);
+    handleRenderer(req.user, pages, res);
   })
   .get("/teacher/:id?", checkAuth, async (req, res, next) => {
     const id = req.params.id;
@@ -21,7 +21,7 @@ router
       runPage: "pages/teacher-entry",
       runProgram: "course.teacher.entry",
     };
-    handleRenderer(req.user.role, pages, res);
+    handleRenderer(req.user, pages, res);
   })
   .post("/teacher", (req, res, next) => {
     const insertDb = teachersDb.addData(req.body);

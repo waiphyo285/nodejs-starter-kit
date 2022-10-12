@@ -5,7 +5,7 @@ const { createResponse, handleDatabase, handleError } = require("../../../../hel
 
 const userRole = (module.exports = {});
 
-userRole.mocks = (req, res, next) => {
+userRole.config = (req, res, next) => {
   try {
     const data = JSON.parse(JSON.stringify(programConfig.role));
     const locales = res.locals.i18n.translations;

@@ -43,6 +43,7 @@ const handleRenderer = (user, pages, res) => {
   const { runPage, runProgram, data } = pages;
   const getProgramMenu = getProgram(user, runProgram);
   const getPageData = { app: config.APP, data: data };
+
   res.render(runPage, {
     ...getPageData,
     ...getProgramMenu,

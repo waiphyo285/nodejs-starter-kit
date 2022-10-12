@@ -1,6 +1,8 @@
 const RegisterModel = require("../../../../models/mongodb/models/register");
 const { createResponse, handleError, } = require("../../../../helpers/handlers/create_response");
 
+// Public user authentication
+
 const registers = (module.exports = {});
 
 registers.create = (req, res, next) => {

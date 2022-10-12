@@ -3,7 +3,7 @@ const router = express.Router();
 const checkAuth = require("../check_auth");
 const utils = require("../../../../helpers/utils");
 const studentsDb = require("../../../../controllers/students");
-const { handleRenderer, handleDatabase, } = require("../../../../helpers/handlers/create_response");
+const { handleRenderer, handleDatabase } = require("../../../../helpers/handlers/create_response");
 
 router
   .get("/students", checkAuth, (req, res, next) => {
@@ -11,7 +11,7 @@ router
       runPage: "pages/student-list",
       runProgram: "course.student.list",
     };
-    handleRenderer(req.user.role, pages, res);
+    handleRenderer(req.user, pages, res);
   })
   .get("/student/:id?", checkAuth, async (req, res, next) => {
     const id = req.params.id;
@@ -21,7 +21,7 @@ router
       runPage: "pages/student-entry",
       runProgram: "course.student.entry",
     };
-    handleRenderer(req.user.role, pages, res);
+    handleRenderer(req.user, pages, res);
   })
   .post("/student", (req, res, next) => {
     utils.removeImages(req.body.remove_images || [])

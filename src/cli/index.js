@@ -1,4 +1,3 @@
-// const args = require("yargs-parser")(process.argv.slice(2));
 const yargs = require("yargs/yargs");
 const { hideBin } = require("yargs/helpers");
 const args = yargs(hideBin(process.argv)).argv;

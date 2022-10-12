@@ -49,7 +49,7 @@ block content
               div.col-6.mb-3
                 .btn-group.btn-group-toggle(data-toggle='buttons')
                   label.btn.btn-outline-secondary.btn-toggle(class=`${menu.access == true ? "active" : ""}`)
-                    input(type='checkbox' name=`program[${menuIdx}][access]` checked=(menu.access == true))
+                    input(type='checkbox' name=`program[${menuIdx}][access]` value="1" checked=(menu.access == true))
                     span.bi.bi-check2-square
                     span.d-none.d-lg-inline  Access
 
@@ -61,27 +61,25 @@ block content
                   div.col-6.mb-3
                     input.form-control.input-sm(type='text', value=submenu.title readonly)
 
-                  -var actions = submenu.actions.split(",")
-
                   div.col-6.mb-3
                     .btn-group.btn-group-toggle(data-toggle='buttons')
                       label.btn.btn-outline-secondary.btn-toggle(class=`${submenu.access == true ? "active" : ""}`)
-                        input(type='checkbox' name=`program[${menuIdx}][submenu][${submenuIdx}][access]` value=submenu.access autocomplete='off' checked=(submenu.access == true))
+                        input(type='checkbox' name=`program[${menuIdx}][submenu][${submenuIdx}][access]` value="1" autocomplete='off' checked=(submenu.access == true))
                         span.bi.bi-check2-square
                         span.d-none.d-lg-inline  Access
 
-                      label.btn.btn-outline-secondary.btn-toggle(class=`${actions[0] == 1 ? "active" : ""}`)
-                        input(type='checkbox' name=`program[${menuIdx}][submenu][${submenuIdx}][action0]` value="1" autocomplete='off' checked=(actions[0] == 1))
+                      label.btn.btn-outline-secondary.btn-toggle(class=`${submenu.read == true ? "active" : ""}`)
+                        input(type='checkbox' name=`program[${menuIdx}][submenu][${submenuIdx}][read]` value="1" autocomplete='off' checked=(submenu.read == true))
                         span.bi-plus
                         span.d-none.d-lg-inline  New
 
-                      label.btn.btn-outline-secondary.btn-toggle(class=`${actions[1] == 1 ? "active" : ""}`)
-                        input(type='checkbox' name=`program[${menuIdx}][submenu][${submenuIdx}][action1]` value="1" autocomplete='off' checked=(actions[1] == 1))
+                      label.btn.btn-outline-secondary.btn-toggle(class=`${submenu.edit == true ? "active" : ""}`)
+                        input(type='checkbox' name=`program[${menuIdx}][submenu][${submenuIdx}][edit]` value="1" autocomplete='off' checked=(submenu.edit == true))
                         span.bi-pencil
                         span.d-none.d-lg-inline  Edit
 
-                      label.btn.btn-outline-secondary.btn-toggle(class=`${actions[2] == 1 ? "active" : ""}`)
-                        input(type='checkbox' name=`program[${menuIdx}][submenu][${submenuIdx}][action2]` value="1" autocomplete='off' checked=(actions[2] == 1))
+                      label.btn.btn-outline-secondary.btn-toggle(class=`${submenu.delete == true ? "active" : ""}`)
+                        input(type='checkbox' name=`program[${menuIdx}][submenu][${submenuIdx}][delete]` value="1" autocomplete='off' checked=(submenu.delete == true))
                         span.bi-trash3
                         span.d-none.d-lg-inline  Remove
               else
@@ -98,7 +96,7 @@ block content
     $(document).ready(function() {
       ajaxLoadOption({
         type: "GET",
-        url:"/api/user-roles",
+        url:"/api/config-roles",
         selectId: "#roleid",
         showKey: "display",
         filterObj: {},

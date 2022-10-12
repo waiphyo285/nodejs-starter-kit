@@ -18,9 +18,9 @@ router
     const errMsg = "Username or phone is already existed.";
     const user = new User({
       ...req.body,
-      status: true,
-      role: "admin", // just dev
+      role: "developer", // just dev
     });
+
     user.save(function (err, user) {
       if (err) {
         console.log("Registration Error ", err);
@@ -49,27 +49,24 @@ router
   .post("/login", (req, res, next) => {
     // handle the case where we don't detect the browser
     const errMsg = "Incorrect access is found. Try again.";
-    passport.authenticate(
-      "local",
-      { failureRedirect: "/login" },
-      function (err, user, info) {
+    passport.authenticate("local", { failureRedirect: "/login" }, function (err, user, info) {
+      if (err) return next(err);
+      if (!user) return res.redirect("/login?message=" + errMsg);
+
+      req.logIn(user, function (err) {
         if (err) return next(err);
-        if (!user) return res.redirect("/login?message=" + errMsg);
-
-        req.logIn(user, function (err) {
-          if (err) return next(err);
-          user["latmat"] = signToken_1({
-            userrole: user.role,
-            username: user.username,
-            password: user.password,
-          });
-
-          req.session.user = user;
-          const redirectTo = req.session.redirectTo;
-          delete req.session.redirectTo;
-          res.redirect(redirectTo || "/");
+        user["latmat"] = signToken_1({
+          userrole: user.role,
+          username: user.username,
+          password: user.password,
         });
-      }
+
+        req.session.user = user;
+        const redirectTo = req.session.redirectTo;
+        delete req.session.redirectTo;
+        res.redirect(redirectTo || "/");
+      });
+    }
     )(req, res, next);
   });
 

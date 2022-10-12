@@ -11,10 +11,10 @@ const cities = require("./city");
 const townships = require("./township");
 
 // user routing
+const auth = require("./auth");
 const users = require("./user");
-const registers = require("./register");
 const userRoles = require("./user_role");
-const userRegisters = require("./user_register");
+const registers = require("./user_register");
 
 // middlewares
 const { isAuth } = require("../../../../middlewares/authentication");
@@ -26,10 +26,10 @@ const studentSchema = require("../../../../models/mongodb/validations/student.sc
 module.exports = router;
 
 // working with json
-router.get("/user-roles", userRoles.mocks);
+router.get("/config-roles", userRoles.config);
 
-router.post("/sign-up", registers.create);
-router.post("/sign-in", registers.login);
+router.post("/sign-up", auth.create);
+router.post("/sign-in", auth.login);
 
 router
   .get("/users", isAuth("admin"), users.index)
@@ -72,12 +72,12 @@ router
   .delete("/teacher/:id", teachers.delete);
 
 router
-  .get("/registers", userRegisters.index)
-  .get("/register/:id", userRegisters.show)
-  .get("/register", userRegisters.showBy)
-  .post("/register", userRegisters.create)
-  .put("/register/:id", userRegisters.update)
-  .delete("/register/:id", userRegisters.delete);
+  .get("/registers", registers.index)
+  .get("/register/:id", registers.show)
+  .get("/register", registers.showBy)
+  .post("/register", registers.create)
+  .put("/register/:id", registers.update)
+  .delete("/register/:id", registers.delete);
 
 router
   .get("/user_roles", userRoles.index)

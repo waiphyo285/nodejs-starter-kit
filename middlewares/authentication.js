@@ -4,7 +4,7 @@ const crypto = require("crypto");
 const express = require("express");
 const router = express.Router();
 const jwt = require("jsonwebtoken");
-const config = require("./auth_config");
+const config = require("../config/settings/auth");
 const { createResponse } = require("../helpers/handlers/create_response");
 
 // use 'utf8' to get string instead of byte array  (512 bit key)

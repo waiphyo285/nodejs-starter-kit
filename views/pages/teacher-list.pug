@@ -39,7 +39,7 @@ block content
             { targets: 4, orderable: false, render: dataTableActiveRenderer() },
             { targets: 5, orderable: false, render: dataTableDateTimeRenderer() },
             { targets: 6, orderable: false, render: dataTableActionsRenderer(
-                ".!{page.entry.url}", "!{page.actions}"
+                ".!{page.entry.url}", "!{page.read}", "!{page.edit}", "!{page.delete}"
               )
             }
           ],

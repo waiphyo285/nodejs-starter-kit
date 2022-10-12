@@ -58,7 +58,7 @@ const dashbordCard = async () => {
 router.get("/", checkAuth, async (req, res, next) => {
   async.parallel(await dashbordCard(), function (error, results) {
     res.render("pages/dashboard", {
-      ...getProgram(req.user.role, "dashboard.null.null"),
+      ...getProgram(req.user, "dashboard.null.null"),
       app: config.APP,
       data: results,
     });

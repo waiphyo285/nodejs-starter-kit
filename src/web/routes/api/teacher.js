@@ -1,6 +1,6 @@
 const utils = require("../../../../helpers/utils");
 const teachersDb = require("../../../../controllers/teachers");
-const { handleDatabase, } = require("../../../../helpers/handlers/create_response");
+const { handleDatabase } = require("../../../../helpers/handlers/create_response");
 
 const teachers = (module.exports = {});
 

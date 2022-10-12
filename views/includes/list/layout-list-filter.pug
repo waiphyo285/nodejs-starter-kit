@@ -6,6 +6,6 @@ div.mb-2
         
       .btn-group.btn-group-sm(role='group' aria-label='Basic example')
         include ./layout-list-export
-          if ((page.actions[0] && page.actions[1]) == true)
+          if ((page.read && page.edit) == true)
             block append
               include ./layout-list-plus

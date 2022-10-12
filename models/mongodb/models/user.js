@@ -5,6 +5,14 @@ const hashPassword = require("./helpers/hash-password");
 
 const Schema = mongoose.Schema;
 const makeSchema = new Schema({
+  levelid: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "user_role",
+  },
+  role: {
+    type: String,
+    required: true,
+  },
   phone: {
     type: String,
     unique: true,
@@ -16,10 +24,6 @@ const makeSchema = new Schema({
     required: true,
   },
   password: {
-    type: String,
-    required: true,
-  },
-  role: {
     type: String,
     required: true,
   },

@@ -11,17 +11,17 @@ router
       runPage: "pages/runnerPage-list",
       runProgram: "menuList",
     };
-    handleRenderer(req.user.role, pages, res);
+    handleRenderer(req.user, pages, res);
   })
   .get("/routing/:id?", checkAuth, async (req, res, next) => {
     const id = req.params.id;
     const data = id ? await genDatabase.findData("id", id) : {};
     const pages = {
-      data: data,
+      data: data.data,
       runPage: "pages/runnerPage-entry",
       runProgram: "menuEntry",
     };
-    handleRenderer(req.user.role, pages, res);
+    handleRenderer(req.user, pages, res);
   })
   .post("/routing", (req, res, next) => {
     const insertDb = genDatabase.addData(req.body);

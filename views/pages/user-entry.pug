@@ -4,15 +4,23 @@ block content
     include ./../includes/entry/layout-entry-header
     include ./../includes/entry/layout-entry-form
       block inputs
+        
+        div.col-md-12
+          div.form-group.border.border-warning.p-2.row 
+            -var disabledMode = data.role == "developer" ? true : false;
+            
+            div.col-sm-6.mb-3
+              label.control-label(for='role') Access Role
+              select.form-control.input-sm.selectpicker#roleid(name='role' value=data.role data-value=data.role, data-live-search="true", data-size="8" required disabled=disabledMode)
 
-        div.form-group.row
-          div.col-sm-6.mb-3
-            label.control-label(for='phone') Phone
-            input.form-control.input-sm#phone(type='tel', name='phone', value=data.phone, maxlength="55" autocomplete="off" required autofocus)
-          
+            div.col-sm-6.mb-3
+              label.control-label(for='level') Access Level
+              select.form-control.input-sm.selectpicker#levelid(name='levelid' value=data.levelid data-value=data.levelid, data-live-search="true", data-size="8" required disabled=disabledMode)
+
+        div.form-group.row       
           div.col-sm-6.mb-3
             label.control-label(for='username') Username
-            input.form-control.input-sm#username(type='text', name='username', value=data.username, maxlength="55" autocomplete="off" required)
+            input.form-control.input-sm#username(type='text', name='username', value=data.username, maxlength="55" autocomplete="off" required autofocus)
           
           div.col-sm-6.mb-3
             label.control-label(for='password') Password
@@ -21,11 +29,11 @@ block content
               div.input-group-append
                 div.input-group-text
                   i.bi.bi-eye-slash(aria-hidden='true')
-      
+
           div.col-sm-6.mb-3
-            label.control-label(for='role') Access Role
-            select.form-control.input-sm.selectpicker#roleid(name='role' value=data.role data-value=data.role, data-live-search="true", data-size="8" required)
-          
+            label.control-label(for='phone') Phone
+            input.form-control.input-sm#phone(type='tel', name='phone', value=data.phone, maxlength="55" autocomplete="off" required)
+      
           div.col-sm-6.mb-3
             label.control-label(for='status') Status
             div.radio.radio-toolbar.row
@@ -35,20 +43,38 @@ block content
               div.col-sm-6.col-xl-3
                 input#statusInactive.radiobox(type='radio', name='active', value="0" checked=!data.active)
                 label.ml-1(for='statusInactive') &nbsp; Inactive
-
+        
         include ./../includes/entry/layout-entry-btn
 
     form#postSuccessForm(method='GET', action=page.list.url)
 
   script.
     $(document).ready(function() {
+      const editMode = $("input[name='id']").val();
+
       ajaxLoadOption({
         type: "GET",
-        url:"/api/user-roles",
+        url:"/api/config-roles",
         selectId: "#roleid",
         showKey: "display",
         filterObj: {},
       });
+
+      $('#roleid').on('change', function() {
+        const roleid = $(this).val() ||         // get value [new entry]
+                       $(this).data('value');   // get value [edit entry]
+        ajaxLoadOption({
+          type: "GET",
+          url:"/api/user_role",
+          selectId: "#levelid",
+          showKey: "level",
+          filterObj: { role: roleid },
+        });
+      });
+
+      if (editMode && typeof editMode === "string") {
+        $('#roleid').trigger('change');
+      }
 
       $(".input-group-append").on('click', function(event) {
         event.preventDefault();

@@ -3,7 +3,7 @@ const router = express.Router();
 const checkAuth = require("../check_auth");
 const utils = require("../../../../helpers/utils");
 const townshipsDb = require("../../../../controllers/townships");
-const { handleRenderer, handleDatabase, } = require("../../../../helpers/handlers/create_response");
+const { handleRenderer, handleDatabase } = require("../../../../helpers/handlers/create_response");
 
 router
   .get("/townships", checkAuth, (req, res, next) => {
@@ -11,7 +11,7 @@ router
       runPage: "pages/township-list",
       runProgram: "general.township.list",
     };
-    handleRenderer(req.user.role, pages, res);
+    handleRenderer(req.user, pages, res);
   })
   .get("/township/:id?", checkAuth, async (req, res, next) => {
     const id = req.params.id;
@@ -21,7 +21,7 @@ router
       runPage: "pages/township-entry",
       runProgram: "general.township.entry",
     };
-    handleRenderer(req.user.role, pages, res);
+    handleRenderer(req.user, pages, res);
   })
   .post("/township", (req, res, next) => {
     const insertDb = townshipsDb.addData(req.body);

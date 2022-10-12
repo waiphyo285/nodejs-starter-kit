@@ -47,7 +47,9 @@
             }
           ]
         },
-        "actions": "1,1,1"
+        "read": false,
+        "edit": false,
+        "delete": false
       },
       {
         "menuid": "role",
@@ -80,7 +82,9 @@
             }
           ]
         },
-        "actions": "1,1,1"
+        "read": false,
+        "edit": false,
+        "delete": false
       }
     ]
   },
@@ -123,7 +127,9 @@
             }
           ]
         },
-        "actions": "1,1,1"
+        "read": false,
+        "edit": false,
+        "delete": false
       }
     ]
   },
@@ -166,7 +172,9 @@
             }
           ]
         },
-        "actions": "1,1,1"
+        "read": false,
+        "edit": false,
+        "delete": false
       },
       {
         "menuid": "region",
@@ -199,7 +207,9 @@
             }
           ]
         },
-        "actions": "1,1,1"
+        "read": false,
+        "edit": false,
+        "delete": false
       }
     ]
   },
@@ -242,7 +252,9 @@
             }
           ]
         },
-        "actions": "1,1,1"
+        "read": false,
+        "edit": false,
+        "delete": false
       },
       {
         "menuid": "student",
@@ -275,7 +287,9 @@
             }
           ]
         },
-        "actions": "1,1,1"
+        "read": false,
+        "edit": false,
+        "delete": false
       }
     ]
   }

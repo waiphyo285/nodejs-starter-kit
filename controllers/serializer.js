@@ -6,9 +6,11 @@ const single = (dataObj) => {
 const serializer = (data) => {
   if (!data) {
     return null;
-  } else if (Array.isArray(data)) {
+  }
+  else if (Array.isArray(data)) {
     return { data: data.map(single) };
-  } else {
+  }
+  else {
     return { data: single(data) };
   }
 };

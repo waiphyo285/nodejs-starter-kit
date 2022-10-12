@@ -4,7 +4,7 @@ const checkAuth = require("../check_auth");
 const utils = require("../../../../helpers/utils");
 const userRolesDb = require("../../../../controllers/user_roles");
 const programMenu = require("../../../../config/program-menu.json");
-const { handleRenderer, handleDatabase, } = require("../../../../helpers/handlers/create_response");
+const { handleRenderer, handleDatabase } = require("../../../../helpers/handlers/create_response");
 
 router
   .get("/user_roles", checkAuth, (req, res, next) => {
@@ -12,30 +12,48 @@ router
       runPage: "pages/user-role-list",
       runProgram: "administrative.role.list",
     };
-    handleRenderer(req.user.role, pages, res);
+    handleRenderer(req.user, pages, res);
   })
   .get("/user_role/:id?", checkAuth, async (req, res, next) => {
     const id = req.params.id;
-    const data = id
-      ? await userRolesDb.findData("id", id)
-      : { program: JSON.parse(JSON.stringify(programMenu)) };
+    const initProgram = JSON.parse(JSON.stringify(programMenu));
+    let data = { data: { program: initProgram } }; // new entry
+
+    if (id) {                                      // edit role
+      data = await userRolesDb.findData("id", id);
+      const userProgram = data.data.program;
+
+      data.data.program = initProgram.map((initMenu) => {
+        const findMenu = userProgram.find((userMenu) =>
+          userMenu.menuid == initMenu.menuid
+        );
+
+        let subMenuMap;
+
+        if (findMenu) {
+          subMenuMap = initMenu.submenu.map((initSubMenu) => {
+            const findSubMenu = findMenu.submenu.find((userSubMenu) =>
+              userSubMenu.menuid == initSubMenu.menuid
+            );
+            return { ...initSubMenu, ...findSubMenu };
+          });
+        }
+
+        return { ...initMenu, ...findMenu, submenu: subMenuMap };
+      })
+    }
+
     const pages = {
-      data: data,
+      data: data.data,
       runPage: "pages/user-role-entry",
       runProgram: "administrative.role.entry",
     };
-    handleRenderer(req.user.role, pages, res);
+
+    handleRenderer(req.user, pages, res);
   })
   .post("/user_role", (req, res, next) => {
-    const { program: tmpPorgam, ...rest } = req.body
-    console.log("Rest body ", rest)
-
-    tmpPorgam.forEach((menu) => {
-      console.log("transform `actions & access` ", menu)
-    });
-
-    // const insertDb = userRolesDb.addData(req.body);
-    // handleDatabase(insertDb, utils.isEmptyObject, res);
+    const insertDb = userRolesDb.addData(req.body);
+    handleDatabase(insertDb, utils.isEmptyObject, res);
   })
   .put("/user_role/:id?", (req, res, next) => {
     const { ["id"]: rmId, ...data } = req.body;

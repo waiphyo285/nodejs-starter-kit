@@ -31,9 +31,17 @@ const makeSchema = new Schema({
         type: Boolean,
         default: false,
       },
-      actions: {
-        type: String,
-        default: "0,0,0"
+      read: {
+        type: Boolean,
+        default: false,
+      },
+      edit: {
+        type: Boolean,
+        default: false,
+      },
+      delete: {
+        type: Boolean,
+        default: false,
       }
     }]
   }],

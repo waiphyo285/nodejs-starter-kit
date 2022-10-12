@@ -40,7 +40,7 @@ block content
             { targets: 5, render: dataTableActiveRenderer() },
             { targets: 6, render: dataTableDateTimeRenderer() },
             { targets: 7, orderable: false, render: dataTableActionsRenderer(
-                ".!{page.entry.url}", "!{page.actions}"
+                ".!{page.entry.url}", "!{page.read}", "!{page.edit}", "!{page.delete}"
               )
             }
           ],

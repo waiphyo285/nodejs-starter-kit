@@ -4,7 +4,7 @@ const checkAuth = require("../check_auth");
 const utils = require("../../../../helpers/utils");
 const usersDb = require("../../../../controllers/users");
 const { isAuth } = require("../../../../middlewares/authentication");
-const { handleRenderer, handleDatabase, } = require("../../../../helpers/handlers/create_response");
+const { handleRenderer, handleDatabase } = require("../../../../helpers/handlers/create_response");
 
 router
   .get("/get_user", checkAuth, isAuth("admin"), (req, res, next) => {
@@ -20,7 +20,7 @@ router
       runPage: "pages/user-list",
       runProgram: "administrative.user.list",
     };
-    handleRenderer(req.user.role, pages, res);
+    handleRenderer(req.user, pages, res);
   })
   .get("/user/:id?", checkAuth, isAuth("admin"), async (req, res, next) => {
     const id = req.params.id;
@@ -30,7 +30,7 @@ router
       runPage: "pages/user-entry",
       runProgram: "administrative.user.entry",
     };
-    handleRenderer(req.user.role, pages, res);
+    handleRenderer(req.user, pages, res);
   })
   .post("/user", isAuth("admin"), (req, res, next) => {
     const insertDb = usersDb.addUser(req.body);

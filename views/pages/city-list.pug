@@ -41,8 +41,8 @@ block content
             { targets: 0, render: dataTableIndexRenderer() },
             { targets: 5, render: dataTableActiveRenderer() },
             { targets: 6, render: dataTableDateTimeRenderer() },
-            { targets: 7, orderable: false, render: dataTableActionsRenderer(
-                ".!{page.entry.url}", "!{page.actions}"
+            { targets: 6, orderable: false, render: dataTableActionsRenderer(
+                ".!{page.entry.url}", "!{page.read}", "!{page.edit}", "!{page.delete}"
               )
             }
           ],

@@ -71,12 +71,12 @@ function dataTableThumbRenderer(isSrc = false) {
     };
 }
 
-function dataTableActionsRenderer(editUrl, access) {
-    access = access.split(",");
+function dataTableActionsRenderer(editUrl, read, edit, del) {
+    console.log(read, edit, del)
     return function (d, type, row) {
         var id = row._id || row.id || "#";
         var html = '<div class="btn-group float-right" role="group" aria-label="Actions">';
-        if (access[0] == "1" && access[1] == "1") {
+        if (read == "true" && edit == "true") {
             // read && write access
             // icon as <img src="/images/icons/flat-edit.svg" height="22" width="22"/>
             html += `
@@ -84,7 +84,7 @@ function dataTableActionsRenderer(editUrl, access) {
                   <i class="bi bi-pencil-square text-warning"></i>
                 </a>`;
         }
-        if (access[2] == "1") {
+        if (del == "true") {
             // delete access
             // icon as <img src="/images/icons/flat-delete.svg" height="22" width="22"/>
             html += `

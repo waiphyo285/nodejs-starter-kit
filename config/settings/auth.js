@@ -1,4 +1,4 @@
-const config = require("../config");
+const config = require("..");
 
 const {
   ALGO,
@@ -11,6 +11,7 @@ const USER_ROLE_ACCESS = {
   admin: "1,1,1",
   manager: "1,1,0",
   staff: "1,0,0",
+  developer: "1,1,1",
 }
 
 module.exports = {

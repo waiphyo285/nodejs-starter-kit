@@ -3,7 +3,7 @@ const router = express.Router();
 const checkAuth = require("../check_auth");
 const utils = require("../../../../helpers/utils");
 const citiesDb = require("../../../../controllers/cities");
-const { handleRenderer, handleDatabase, } = require("../../../../helpers/handlers/create_response");
+const { handleRenderer, handleDatabase } = require("../../../../helpers/handlers/create_response");
 
 router
   .get("/cities", checkAuth, (req, res, next) => {
@@ -11,7 +11,7 @@ router
       runPage: "pages/city-list",
       runProgram: "general.region.list",
     };
-    handleRenderer(req.user.role, pages, res);
+    handleRenderer(req.user, pages, res);
   })
   .get("/city/:id?", checkAuth, async (req, res, next) => {
     const id = req.params.id;
@@ -21,7 +21,7 @@ router
       runPage: "pages/city-entry",
       runProgram: "general.region.entry",
     };
-    handleRenderer(req.user.role, pages, res);
+    handleRenderer(req.user, pages, res);
   })
   .post("/city", (req, res, next) => {
     const insertDb = citiesDb.addData(req.body);

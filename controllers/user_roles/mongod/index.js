@@ -9,12 +9,11 @@ const listData = () => {
 
 const findData = (prop, val) => {
   return UserRole
-    .find({
+    .findOne({
       _id: val
     })
-    .then((resp) => {
-      return serialize(resp[0]);
-    });
+    .lean()
+    .then(serialize);
 };
 
 const findDataBy = (params) => {

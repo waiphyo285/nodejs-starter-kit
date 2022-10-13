@@ -38,9 +38,8 @@ router
             return { ...initSubMenu, ...findSubMenu };
           });
         }
-
         return { ...initMenu, ...findMenu, submenu: subMenuMap };
-      })
+      });
     }
 
     const pages = {

@@ -4,15 +4,13 @@ const userRolesDb = require("../../controllers/user_roles");
 const getProgram = async (user, pageId) => {
   const userRole = user.role;
   const splitPageId = pageId.split(".");
-  const programMenuJson = JSON.parse(JSON.stringify(programMenu));
+  const initProgram = JSON.parse(JSON.stringify(programMenu));
 
   // developer account 
   if (userRole === "developer") {
-    // mapping to set true access & active all menu item
-    const developerProgram = programMenuJson.map((initMenu) => {
+    const developerProgram = initProgram.map((initMenu) => {
       initMenu.access = true;
       initMenu.active = initMenu.menuid == splitPageId[0] && true;
-      // mapping to set true read, edit, del & active all submeu 
       initMenu.submenu = initMenu.submenu.map((initSubMenu) => {
         initSubMenu.read = true;
         initSubMenu.edit = true;
@@ -33,10 +31,33 @@ const getProgram = async (user, pageId) => {
   else {
     const data = await userRolesDb.findData("id", user.levelid);
     const userProgram = data.data.program;
-    console.log("Map me ", userProgram)
-  }
 
-  return;
+    const curUserProgram = initProgram.map((initMenu) => {
+      const findMenu = userProgram.find((userMenu) =>
+        userMenu.menuid == initMenu.menuid
+      );
+
+      findMenu.active = findMenu.menuid == splitPageId[0] && true;
+
+      let subMenuMap;
+
+      if (findMenu) {
+        subMenuMap = initMenu.submenu.map((initSubMenu) => {
+          const findSubMenu = findMenu.submenu.find((userSubMenu) =>
+            userSubMenu.menuid == initSubMenu.menuid
+          );
+          findSubMenu.active = findSubMenu.menuid == splitPageId[1] && true;
+          return { ...initSubMenu, ...findSubMenu };
+        });
+      }
+      return { ...initMenu, ...findMenu, submenu: subMenuMap };
+    });
+
+    return {
+      program: curUserProgram,
+      page: getPageData(curUserProgram, pageId),
+    };
+  }
 };
 
 const getPageData = (getProgramMenu, getPageId) => {

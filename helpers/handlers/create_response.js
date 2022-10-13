@@ -39,9 +39,9 @@ const handleError = (err, locales) => {
   return { code, message, description };
 };
 
-const handleRenderer = (user, pages, res) => {
+const handleRenderer = async (user, pages, res) => {
   const { runPage, runProgram, data } = pages;
-  const getProgramMenu = getProgram(user, runProgram);
+  const getProgramMenu = await getProgram(user, runProgram);
   const getPageData = { app: config.APP, data: data };
 
   res.render(runPage, {

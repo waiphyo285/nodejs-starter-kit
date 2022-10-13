@@ -15,6 +15,7 @@ const getProgram = async (user, pageId) => {
         initSubMenu.read = true;
         initSubMenu.edit = true;
         initSubMenu.delete = true;
+        initSubMenu.access = true;
         initSubMenu.active = initSubMenu.menuid == splitPageId[1] && true;
         return initSubMenu;
       });

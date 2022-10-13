@@ -39,7 +39,7 @@
 /* Theme color */
 
 .default input:checked+span {
-  background-color: #666699;
+  background-color: #3f3f3f;
 }
 
 .action input:checked+span {
@@ -59,7 +59,7 @@
 }
 
 .reality input:checked+span {
-  background-color: #f5b5df;
+  background-color: #666699;
 }
 
 .news input:checked+span {

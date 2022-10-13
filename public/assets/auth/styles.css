@@ -12,9 +12,11 @@ body {
   0% {
     background-position: 0% 50%;
   }
+
   50% {
     background-position: 100% 50%;
   }
+
   100% {
     background-position: 0% 50%;
   }
@@ -58,10 +60,14 @@ body {
   -webkit-filter: grayscale(1);
   -webkit-transition: all .5s ease-in-out;
   box-shadow:
-    /* logo shadow */ 0px 0px 3px var(--back-gray),
-    /* offset shadow */ 0px 0px 0px 3px var(--back-gray),
-    /* bottom right shadhow */ 0px 0px 0px var(--back-gray),
-    /* top left shadhow */ 0px 0px 0px var(--back-gray);
+    /* logo shadow */
+    0px 0px 3px var(--back-gray),
+    /* offset shadow */
+    0px 0px 0px 3px var(--back-gray),
+    /* bottom right shadhow */
+    0px 0px 0px var(--back-gray),
+    /* top left shadhow */
+    0px 0px 0px var(--back-gray);
 }
 
 .logo:hover {

@@ -29,7 +29,7 @@ nav.navbar {
 
 .list-group .list-group-item.active {
   color: var(--primary);
-  background: #f8f9f9;
+  background: #f9f9f9;
   border-right: 3px solid var(--primary);
 }
 
@@ -305,7 +305,7 @@ textarea:focus {
 }
 
 .card-counter-title {
-  color: #6c6c6c;
+  color: #3f3f3f;
   font-size: 1.18em;
 }
 
@@ -313,23 +313,23 @@ textarea:focus {
   font-weight: 600;
   font-size: 2.5em;
   line-height: 64px;
-  color: #323c43;
+  color: #3f3f3f;
 }
 
 .card-counter:nth-child(1) .wrap:after {
-  background: linear-gradient(90deg, #4499BB 0%, #4499BB 100%);
+  background: linear-gradient(90deg, #3f3f3f 0%, #3f3f3f 100%);
 }
 
 .card-counter:nth-child(2) .wrap:after {
-  background: linear-gradient(90deg, #A144BB 0%, #A144BB 100%);
+  background: linear-gradient(90deg, #3f3f3f 0%, #3f3f3f 100%);
 }
 
 .card-counter:nth-child(3) .wrap:after {
-  background: linear-gradient(90deg, #BB6644 0%, #BB6644 100%);
+  background: linear-gradient(90deg, #3f3f3f 0%, #3f3f3f 100%);
 }
 
 .card-counter:nth-child(4) .wrap:after {
-  background: linear-gradient(90deg, #5EBB44 0%, #5EBB44 100%);
+  background: linear-gradient(90deg, #3f3f3f 0%, #3f3f3f 100%);
 }
 
 /* Image container */

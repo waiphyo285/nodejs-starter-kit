@@ -35,7 +35,7 @@ makeSchema.pre("save", function (next) {
 });
 
 makeSchema.pre("findOneAndUpdate", (next) => {
-  const _ = this.getUpdate();
+  const _ = this;
   return hashPassword(_, next)
 });
 

@@ -20,7 +20,9 @@ const privateKey = fs.readFileSync(
 
 // Compare permssion
 const sumPermission = (role) => {
-  return config.userRoleAccess[role].split(",").reduce((sum, cur) => +sum + +cur, 0);
+  return config.userRoleAccess[role]
+    .split(",")
+    .reduce((sum, cur) => +sum + +cur, 0);
 }
 
 // Generate methods
@@ -143,11 +145,13 @@ const verifyJwtToken = {
 
 // Authorized Methods
 
-const isAuth = (target) => {
+const isAuth = (targets) => {
   return (req, res, next) => {
+    const curRole = req.headers.userrole;
     const locales = res.locals.i18n.translations;
-    const targetAccess = sumPermission(target);
-    const permitAccess = sumPermission(req.headers.userrole);
+    const curTarget = targets.find((target) => target == curRole);
+    const targetAccess = sumPermission(curTarget);
+    const permitAccess = sumPermission(curRole);
     const prev = () => {
       res.status(401).json(createResponse(401, {}, locales));
     };

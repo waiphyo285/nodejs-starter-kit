@@ -23,21 +23,38 @@ const validateWare = require("../../../../middlewares/data_validator");
 // schema validations
 const studentSchema = require("../../../../models/mongodb/validations/student.schema");
 
-module.exports = router;
+// helpers functions
+const { isDA } = require("../../../../helpers/handlers/access_url");
 
-// working with json
-router.get("/config-roles", userRoles.config);
+module.exports = router;
 
 router.post("/sign-up", auth.create);
 router.post("/sign-in", auth.login);
 
 router
-  .get("/users", isAuth("admin"), users.index)
-  .get("/user/:id", isAuth("admin"), users.show)
-  .post("/user", isAuth("admin"), users.create)
-  .put("/user/:id", isAuth("admin"), users.updateWithPass)
-  .put("/user-no-pass/:id", isAuth("admin"), users.updateWithoutPass)
-  .delete("/user/:id", isAuth("admin"), users.delete);
+  .get("/users", isDA, users.index)
+  .get("/user/:id", isDA, users.show)
+  .post("/user", isDA, users.create)
+  .put("/user/:id", isDA, users.updateWithPass)
+  .put("/user-no-pass/:id", isDA, users.updateWithoutPass)
+  .delete("/user/:id", isDA, users.delete);
+
+router
+  .get("/config-roles", isDA, userRoles.config)
+  .get("/user_roles", isDA, userRoles.index)
+  .get("/user_role/:id", isDA, userRoles.show)
+  .get("/user_role", isDA, userRoles.showBy)
+  .post("/user_role", isDA, userRoles.create)
+  .post("/user_role/:id", isDA, userRoles.update)
+  .delete("/user_role/:id", isDA, userRoles.delete);
+
+router
+  .get("/registers", registers.index)
+  .get("/register/:id", registers.show)
+  .get("/register", registers.showBy)
+  .post("/register", registers.create)
+  .put("/register/:id", registers.update)
+  .delete("/register/:id", registers.delete);
 
 router
   .get("/townships", townships.index)
@@ -70,19 +87,3 @@ router
   .post("/teacher", teachers.create)
   .put("/teacher/:id", teachers.update)
   .delete("/teacher/:id", teachers.delete);
-
-router
-  .get("/registers", registers.index)
-  .get("/register/:id", registers.show)
-  .get("/register", registers.showBy)
-  .post("/register", registers.create)
-  .put("/register/:id", registers.update)
-  .delete("/register/:id", registers.delete);
-
-router
-  .get("/user_roles", userRoles.index)
-  .get("/user_role/:id", userRoles.show)
-  .get("/user_role", userRoles.showBy)
-  .post("/user_role", userRoles.create)
-  .post("/user_role/:id", userRoles.update)
-  .delete("/user_role/:id", userRoles.delete);

@@ -1,5 +1,17 @@
 require("dotenv").config();
 
+const D = "developer";
+const A = "admin";
+const M = "manager";
+const S = "staff";
+
+const USER_ROLE_ACCESS = {
+  [D]: "1,1,1",
+  [A]: "1,1,1",
+  [M]: "1,1,0",
+  [S]: "1,0,0",
+}
+
 module.exports = {
   HOST: process.env.APP_HOST,
   PORT: process.env.APP_PORT,
@@ -8,10 +20,11 @@ module.exports = {
     NAME: "Template",
     FILE: "template-file",
     DESC: "Itemplate Core Project",
+    USER_ROLES: [D, A, M, S],
+    USER_ROLE_ACCESS: USER_ROLE_ACCESS,
     DATABASE: process.env.DATABASE_NAME,
     COOKIE_SECRET: process.env.COOKIE_SECRET,
     WHITELISTED_DOMAINS: process.env.WHITELISTED_DOMAINS,
-    ROLES: ["admin", "manager", "staff"],
   },
   MONGO: {
     HOST: process.env.MONGO_HOST,
@@ -48,5 +61,8 @@ module.exports = {
       EXP1: process.env.JWT_EXP1,
       EXP2: process.env.JWT_EXP2,
     },
+    ROLE_OPTION: {
+      D, A, M, S
+    }
   },
 };

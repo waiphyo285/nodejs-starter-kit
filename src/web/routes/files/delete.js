@@ -7,6 +7,5 @@ const config = require("../../../../config/index");
 const deleteFile = (module.exports = {});
 
 deleteFile.index = (req, res, next) => {
-  // console.log(req.data);
-  // console.log(req.params);
+  // write here you want to delete the medias
 };

@@ -28,13 +28,8 @@ script.
   $(document).ready(function() {
     $("#dialogGenerate").on('click', function(){
       const modal_name = $('#modal_name').val();
-      //- console.log("Modal name ", modal_name)
-
       const string_val = $('#modal_data').val();
-      //- console.log("String Val ", string_val);
-
       const modal_data = JSON.parse(string_val)
-      //- console.log("Modal data ", modal_data)
 
       $.ajax({
         type: "POST",
@@ -52,7 +47,7 @@ script.
           response.status !== '200' 
           ? swalWarning({
               title: "Warning",
-              description: "Your template was not generated.",
+              description: "Sorry, your template was not generated.",
             })
           : swalWarning({
               icon: "success",

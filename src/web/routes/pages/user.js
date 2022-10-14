@@ -3,11 +3,10 @@ const router = express.Router();
 const checkAuth = require("../check_auth");
 const utils = require("../../../../helpers/utils");
 const usersDb = require("../../../../controllers/users");
-const { isAuth } = require("../../../../middlewares/authentication");
 const { handleRenderer, handleDatabase } = require("../../../../helpers/handlers/create_response");
 
 router
-  .get("/get_user", checkAuth, isAuth("admin"), (req, res, next) => {
+  .get("/get_user", checkAuth, (req, res, next) => {
     res.header("Access-Control-Allow-Origin", "*");
     res.header(
       "Access-Control-Allow-Headers",
@@ -15,14 +14,14 @@ router
     );
     res.send({ user: req.user });
   })
-  .get("/users", checkAuth, isAuth("admin"), (req, res, next) => {
+  .get("/users", checkAuth, (req, res, next) => {
     const pages = {
       runPage: "pages/user-list",
       runProgram: "administrative.user.list",
     };
     handleRenderer(req.user, pages, res);
   })
-  .get("/user/:id?", checkAuth, isAuth("admin"), async (req, res, next) => {
+  .get("/user/:id?", checkAuth, async (req, res, next) => {
     const id = req.params.id;
     const data = id ? await usersDb.findUser("id", id) : {};
     const pages = {
@@ -32,11 +31,11 @@ router
     };
     handleRenderer(req.user, pages, res);
   })
-  .post("/user", isAuth("admin"), (req, res, next) => {
+  .post("/user", (req, res, next) => {
     const insertDb = usersDb.addUser(req.body);
     handleDatabase(insertDb, utils.isEmptyObject, res);
   })
-  .put("/user/:id?", isAuth("admin"), (req, res, next) => {
+  .put("/user/:id?", (req, res, next) => {
     const { ["id"]: rmId, ...data } = req.body;
     const updateDb = usersDb.updateWithPass(rmId, data);
     handleDatabase(updateDb, utils.isEmptyObject, res);

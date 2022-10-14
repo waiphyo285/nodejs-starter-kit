@@ -3,9 +3,12 @@
  */
 
 function dataTableCallback(e, settings, techNote, message) {
+    const description = settings.ajax.data == undefined
+        ? "Your request is required authorization."
+        : "Your request is something wrong. Please try again.";
     swalWarning({
         title: "Warning",
-        description: "Fetch data error is found. Please try again.",
+        description: description,
     });
 }
 
@@ -72,7 +75,6 @@ function dataTableThumbRenderer(isSrc = false) {
 }
 
 function dataTableActionsRenderer(editUrl, read, edit, del) {
-    console.log(read, edit, del)
     return function (d, type, row) {
         var id = row._id || row.id || "#";
         var html = '<div class="btn-group float-right" role="group" aria-label="Actions">';

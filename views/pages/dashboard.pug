@@ -1,119 +1,137 @@
 extends ../includes/layout-main
 block content
-  main.card.mx-3.p-3(role='main')
-    .d-flex
-      h5.animate-typing.mr-auto Welcome back 👋🏻
-      h5.show-date-time Jan 01 00:00 AM
+  -var isAccess = false;
 
-    .row
-      .card-counter.col-md-3(onclick="location.href='/users';")
-        .wrap
-          h4.card-counter-title 
-            span.bi.bi-person-check  Administrators
-          span.card-counter-number !{data[0]}
-            
-      .card-counter.col-md-3(onclick="location.href='/registers';")
-        .wrap
-          h4.card-counter-title
-            span.bi.bi-people  Public Users
-          span.card-counter-number !{data[1]}
-      
-      .card-counter.col-md-3(onclick="location.href='/cities';")
-        .wrap
-          h4.card-counter-title
-            span.bi.bi-building  Cities/Regions
-          span.card-counter-number !{data[2]}
-      
-      .card-counter.col-md-3(onclick="location.href='/townships';")
-        .wrap
-          h4.card-counter-title
-            span.bi.bi-signpost  Townships
-          span.card-counter-number !{data[3]}
+  each p in program 
+    if p.menuid == "dashboard"
+      -isAccess = p.access
+  
+  if isAccess
+    main.card.mx-3.p-3(role='main')
+      .d-flex
+        h5.animate-typing.mr-auto Welcome back 👋🏻
+        h5.show-date-time Jan 01 00:00 AM
 
-    hr
-    .col-md-12
       .row
-        .col-md-4.my-2
-          .panel.panel-default
-            .panel-heading
-              h4.panel-title
-            .panel-content.text-center
-              canvas#teamChart.chart(height='380')
-            .panel-footer.text-center
-              p.pt-3 A simple Team Chart with basic settings
+        .card-counter.col-md-3(onclick="location.href='/users';")
+          .wrap
+            h4.card-counter-title 
+              span.bi.bi-person-check  Administrators
+            span.card-counter-number !{data[0]}
 
-        .col-md-4.my-2
-          .panel.panel-default
-            .panel-heading
-              h4.panel-title
-            .panel-content.text-center
-              canvas#saleChart.chart(height='380')
-            .panel-footer.text-center 
-              p.pt-3 A sample Sale Chart with basic settings
+        .card-counter.col-md-3(onclick="location.href='/registers';")
+          .wrap
+            h4.card-counter-title
+              span.bi.bi-people  Public Users
+            span.card-counter-number !{data[1]}
 
-        .col-md-4.my-2
-          .panel.panel-default
-            .panel-heading
-              h4.panel-title 
-            .panel-content.text-center
-              canvas#lineChart.chart(height='380')
-            .panel-footer.text-center 
-              p.pt-3 A sample Line Chart with basic settings
+        .card-counter.col-md-3(onclick="location.href='/cities';")
+          .wrap
+            h4.card-counter-title
+              span.bi.bi-building  Cities/Regions
+            span.card-counter-number !{data[2]}
 
-        .col-md-4.my-2
-          .panel.panel-default
-            .panel-heading
-              h4.panel-title 
-            .panel-content.text-center
-              canvas#singelBarChart.chart(height='380')
-            .panel-footer.text-center 
-              p.pt-3 A sample Single Bar Chart with basic settings
-        
-        .col-md-4.my-2
-          .panel.panel-default
-            .panel-heading
-              h4.panel-title
-            .panel-content.text-center
-              canvas#barChart.chart(height='380')
-            .panel-footer.text-center 
-              p.pt-3 A sample Bar Chart with basic settings
+        .card-counter.col-md-3(onclick="location.href='/townships';")
+          .wrap
+            h4.card-counter-title
+              span.bi.bi-signpost  Townships
+            span.card-counter-number !{data[3]}
 
-        .col-md-4.my-2
-          .panel.panel-default
-            .panel-heading
-              h4.panel-title
-            .panel-content.text-center
-              canvas#radarChart.chart(height='380')
-            .panel-footer.text-center 
-              p.pt-3 A sample Radar Chart with basic settings
+      hr
 
-        .col-md-4.my-2
-          .panel.panel-default
-            .panel-heading
-              h4.panel-title 
-            .panel-content.text-center
-              canvas#pieChart.chart(height='380')
-            .panel-footer.text-center 
-              p.pt-3 A sample Pie Chart with basic settings
+      .col-md-12
+        .row
+          .col-md-4.my-2
+            .panel.panel-default
+              .panel-heading
+                h4.panel-title
+              .panel-content.text-center
+                canvas#teamChart.chart(height='380')
+              .panel-footer.text-center
+                p.pt-3 A simple Team Chart with basic settings
 
-        .col-md-4.my-2
-          .panel.panel-default
-            .panel-heading
-              h4.panel-title 
-            .panel-content.text-center
-              canvas#doughutChart.chart(height='380')
-            .panel-footer.text-center 
-              p.pt-3 A sample Doughut Chart with basic settings
+          .col-md-4.my-2
+            .panel.panel-default
+              .panel-heading
+                h4.panel-title
+              .panel-content.text-center
+                canvas#saleChart.chart(height='380')
+              .panel-footer.text-center 
+                p.pt-3 A sample Sale Chart with basic settings
 
-        .col-md-4.my-2
-          .panel.panel-default
-            .panel-heading
-              h4.panel-title 
-            .panel-content.text-center
-              canvas#polarChart.chart(height='380')
-            .panel-footer.text-center 
-              p.pt-3 A sample Polar Chart with basic settings
+          .col-md-4.my-2
+            .panel.panel-default
+              .panel-heading
+                h4.panel-title 
+              .panel-content.text-center
+                canvas#lineChart.chart(height='380')
+              .panel-footer.text-center 
+                p.pt-3 A sample Line Chart with basic settings
 
+          .col-md-4.my-2
+            .panel.panel-default
+              .panel-heading
+                h4.panel-title 
+              .panel-content.text-center
+                canvas#singelBarChart.chart(height='380')
+              .panel-footer.text-center 
+                p.pt-3 A sample Single Bar Chart with basic settings
+
+          .col-md-4.my-2
+            .panel.panel-default
+              .panel-heading
+                h4.panel-title
+              .panel-content.text-center
+                canvas#barChart.chart(height='380')
+              .panel-footer.text-center 
+                p.pt-3 A sample Bar Chart with basic settings
+
+          .col-md-4.my-2
+            .panel.panel-default
+              .panel-heading
+                h4.panel-title
+              .panel-content.text-center
+                canvas#radarChart.chart(height='380')
+              .panel-footer.text-center 
+                p.pt-3 A sample Radar Chart with basic settings
+
+          .col-md-4.my-2
+            .panel.panel-default
+              .panel-heading
+                h4.panel-title 
+              .panel-content.text-center
+                canvas#pieChart.chart(height='380')
+              .panel-footer.text-center 
+                p.pt-3 A sample Pie Chart with basic settings
+
+          .col-md-4.my-2
+            .panel.panel-default
+              .panel-heading
+                h4.panel-title 
+              .panel-content.text-center
+                canvas#doughutChart.chart(height='380')
+              .panel-footer.text-center 
+                p.pt-3 A sample Doughut Chart with basic settings
+
+          .col-md-4.my-2
+            .panel.panel-default
+              .panel-heading
+                h4.panel-title 
+              .panel-content.text-center
+                canvas#polarChart.chart(height='380')
+              .panel-footer.text-center 
+                p.pt-3 A sample Polar Chart with basic settings
+  else
+    link(href='/assets/404/styles.css' rel='stylesheet')
+    #notfound
+      .notfound
+        .f0f
+          lottie-player.ltp(src='https://assets1.lottiefiles.com/packages/lf20_slGFhN.json' style='width: 250px; height: 250px' speed='1' autoplay='' loop='')
+          p
+            | Unauthorized: indicates that the request has not been applied because 
+            | it lacks valid authentication credentials for the target resource.
+  
+  script(src='https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js')
   script(src='../layout-js/lib/chart-js/chart.bundle.min.js')
   script(src='../layout-js/lib/chart-js/chart-init.js')
   script.

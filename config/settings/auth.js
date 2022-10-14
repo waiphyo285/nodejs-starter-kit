@@ -7,12 +7,8 @@ const {
   CREDENTIAL,
 } = config.JWT;
 
-const USER_ROLE_ACCESS = {
-  admin: "1,1,1",
-  manager: "1,1,0",
-  staff: "1,0,0",
-  developer: "1,1,1",
-}
+const USER_DEFINE_ROLE = config.APP.USER_ROLES
+const USER_ROLE_ACCESS = config.APP.USER_ROLE_ACCESS
 
 module.exports = {
   encodeAlg: ALGO,
@@ -20,7 +16,7 @@ module.exports = {
   jwtExpiry: SIGN_OPTION.EXP1,
   mockedUsername: CREDENTIAL.USER,
   mockedPassword: CREDENTIAL.PASS,
-  defineUserRole: config.APP.ROLES,
+  defineUserRole: USER_DEFINE_ROLE,
   userRoleAccess: USER_ROLE_ACCESS,
   signOption: {
     issuer: SIGN_OPTION.ISSR,

@@ -14,7 +14,7 @@
             span.sr-only (current)
 
           else
-            -var iconType = (programObj.active == true) ? "bi bi-chevron-compact-up" : "bi bi-chevron-compact-down";
+            -var iconType = (programObj.active == true) ? "bi bi-chevron-up" : "bi bi-chevron-down";
             -var isShow = (programObj.active == true) ? "show" : undefined;
             
             a.list-group-item.list-group-item-action.collapsed(href='#'+programObj.menuid data-toggle='collapse' data-target='#'+programObj.menuid)

@@ -12,7 +12,7 @@ block content
         
           div.col-lg-6
             h6 Notes
-            p.text-danger 
+            p.text-warning 
              | *** You have to choose ACCESS ROLE that is regarding to system. Please carefully consider to define access level based on your chosen role. That may cause
              | both frontend menu, sub-menu and list buttons (new/edit/delete) and backend authorized API requests.
         
@@ -42,11 +42,12 @@ block content
               div.d-none
                 input.input-sm(type='text', name=`program[${menuIdx}][menuid]`, value=menu.menuid)
 
-              div.col-6.mb-3
-                span(class=menu.icon)
-                span.mx-2 !{menu.title}
+              div.col-4.mb-3
+                h6
+                  span.mr-2.d-none.d-md-inline(class=menu.icon) 
+                  span !{menu.title}
 
-              div.col-6.mb-3
+              div.col-8.mb-3
                 .btn-group.btn-group-toggle(data-toggle='buttons')
                   label.btn.btn-outline-secondary.btn-toggle(class=`${menu.access == true ? "active" : ""}`)
                     input(type='checkbox' name=`program[${menuIdx}][access]` value="1" checked=(menu.access == true))
@@ -58,10 +59,12 @@ block content
                   div.d-none
                     input.input-sm(type='text', name=`program[${menuIdx}][submenu][${submenuIdx}][menuid]` value=submenu.menuid)
 
-                  div.col-6.mb-3
-                    input.form-control.input-sm(type='text', value=submenu.title readonly)
+                  div.col-4.mb-3
+                    h6
+                      span.mr-2.d-none.d-md-inline(class=submenu.icon) 
+                      span !{submenu.title}
 
-                  div.col-6.mb-3
+                  div.col-8.mb-3
                     .btn-group.btn-group-toggle(data-toggle='buttons')
                       label.btn.btn-outline-secondary.btn-toggle(class=`${submenu.access == true ? "active" : ""}`)
                         input(type='checkbox' name=`program[${menuIdx}][submenu][${submenuIdx}][access]` value="1" autocomplete='off' checked=(submenu.access == true))

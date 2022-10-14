@@ -3,11 +3,11 @@ extends ../includes/auth/layout-auth
 block content
   form(action="/signup" method="post" onsubmit="return validateForm();")
     img.logo(src="/images/auth/it-logo.png", alt="", srcset="")
-    div.title !{app.NAME}
+    //- div.title !{app.NAME}
     div.sub-title !{title}
     
     div.fields
-      div.phone
+      div.phone(style="margin-top: 28px")
         input#phone(type="tel" name="phone" pattern="[+,0][1-9]{1}[0-9]{1,2}[0-9]{4,12}" autocomplete="off" required autofocus)
       div.username
         input#username(type="text" name="username" placeholder="username" autocomplete="off" required)

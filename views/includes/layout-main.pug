@@ -22,12 +22,13 @@ head
   link(href='/layout-css/lib/select2/select2.min.css' rel='stylesheet')
   link(href='/layout-css/lib/sweetalert2/sweetalert2.min.css' rel='stylesheet')
   link(href='/layout-css/lib/datepicker/bootstrap-datepicker3.min.css' rel='stylesheet')
+  link(href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css" rel="stylesheet")
   link(href="https://cdn.jsdelivr.net/npm/froala-editor@latest/css/froala_editor.pkgd.min.css" rel="stylesheet" type="text/css")
-  link(rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/5.3.0/ekko-lightbox.css' integrity='sha512-Velp0ebMKjcd9RiCoaHhLXkR1sFoCCWXNp6w4zj1hfMifYB5441C+sKeBl/T/Ka6NjBiRfBBQRaQq65ekYz3UQ==' crossorigin='anonymous' referrerpolicy='no-referrer')
+  link(href='https://cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/5.3.0/ekko-lightbox.css' integrity='sha512-Velp0ebMKjcd9RiCoaHhLXkR1sFoCCWXNp6w4zj1hfMifYB5441C+sKeBl/T/Ka6NjBiRfBBQRaQq65ekYz3UQ==' rel="stylesheet"  crossorigin='anonymous' referrerpolicy='no-referrer')
 
   // Layout CSS
   link(href='/layout-css/theme-config.css' rel='stylesheet')
-  link(href=`/layout-css/theme-${user.theme}.css` rel='stylesheet')
+  link#themeLink(href=`/layout-css/theme-${user.theme}.css` rel='stylesheet')
   link(href='/layout-css/material-button.css' rel='stylesheet')
   link(href='/layout-css/dashboard.css' rel='stylesheet')
 
@@ -100,13 +101,18 @@ script.
       }
     };
 
-    const buttonOptions  = buttons.map((button) => { 
+    const buttonOptions  = buttons.map((button) => {
       return {
         filename: curPage,
         extend: button,
         ...options
       }
     });
+
+    const lengthOptions = [
+      [10, 25, 50, -1],
+      [10, 25, 50, 'All'],
+    ];
 
     return {
       "destroy": true,
@@ -116,7 +122,8 @@ script.
       //- "processing": true,
       "pagingType": "full_numbers",
       "language": langOptions,
-      "buttons": buttonOptions
+      "buttons": buttonOptions,
+      "lengthMenu": lengthOptions,
     };
   }
 
@@ -136,9 +143,7 @@ script.
 script(src='/layout-js/lib/moment/moment.js')
 script(src='/layout-js/lib/select2/select2.full.min.js')
 script(src='/layout-js/lib/sweetalert2/sweetalert2.min.js')
-
 script(src='/assets/dist/js/bootstrap.bundle.min.js')
-script(src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.min.js')
 
 <!-- Data Table JS -->
 script(src="/layout-js/lib/data-table/jquery.datatables.min.js")
@@ -151,6 +156,12 @@ script(src="/layout-js/lib/data-table/vfs_fonts.js")
 
 <!-- Datetime JS -->
 script(src="/layout-js/lib/datepicker/bootstrap-datepicker.min.js")
+
+<!-- Chart JS -->
+script(src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.min.js')
+
+<!-- Bootstrap Select -->
+script(src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/bootstrap-select.min.js")
 
 <!-- Layout JS -->
 script(src='/layout-js/datatable.js')

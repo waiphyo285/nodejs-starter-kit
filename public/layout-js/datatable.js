@@ -80,7 +80,7 @@ function dataTableActionsRenderer(editUrl, read, edit, del) {
         var html = '<div class="btn-group float-right" role="group" aria-label="Actions">';
         if (read == "true" && edit == "true") {
             // read && write access
-            // icon as <img src="/images/icons/flat-edit.svg" height="22" width="22"/>
+            // icon as <img src="/images/heroicons/edit.svg" height="22" width="22"/>
             html += `
                 <a class="btn btn-sm border list-action" href="./${editUrl}/${id}">
                   <i class="bi bi-pencil-square text-warning"></i>
@@ -88,7 +88,7 @@ function dataTableActionsRenderer(editUrl, read, edit, del) {
         }
         if (del == "true") {
             // delete access
-            // icon as <img src="/images/icons/flat-delete.svg" height="22" width="22"/>
+            // icon as <img src="/images/heroicons/delete.svg" height="22" width="22"/>
             html += `
                 <a class="btn btn-sm border list-action" role="button" data-toggle="modal" data-target="#dialogDeleteConfirm" data-loading-text="Deleting..." data-id="${id}">
                   <i class="bi bi-trash3 text-danger"></i>

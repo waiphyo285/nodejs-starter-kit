@@ -13,7 +13,7 @@ head
   link(rel='icon' type='image/png' sizes='16x16' href='../images/favicon/favicon-16x16.png')
 
   // Auth styles 
-  link(href='/layout-css/theme-default.css' rel='stylesheet')
+  link#themeLink(href='/layout-css/theme-default.css' rel='stylesheet')
   link(rel='stylesheet', href='/assets/auth/styles.css')
 
   // Font Bootstrap
@@ -41,4 +41,11 @@ body
     if(message) {
       errorMessage.innerText = message;
       errorMessage.style.display = "block";
+    }
+
+    const theme = localStorage.getItem("theme");
+
+    if (theme) {
+      const themeHref = `/layout-css/theme-${theme}.css`;
+      document.getElementById("themeLink").setAttribute("href", themeHref)
     }

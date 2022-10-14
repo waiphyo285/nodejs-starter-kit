@@ -63,24 +63,24 @@ script.
           },
           data: { theme: newTheme } ,
           success: function (response) {
-            response.code != 200
-            ? swalWarning({
+            if (response.code != 200) {
+              swalWarning({
                 title: "Warning",
                 description: "Sorry, your theme was not changed.",
               })
-            : Swal.fire({
+            }
+            else {
+              swalWarning({
                 icon: "success",
                 title: "Success",
-                position: "center",
-                text: "You have to logout to see new theme.",
-                confirmButtonText: 'LOGOUT',
-                customClass: "swal-style",
-              })
-              .then((result) => {
-                if (result.isConfirmed) {
-                  window.location.replace("/logout");
-                }
-              })
+                description: "Your theme is successfully changed.",
+              });
+
+              setTimeout(()=> {
+                localStorage.setItem("theme", newTheme)
+                window.location.reload();
+              }, 3000);
+            }
           },
           error: function (jqXHR, textStatus, errorThrown) {
             swalWarning({

@@ -56,26 +56,17 @@ body {
   width: 80px;
   height: 80px;
   padding: 5px;
-  filter: gray;
+  /* filter: gray;
   -webkit-filter: grayscale(1);
-  -webkit-transition: all .5s ease-in-out;
-  box-shadow:
-    /* logo shadow */
-    0px 0px 3px var(--back-gray),
-    /* offset shadow */
-    0px 0px 0px 3px var(--back-gray),
-    /* bottom right shadhow */
-    0px 0px 0px var(--back-gray),
-    /* top left shadhow */
-    0px 0px 0px var(--back-gray);
+  -webkit-transition: all .5s ease-in-out; */
 }
 
-.logo:hover {
+/* .logo:hover {
   filter: none;
   -webkit-filter: grayscale(0);
   -webkit-transform: scale(1);
   cursor: zoom-in;
-}
+} */
 
 .title {
   font-size: 24px;
@@ -135,17 +126,17 @@ body {
   text-align: center;
   text-transform: capitalize;
   color: var(--text-white);
-  background: #3f3f3f;
+  background: var(--primary);
 }
 
 .signin-button:hover {
   color: var(--text-white);
-  background: #0f0f0f;
+  background: var(--secondary);
 }
 
 .signin-button:active {
   color: var(--text-white);
-  background: #0f0f0f;
+  background: var(--secondary);
 }
 
 .link {
@@ -162,7 +153,7 @@ body {
 .link a span {
   font-weight: bold;
   text-decoration: underline;
-  color: var(--text-dark);
+  color: var(--primary);
 }
 
 #error-message {

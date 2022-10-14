@@ -5,7 +5,7 @@ nav(class="navbar fixed-top")
   .o-nav-items.d-flex.align-items-end
     .nav-item
       a.nav-link(href='#' role='button' title="View Profile")
-        i.bi.bi-person
+        i.bi.bi-person-circle
         |  !{user.username}
         span.sr-only
 
@@ -27,10 +27,13 @@ nav(class="navbar fixed-top")
       a.nav-link#settingDropdown(href='#' role='button' data-toggle='dropdown' aria-expanded='false')
         i.bi.bi-sliders
       .dropdown-menu(aria-labelledby='settingDropdown')
+        a.dropdown-item#settings(href='/settings' title="Settings") 
+          i.bi.bi-gear-wide-connected
+          | &nbsp; Settings
         a.dropdown-item(href="#" role='button' title="New theme", data-toggle="modal", data-target="#dialogSetTheme") 
           i.bi.bi-palette
           | &nbsp; Change theme
-        a.dropdown-item(href="#" role='button' title="New template", data-toggle="modal", data-target="#dialogNewTemplate" )
+        a.dropdown-item(href="#" role='button' title="New template", data-toggle="modal", data-target="#dialogNewTemplate")
           i.bi.bi-filetype-json
           | &nbsp; New template
         .dropdown-divider

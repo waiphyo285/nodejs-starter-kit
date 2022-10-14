@@ -6,9 +6,9 @@ block content
       block inputs
         
         div.col-md-12
-          div.form-group.border.border-warning.p-2.row 
-            -var disabledMode = data.role == "developer" ? true : false;
-            
+          -var disabledMode = data.role == "developer" ? true : false;
+
+          div.form-group.border.border-warning.p-2.row(class=disabledMode ? "d-none" : "")
             div.col-sm-6.mb-3
               label.control-label(for='role') Access Role
               select.form-control.input-sm.selectpicker#roleid(name='role' value=data.role data-value=data.role, data-live-search="true", data-size="8" required disabled=disabledMode)

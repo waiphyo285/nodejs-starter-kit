@@ -26,6 +26,7 @@ users.updateWithPass = (req, res, next) => {
 
 users.updateWithoutPass = (req, res, next) => {
   const getDb = usersDb.updateWithoutPass(req.params.id, req.body);
+  getDb.then(data => { req.user.theme = data.data.theme });
   handleDatabase(getDb, utils.isEmptyObject, res);
 };
 

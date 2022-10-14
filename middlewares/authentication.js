@@ -150,11 +150,11 @@ const isAuth = (targets) => {
     const curRole = req.headers.userrole;
     const locales = res.locals.i18n.translations;
     const curTarget = targets.find((target) => target == curRole);
-    const targetAccess = sumPermission(curTarget);
+    const targetAccess = sumPermission(curTarget || "developer");
     const permitAccess = sumPermission(curRole);
     const prev = () => {
       res.status(401).json(createResponse(401, {}, locales));
-    };
+    }
     permitAccess >= targetAccess ? next() : prev();
   };
 };

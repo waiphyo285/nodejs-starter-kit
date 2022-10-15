@@ -133,33 +133,6 @@ nav.navbar {
   box-shadow: none !important;
 }
 
-/* Input radio */
-input[type="radio"] {
-  width: 15px;
-  height: 15px;
-  padding: 3px;
-  margin-top: 5px;
-  display: inline-block;
-  border-radius: 50%;
-  border: 1.5px solid var(--back-gray);
-  background-color: var(--back-white);
-  background-clip: content-box;
-  transform: scale(1.5);
-  -ms-transform: scale(1.5);
-  -webkit-transform: scale(1.5);
-  appearance: none;
-  -moz-appearance: none;
-  -webkit-appearance: none;
-}
-
-input[type="radio"][value="1"]:checked {
-  background-color: var(--primary);
-}
-
-input[type="radio"][value="0"]:checked {
-  background-color: var(--back-black);
-}
-
 /* Scrollbar  */
 ::-webkit-scrollbar {
   width: 8px;
@@ -295,12 +268,12 @@ textarea:focus {
 
 .card-counter .wrap {
   height: 100%;
-  padding: 30px 20px 15px;
-  background: var(--back-white);
-  box-shadow: 1px 2px 3px var(--back-gray);
   text-align: center;
   position: relative;
   overflow: hidden;
+  padding: 30px 20px 15px;
+  background: var(--back-white);
+  box-shadow: 1px 2px 3px var(--back-gray);
 }
 
 .card-counter .wrap:after {

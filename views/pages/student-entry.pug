@@ -57,14 +57,15 @@ block content
             input.form-control.input-sm#grade(type='number', name='grade', role='number', min='1' max='11' onkeyup="if(parseInt(this.value)>11){ this.value =11; return false; }" value=data.grade autocomplete="off" required)
 
           div.col-sm-6.mb-3
-            label.control-label(for='prefect') Prefect
-            div.radio.radio-toolbar.row
-              div.col-sm-6.col-xl-3
-                input#prefectActive.radiobox(type='radio', name='prefect', value="1" checked=data.prefect)
-                label.ml-1(for='prefectActive') &nbsp; Active
-              div.col-sm-6.col-xl-3
-                input#prefectInactive.radiobox(type='radio', name='prefect', value="0" checked=!data.prefect)
-                label.ml-1(for='prefectInactive') &nbsp; Inactive
+            label.control-label.d-block(for='prefect') Prefect 
+            .btn-group.btn-group-toggle(data-toggle='buttons')
+              label.btn.btn-outline-success.btn-toggle(class=`${data.prefect == true ? "active" : ""}`)
+                input(type='radio' name=`prefect` value="1" autocomplete='off' checked=(data.prefect == true))
+                span.active  Active
+
+              label.btn.btn-outline-secondary.btn-toggle(class=`${data.prefect == false ? "active" : ""}`)
+                input(type='radio' name=`prefect` value="0" autocomplete='off' checked=(data.prefect == false))
+                span.inactive  Inactive
 
         include ./../includes/entry/layout-entry-btn
 

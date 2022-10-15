@@ -6,7 +6,7 @@ const listData = () => {
   return Promise.resolve(serialize(STUDENTS));
 };
 
-const findData = (prop, val) => {
+const findDataById = (id) => {
   const student = STUDENTS.find((student) => student[prop] == val);
   return Promise.resolve(serialize(student));
 };
@@ -19,17 +19,18 @@ const findDataBy = (prop, val) => {
 const addData = (dataObj) => {
   dataObj.id = utils.objectId();
   STUDENTS.push(dataObj);
-  return findData("id", dataObj.id);
+  return findDataById(dataObj.id);
 };
 
 const deleteData = (id) => {
-  return findData("id", id).then((student) => {
-    if (student.id == id) {
-      STUDENTS = STUDENTS.filter((student) => student.id != id);
-      return serialize({ id: id });
-    }
-    return null;
-  });
+  return findDataById(id)
+    .then((student) => {
+      if (student.id == id) {
+        STUDENTS = STUDENTS.filter((student) => student.id != id);
+        return serialize({ id: id });
+      }
+      return null;
+    });
 };
 
 const dropAll = () => {
@@ -39,7 +40,7 @@ const dropAll = () => {
 
 module.exports = {
   listData,
-  findData,
+  findDataById,
   findDataBy,
   addData,
   deleteData,

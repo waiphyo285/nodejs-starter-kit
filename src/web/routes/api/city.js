@@ -10,7 +10,7 @@ cities.index = (req, res, next) => {
 };
 
 cities.show = (req, res, next) => {
-  const getDb = citiesDb.findData("id", req.params.id);
+  const getDb = citiesDb.findDataById(req.params.id);
   handleDatabase(getDb, utils.isEmptyObject, res);
 };
 

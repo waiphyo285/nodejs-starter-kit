@@ -16,10 +16,7 @@ const listData = (params) => {
 
   if (search) {
     for (const i in w_regx) {
-      const regx = new RegExp(
-        search.value.replace(/[&\/\\#,+()$~%.'":*?<>{}]/g, ""),
-        "i"
-      );
+      const regx = new RegExp(search.value.replace(/[&\/\\#,+()$~%.'":*?<>{}]/g, ""), "i");
       w_regx[i] = { [w_regx[i]]: { $regex: regx } };
     }
   }
@@ -46,9 +43,9 @@ const listData = (params) => {
     });
 };
 
-const findData = (prop, val) => {
+const findDataById = (id) => {
   return Student
-    .find({ _id: val })
+    .findById(id)
     .populate({
       path: "cityid",
       model: "city",
@@ -59,9 +56,7 @@ const findData = (prop, val) => {
       model: "township",
       select: "township_mm township_en",
     })
-    .then((resp) =>
-      serialize(resp[0])
-    );
+    .then(serialize);
 };
 
 const findDataBy = (params) => {
@@ -105,7 +100,7 @@ const dropAll = () => {
 
 module.exports = {
   listData,
-  findData,
+  findDataById,
   findDataBy,
   addData,
   updateData,

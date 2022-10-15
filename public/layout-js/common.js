@@ -34,7 +34,6 @@ $("#entryForm").submit(function (e) {
       handleAlert(data);
     },
     error: function (error) {
-      console.log("Error ", error);
       handleAlert(error.responseJSON)
     },
   });
@@ -139,7 +138,7 @@ function ajaxUploadForm(args) {
       }
     },
     error: function (error) {
-      console.log("Error ", error);
+      handleAlert(error.responseJSON)
     },
   });
 }

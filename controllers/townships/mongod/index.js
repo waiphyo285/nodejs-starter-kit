@@ -12,17 +12,15 @@ const listData = () => {
     .then(serialize);
 };
 
-const findData = async (prop, val) => {
+const findDataById = async (id) => {
   return Township
-    .find({ _id: val })
+    .findById(id)
     .populate({
       path: "cityid",
       model: "city",
       select: "city_mm city_en",
     })
-    .then((resp) => {
-      return serialize(resp[0]);
-    });
+    .then(serialize);
 };
 
 const findDataBy = (params) => {
@@ -60,7 +58,7 @@ const dropAll = () => {
 
 module.exports = {
   listData,
-  findData,
+  findDataById,
   findDataBy,
   addData,
   updateData,

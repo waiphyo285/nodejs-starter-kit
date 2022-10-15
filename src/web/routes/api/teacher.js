@@ -10,7 +10,7 @@ teachers.index = (req, res, next) => {
 };
 
 teachers.show = (req, res, next) => {
-  const getDb = teachersDb.findData("id", req.params.id);
+  const getDb = teachersDb.findDataById(req.params.id);
   handleDatabase(getDb, utils.isEmptyObject, res);
 };
 

@@ -1,63 +1,53 @@
-const { clearKey } = require("../../../models/cache/services/index");
 const User = require("../../../models/mongodb/models/user");
-const serialize = require("../../serializer"); // switch custom
+const serialize = require("./serializer");
 
 const listUsers = () => {
   return User
     .find({})
-    .cache()
+    .populate({
+      path: "levelid",
+      model: "user_role",
+      select: "level",
+    })
+    .lean()
     .then(serialize);
 };
 
-const findUser = (prop, val) => {
+const findUser = (id) => {
   return User
-    .find({ _id: val })
-    .then((resp) => {
-      return serialize(resp[0]);
-    });
+    .findById(id)
+    .lean()
+    .then(serialize);
 };
 
 const addUser = (dataObj) => {
   const user = new User(dataObj);
   return user.save()
-    .then((resp) => {
-      // set data in redis memocache
-      clearKey(User.collection.collectionName);
-      return resp;
-    })
     .then(serialize);
 };
 
 const updateWithPass = (id, dataObj) => {
   return User
-    .findOneAndUpdate({ _id: id }, dataObj, { new: true })
-    .then((resp) => {
-      // set data in redis memocache
-      clearKey(User.collection.collectionName);
-      return resp;
-    })
+    .findOneAndUpdate(
+      { _id: id }, dataObj, { new: true }
+    )
+    .lean()
     .then(serialize);
 };
 
 const updateWithoutPass = async (id, dataObj) => {
   return User
-    .findByIdAndUpdate(id, dataObj, { new: true })
-    .then((resp) => {
-      // set data in redis memocache
-      clearKey(User.collection.collectionName);
-      return resp;
-    })
+    .findByIdAndUpdate(
+      id, dataObj, { new: true }
+    )
+    .lean()
     .then(serialize);
 };
 
 const deleteUser = (id) => {
   return User
     .findByIdAndDelete(id)
-    .then((resp) => {
-      // set data in redis memocache
-      clearKey(User.collection.collectionName);
-      return resp;
-    })
+    .lean()
     .then(serialize);
 };
 

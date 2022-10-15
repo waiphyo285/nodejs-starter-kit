@@ -10,7 +10,7 @@ users.index = (req, res, next) => {
 };
 
 users.show = (req, res, next) => {
-  const getDb = usersDb.findUser("id", req.params.id);
+  const getDb = usersDb.findUser(req.params.id);
   handleDatabase(getDb, utils.isEmptyObject, res);
 };
 

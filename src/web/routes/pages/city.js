@@ -15,7 +15,7 @@ router
   })
   .get("/city/:id?", checkAuth, async (req, res, next) => {
     const id = req.params.id;
-    const data = id ? await citiesDb.findData("id", id) : {};
+    const data = id ? await citiesDb.findDataById(id) : {};
     const pages = {
       data: data.data || {},
       runPage: "pages/city-entry",

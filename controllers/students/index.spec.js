@@ -40,7 +40,7 @@ describe("studentsDb", () => {
     const input = await studentsDb.listData();
     const firstId = input[0]._id;
 
-    const findInput = await studentsDb.findData("id", firstId);
+    const findInput = await studentsDb.findDataById(firstId);
     const inputId = findInput._id;
     const actualId = firstId;
     expect(inputId).to.eql(actualId);

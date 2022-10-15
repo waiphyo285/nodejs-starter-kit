@@ -35,12 +35,12 @@ if (args.index) {
 
 if (args.show) {
   citiesDb
-    .findData("id", args.show)
+    .findDataById(args.show)
     .then((data) => {
-      console.log("Data ", data);
+      console.log("Cli Data ", data);
     })
     .catch((err) => {
-      console.log("Error ", err);
+      console.log("Cli Error ", err);
     })
     .finally(() => {
       process.exit(1);

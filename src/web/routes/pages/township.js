@@ -15,7 +15,7 @@ router
   })
   .get("/township/:id?", checkAuth, async (req, res, next) => {
     const id = req.params.id;
-    const data = id ? await townshipsDb.findData("id", id) : {};
+    const data = id ? await townshipsDb.findDataById(id) : {};
     const pages = {
       data: data.data || {},
       runPage: "pages/township-entry",

@@ -17,7 +17,6 @@ router
     usersDb
       .addUser({ ...req.body, role: "admin (access all)" })
       .then((data) => {
-        console.log(`New user ${data.username} is created`);
         return res.redirect("/");
       })
       .catch((err) => {

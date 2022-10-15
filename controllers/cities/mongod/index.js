@@ -7,9 +7,9 @@ const listData = () => {
     .then(serialize);
 };
 
-const findData = (prop, val) => {
+const findDataById = (id) => {
   return City
-    .findOne({ _id: val })
+    .findById(id)
     .then(serialize);
 };
 
@@ -44,7 +44,7 @@ const dropAll = () => {
 
 module.exports = {
   listData,
-  findData,
+  findDataById,
   findDataBy,
   addData,
   updateData,

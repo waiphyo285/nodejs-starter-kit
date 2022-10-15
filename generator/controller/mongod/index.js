@@ -7,12 +7,10 @@ const listData = () => {
     .then(serialize);
 };
 
-const findData = (prop, val) => {
+const findDataById = (id) => {
   return Controller
-    .find({ _id: val })
-    .then((resp) => {
-      return serialize(resp[0]);
-    });
+    .findById(id)
+    .then(serialize);
 };
 
 const findDataBy = (params) => {
@@ -45,7 +43,7 @@ const dropAll = () => {
 
 module.exports = {
   listData,
-  findData,
+  findDataById,
   findDataBy,
   addData,
   updateData,

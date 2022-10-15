@@ -15,7 +15,7 @@ router
   })
   .get("/register/:id?", checkAuth, async (req, res, next) => {
     const id = req.params.id;
-    const data = id ? await registersDb.findData("id", id) : {};
+    const data = id ? await registersDb.findDataById(id) : {};
     const pages = {
       data: data.data || {},
       runPage: "pages/user-register-entry",

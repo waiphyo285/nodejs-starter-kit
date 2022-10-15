@@ -10,7 +10,7 @@ townships.index = (req, res, next) => {
 };
 
 townships.show = (req, res, next) => {
-  const getDb = townshipsDb.findData("id", req.params.id);
+  const getDb = townshipsDb.findDataById(req.params.id);
   handleDatabase(getDb, utils.isEmptyObject, res);
 };
 

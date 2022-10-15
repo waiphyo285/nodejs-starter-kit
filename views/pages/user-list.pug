@@ -10,6 +10,7 @@ block content
           th #
           th Username
           th Access_role
+          th Access_level
           th Account_type
           th Updated_at
           th.text-right Actions
@@ -28,15 +29,16 @@ block content
             { "data": "_id" },
             { "data": "username"},
             { "data": "role"},
+            { "data": "level"},
             { "data": "active"},
             { "data": "updated_at"},
             { "data": "actions", "className":"nowrap" }
           ],
           "columnDefs": [
             { targets: 0, render: dataTableIndexRenderer() },
-            { targets: 3, render: dataTableActiveRenderer() },
-            { targets: 4, render: dataTableDateTimeRenderer() },
-            { targets: 5, orderable: false, render: dataTableActionsRenderer(
+            { targets: 4, render: dataTableActiveRenderer() },
+            { targets: 5, render: dataTableDateTimeRenderer() },
+            { targets: 6, orderable: false, render: dataTableActionsRenderer(
                 ".!{page.entry.url}", "!{page.read}", "!{page.edit}", "!{page.delete}"
               )
             }

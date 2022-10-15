@@ -1,6 +1,6 @@
 let {
   listData,
-  findData,
+  findDataById,
   findDataBy,
   addData,
   updateData,
@@ -9,7 +9,7 @@ let {
 
 let exportDb = {
   listData,
-  findData,
+  findDataById,
   findDataBy,
   addData,
   updateData,

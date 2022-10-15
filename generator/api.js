@@ -10,7 +10,7 @@ genExport.index = (req, res, next) => {
 };
 
 genExport.show = (req, res, next) => {
-  const getDb = genDatabase.findData("id", req.params.id);
+  const getDb = genDatabase.findDataById(req.params.id);
   handleDatabase(getDb, utils.isEmptyObject, res);
 };
 

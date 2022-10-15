@@ -15,7 +15,7 @@ router
   })
   .get("/routing/:id?", checkAuth, async (req, res, next) => {
     const id = req.params.id;
-    const data = id ? await genDatabase.findData("id", id) : {};
+    const data = id ? await genDatabase.findDataById(id) : {};
     const pages = {
       data: data.data,
       runPage: "pages/runnerPage-entry",

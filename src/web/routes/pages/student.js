@@ -15,7 +15,7 @@ router
   })
   .get("/student/:id?", checkAuth, async (req, res, next) => {
     const id = req.params.id;
-    const data = id ? await studentsDb.findData("id", id) : {};
+    const data = id ? await studentsDb.findDataById(id) : {};
     const pages = {
       data: data,
       runPage: "pages/student-entry",

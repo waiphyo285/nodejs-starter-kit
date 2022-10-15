@@ -8,9 +8,9 @@ const listData = () => {
     .then((data) => serialize(data[0]));
 };
 
-const findData = (prop, val) => {
+const findDataById = (id) => {
   return knex
-    .raw(`SELECT * FROM teachers WHERE ${prop}= '${val}'`)
+    .raw(`SELECT * FROM teachers WHERE id= '${id}'`)
     .then((data) => serialize(data[0][0]));
 };
 
@@ -51,7 +51,7 @@ const dropAll = () => {
 
 module.exports = {
   listData,
-  findData,
+  findDataById,
   findDataBy,
   addData,
   updateData,

@@ -1,6 +1,6 @@
 const {
   listData,
-  findData,
+  findDataById,
   findDataBy,
   addData,
   updateData,
@@ -13,7 +13,7 @@ const {
 
 const studentsDb = {
   listData,
-  findData,
+  findDataById,
   findDataBy,
   addData,
   updateData,

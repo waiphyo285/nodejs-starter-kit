@@ -20,7 +20,7 @@ router
     let data = { data: { program: initProgram } }; // new entry
 
     if (id) {                                      // edit role
-      data = await userRolesDb.findData("id", id);
+      data = await userRolesDb.findDataById(id);
       const userProgram = data.data.program;
 
       data.data.program = initProgram.map((initMenu) => {

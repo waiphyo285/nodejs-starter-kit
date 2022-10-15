@@ -7,12 +7,10 @@ const listData = () => {
     .then(serialize);
 };
 
-const findData = async (prop, val) => {
+const findDataById = async (id) => {
   return Register
-    .find({ _id: val })
-    .then((resp) => {
-      return serialize(resp[0]);
-    });
+    .findById(id)
+    .then(serialize);
 };
 
 const findDataBy = (params) => {
@@ -41,7 +39,7 @@ const deleteData = (id) => {
 
 module.exports = {
   listData,
-  findData,
+  findDataById,
   findDataBy,
   addData,
   updateData,

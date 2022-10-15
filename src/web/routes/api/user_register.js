@@ -10,7 +10,7 @@ userRegisters.index = (req, res, next) => {
 };
 
 userRegisters.show = (req, res, next) => {
-  const getDb = registersDb.findData("id", req.params.id);
+  const getDb = registersDb.findDataById(req.params.id);
   handleDatabase(getDb, utils.isEmptyObject, res);
 };
 

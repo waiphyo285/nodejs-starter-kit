@@ -25,7 +25,7 @@ userRole.index = (req, res, next) => {
 };
 
 userRole.show = (req, res, next) => {
-  const getDb = userRolesDb.findData("id", req.params.id);
+  const getDb = userRolesDb.findDataById(req.params.id);
   handleDatabase(getDb, utils.isEmptyObject, res);
 };
 

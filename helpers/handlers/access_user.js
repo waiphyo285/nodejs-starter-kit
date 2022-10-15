@@ -30,7 +30,7 @@ const getProgram = async (user, pageId) => {
 
   // other account based on role & level
   else {
-    const data = await userRolesDb.findData("id", user.levelid);
+    const data = await userRolesDb.findDataById(user.levelid);
     const userProgram = data.data.program;
 
     const curUserProgram = initProgram.map((initMenu) => {

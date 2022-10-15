@@ -23,7 +23,7 @@ router
   })
   .get("/user/:id?", checkAuth, async (req, res, next) => {
     const id = req.params.id;
-    const data = id ? await usersDb.findUser("id", id) : {};
+    const data = id ? await usersDb.findUser(id) : {};
     const pages = {
       data: data.data || {},
       runPage: "pages/user-entry",

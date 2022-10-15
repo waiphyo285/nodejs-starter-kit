@@ -35,14 +35,15 @@ block content
             input.form-control.input-sm#phone(type='tel', name='phone', value=data.phone, maxlength="55" autocomplete="off" required)
       
           div.col-sm-6.mb-3
-            label.control-label(for='status') Status
-            div.radio.radio-toolbar.row
-              div.col-sm-6.col-xl-3
-                input#statusActive.radiobox(type='radio', name='active', value="1" checked=data.active)
-                label.ml-1(for='statusActive') &nbsp; Active
-              div.col-sm-6.col-xl-3
-                input#statusInactive.radiobox(type='radio', name='active', value="0" checked=!data.active)
-                label.ml-1(for='statusInactive') &nbsp; Inactive
+            label.control-label.d-block(for='status') Status 
+            .btn-group.btn-group-toggle(data-toggle='buttons')
+              label.btn.btn-outline-success.btn-toggle(class=`${data.active == true ? "active" : ""}`)
+                input(type='radio' name=`active` value="1" autocomplete='off' checked=(data.active == true))
+                span.active  Active
+
+              label.btn.btn-outline-secondary.btn-toggle(class=`${data.active == false ? "active" : ""}`)
+                input(type='radio' name=`active` value="0" autocomplete='off' checked=(data.active == false))
+                span.inactive  Inactive
         
         include ./../includes/entry/layout-entry-btn
 

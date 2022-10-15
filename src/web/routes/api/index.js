@@ -4,7 +4,6 @@ const router = express.Router();
 // api routing
 const dev = require("./develop");
 const students = require("./student");
-const teachers = require("./teacher");
 
 // setup routing
 const cities = require("./city");
@@ -79,11 +78,3 @@ router
   .post("/student", validateWare(studentSchema), students.create)
   .put("/student/:id", validateWare(studentSchema), students.update)
   .delete("/student/:id", students.delete);
-
-router
-  .get("/teachers", teachers.index)
-  .get("/teacher/:id", teachers.show)
-  .get("/teacher", teachers.showBy)
-  .post("/teacher", teachers.create)
-  .put("/teacher/:id", teachers.update)
-  .delete("/teacher/:id", teachers.delete);

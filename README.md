@@ -13,7 +13,7 @@ I am introduced a simple API template for backend developers using clean archite
 | Title               | Description |
 | -----               | ----------- |
 | User interface      | Design admin dashboard with bootstrap v4     |
-| Database design     | Support SQL (MySQL) and NoSQL (MongoDB)      |
+| Database design     | Support faster and flexible NoSQL (MongoDB)  |
 | Data security       | Secure API layer based on authN and authZ    |
 | Development         | Integrate test driven development (mocha)    |
 
@@ -32,7 +32,6 @@ These features help you reduce your time and cost to start a new project instead
 
 - Node.js,
 - MongoDB,
-- MySQL,
 - Redis
 
 **Clone itemplate repository**
@@ -50,13 +49,6 @@ https://documenter.getpostman.com/view/10018411/2s83mbr5iK
 
 ```bash
 npm install
-```
-
-**Migrate MySQL database and tables**
-
-```bash
-npx knex migrate:latest
-npx knex seed:run
 ```
 
 **Run app and then go to browser**

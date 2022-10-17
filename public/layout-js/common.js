@@ -13,7 +13,7 @@ $("#dialogDeleteConfirm").on("show.bs.modal", function (event) {
   var id = button.data("id");
   $(this).attr("data-id", id);
   $(this).find("#dialogDelete").on("click", function (ev) {
-    var deleteUrl = `./api${pageEntry}/${id}`;
+    var deleteUrl = `./api/v1${pageEntry}/${id}`;
     submitAction(deleteUrl, function () {
       table.ajax.reload();
     });

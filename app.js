@@ -20,7 +20,7 @@ const { verifyToken } = require("@middlewares/authentication");
 
 // api router
 const genRouter = require("@generator");
-const apiRouter = require("@src/web/routes/api");
+const apiV1Router = require("@src/web/routes/api/v1");
 const fileRouter = require("@src/web/routes/files");
 
 // app feature
@@ -69,7 +69,7 @@ app.use(genRouter);
 app.use("/d-mar", tokenRouter);
 
 // connect to api routes
-app.use("/api", verifyToken, apiRouter);
+app.use("/api/v1", verifyToken, apiV1Router);
 
 // connect to file routes
 app.use("/file", verifyToken, fileRouter);

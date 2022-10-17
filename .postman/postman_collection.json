@@ -67,13 +67,13 @@
                 "header": [
                   {
                     "key": "Authorization",
-                    "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Ik4zT1hVQkwxU04wVDYzM0siLCJpYXQiOjE2MzAyOTY4NTIsImV4cCI6MTYzMDM4MzI1Mn0.xxfgfbUJxPqs...",
+                    "value": "Bearer {{token}}",
                     "type": "text",
                     "disabled": true
                   },
                   {
                     "key": "x-access-method",
-                    "value": "one",
+                    "value": "{{sign_method}}",
                     "type": "text",
                     "disabled": true
                   },
@@ -98,22 +98,21 @@
                     },
                     {
                       "key": "method_id",
-                      "value": "one",
+                      "value": "{{sign_method}}",
                       "type": "text"
                     },
                     {
                       "key": "userrole",
-                      "value": "admin",
+                      "value": "{{user_role}}",
                       "type": "text"
                     }
                   ]
                 },
                 "url": {
-                  "raw": "localhost:5000/d-mar/u-tsh",
+                  "raw": "{{lip}}/d-mar/u-tsh",
                   "host": [
-                    "localhost"
+                    "{{lip}}"
                   ],
-                  "port": "5000",
                   "path": [
                     "d-mar",
                     "u-tsh"
@@ -235,12 +234,12 @@
                 "header": [
                   {
                     "key": "Authorization",
-                    "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Ik4zT1hVQkwxU04wVDYzM0siLCJpYXQiOjE2MzAyOTY4NTIsImV4cCI6MTYzMDM4MzI1Mn0.xxfgfbUJxPqs...",
+                    "value": "Bearer {{token}}",
                     "type": "text"
                   },
                   {
                     "key": "x-access-method",
-                    "value": "one",
+                    "value": "{{sign_method}}",
                     "type": "text"
                   },
                   {
@@ -264,36 +263,35 @@
                     },
                     {
                       "key": "method_id",
-                      "value": "one",
+                      "value": "{{sign_method}}",
                       "type": "text"
                     },
                     {
                       "key": "userrole",
-                      "value": "admin",
+                      "value": "{{user_role}}",
                       "type": "text"
                     },
                     {
                       "key": "init_vectr",
-                      "value": "5pT2AodYrfQn6F1yV0DZOA==",
+                      "value": "{{init_vectr}}",
                       "type": "text"
                     },
                     {
                       "key": "secret_key",
-                      "value": "UT5GT6QWx6O/aMJYVqXa+wBroSq3s5cY5WxRuSRVTN8=",
+                      "value": "{{secret_key}}",
                       "type": "text"
                     }
                   ]
                 },
                 "url": {
-                  "raw": "localhost:5000/d-mar/u-bar/cf6346a0b7ffda31542e84d5117e4d49",
+                  "raw": "{{lip}}/d-mar/u-bar/{{time_hash}}",
                   "host": [
-                    "localhost"
+                    "{{lip}}"
                   ],
-                  "port": "5000",
                   "path": [
                     "d-mar",
                     "u-bar",
-                    "cf6346a0b7ffda31542e84d5117e4d49"
+                    "{{time_hash}}"
                   ]
                 }
               },
@@ -346,7 +344,7 @@
       ]
     },
     {
-      "name": "CRUD City",
+      "name": "City Service",
       "item": [
         {
           "name": "List",
@@ -373,12 +371,13 @@
               }
             ],
             "url": {
-              "raw": "{{lip}}/api/cities",
+              "raw": "{{lip}}/api/v1/cities",
               "host": [
                 "{{lip}}"
               ],
               "path": [
                 "api",
+                "v1",
                 "cities"
               ]
             }
@@ -391,12 +390,12 @@
                 "header": [
                   {
                     "key": "Authorization",
-                    "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Ik4zT1hVQkwxU04wVDYzM0siLCJpYXQiOjE2MzAyOTY4NTIsImV4cCI6MTYzMDM4MzI1Mn0.xxfgfbUJxPqs...",
+                    "value": "Bearer {{token}}",
                     "type": "text"
                   },
                   {
                     "key": "x-access-method",
-                    "value": "one",
+                    "value": "{{sign_method}}",
                     "type": "text"
                   },
                   {
@@ -406,11 +405,10 @@
                   }
                 ],
                 "url": {
-                  "raw": "localhost:5000/api/cities",
+                  "raw": "{{lip}}/api/cities",
                   "host": [
-                    "localhost"
+                    "{{lip}}"
                   ],
-                  "port": "5000",
                   "path": [
                     "api",
                     "cities"
@@ -488,12 +486,13 @@
               }
             ],
             "url": {
-              "raw": "{{lip}}/api/city/623d5cca34782685107b04fa",
+              "raw": "{{lip}}/api/v1/city/623d5cca34782685107b04fa",
               "host": [
                 "{{lip}}"
               ],
               "path": [
                 "api",
+                "v1",
                 "city",
                 "623d5cca34782685107b04fa"
               ]
@@ -507,12 +506,12 @@
                 "header": [
                   {
                     "key": "Authorization",
-                    "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Ik4zT1hVQkwxU04wVDYzM0siLCJpYXQiOjE2MzAyOTY4NTIsImV4cCI6MTYzMDM4MzI1Mn0.xxfgfbUJxPqs...",
+                    "value": "Bearer {{token}}",
                     "type": "text"
                   },
                   {
                     "key": "x-access-method",
-                    "value": "one",
+                    "value": "{{sign_method}}",
                     "type": "text"
                   },
                   {
@@ -522,11 +521,10 @@
                   }
                 ],
                 "url": {
-                  "raw": "localhost:5000/api/city/623d5cca34782685107b04fa",
+                  "raw": "{{lip}}/api/city/623d5cca34782685107b04fa",
                   "host": [
-                    "localhost"
+                    "{{lip}}"
                   ],
-                  "port": "5000",
                   "path": [
                     "api",
                     "city",
@@ -605,12 +603,13 @@
               }
             ],
             "url": {
-              "raw": "{{lip}}/api/city?status=1",
+              "raw": "{{lip}}/api/v1/city?status=1",
               "host": [
                 "{{lip}}"
               ],
               "path": [
                 "api",
+                "v1",
                 "city"
               ],
               "query": [
@@ -654,12 +653,12 @@
                 "header": [
                   {
                     "key": "Authorization",
-                    "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Ik4zT1hVQkwxU04wVDYzM0siLCJpYXQiOjE2MzAyOTY4NTIsImV4cCI6MTYzMDM4MzI1Mn0.xxfgfbUJxPqs...",
+                    "value": "Bearer {{token}}",
                     "type": "text"
                   },
                   {
                     "key": "x-access-method",
-                    "value": "one",
+                    "value": "{{sign_method}}",
                     "type": "text"
                   },
                   {
@@ -669,11 +668,10 @@
                   }
                 ],
                 "url": {
-                  "raw": "localhost:5000/api/city?unit=D",
+                  "raw": "{{lip}}/api/city?unit=D",
                   "host": [
-                    "localhost"
+                    "{{lip}}"
                   ],
-                  "port": "5000",
                   "path": [
                     "api",
                     "city"
@@ -791,12 +789,13 @@
               }
             },
             "url": {
-              "raw": "{{lip}}/api/city",
+              "raw": "{{lip}}/api/v1/city",
               "host": [
                 "{{lip}}"
               ],
               "path": [
                 "api",
+                "v1",
                 "city"
               ]
             }
@@ -809,12 +808,12 @@
                 "header": [
                   {
                     "key": "Authorization",
-                    "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Ik4zT1hVQkwxU04wVDYzM0siLCJpYXQiOjE2MzAyOTY4NTIsImV4cCI6MTYzMDM4MzI1Mn0.xxfgfbUJxPqs...",
+                    "value": "Bearer {{token}}",
                     "type": "text"
                   },
                   {
                     "key": "x-access-method",
-                    "value": "one",
+                    "value": "{{sign_method}}",
                     "type": "text"
                   },
                   {
@@ -833,11 +832,10 @@
                   }
                 },
                 "url": {
-                  "raw": "localhost:5000/api/city",
+                  "raw": "{{lip}}/api/city",
                   "host": [
-                    "localhost"
+                    "{{lip}}"
                   ],
-                  "port": "5000",
                   "path": [
                     "api",
                     "city"
@@ -924,12 +922,13 @@
               }
             },
             "url": {
-              "raw": "{{lip}}/api/city/633472bc19aa762f849e5be1",
+              "raw": "{{lip}}/api/v1/city/633472bc19aa762f849e5be1",
               "host": [
                 "{{lip}}"
               ],
               "path": [
                 "api",
+                "v1",
                 "city",
                 "633472bc19aa762f849e5be1"
               ]
@@ -943,12 +942,12 @@
                 "header": [
                   {
                     "key": "Authorization",
-                    "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Ik4zT1hVQkwxU04wVDYzM0siLCJpYXQiOjE2MzAyOTY4NTIsImV4cCI6MTYzMDM4MzI1Mn0.xxfgfbUJxPqs...",
+                    "value": "Bearer {{token}}",
                     "type": "text"
                   },
                   {
                     "key": "x-access-method",
-                    "value": "one",
+                    "value": "{{sign_method}}",
                     "type": "text"
                   },
                   {
@@ -967,11 +966,10 @@
                   }
                 },
                 "url": {
-                  "raw": "localhost:5000/api/city/633472bc19aa762f849e5be1",
+                  "raw": "{{lip}}/api/city/633472bc19aa762f849e5be1",
                   "host": [
-                    "localhost"
+                    "{{lip}}"
                   ],
-                  "port": "5000",
                   "path": [
                     "api",
                     "city",
@@ -1136,12 +1134,12 @@
                 "header": [
                   {
                     "key": "Authorization",
-                    "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Ik4zT1hVQkwxU04wVDYzM0siLCJpYXQiOjE2MzAyOTY4NTIsImV4cCI6MTYzMDM4MzI1Mn0.xxfgfbUJxPqs...",
+                    "value": "Bearer {{token}}",
                     "type": "text"
                   },
                   {
                     "key": "x-access-method",
-                    "value": "one",
+                    "value": "{{sign_method}}",
                     "type": "text"
                   },
                   {
@@ -1161,11 +1159,10 @@
                   ]
                 },
                 "url": {
-                  "raw": "localhost:5000/file/upload/folderOne",
+                  "raw": "{{lip}}/file/upload/folderOne",
                   "host": [
-                    "localhost"
+                    "{{lip}}"
                   ],
-                  "port": "5000",
                   "path": [
                     "file",
                     "upload",
@@ -1275,12 +1272,12 @@
                 "header": [
                   {
                     "key": "Authorization",
-                    "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Ik4zT1hVQkwxU04wVDYzM0siLCJpYXQiOjE2MzAyOTY4NTIsImV4cCI6MTYzMDM4MzI1Mn0.xxfgfbUJxPqs...",
+                    "value": "Bearer {{token}}",
                     "type": "text"
                   },
                   {
                     "key": "x-access-method",
-                    "value": "one",
+                    "value": "{{sign_method}}",
                     "type": "text"
                   },
                   {
@@ -1305,11 +1302,10 @@
                   ]
                 },
                 "url": {
-                  "raw": "localhost:5000/file/multiUpload/folderTwo",
+                  "raw": "{{lip}}/file/multiUpload/folderTwo",
                   "host": [
-                    "localhost"
+                    "{{lip}}"
                   ],
-                  "port": "5000",
                   "path": [
                     "file",
                     "multiUpload",

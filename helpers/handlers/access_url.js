@@ -1,5 +1,5 @@
-const config = require("../../config/index");
-const { isAuth } = require("../../middlewares/authentication");
+const config = require("@config/index");
+const { isAuth } = require("@middlewares/authentication");
 
 // Util authorized methods
 

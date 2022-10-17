@@ -1,9 +1,9 @@
 const express = require("express");
 const router = express.Router();
-const checkAuth = require("../check_auth");
-const utils = require("../../../../helpers/utils");
-const genDatabase = require("../../../../controllers/generators");
-const { handleRenderer, handleDatabase, } = require("../../../../helpers/handlers/create_response");
+const utils = require("@helpers/utils");
+const genDatabase = require("@controllers/generators");
+const checkAuth = require("@middlewares/is_logged_user");
+const { handleRenderer, handleDatabase, } = require("@helpers/handlers/create_response");
 
 router
   .get("/routings", checkAuth, (req, res, next) => {

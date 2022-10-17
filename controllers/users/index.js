@@ -1,6 +1,6 @@
 const {
   listUsers,
-  findUser,
+  findUserById,
   addUser,
   updateWithPass,
   updateWithoutPass,
@@ -9,7 +9,7 @@ const {
 
 const exportDb = {
   listUsers,
-  findUser,
+  findUserById,
   addUser,
   updateWithPass,
   updateWithoutPass,

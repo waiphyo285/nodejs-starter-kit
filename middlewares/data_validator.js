@@ -1,5 +1,5 @@
 const Joi = require("joi");
-const { createResponse } = require("../helpers/handlers/create_response");
+const { createResponse } = require("@helpers/handlers/create_response");
 
 const validateWare = (schema, property) => {
   return (req, res, next) => {

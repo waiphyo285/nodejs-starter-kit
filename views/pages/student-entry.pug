@@ -41,17 +41,7 @@ block content
           div.col-sm-6.mb-3
             label.control-label(for='age') Age
             input.form-control.input-sm#age(type='number', name='age', role='number', min='16' max='120' onkeyup="if(parseInt(this.value)>120){ this.value =120; return false; }" value=data.age autocomplete="off" required)
-      
-          div.col-sm-6.mb-3
-            - var cityid =  data.cityid || "#";
-            label.control-label(for='city') City
-            select.form-control.selectpicker#cityid(name='cityid' value=cityid._id data-value=cityid._id, data-live-search="true", data-size="8" required)
-          
-          div.col-sm-6.mb-3
-            - var townshipid =  data.townshipid || "#";
-            label.control-label(for='township') Township
-            select.form-control.input-sm.selectpicker#townshipid(name='townshipid' value=townshipid._id data-value=townshipid._id, data-live-search="true", data-size="8" required)
-      
+            
           div.col-sm-6.mb-3
             label.control-label(for='grade') Grade
             input.form-control.input-sm#grade(type='number', name='grade', role='number', min='1' max='11' onkeyup="if(parseInt(this.value)>11){ this.value =11; return false; }" value=data.grade autocomplete="off" required)
@@ -72,31 +62,3 @@ block content
     form#postSuccessForm(method='GET', action=page.list.url)
 
   script(src="/layout-js/pages/img-upload.js") 
-  script.
-    $(document).ready(function() {
-      const editMode = $("input[name='id']").val();
-
-      ajaxLoadOption({
-        type: "GET",
-        url:"/api/cities",
-        selectId: "#cityid",
-        showKey: "city_mm",
-        filterObj: {},
-      });
-
-      $('#cityid').on('change', function() {
-        const cityid = $(this).val() ||       // get value [new entry]
-                       $(this).data('value'); // get value [edit entry]
-        ajaxLoadOption({
-          type: "GET",
-          url:"/api/township",
-          selectId: "#townshipid",
-          showKey: "township_mm",
-          filterObj: { cityid },
-        });
-      });
-
-      if (editMode && typeof editMode === "string") {
-        $('#cityid').trigger('change');
-      }
-    });

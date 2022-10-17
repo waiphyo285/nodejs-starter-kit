@@ -2,8 +2,8 @@ const fs = require("fs");
 const path = require("path");
 const multer = require("multer");
 const helpers = require("./helpers");
-const config = require("../../../../config/index");
-const { createResponse } = require("../../../../helpers/handlers/create_response");
+const config = require("@config/index");
+const { createResponse } = require("@helpers/handlers/create_response");
 
 const upload = (module.exports = {});
 

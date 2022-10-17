@@ -1,15 +1,14 @@
 const express = require("express");
 const router = express.Router();
 const async = require("async");
-const checkAuth = require("../check_auth");
-const config = require("../../../../config/index");
-const { getProgram } = require("../../../../helpers/handlers/access_user");
+const config = require("@config/index");
+const checkAuth = require("@middlewares/is_logged_user");
+const { getProgram } = require("@helpers/handlers/access_user");
 
 // Import Models
 const User = require("../../../../models/mongodb/models/user");
-const City = require("../../../../models/mongodb/models/city");
-const Township = require("../../../../models/mongodb/models/township");
-const Register = require("../../../../models/mongodb/models/register");
+const Role = require("../../../../models/mongodb/models/user_role");
+const Student = require("../../../../models/mongodb/models/student");
 
 const dashbordCard = async () => {
   const countUser = function (callback) {
@@ -22,8 +21,8 @@ const dashbordCard = async () => {
     });
   };
 
-  const countRegister = function (callback) {
-    Register.countDocuments().exec((error, count) => {
+  const countRole = function (callback) {
+    Role.countDocuments().exec((error, count) => {
       if (error) {
         callback(error, undefined);
       } else {
@@ -32,8 +31,8 @@ const dashbordCard = async () => {
     });
   };
 
-  const countCity = function (callback) {
-    City.countDocuments({}).exec((error, count) => {
+  const countStudent = function (callback) {
+    Student.countDocuments().exec((error, count) => {
       if (error) {
         callback(error, undefined);
       } else {
@@ -42,17 +41,7 @@ const dashbordCard = async () => {
     });
   };
 
-  const countTownship = function (callback) {
-    Township.countDocuments({}).exec((error, count) => {
-      if (error) {
-        callback(error, undefined);
-      } else {
-        callback(undefined, count);
-      }
-    });
-  };
-
-  return [countUser, countRegister, countCity, countTownship];
+  return [countUser, countRole, countStudent];
 };
 
 router.get("/", checkAuth, async (req, res, next) => {

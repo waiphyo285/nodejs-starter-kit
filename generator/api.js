@@ -1,6 +1,7 @@
-const utils = require("../../../../helpers/utils");
-const genDatabase = require("../../../../controllers/generators");
-const { handleDatabase } = require("../../../../helpers/handlers/create_response");
+
+const utils = require("@helpers/utils");
+const genDatabase = require("@controllers/generators");
+const { handleDatabase } = require("@helpers/handlers/create_response");
 
 const genExport = (module.exports = {});
 

@@ -1,5 +1,5 @@
 const mongoose = require("../connection");
-const SchemaPlugin = require("./helpers/schema-plugin");
+const SchemaPlugin = require("@helpers/schema-plugin");
 
 const Schema = mongoose.Schema;
 

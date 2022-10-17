@@ -1,6 +1,6 @@
-const utils = require("../../../../helpers/utils");
-const usersDb = require("../../../../controllers/users");
-const { handleDatabase } = require("../../../../helpers/handlers/create_response");
+const utils = require("@helpers/utils");
+const usersDb = require("@controllers/users");
+const { handleDatabase } = require("@helpers/handlers/create_response");
 
 const users = (module.exports = {});
 
@@ -10,7 +10,7 @@ users.index = (req, res, next) => {
 };
 
 users.show = (req, res, next) => {
-  const getDb = usersDb.findUser(req.params.id);
+  const getDb = usersDb.findUserById(req.params.id);
   handleDatabase(getDb, utils.isEmptyObject, res);
 };
 

@@ -1,5 +1,5 @@
-const programMenu = require("../../config/program-menu.json");
-const userRolesDb = require("../../controllers/user_roles");
+const programMenu = require("@config/program-menu.json");
+const userRolesDb = require("@controllers/user_roles");
 
 const getProgram = async (user, pageId) => {
   const userRole = user.role;

@@ -1,13 +1,13 @@
 const yargs = require("yargs/yargs");
 const { hideBin } = require("yargs/helpers");
 const args = yargs(hideBin(process.argv)).argv;
-const citiesDb = require("../../controllers/cities/index");
+const usersDb = require("@controllers/users/index");
 
 const printHelp = function () {
   console.log(`
     Help usage:
-    --index  list students
-    --show   find student by {ID}
+    --index  list users
+    --show   find user by {ID}
     --help   print help
   `);
 };
@@ -20,13 +20,13 @@ if (args.help || !valid) {
 }
 
 if (args.index) {
-  citiesDb
-    .listData()
+  usersDb
+    .listUsers()
     .then((data) => {
-      console.log("Data ", data);
+      console.log("Cli Data ", data);
     })
     .catch((err) => {
-      console.log("Error ", err);
+      console.log("Cli Error ", err);
     })
     .finally(() => {
       process.exit(1);
@@ -34,8 +34,8 @@ if (args.index) {
 }
 
 if (args.show) {
-  citiesDb
-    .findDataById(args.show)
+  usersDb
+    .findUserById(args.show)
     .then((data) => {
       console.log("Cli Data ", data);
     })

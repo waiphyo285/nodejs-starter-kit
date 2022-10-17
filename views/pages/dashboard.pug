@@ -13,29 +13,23 @@ block content
         h5.show-date-time Jan 01 00:00 AM
 
       .row
-        .card-counter.col-md-3(onclick="location.href='/users';")
+        .card-counter.col-md-4(onclick="location.href='/users';")
           .wrap
             h4.card-counter-title 
               span.bi.bi-person-check  Administrators
             span.card-counter-number !{data[0]}
 
-        .card-counter.col-md-3(onclick="location.href='/registers';")
+        .card-counter.col-md-4(onclick="location.href='/roles';")
           .wrap
             h4.card-counter-title
-              span.bi.bi-people  Public Users
+              span.bi.bi-file-ruled  Access role/level
             span.card-counter-number !{data[1]}
 
-        .card-counter.col-md-3(onclick="location.href='/cities';")
+        .card-counter.col-md-4(onclick="location.href='/students';")
           .wrap
             h4.card-counter-title
-              span.bi.bi-building  Cities/Regions
+              span.bi.bi-mortarboard  Students
             span.card-counter-number !{data[2]}
-
-        .card-counter.col-md-3(onclick="location.href='/townships';")
-          .wrap
-            h4.card-counter-title
-              span.bi.bi-signpost  Townships
-            span.card-counter-number !{data[3]}
 
       hr
 

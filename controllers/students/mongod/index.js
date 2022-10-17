@@ -1,4 +1,4 @@
-const Student = require("../../../models/mongodb/models/student");
+const Student = require("@models/mongodb/models/student");
 const serialize = require("./serializer"); // switch custom
 
 const listData = (params) => {

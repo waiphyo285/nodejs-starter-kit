@@ -1,6 +1,6 @@
-const { clearKey } = require("../../../models/cache/services/index");
-const UserRole = require("../../../models/mongodb/models/user_role");
-const serialize = require("../../serializer"); // switch custom
+const serialize = require("@controllers/serializer");
+const { clearKey } = require("@models/cache/services/index");
+const UserRole = require("@models/mongodb/models/user_role");
 
 const listData = () => {
   return UserRole

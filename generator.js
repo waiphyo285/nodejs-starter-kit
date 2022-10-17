@@ -4,8 +4,8 @@ const express = require("express");
 const router = express.Router();
 const pluralize = require("pluralize");
 const beautify = require("js-beautify").js;
-const utils = require("./helpers/utils");
-const clr = require("./helpers/config/log_color");
+const utils = require("@helpers/utils");
+const clr = require("@helpers/config/log_color");
 
 const newTemplate = (req, res, next) => {
   const bodyData = req.body.data;

@@ -1,9 +1,9 @@
 const express = require("express");
 const router = express.Router();
 const passport = require("passport");
-const config = require("../../../config/index");
-const User = require("../../../models/mongodb/models/user");
-const { signToken_1 } = require("../../../middlewares/authentication");
+const config = require("@config/index");
+const User = require("@models/mongodb/models/user");
+const { signToken_1 } = require("@middlewares/authentication");
 
 router
   .get("/signup", (req, res, next) => {

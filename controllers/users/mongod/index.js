@@ -1,4 +1,5 @@
-const User = require("../../../models/mongodb/models/user");
+
+const User = require("@models/mongodb/models/user");
 const serialize = require("./serializer");
 
 const listUsers = () => {
@@ -13,7 +14,7 @@ const listUsers = () => {
     .then(serialize);
 };
 
-const findUser = (id) => {
+const findUserById = (id) => {
   return User
     .findById(id)
     .lean()
@@ -53,7 +54,7 @@ const deleteUser = (id) => {
 
 module.exports = {
   listUsers,
-  findUser,
+  findUserById,
   addUser,
   updateWithPass,
   updateWithoutPass,

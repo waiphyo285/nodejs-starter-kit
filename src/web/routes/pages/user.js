@@ -1,9 +1,9 @@
 const express = require("express");
 const router = express.Router();
-const checkAuth = require("../check_auth");
-const utils = require("../../../../helpers/utils");
-const usersDb = require("../../../../controllers/users");
-const { handleRenderer, handleDatabase } = require("../../../../helpers/handlers/create_response");
+const utils = require("@helpers/utils");
+const usersDb = require("@controllers/users");
+const checkAuth = require("@middlewares/is_logged_user");
+const { handleRenderer, handleDatabase } = require("@helpers/handlers/create_response");
 
 router
   .get("/get_user", checkAuth, (req, res, next) => {
@@ -23,7 +23,7 @@ router
   })
   .get("/user/:id?", checkAuth, async (req, res, next) => {
     const id = req.params.id;
-    const data = id ? await usersDb.findUser(id) : {};
+    const data = id ? await usersDb.findUserById(id) : {};
     const pages = {
       data: data.data || {},
       runPage: "pages/user-entry",

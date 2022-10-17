@@ -1,3 +1,5 @@
+require('module-alias/register');
+
 const fs = require("fs");
 const path = require("path");
 const cors = require("cors");
@@ -8,22 +10,21 @@ const cookieParser = require("cookie-parser");
 const passport = require("passport");
 
 // config app
-const config = require("./config/index");
-const { corsOptions } = require("./config/settings/cors");
-const { cookieConfig } = require("./config/settings/cookies");
+const config = require("@config/index");
+const { corsOptions } = require("@config/settings/cors");
+const { cookieConfig } = require("@config/settings/cookies");
 
 // jwt middleware
-const { tokenRouter } = require("./middlewares/authentication");
-const { verifyToken } = require("./middlewares/authentication");
+const { tokenRouter } = require("@middlewares/authentication");
+const { verifyToken } = require("@middlewares/authentication");
 
 // api router
-const genRouter = require("./generator");
-const authRouter = require("./src/web/routes/auth");
-const apiRouter = require("./src/web/routes/api");
-const fileRouter = require("./src/web/routes/files");
+const genRouter = require("@generator");
+const apiRouter = require("@src/web/routes/api");
+const fileRouter = require("@src/web/routes/files");
 
 // app feature
-const { langI18n } = require("./helpers/locale")
+const { langI18n } = require("@helpers/locale")
 
 // get environment variables
 const COOKIE_SECRET = config.APP.COOKIE_SECRET;
@@ -62,7 +63,6 @@ app.use(function (req, res, next) {
 
 // connect to page routes
 app.use(routeModules);
-app.use(authRouter);
 app.use(genRouter);
 
 // connect to jwt routes

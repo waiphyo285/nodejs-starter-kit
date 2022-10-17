@@ -1,5 +1,6 @@
-const Controller = require("../../../models/mongodb/models/generator");
-const serialize = require("../../serializer"); // switch custom
+
+const serialize = require("controllers/serializer");
+const Controller = require("models/mongodb/models/generator");
 
 const listData = () => {
   return Controller

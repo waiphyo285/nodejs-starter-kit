@@ -1,10 +1,10 @@
 const express = require("express");
 const router = express.Router();
-const checkAuth = require("../check_auth");
-const utils = require("../../../../helpers/utils");
-const userRolesDb = require("../../../../controllers/user_roles");
-const programMenu = require("../../../../config/program-menu.json");
-const { handleRenderer, handleDatabase } = require("../../../../helpers/handlers/create_response");
+const utils = require("@helpers/utils");
+const userRolesDb = require("@controllers/user_roles");
+const checkAuth = require("@middlewares/is_logged_user");
+const programMenu = require("@config/program-menu.json");
+const { handleRenderer, handleDatabase } = require("@helpers/handlers/create_response");
 
 router
   .get("/user_roles", checkAuth, (req, res, next) => {

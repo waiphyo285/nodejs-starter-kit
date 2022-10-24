@@ -2,6 +2,8 @@
  * Common Scripts
  */
 
+const version = apiVersionNum;
+
 const headers = {
   "userrole": role,
   "x-access-method": signJwtMethod,
@@ -13,7 +15,7 @@ $("#dialogDeleteConfirm").on("show.bs.modal", function (event) {
   var id = button.data("id");
   $(this).attr("data-id", id);
   $(this).find("#dialogDelete").on("click", function (ev) {
-    var deleteUrl = `./api/v1${pageEntry}/${id}`;
+    var deleteUrl = `./api/${version}` + `${pageEntry}/${id}`;
     submitAction(deleteUrl, function () {
       table.ajax.reload();
     });
@@ -94,8 +96,10 @@ function ajaxLoadOption(args) {
     selectId = args.selectId || "#",
     filerObj = args.filterObj || {};
 
+  var apiUrl = `/api/${version}` + url;
+
   $.ajax({
-    url: url,
+    url: apiUrl,
     type: type,
     headers: headers,
     data: { ...filerObj },

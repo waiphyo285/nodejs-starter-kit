@@ -1,5 +1,5 @@
 
-const User = require("@models/mongodb/models/user");
+const User = require("@models/mongodb/schemas/user");
 const serialize = require("./serializer");
 
 const listUsers = () => {

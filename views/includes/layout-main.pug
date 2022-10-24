@@ -66,6 +66,7 @@ script.
   var userId = '!{user._id}';
   var role = '!{user.role}';
   var signJwtMethod = "one";
+  var apiVersionNum = "v1";
   var maxImageCount = 5;
 
   // request permission to user but not still use
@@ -129,7 +130,7 @@ script.
 
   function fetchDataDef (curUrl) {
     return {
-      "url": "./api/v1" + curUrl,
+      "url": `./api/${apiVersionNum}` + curUrl,
       "headers": {
         "userrole": role,
         "x-access-method": signJwtMethod,

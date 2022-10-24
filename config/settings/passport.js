@@ -2,7 +2,7 @@ const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
 
 // auth model
-const UserModel = require("../../models/mongodb/models/user");
+const UserModel = require("@models/mongodb/schemas/user");
 
 // passport local authentication
 passport.serializeUser(function (user, done) {

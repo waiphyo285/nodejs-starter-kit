@@ -55,7 +55,7 @@ block content
 
       ajaxLoadOption({
         type: "GET",
-        url:"/api/config-roles",
+        url:"/config-roles",
         selectId: "#roleid",
         showKey: "display",
         filterObj: {},
@@ -66,7 +66,7 @@ block content
                        $(this).data('value');   // get value [edit entry]
         ajaxLoadOption({
           type: "GET",
-          url:"/api/user_role",
+          url:"/user_role",
           selectId: "#levelid",
           showKey: "level",
           filterObj: { role: roleid },

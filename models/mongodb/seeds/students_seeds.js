@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const Student = require("../models/student");
+const Student = require("@models/student");
 
 // Seeder using async await
 const seedDatabase = async function () {

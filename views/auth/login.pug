@@ -1,0 +1,24 @@
+extends ../includes/auth/layout-auth
+
+block content
+  form(action="/login" method="post")
+    img.logo(src="../images/auth/it-logo.png", alt="", srcset="")
+    //- div.title !{app.NAME}
+    div.sub-title !{title}
+
+    div.fields
+      div.username
+        input#username(type="type" name="username" placeholder="username" autocomplete="off" required autofocus)
+      div.password
+        input#password(type="password" name="password" placeholder="password" required)
+    
+    button.signin-button(type="submit") 
+      i.bi.bi-box-arrow-in-right
+      | &nbsp; !{buttonText}
+    
+    div.link
+      //- a(href="#") Forgot password? or 
+      a(href="/signup") If you don't have developer account? 
+        span Sign Up
+
+  script.

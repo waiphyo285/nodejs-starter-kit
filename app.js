@@ -19,7 +19,8 @@ const { tokenRouter } = require("@middlewares/authentication");
 const { verifyToken } = require("@middlewares/authentication");
 
 // api router
-const genRouter = require("@generator");
+const genRouter = require("./generator");
+const authRouter = require("@src/web/routes/auth");
 const apiV1Router = require("@src/web/routes/api/v1");
 const fileRouter = require("@src/web/routes/files");
 
@@ -62,8 +63,9 @@ app.use(function (req, res, next) {
 });
 
 // connect to page routes
-app.use(routeModules);
 app.use(genRouter);
+app.use(authRouter);
+app.use(routeModules);
 
 // connect to jwt routes
 app.use("/d-mar", tokenRouter);

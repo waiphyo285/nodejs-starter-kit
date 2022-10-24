@@ -6,9 +6,9 @@ const checkAuth = require("@middlewares/is_logged_user");
 const { getProgram } = require("@helpers/handlers/access_user");
 
 // Import Models
-const User = require("../../../../models/mongodb/models/user");
-const Role = require("../../../../models/mongodb/models/user_role");
-const Student = require("../../../../models/mongodb/models/student");
+const User = require("@models/mongodb/schemas/user");
+const Role = require("@models/mongodb/schemas/user_role");
+const Student = require("@models/mongodb/schemas/student");
 
 const dashbordCard = async () => {
   const countUser = function (callback) {

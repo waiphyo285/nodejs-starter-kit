@@ -38,7 +38,7 @@ const newTemplate = (req, res, next) => {
   const configPath = {
     model: [
       `./generator/model.js`,
-      `./models/mongodb/models/${templateName}.js`,
+      `./models/mongodb/schemas/${templateName}.js`,
     ],
     controller: [
       `./generator/controller`,

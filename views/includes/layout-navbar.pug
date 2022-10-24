@@ -37,9 +37,17 @@ nav(class="navbar fixed-top")
           i.bi.bi-filetype-json
           | &nbsp; New template
         .dropdown-divider
-        a.dropdown-item#logout(href='/logout' title="Logout") 
+        a.dropdown-item(href="#" role='button' title="Log out", data-toggle="modal", data-target="#dialogLogoutConfirm")
           i.bi.bi-box-arrow-right
           | &nbsp; Logout
 
-include ./modal/layout-generator
+include ./modal/layout-logout
 include ./modal/layout-theme
+include ./modal/layout-generator
+
+script.
+  $(document).ready(function() {
+    $("#dialogLogout").on('click', function() {
+      setTimeout(()=> { window.location.replace("/logout") }, 1000)
+    })
+  })

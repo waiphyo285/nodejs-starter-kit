@@ -55,7 +55,7 @@ script.
       if (newTheme !== currentTheme) {
         $.ajax({
           type: "PUT",
-          url: `/api/user-no-pass/${userId}`,
+          url: `/api/v1/user-no-pass/${userId}`,
           headers: {
             "userrole": role,
             "x-access-method": signJwtMethod,

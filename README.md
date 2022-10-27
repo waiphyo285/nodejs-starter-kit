@@ -1,5 +1,3 @@
-# Itemplate Backend
-
 <img src="./public/images/readme/readme-cover.jpg" >
 
 ## Getting Started
@@ -10,23 +8,15 @@ I am introduced a simple API template for backend developers using clean archite
 
 **Main features**
 
-| Title               | Description |
-| -----               | ----------- |
-| User interface      | Design admin dashboard with bootstrap v4     |
-| Database design     | Support faster and flexible NoSQL (MongoDB)  |
-| Data security       | Secure API layer based on authN and authZ    |
-| Development         | Integrate test driven development (mocha)    |
-
-**Other features**
-
-These features help you reduce your time and cost to start a new project instead of `npm init`.
-
-- access menu permission based on role,
-- switch custom theme (action, comedy, ...)
-- integrate with chart.js library,
-- generate easily CRUD API,
-- upload media files,
-- cache in redis memory
+| Title                                            | Description |
+| -----                                            | ----------- |
+| [**Bootstrap**](https://bit.ly/3VQCqXA)          |  Responsive frontend toolkit  |
+| [**Express**](https://bit.ly/3FeNkRi)            |  Web application framework    |
+| [**Mongoose**](https://bit.ly/3TA0ZGT)           |  Object-document mapping      |
+| [**Passport**](https://bit.ly/3W24cAr)           |  Make authenticated requests  |
+| [**Multer**](https://bit.ly/3NhgEZr)             |  Multipart/form-data upload   |
+| [**JWT**](https://bit.ly/3W2dNrg)                |  Secure between two parties   |
+| [**Mocha**](https://bit.ly/3f95w3Q)              |  JavaScript test framework    |
 
 **The followings must be pre-installed on your machine:**
 
@@ -37,7 +27,7 @@ These features help you reduce your time and cost to start a new project instead
 **Clone itemplate repository**
 
 ```bash
-git clone https://github.com/waiphyo285/itemplate-backend.git
+git clone https://github.com/waiphyo285/itemplate-node-js.git
 ```
 
 **Visit Public Postman Collection**
@@ -73,3 +63,6 @@ node index --show=623210497fc2cb28840d1448
 ```
 
 \_Note: this application is different to the Clean Architecture diagram above but attempts to achieve the same outcome.
+
+## References
+https://morioh.com/p/e998cc9e48f0

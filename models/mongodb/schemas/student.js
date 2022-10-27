@@ -20,7 +20,7 @@ const makeSchema = new Schema({
   grade: {
     type: Number,
   },
-  profile_images: {
+  images: {
     type: Array,
   },
   prefect: {

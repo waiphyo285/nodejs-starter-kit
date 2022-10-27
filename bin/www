@@ -47,9 +47,7 @@ function normalizePort(val) {
 function onError(error) {
   const checkListen = (msg, code, fn) =>
     msg !== "listen"
-      ? (function () {
-        throw error;
-      })()
+      ? (function () { throw error; })()
       : fn(code);
 
   // handle specific listen errors with friendly messages

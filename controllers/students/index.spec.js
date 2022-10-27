@@ -37,11 +37,11 @@ describe("studentsDb", () => {
     await studentsDb.addData(input);
     inputOjb = {
       ...input,
-      profile_images: [],
+      images: [],
       prefect: false,
     };
     const actualObj = {
-      profile_images: [],
+      images: [],
       prefect: false,
       name: "felix",
       grade: 10,

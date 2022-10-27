@@ -17,7 +17,7 @@ router
     const id = req.params.id;
     const data = id ? await genDatabase.findDataById(id) : {};
     const pages = {
-      data: data.data,
+      data: data.data || {},
       runPage: "pages/runnerPage-entry",
       runProgram: "menuEntry",
     };

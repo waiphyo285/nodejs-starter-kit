@@ -5,6 +5,7 @@ const { handleDatabase } = require("@helpers/handlers/create_response");
 const students = (module.exports = {});
 
 students.index = (req, res, next) => {
+  delete req.query._;
   const getDb = studentsDb.listData(req.query);
   handleDatabase(getDb, utils.isEmptyObject, res);
 };

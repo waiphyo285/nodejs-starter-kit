@@ -23,16 +23,7 @@ block content
             label.control-label(for='level') Access Level
             input.form-control.input-sm#level(type='text', name='level', value=data.level, maxlength="55" autocomplete="off" required)
           
-          div.col-sm-6.mb-3
-            label.control-label.d-block(for='status') Status 
-            .btn-group.btn-group-toggle(data-toggle='buttons')
-              label.btn.btn-outline-success.btn-toggle(class=`${data.status == true ? "active" : ""}`)
-                input(type='radio' name=`status` value="1" autocomplete='off' checked=(data.status == true))
-                span.active  Active
-
-              label.btn.btn-outline-secondary.btn-toggle(class=`${data.status == false ? "active" : ""}`)
-                input(type='radio' name=`status` value="0" autocomplete='off' checked=(data.status == false))
-                span.inactive  Inactive
+          include ./../includes/common/input-status
 
         hr 
 

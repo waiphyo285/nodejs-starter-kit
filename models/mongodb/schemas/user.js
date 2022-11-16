@@ -35,7 +35,7 @@ const makeSchema = new Schema({
     type: String,
     default: "",
   },
-  active: {
+  status: {
     type: Boolean,
     default: true,
   },

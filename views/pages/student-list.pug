@@ -1,7 +1,7 @@
 extends ../includes/layout-main
 block content
   main.card.mx-3.p-3(role='main')
-
+    include ./../includes/modal/layout-filter-table
     include ./../includes/list/layout-list-header
 
     table#example.table.table-striped(style='width:100%')
@@ -11,7 +11,7 @@ block content
           th Name
           th Age
           th Grade
-          th Active
+          th Status
           th Updated_at
           th.text-right Actions
       tbody
@@ -30,7 +30,7 @@ block content
             { "data": "name"},
             { "data": "age" },
             { "data": "grade" },
-            { "data": "prefect" },
+            { "data": "status" },
             { "data": "updated_at" },
             { "data": "actions" },
           ],
@@ -43,5 +43,17 @@ block content
               )
             }
           ]
+      });
+
+      $("#dialogFilter").on("click", function() {
+        $("#filterModalForm").trigger("submit")
+      })
+
+      $("#filterModalForm").submit(function (e) {
+        e.preventDefault();
+        const listUrl = '!{page.list.url}';
+        const query = $(this).serialize();
+        table.ajax.url(`./api/${apiVersionNum}${listUrl}?${query}`).load();
+        $('#dialogFilterTable').modal('hide');
       });
     });

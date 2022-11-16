@@ -23,7 +23,7 @@ const makeSchema = new Schema({
   images: {
     type: Array,
   },
-  prefect: {
+  status: {
     type: Boolean,
     default: false,
   },

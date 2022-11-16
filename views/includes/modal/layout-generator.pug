@@ -1,5 +1,5 @@
 div.modal.fade#dialogNewTemplate(tabindex='-1', role='dialog', aria-labelledby='dialogNewTemplate')
-  div.modal-dialog.modal-dialog-centered.modal-lg(role='document')
+  div.modal-dialog.modal-dialog-centered.modal-lg.custom-modal-lg(role='document')
     div.modal-content
       div.modal-header
         h5.modal-title Generate template
@@ -8,12 +8,11 @@ div.modal.fade#dialogNewTemplate(tabindex='-1', role='dialog', aria-labelledby='
       
       div.modal-body
         div.form-group
-          div.col-sm-12
+          div.col-sm-12.mb-3
             label.control-label(for='modal_name') Modal Name
             input.form-control.input-sm#modal_name(name='modal_name' required)
             
-        div.form-group
-          div.col-sm-12
+          div.col-sm-12.mb-3
             label.control-label(for='modal_data') Write Schema (JSON format)
             textarea.form-control.input-sm#modal_data(name='modal_data', rows ='10' required)
             

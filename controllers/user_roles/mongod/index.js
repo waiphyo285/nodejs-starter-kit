@@ -1,10 +1,17 @@
+const utils = require("@helpers/utils");
 const serialize = require("@controllers/serializer");
-const { clearKey } = require("@models/cache/services/index");
 const UserRole = require("@models/mongodb/schemas/user_role");
+const { clearKey } = require("@models/cache/services/index");
 
-const listData = () => {
+const listData = async (params) => {
+  if (params.created_at) {
+    params.created_at = await utils.getDateRange(
+      params.created_at
+    )
+  }
+
   return UserRole
-    .find({})
+    .find(params)
     .cache()
     .then(serialize);
 };

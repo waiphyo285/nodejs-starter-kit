@@ -1,10 +1,17 @@
 
-const User = require("@models/mongodb/schemas/user");
+const utils = require("@helpers/utils");
 const serialize = require("./serializer");
+const User = require("@models/mongodb/schemas/user");
 
-const listUsers = () => {
+const listUsers = async (params) => {
+  if (params.created_at) {
+    params.created_at = await utils.getDateRange(
+      params.created_at
+    )
+  }
+
   return User
-    .find({})
+    .find(params)
     .populate({
       path: "levelid",
       model: "user_role",

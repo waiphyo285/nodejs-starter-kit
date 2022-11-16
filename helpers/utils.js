@@ -1,6 +1,7 @@
 const fs = require("fs");
 const os = require("os");
 const _ = require("lodash");
+const moment = require("moment");
 const crypto = require("crypto");
 const handle_tz = require("./config/time_zone");
 
@@ -134,6 +135,17 @@ module.exports.toTitleCase = function (str, splitWith, joinWith) {
     .split(splitWith)
     .map((w) => w[0].toUpperCase() + w.substr(1).toLowerCase())
     .join(joinWith);
+};
+
+module.exports.getDateRange = async function (args) {
+  return {
+    $gte: args.gte
+      ? new Date(moment(args.gte, ["DD/MM/YYYY"]).format("YYYY-MM-D"))
+      : new Date("1900-01-01"),
+    $lte: args.lt
+      ? new Date(moment(args.lt, ["DD/MM/YYYY"]).format("YYYY-MM-D"))
+      : new Date()
+  }
 };
 
 module.exports.removeImages = function (remove_images) {

@@ -1,11 +1,3 @@
-div.mb-2
-  div#tableButton.d-flex
-    block extend-btns
-      div.list-header.mr-auto(style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis")
-        h5 !{page.list.title}
-        
-      .btn-group.btn-group-sm(role='group' aria-label='Basic example')
-        include ./layout-list-export
-          if ((page.read && page.edit) == true)
-            block append
-              include ./layout-list-plus
+button#btnFilter.btn.btn-light(type='button' role='button' style="width: 38px" data-toggle="modal", data-target="#dialogFilterTable")
+  i.text-dark.bi.bi-funnel(data-toggle="tooltip" data-placement="top" title="Filter")
+  //- |  Filter

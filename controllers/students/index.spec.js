@@ -9,13 +9,13 @@ describe("studentsDb", () => {
       name: "howie",
       age: 16,
       grade: 11,
-      prefect: true,
+      status: true,
     };
     const bill = {
       name: "bill",
       age: 18,
       grade: 11,
-      prefect: false,
+      status: false,
     };
     await studentsDb.addData(howie);
     await studentsDb.addData(bill);
@@ -38,11 +38,11 @@ describe("studentsDb", () => {
     inputOjb = {
       ...input,
       images: [],
-      prefect: false,
+      status: false,
     };
     const actualObj = {
       images: [],
-      prefect: false,
+      status: false,
       name: "felix",
       grade: 10,
       age: 16,

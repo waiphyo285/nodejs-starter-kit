@@ -1,0 +1,45 @@
+div.modal.fade#dialogFilterTable(tabindex='-1', role='dialog', aria-labelledby='dialogFilterTable')
+  div.modal-dialog.modal-dialog-centered.modal-md(role='document')
+    div.modal-content
+      div.modal-header
+        h5.modal-title Filter table
+        button.close(type='button', data-dismiss='modal', aria-label='Close')
+          span(aria-hidden='true') &times;
+      
+      div.modal-body
+        form#filterModalForm.form-horizontal(method="get", action="#")
+          div.form-group.row
+            div.col-sm-12.mb-2
+              label.control-label(for='start_date') From
+              .input-group
+                input.form-control.fromdate#start_date(type='text', name='created_at[gte]', editable="false"  autocomplete="off")
+                .input-group-prepend
+                  span.input-group-text
+                    i.bi.bi-calendar3-range 
+
+            div.col-sm-12
+              label.control-label(for='end_date') To
+              .input-group
+                input.form-control.todate#end_date(type='text', name='created_at[lt]', editable="false" autocomplete="off")
+                .input-group-prepend
+                  span.input-group-text
+                    i.bi.bi-calendar3-range
+          
+          include ../common/modal-input-status
+      
+      include ../common/modal-filter-btn
+
+  script.
+    $(document).ready(function() {
+      $("#dialogFilterReset").on('click', function(){
+        // input reset
+        $('#filterModalForm')[0].reset();
+        // select reset
+        $('#filterModalForm').find('select').each(function(){
+          $(this).change();
+        });
+        // radio reset
+        $('.btn-group :radio').prop('checked', false);
+        $('.btn-group .active').removeClass('active');
+      })
+    })

@@ -20,7 +20,8 @@ userRole.config = (req, res, next) => {
 };
 
 userRole.index = (req, res, next) => {
-  const getDb = userRolesDb.listData();
+  delete req.query._;
+  const getDb = userRolesDb.listData(req.query);
   handleDatabase(getDb, utils.isEmptyObject, res);
 };
 

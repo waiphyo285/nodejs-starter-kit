@@ -1,12 +1,18 @@
+const utils = require("@helpers/utils");
+const serialize = require("./serializer");
 const Student = require("@models/mongodb/schemas/student");
-const serialize = require("./serializer"); // switch custom
 
-const listData = (params) => {
-  const { columns, order, start, length, search } = params;
-  const sort = {}; // init empty default
-  const w_regx = ["name"]; // add search keys
+const listData = async (params) => {
+  const { columns, order, start, length, search, created_at } = params;
+  const sort = {};               // init empty default
+  const filter = {};             // init empty default
+  const w_regx = ["name"];       // add search keys
   const limit = parseInt(length) || undefined;
   const skip = (parseInt(start) || 0) * limit;
+
+  if (created_at) {
+    filter.created_at = await utils.getDateRange(created_at);
+  }
 
   if (order) {
     for (const i in order) {
@@ -22,7 +28,7 @@ const listData = (params) => {
   }
 
   return Student
-    .find({})
+    .find(filter)
     .or({ $or: w_regx })
     .sort(sort)
     .skip(skip)

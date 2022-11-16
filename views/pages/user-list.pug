@@ -1,7 +1,7 @@
 extends ../includes/layout-main
 block content
   main.card.mx-3.p-3(role='main')
-
+    include ./../includes/modal/layout-filter-table
     include ./../includes/list/layout-list-header
 
     table#example.table.table-striped(style='width:100%')
@@ -11,7 +11,7 @@ block content
           th Username
           th Access_role
           th Access_level
-          th Account_type
+          th Status
           th Updated_at
           th.text-right Actions
       tbody
@@ -30,7 +30,7 @@ block content
             { "data": "username"},
             { "data": "role"},
             { "data": "level"},
-            { "data": "active"},
+            { "data": "status"},
             { "data": "updated_at"},
             { "data": "actions", "className":"nowrap" }
           ],
@@ -44,5 +44,17 @@ block content
             }
           ],
           "serverSide": false,
+      });
+
+      $("#dialogFilter").on("click", function() {
+        $("#filterModalForm").trigger("submit")
+      })
+
+      $("#filterModalForm").submit(function (e) {
+        e.preventDefault();
+        const listUrl = '!{page.list.url}';
+        const query = $(this).serialize();
+        table.ajax.url(`./api/${apiVersionNum}${listUrl}?${query}`).load();
+        $('#dialogFilterTable').modal('hide');
       });
     });

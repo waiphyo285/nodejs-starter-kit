@@ -72,6 +72,17 @@ nav.navbar {
   background-color: var(--back-gray);
 }
 
+/* Dialog modal */
+.custom-modal-lg>.modal-content {
+  min-height: 500px !important;
+  max-height: 500px !important;
+  overflow: hidden !important
+}
+
+.custom-modal-lg>.modal-content>.modal-body {
+  overflow-y: scroll !important
+}
+
 /* Container fulid */
 .container-fluid {
   min-height: 92vh;
@@ -271,9 +282,11 @@ textarea:focus {
   text-align: center;
   position: relative;
   overflow: hidden;
+  border-radius: 8px;
   padding: 30px 20px 15px;
   background: var(--back-white);
-  box-shadow: 1px 2px 3px var(--back-gray);
+  box-shadow: var(--back-gray) 0px 0px 1px 0px,
+              var(--back-gray) 0px 0px 1px 0px;
 }
 
 .card-counter .wrap:after {
@@ -296,26 +309,10 @@ textarea:focus {
 }
 
 .card-counter-number {
+  color: #3f3f3f;
   font-weight: 600;
   font-size: 2.5em;
   line-height: 64px;
-  color: #3f3f3f;
-}
-
-.card-counter:nth-child(1) .wrap:after {
-  background: linear-gradient(90deg, var(--primary) 0%, var(--secondary) 100%);
-}
-
-.card-counter:nth-child(2) .wrap:after {
-  background: linear-gradient(90deg, var(--primary) 0%, var(--secondary) 100%);
-}
-
-.card-counter:nth-child(3) .wrap:after {
-  background: linear-gradient(90deg, var(--primary) 0%, var(--secondary) 100%);
-}
-
-.card-counter:nth-child(4) .wrap:after {
-  background: linear-gradient(90deg, var(--primary) 0%, var(--secondary) 100%);
 }
 
 /* Image container */

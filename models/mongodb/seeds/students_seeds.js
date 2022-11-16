@@ -7,21 +7,21 @@ const seedDatabase = async function () {
     name: "howie",
     age: 18,
     grade: 12,
-    prefect: true,
+    status: true,
   };
 
   const felix = {
     name: "felix",
     age: 17,
     grade: 11,
-    prefect: true,
+    status: true,
   };
 
   const hela = {
     name: "hela",
     age: 16,
     grade: 10,
-    prefect: true,
+    status: true,
   };
 
   await Student.create(howie);

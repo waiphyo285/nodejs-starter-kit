@@ -6,16 +6,13 @@ block content
     //- this is single file upload
     form.d-none#uploadForm(method='POST' action='/file/upload/students' enctype="multipart/form-data")
       input#file-input(type='file' name='uploaded_file')
-      //- input#file-input-btn(type='submit' name='uploaded_file_btn' value='Upload')
 
     //- this is multiple files upload
     //- form(method='POST' action='/file/multiUpload/multitest' enctype='multipart/form-data')
     //-   input(type='file' name='uploaded_files' multiple='')
-    //-   input(type='submit' name='uploaded_files_btn' value='Upload')
 
     include ./../includes/entry/layout-entry-form
       block inputs
-
         div.form-group.d-none 
           div.row.remove-img-list
 
@@ -40,22 +37,13 @@ block content
           
           div.col-sm-6.mb-3
             label.control-label(for='age') Age
-            input.form-control.input-sm#age(type='number', name='age', role='number', min='16' max='120' onkeyup="if(parseInt(this.value)>120){ this.value =120; return false; }" value=data.age autocomplete="off" required)
+            input.form-control.input-sm#age(type='number', name='age', role='number', min='16' max='120' onkeyup="if(parseInt(this.value)>this.max){ this.value=this.max; return false; }" value=data.age autocomplete="off" required)
             
           div.col-sm-6.mb-3
             label.control-label(for='grade') Grade
-            input.form-control.input-sm#grade(type='number', name='grade', role='number', min='1' max='11' onkeyup="if(parseInt(this.value)>11){ this.value =11; return false; }" value=data.grade autocomplete="off" required)
+            input.form-control.input-sm#grade(type='number', name='grade', role='number', min='1' max='11' onkeyup="if(parseInt(this.value)>this.max){ this.value=this.max; return false; }" value=data.grade autocomplete="off" required)
 
-          div.col-sm-6.mb-3
-            label.control-label.d-block(for='prefect') Prefect 
-            .btn-group.btn-group-toggle(data-toggle='buttons')
-              label.btn.btn-outline-success.btn-toggle(class=`${data.prefect == true ? "active" : ""}`)
-                input(type='radio' name=`prefect` value="1" autocomplete='off' checked=(data.prefect == true))
-                span.active  Active
-
-              label.btn.btn-outline-secondary.btn-toggle(class=`${data.prefect == false ? "active" : ""}`)
-                input(type='radio' name=`prefect` value="0" autocomplete='off' checked=(data.prefect == false))
-                span.inactive  Inactive
+          include ./../includes/common/input-status
 
         include ./../includes/entry/layout-entry-btn
 

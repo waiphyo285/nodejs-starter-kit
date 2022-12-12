@@ -1,24 +1,35 @@
 extends ../includes/auth/layout-auth
 
 block content
+
   form(action="/signup" method="post" onsubmit="return validateForm();")
-    img.logo(src="/images/auth/it-logo.png", alt="", srcset="")
-    //- div.title !{app.NAME}
-    div.sub-title !{title}
+    div.head
+      img.logo(src="../images/auth/it-logo.png", alt="logo", srcset="")
     
-    div.fields
-      div.phone(style="margin-top: 28px")
-        input#phone(type="tel" name="phone" pattern="[+,0][1-9]{1}[0-9]{1,2}[0-9]{4,12}" autocomplete="off" required autofocus)
-      div.username
-        input#username(type="text" name="username" placeholder="username" autocomplete="off" required)
-      div.password
-        input#password(type="password" name="password" placeholder="password" required)
+    div.form-group
+      div.col-sm-12.mb-3
+        //- h4.title !{app.NAME}
+        span.sub-title !{title}
+
+      div.col-sm-12.mb-3
+        input.form-control.input-sm#phone(type="tel" name="phone" pattern="[+,0][1-9]{1}[0-9]{1,2}[0-9]{4,12}" placeholder="phone" maxlength="55" autocomplete="off" required autofocus)
+
+      div.col-sm-12.mb-3
+        input.form-control.input-sm#username(type='text', name='username', placeholder="username" maxlength="55" autocomplete="off")
+
+      div.col-sm-12.mb-3
+        div.input-group
+          input.form-control.input-sm#password(type='password', name='password', placeholder="password" maxlength="55" required)
+          div.input-group-append
+            div.input-group-text
+              i.bi.bi-eye-slash(aria-hidden='true')
+
+      div.col-sm-12.mb-3
+         button.signin-button(type="submit") 
+          i.bi.bi-box-arrow-in-right
+          | &nbsp; !{buttonText}
     
-    button.signin-button(type="submit")  
-      i.bi.bi-box-arrow-in-right
-      | &nbsp; !{buttonText}
-    
-    div.link
+    div.link.text-center
       a(href="/login") If you already have account? 
         span Sign In
   

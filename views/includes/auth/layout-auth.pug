@@ -12,11 +12,10 @@ head
   link(rel='icon' type='image/png' sizes='32x32' href='../images/favicon/favicon-32x32.png')
   link(rel='icon' type='image/png' sizes='16x16' href='../images/favicon/favicon-16x16.png')
 
-  // Auth styles 
-  link#theme(href='/layout-css/theme-default.css' rel='stylesheet')
-  link(rel='stylesheet', href='/assets/auth/styles.css')
+  // Bootstrap
+  link(href='/assets/dist/css/bootstrap.min.css' rel='stylesheet')
 
-  // Font Bootstrap
+  // CND Util Lib
   link(rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css")
 
   // Intl phone input css
@@ -27,14 +26,37 @@ head
   //- script(src='https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/intlTelInput.min.js')
   script(src="/layout-js/lib/intl-phone/intl-phone.min.js")
 
+  // Auth styles 
+  link#theme(href='/layout-css/theme-default.css' rel='stylesheet')
+  link(rel='stylesheet', href='/assets/auth/styles.css')
+
+  // Jquery Core
+  script(src="/layout-js/lib/jquery.min.js")
+
 body
   div.login-wrapper
     div.login-div
       block content
-      p#error-message
+      p.text-center#error-msg
   
   script.
-    const errorMessage = document.getElementById("error-message");
+    $(document).ready(function() {
+      $(".input-group-append").on('click', function(event) {
+        event.preventDefault();
+        if($("#password").attr("type") == "password"){
+          $("#password").prop("type", "text");
+          $('.input-group-text i').addClass( "bi-eye" );
+          $('.input-group-text i').removeClass( "bi-eye-slash" );
+        }
+        else if($("#password").attr("type") == "text"){
+          $("#password").prop("type", "password");
+          $('.input-group-text i').addClass( "bi-eye-slash" );
+          $('.input-group-text i').removeClass( "bi-eye" );
+        }
+      });
+    });
+
+    const errorMessage = document.getElementById("error-msg");
     const urlParams = new URLSearchParams(window.location.search);
     const message = urlParams.get('message');
 
@@ -47,5 +69,5 @@ body
 
     if (theme) {
       const themeHref = `/layout-css/theme-${theme}.css`;
-      document.getElementById("themeLink").setAttribute("href", themeHref)
+      $("#theme").attr("href", themeHref);
     }

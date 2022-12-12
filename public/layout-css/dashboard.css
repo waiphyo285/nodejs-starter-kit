@@ -193,7 +193,9 @@ textarea:focus {
 #sidebar-wrapper {
   min-height: 100vh;
   margin-left: -15rem;
+  background: var(--back-white);
   border-right: 0.5px solid var(--back-gray);
+  z-index: 1000;
 }
 
 #sidebar-wrapper .sidebar-heading {
@@ -213,34 +215,26 @@ textarea:focus {
   min-width: 100vw;
 }
 
-#wrapper.toggled #sidebar-wrapper {
-  margin-left: 0;
+#overlay {
+  background: var(--back-gray);
+  cursor: pointer;
+  position: fixed;
+  display: none;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  opacity: .3;
+  z-index: 990;
 }
 
-@media (min-width: 768px) {
-  #sidebar-wrapper {
-    margin-left: 0;
-  }
-
-  #page-content-wrapper {
-    min-width: 0;
-    width: 100%;
-  }
-
-  #wrapper.toggled #sidebar-wrapper {
-    margin-left: -15rem;
-  }
-}
-
-/* Develop mode  */
-.dev-mode {
-  position: absolute;
-  width: 30px;
-  right: 12px;
-  bottom: 18px;
-  font-size: larger;
-  color: goldenrod;
-  transform: rotate(-45deg);
+.reveal {
+  margin-left: 0rem;
+  transform: translateX(100%);
+  -ms-transform: translateX(100%);
+  -webkit-transform: translateX(100%);
+  transition: 300ms ease;
+  -webkit-transition: 300ms ease;
 }
 
 /* Welcome text */
@@ -261,6 +255,17 @@ textarea:focus {
   50% {
     border-color: transparent
   }
+}
+
+/* Develop mode  */
+.dev-mode {
+  position: absolute;
+  width: 30px;
+  right: 12px;
+  bottom: 18px;
+  font-size: larger;
+  color: goldenrod;
+  transform: rotate(-45deg);
 }
 
 /* Card design */

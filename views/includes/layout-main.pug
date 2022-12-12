@@ -60,6 +60,8 @@ head
             a(href="https://waiphyonaing.me") 
               | Wai Phyo Naing
 
+#overlay
+
 script.
   // Global Variable
   var table, pageEntry;
@@ -69,11 +71,6 @@ script.
   var signJwtMethod = "one";
   var apiVersionNum = "v1";
   var maxImageCount = 5;
-
-  // request permission to user but not still use
-  //- if (Notification.permission != "granted") {
-  //-   Notification.requestPermission(); 
-  //- }
 
   function dataTableDef (curPage) { 
     const buttons = [
@@ -170,7 +167,12 @@ script(src='/layout-js/helpers.js')
 
 // Menu Toggle Script
 script.
-  $("#menu-toggle").click(function(e) {
-    e.preventDefault();
-    $("#wrapper").toggleClass("toggled");
+  $('#menu-toggle').on('click', function() {
+    $('#sidebar-wrapper').toggleClass('reveal');
+    $('#overlay').toggle();
+  });
+
+  $('#overlay').on('click', function(){
+    $('#sidebar-wrapper').removeClass('reveal');
+    $('#overlay').hide();
   });

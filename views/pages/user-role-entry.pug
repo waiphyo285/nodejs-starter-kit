@@ -39,7 +39,7 @@ block content
                   span !{menu.title}
 
               div.col-8.mb-3
-                .btn-group.btn-group-toggle(data-toggle='buttons')
+                .btn-group.btn-group-sm.btn-group-toggle(data-toggle='buttons')
                   label.btn.btn-outline-success.btn-toggle(class=`${menu.access == true ? "active" : ""}`)
                     input(type='checkbox' name=`program[${menuIdx}][access]` value="1" checked=(menu.access == true))
                     span.bi.bi-check2-square
@@ -56,7 +56,7 @@ block content
                       span !{submenu.title}
 
                   div.col-8.mb-3
-                    .btn-group.btn-group-toggle(data-toggle='buttons')
+                    .btn-group.btn-group-sm.btn-group-toggle(data-toggle='buttons')
                       label.btn.btn-outline-success.btn-toggle(class=`${submenu.access == true ? "active" : ""}`)
                         input(type='checkbox' name=`program[${menuIdx}][submenu][${submenuIdx}][access]` value="1" autocomplete='off' checked=(submenu.access == true))
                         span.bi.bi-check2-square

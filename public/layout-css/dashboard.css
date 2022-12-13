@@ -11,8 +11,8 @@
   src: url("/fonts/Sagar/Release/MyanmarSagar.ttf") format("truetype");
 }
 
-
 /* Setup font */
+
 body {
   font-size: 14px;
   font-family: "Questrial Sagar", "Questrial", "Ubuntu Mono", monospace;
@@ -21,6 +21,7 @@ body {
 /* Bootstrap class override here */
 
 /* Nav & nav-item */
+
 nav.navbar {
   padding: 0.2rem 1rem;
   background: var(--primary);
@@ -51,6 +52,7 @@ nav.navbar {
 }
 
 /* Dropdown */
+
 .nav-item.dropdown>.dropdown-menu {
   top: 38px;
   left: -110px;
@@ -73,6 +75,7 @@ nav.navbar {
 }
 
 /* Dialog modal */
+
 .custom-modal-lg>.modal-content {
   min-height: 500px !important;
   max-height: 500px !important;
@@ -84,6 +87,7 @@ nav.navbar {
 }
 
 /* Container fulid */
+
 .container-fluid {
   min-height: 92vh;
   max-height: 92vh;
@@ -91,7 +95,14 @@ nav.navbar {
   padding: 3rem 0 1.5rem 0;
 }
 
+/* Data Table */
+
+div.dataTables_scrollBody table {
+  table-layout: fixed;
+}
+
 /* Select 2 */
+
 .select2-container .select2-selection--single {
   height: 36px !important;
 }
@@ -117,6 +128,7 @@ nav.navbar {
 }
 
 /* Sweet alert 2 */
+
 .swal-style {
   width: 500px !important;
   font-size: 14px !important;
@@ -145,6 +157,7 @@ nav.navbar {
 }
 
 /* Scrollbar  */
+
 ::-webkit-scrollbar {
   width: 8px;
   height: 8px;
@@ -159,6 +172,7 @@ nav.navbar {
 }
 
 /* Text selection */
+
 ::selection {
   color: var(--text-white);
   background: var(--primary);
@@ -170,6 +184,7 @@ nav.navbar {
 }
 
 /* Input focus */
+
 input:focus,
 .form-control:focus {
   outline: none !important;
@@ -186,6 +201,7 @@ textarea:focus {
 /* Customer css here */
 
 /* Layout */
+
 #wrapper {
   overflow-x: hidden;
 }
@@ -238,6 +254,7 @@ textarea:focus {
 }
 
 /* Welcome text */
+
 .animate-typing {
   width: 15ch;
   overflow: hidden;
@@ -258,6 +275,7 @@ textarea:focus {
 }
 
 /* Develop mode  */
+
 .dev-mode {
   position: absolute;
   width: 30px;
@@ -269,6 +287,7 @@ textarea:focus {
 }
 
 /* Card design */
+
 .card {
   background-image: linear-gradient(to right,
       rgba(255, 255, 255, 1),
@@ -277,6 +296,7 @@ textarea:focus {
 }
 
 /* Card counter */
+
 .card-counter {
   margin-top: 15px;
   margin-bottom: 15px;
@@ -309,18 +329,19 @@ textarea:focus {
 }
 
 .card-counter-title {
-  color: #3f3f3f;
   font-size: 1.18em;
+  color: var(--text-black);
 }
 
 .card-counter-number {
-  color: #3f3f3f;
   font-weight: 600;
   font-size: 2.5em;
   line-height: 64px;
+  color: var(--text-black);
 }
 
 /* Image container */
+
 .img-container {
   position: relative;
   cursor: pointer;
@@ -356,6 +377,7 @@ textarea:focus {
 }
 
 /* Chart.js */
+
 canvas {
   height: 100%;
   width: 100%;

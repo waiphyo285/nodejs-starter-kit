@@ -26,7 +26,7 @@ router
   .post("/student", (req, res, next) => {
     utils.removeImages(req.body.remove_images || [])
       .then((result) => {
-        req.body.images = req.body.upload_images;
+        req.body.images = req.body.images;
         const insertDb = studentsDb.addData(req.body);
         handleDatabase(insertDb, utils.isEmptyObject, res);
       });
@@ -35,7 +35,7 @@ router
     utils.removeImages(req.body.remove_images || [])
       .then((result) => {
         const { ["id"]: rmId, ...data } = req.body;
-        data.images = data.upload_images;
+        data.images = data.images;
         const updateDb = studentsDb.updateData(rmId, data);
         handleDatabase(updateDb, utils.isEmptyObject, res);
       });

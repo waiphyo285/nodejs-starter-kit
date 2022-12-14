@@ -149,9 +149,9 @@ function ajaxUploadForm(args) {
 
 function makeDivImage(setSrc) {
   return `
-    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-2 item d-flex justify-content-center img-container">
+    <div class="col-sm-3 col-md-2 col-lg-1 img-container">
       <input class="uploaded-files" type="hidden" name="images[]" value=${setSrc} />
-      <img class="m-1 img img-thumbnail" src=${setSrc} alt="" srcset="" width="360" height="360"/>
+      <img class="m-1 img img-thumbnail" src=${setSrc} alt="" srcset="" width="100" height="100"/>
       <button type="button" class="btn btn-sm remove-file"><i class="bi bi-trash3"/></button>
     </div>`;
 }

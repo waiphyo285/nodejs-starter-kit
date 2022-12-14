@@ -18,15 +18,15 @@ block content
 
         div.form-group  
           div.row.img-list
-            .col-xs-6.col-sm-6.col-md-6.col-lg-2.img-container
-              img.m-1.p-3.add-img-wrapper#add-image(src="/images/heroicons/plus.svg", alt="", srcset="" width="360" height="360")
+            .col-sm-3.col-md-2.col-lg-1.img-container
+              img.m-1.img.img-thumbnail#add-image(src="/images/heroicons/plus.svg", alt="", srcset="" width="100" height="100")
 
             - var imageArray = data.images || [];
             if imageArray.length > 0
               each progfile_image in data.images
-                .col-xs-6.col-sm-6.col-md-6.col-lg-2.d-flex.justify-content-center.img-container
+                .col-sm-3.col-md-2.col-lg-1.img-container
                   input.uploaded-files(type="hidden", name="images[]", value=`${progfile_image}`)
-                  img.m-1.img.img-thumbnail(src=`${progfile_image}`, alt="", srcset="" width="360" height="360")
+                  img.m-1.img.img-thumbnail(src=`${progfile_image}`, alt="", srcset="" width="100" height="100")
                   button.btn.btn-sm.remove-file(type="button")
                     i.bi.bi-trash3
 

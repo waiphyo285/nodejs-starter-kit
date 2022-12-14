@@ -349,7 +349,7 @@ textarea:focus {
 
 .img-container img {
   width: 100%;
-  height: auto;
+  aspect-ratio: 1;
 }
 
 .img-container .btn {
@@ -369,11 +369,6 @@ textarea:focus {
 
 .img-container:hover .btn {
   opacity: 1;
-}
-
-.add-img-wrapper {
-  border-radius: 8px;
-  border: 3px dashed var(--back-gray);
 }
 
 /* Chart.js */

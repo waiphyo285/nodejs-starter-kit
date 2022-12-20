@@ -5,7 +5,7 @@
 const version = apiVersionNum;
 
 const headers = {
-  "userrole": role,
+  "userrole": userRole,
   "x-access-method": signJwtMethod,
   "authorization": "Bearer " + token,
 };

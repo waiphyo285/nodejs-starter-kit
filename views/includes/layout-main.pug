@@ -67,7 +67,8 @@ script.
   var table, pageEntry;
   var token = '!{user.latmat}';
   var userId = '!{user._id}';
-  var role = '!{user.role}';
+  var userRole = '!{user.role}';
+  var decimalPoint = ".01";
   var signJwtMethod = "one";
   var apiVersionNum = "v1";
   var maxImageCount = 5;
@@ -129,7 +130,7 @@ script.
     return {
       "url": `./api/${apiVersionNum}` + curUrl,
       "headers": {
-        "userrole": role,
+        "userrole": userRole,
         "x-access-method": signJwtMethod,
         "authorization": "Bearer " + token
       },

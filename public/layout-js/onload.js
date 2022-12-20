@@ -3,7 +3,9 @@
  */
 
 $(function () {
-    $('[data-toggle="tooltip"]').tooltip()
+    $('[data-toggle="tooltip"]').tooltip();
+
+    $('input[role="number"]').attr({ "step": decimalPoint });
 
     $(".selectpicker").select2({ width: "100%" });
 

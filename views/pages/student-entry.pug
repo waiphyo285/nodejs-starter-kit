@@ -5,7 +5,7 @@ block content
 
     //- this is single file upload
     form.d-none#uploadForm(method='POST' action='/file/upload/students' enctype="multipart/form-data")
-      input#file-input(type='file' name='uploaded_file')
+      input#file-input(type='file' name='uploaded_file' accept="image/png, image/jpeg")
 
     //- this is multiple files upload
     //- form(method='POST' action='/file/multiUpload/multitest' enctype='multipart/form-data')
@@ -18,13 +18,13 @@ block content
 
         div.form-group  
           div.row.img-list
-            .col-sm-3.col-md-2.col-lg-1.img-container
+            .col-4.col-md-2.col-lg-1.img-container
               img.m-1.img.img-thumbnail#add-image(src="/images/heroicons/plus.svg", alt="", srcset="" width="100" height="100")
 
             - var imageArray = data.images || [];
             if imageArray.length > 0
               each progfile_image in data.images
-                .col-sm-3.col-md-2.col-lg-1.img-container
+                .col-4.col-md-2.col-lg-1.img-container
                   input.uploaded-files(type="hidden", name="images[]", value=`${progfile_image}`)
                   img.m-1.img.img-thumbnail(src=`${progfile_image}`, alt="", srcset="" width="100" height="100")
                   button.btn.btn-sm.remove-file(type="button")

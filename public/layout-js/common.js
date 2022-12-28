@@ -70,8 +70,8 @@ function submitAction(url, callback) {
 
 function handleAlert(args, redirect = true) {
   if (args.code == "200") {
-    $("#alertTitle").html("Success: ");
-    $("#alertMessage").html("Save Successful.");
+    $("#alertTitle").text("Success: ");
+    $("#alertMessage").text("Save Successful.");
     $("#alertHandler").addClass("alert-success").show();
     var postFrm = $("#postSuccessForm");
     window.setTimeout(function () {
@@ -80,8 +80,8 @@ function handleAlert(args, redirect = true) {
     }, 1 * 1000);
   }
   else {
-    $("#alertTitle").html("Error: ");
-    $("#alertMessage").html("Save Unsuccessful.");
+    $("#alertTitle").text("Error: ");
+    $("#alertMessage").text("Save Unsuccessful.");
     $("#alertHandler").addClass("alert-danger").show();
     window.setTimeout(function () {
       $("#alertHandler").removeClass("alert-danger").hide();

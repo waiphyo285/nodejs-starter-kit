@@ -7,10 +7,10 @@ block content
       -isAccess = p.access
   
   if isAccess
-    main.card.mx-3.p-3(role='main')
-      .d-flex
+    main.mx-3(role='main')
+      .d-flex.mt-1
         h5.animate-typing.mr-auto Welcome back 👋🏻
-        h5.show-date-time Jan 01 00:00 AM
+        span.show-date-time Jan 01 00:00 AM
 
       .row
         .card-counter.col-md-4(onclick="location.href='/users';")

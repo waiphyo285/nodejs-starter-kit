@@ -27,6 +27,8 @@ $("#dialogDeleteConfirm").on("show.bs.modal", function (event) {
 
 $("#entryForm").submit(function (e) {
   e.preventDefault();
+  $(this).find(":submit")
+         .attr('disabled', true);
   $.ajax({
     url: $(this).attr("action"),
     type: $(this).attr("method"),
@@ -36,8 +38,8 @@ $("#entryForm").submit(function (e) {
       handleAlert(data);
     },
     error: function (error) {
-      handleAlert(error.responseJSON)
-    },
+      handleAlert(error.responseJSON);
+    }
   });
 });
 

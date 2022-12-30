@@ -17,20 +17,6 @@ div.modal.fade#dialogDeleteConfirm(tabindex='-1', role='dialog', aria-labelledby
           i.bi.bi-trash3
           |  DELETE
 
-// Default Alert - Typically work with success or error actions
-
-div.alert.alert-success.alert-dismissible#alertActionSuccess(role='alert' style="display:none;")
-  strong Success:
-  span#delSuccessMsg  Action Successful.
-  button.close(type='button', data-hide='alert', aria-label='Close')
-    span(aria-hidden='true') &times;
-
-div.alert.alert-danger.alert-dismissible#alertActionError(role='alert' style="display:none;")
-  strong Error:
-  span#delErrorMsg  Action Unsuccessful.
-  button.close(type='button', data-hide='alert', aria-label='Close')
-    span(aria-hidden='true') &times;
-
 // General Alert - Can replace with your custom text message or description
 
 div.alert.alert-dismissible#alertHandler(role='alert' style="display:none;")

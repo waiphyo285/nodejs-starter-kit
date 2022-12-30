@@ -14,9 +14,14 @@ $("#dialogDeleteConfirm").on("show.bs.modal", function (event) {
   var button = $(event.relatedTarget);
   var id = button.data("id");
   $(this).attr("data-id", id);
-  $(this).find("#dialogDelete").on("click", function (ev) {
+  $(this).find("#dialogDelete").on("click", function () {
     var deleteUrl = `./api/${version}` + `${pageEntry}/${id}`;
-    submitAction(deleteUrl, function () {
+    submitAction({
+      url: deleteUrl,
+      type: "delete",
+      data: {},
+      timer: 1000
+    }, function () {
       table.ajax.reload();
     });
   });
@@ -27,67 +32,55 @@ $("#dialogDeleteConfirm").on("show.bs.modal", function (event) {
 
 $("#entryForm").submit(function (e) {
   e.preventDefault();
-  $(this).find(":submit")
-         .attr('disabled', true);
-  $.ajax({
+  $(this).find(":submit").attr('disabled', true);
+  submitAction({
     url: $(this).attr("action"),
     type: $(this).attr("method"),
     data: $(this).serialize(),
-    headers: headers,
-    success: function (data) {
-      handleAlert(data);
-    },
-    error: function (error) {
-      handleAlert(error.responseJSON);
-    }
-  });
+    timer: 1500
+  }, function () { });
 });
 
-function submitAction(url, callback) {
-  $.ajax({
-    url: url,
-    type: "delete",
-    headers: headers,
-    success: function (data) {
-      if (data && data.code == "200") {
-        $("#alertActionError").hide();
-        $("#alertActionSuccess").show();
-        if (typeof callback === "function") {
-          callback();
-        }
-      }
-      else {
-        $("#alertActionSuccess").hide();
-        $("#alertActionError").show();
-      }
-    },
-    error: function (jqXHR, textStatus, errorThrown) {
-      swalWarning({
-        title: "Warning",
-        description: errorThrown,
-      });
-    },
-  });
+function submitAction(args, callback) {
+  var debounce;
+  clearTimeout(debounce);
+  debounce = setTimeout(() => {
+    $.ajax({
+      url: args.url,
+      type: args.type,
+      data: args.data || {},
+      headers: headers,
+      success: function (data) {
+        data && handleAlert(data);
+        typeof callback === "function" && callback();
+      },
+      error: function (jqXHR, textStatus, errorThrown) {
+        swalWarning({
+          title: "Warning",
+          description: errorThrown,
+        });
+      },
+    });
+  }, args.timer);
 }
 
 function handleAlert(args, redirect = true) {
   if (args.code == "200") {
     $("#alertTitle").text("Success: ");
-    $("#alertMessage").text("Save Successful.");
+    $("#alertMessage").text("Your request is successful.");
     $("#alertHandler").addClass("alert-success").show();
-    var postFrm = $("#postSuccessForm");
     window.setTimeout(function () {
-      if (redirect) postFrm.submit();
+      if (redirect) $("#postSuccessForm").submit();
       $("#alertHandler").removeClass("alert-success").hide();
-    }, 1 * 1000);
+    }, 1 * 1500);
   }
   else {
     $("#alertTitle").text("Error: ");
-    $("#alertMessage").text("Save Unsuccessful.");
+    $("#alertMessage").text("Your request is failed.");
     $("#alertHandler").addClass("alert-danger").show();
     window.setTimeout(function () {
       $("#alertHandler").removeClass("alert-danger").hide();
-    }, 1 * 1000);
+    }, 1 * 1500);
   }
 }
 

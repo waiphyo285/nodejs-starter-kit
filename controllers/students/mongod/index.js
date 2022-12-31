@@ -3,12 +3,12 @@ const serialize = require("./serializer");
 const Student = require("@models/mongodb/schemas/student");
 
 const listData = async (params) => {
-  const { columns, order, start, length, search, created_at } = params;
-  const sort = {};               // init empty default
-  const filter = {};             // init empty default
-  const w_regx = ["name"];       // add search keys
-  const limit = parseInt(length) || undefined;
-  const skip = (parseInt(start) || 0) * limit;
+  const { draw, columns, order, start, length, search, created_at } = params;
+  const sort = {};
+  const filter = {};
+  const w_regx = ["name"];
+  const skip = parseInt(start) || 0;
+  const limit = parseInt(length) || 10;
 
   if (created_at) {
     filter.created_at = await utils.getDateRange(created_at);
@@ -22,13 +22,15 @@ const listData = async (params) => {
 
   if (search) {
     for (const i in w_regx) {
-      const regx = new RegExp(search.value.replace(/[&\/\\#,+()$~%.'":*?<>{}]/g, ""), "i");
+      const regx = new RegExp(
+        search.value.replace(/[&\/\\#,+()$~%.'":*?<>{}]/g, ""),
+        "i"
+      );
       w_regx[i] = { [w_regx[i]]: { $regex: regx } };
     }
   }
 
-  return Student
-    .find(filter)
+  return Student.find(filter)
     .or({ $or: w_regx })
     .sort(sort)
     .skip(skip)
@@ -45,13 +47,17 @@ const listData = async (params) => {
     })
     .then(async (data) => {
       const recordsTotal = await Student.countDocuments();
-      return serialize({ recordsTotal, recordsFiltered: data.length, data });
+      return serialize({
+        data,
+        draw,
+        recordsTotal,
+        recordsFiltered: recordsTotal,
+      });
     });
 };
 
 const findDataById = (id) => {
-  return Student
-    .findById(id)
+  return Student.findById(id)
     .populate({
       path: "cityid",
       model: "city",
@@ -66,8 +72,7 @@ const findDataById = (id) => {
 };
 
 const findDataBy = (params) => {
-  return Student
-    .find(params)
+  return Student.find(params)
     .populate({
       path: "cityid",
       model: "city",
@@ -82,26 +87,19 @@ const findDataBy = (params) => {
 };
 
 const addData = (dataObj) => {
-  return Student
-    .create(dataObj)
-    .then(serialize);
+  return Student.create(dataObj).then(serialize);
 };
 
 const updateData = (id, dataObj) => {
-  return Student
-    .findByIdAndUpdate(id, dataObj)
-    .then(serialize);
+  return Student.findByIdAndUpdate(id, dataObj).then(serialize);
 };
 
 const deleteData = (id) => {
-  return Student
-    .findByIdAndDelete(id)
-    .then(serialize);
+  return Student.findByIdAndDelete(id).then(serialize);
 };
 
 const dropAll = () => {
-  return Student
-    .remove();
+  return Student.remove();
 };
 
 module.exports = {

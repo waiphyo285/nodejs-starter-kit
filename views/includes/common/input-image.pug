@@ -1,0 +1,12 @@
+div.row.img-list
+  .col-4.col-md-2.col-lg-1.img-container
+    img.m-1.img.img-thumbnail#add-image(src="/images/heroicons/plus.svg", alt="", srcset="" width="100" height="100")
+  
+  - var imageArray = data.images || [];
+  if imageArray.length > 0
+    each image in data.images
+      .col-4.col-md-2.col-lg-1.img-container
+        input.uploaded-files(type="hidden", name="images[]", value=`${image}`)
+        img.m-1.img.img-thumbnail(src=`${image}`, alt="", srcset="" width="100" height="100")
+        button.btn.btn-sm.remove-file(type="button")
+          i.bi.bi-trash3

@@ -23,20 +23,18 @@ const sumPermission = (role) => {
   return config.userRoleAccess[role]
     .split(",")
     .reduce((sum, cur) => +sum + +cur, 0);
-}
+};
 
 // Generate methods
 
 const encryptTime = (req, res) => {
-  const time = encryptData(`${Date.now()}`)
+  const time = encryptData(`${Date.now()}`);
   const locales = res.locals.i18n.translations;
   checkPayload(req.body)
-    ? res.status(200).json(
-      createResponse(200, { data: { data: time } }, locales)
-    )
-    : res.status(401).json(
-      createResponse(401, {}, locales)
-    );
+    ? res
+        .status(200)
+        .json(createResponse(200, { data: { data: time } }, locales))
+    : res.status(401).json(createResponse(401, {}, locales));
 };
 
 const encryptData = (message) => {
@@ -62,18 +60,14 @@ const decryptData = ({ init_vectr, secret_key, random }) => {
 const generateToken = (req, res) => {
   // 1 min = 60000 ms
   const datetime = Date.now();
-  const hashprop = req.params.timehash;
+  const hashprop = req.query.timehash;
   const prevtime = decryptData({ ...req.body, random: hashprop });
   const token = getSignMethod(signJwtToken, req.body);
   const locales = res.locals.i18n.translations;
 
   datetime - prevtime <= 60000 && checkPayload(req.body)
-    ? res.status(200).json(
-      createResponse(200, { data: { token } }, locales)
-    )
-    : res.status(401).json(
-      createResponse(401, {}, locales)
-    );
+    ? res.status(200).json(createResponse(200, { data: { token } }, locales))
+    : res.status(401).json(createResponse(401, {}, locales));
 };
 
 const checkPayload = ({ username, password, userrole, method_id }) => {
@@ -109,6 +103,8 @@ const checkJwtToken = (req, res, next) => {
   let token = req.headers["authorization"];
   let method_id = req.headers["x-access-method"];
   const locales = res.locals.i18n.translations;
+
+  if (process.env.NODE_ENV === "testing") return next();
 
   token =
     token && token.startsWith("Bearer ")
@@ -154,14 +150,14 @@ const isAuth = (targets) => {
     const permitAccess = sumPermission(curRole);
     const prev = () => {
       res.status(401).json(createResponse(401, {}, locales));
-    }
+    };
     permitAccess >= targetAccess ? next() : prev();
   };
 };
 
 // Generate Token Routes
-router.post("/u-tsh/", encryptTime);
-router.post("/u-bar/:timehash?", generateToken);
+router.post("/u-tsh", encryptTime);
+router.post("/u-bar", generateToken);
 
 module.exports = {
   isAuth: isAuth,

@@ -47,15 +47,15 @@ const newTemplate = (req, res, next) => {
     ],
     api: [
       `./generator/api.js`,
-      `./src/web/routes/api/v1/${templateName}.js`,
+      `./src/routes/api/v1/${templateName}.js`,
     ],
     route: [
       `./generator/route.js`,
-      `./src/web/routes/api/v1/index.js`
+      `./src/routes/api/v1/index.js`
     ],
     page: [
       `./generator/page.js`,
-      `./src/web/routes/pages/${templateName}.js`,
+      `./src/routes/pages/${templateName}.js`,
     ],
   };
 

@@ -3,7 +3,7 @@ block content
   main.mx-3(role='main')
     include ./../includes/modal/layout-filter-table
     include ./../includes/list/layout-list-header
-
+    
     table#example.table.table-striped(style='width:100%')
       thead
         tr
@@ -15,6 +15,11 @@ block content
           th Updated_at
           th.text-right Actions
       tbody
+      //- tfoot
+      //-   tr 
+      //-     td(colspan="7").bg-light
+      //-       input.form-control.input-sm#tb_search(type="text" placeholder="Search...")
+
   script.
     $(document).ready(function() {
       pageEntry = '!{page.entry.url}';

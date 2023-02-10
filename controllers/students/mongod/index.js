@@ -3,32 +3,10 @@ const serialize = require("./serializer");
 const Student = require("@models/mongodb/schemas/student");
 
 const listData = async (params) => {
-  const { draw, columns, order, start, length, search, created_at } = params;
-  const sort = {};
-  const filter = {};
-  const w_regx = ["name"];
-  const skip = parseInt(start) || 0;
-  const limit = parseInt(length) || 10;
+  const { filter, w_regx, sort, skip, limit, draw } =
+    await utils.getQueryParams(params, ["name"]);
 
-  if (created_at) {
-    filter.created_at = await utils.getDateRange(created_at);
-  }
-
-  if (order) {
-    for (const i in order) {
-      sort[columns[i].data] = order[i].dir === "asc" ? 1 : -1;
-    }
-  }
-
-  if (search) {
-    for (const i in w_regx) {
-      const regx = new RegExp(
-        search.value.replace(/[&\/\\#,+()$~%.'":*?<>{}]/g, ""),
-        "i"
-      );
-      w_regx[i] = { [w_regx[i]]: { $regex: regx } };
-    }
-  }
+  const recordsTotal = await Student.countDocuments();
 
   return Student.find(filter)
     .or({ $or: w_regx })
@@ -36,7 +14,7 @@ const listData = async (params) => {
     .skip(skip)
     .limit(limit)
     .populate({
-      path: "cityid",
+      path: "regionid",
       model: "city",
       select: "city_mm city_en",
     })
@@ -45,8 +23,7 @@ const listData = async (params) => {
       model: "township",
       select: "township_mm township_en",
     })
-    .then(async (data) => {
-      const recordsTotal = await Student.countDocuments();
+    .then((data) => {
       return serialize({
         data,
         draw,
@@ -59,7 +36,7 @@ const listData = async (params) => {
 const findDataById = (id) => {
   return Student.findById(id)
     .populate({
-      path: "cityid",
+      path: "regionid",
       model: "city",
       select: "city_mm city_en",
     })
@@ -74,7 +51,7 @@ const findDataById = (id) => {
 const findDataBy = (params) => {
   return Student.find(params)
     .populate({
-      path: "cityid",
+      path: "regionid",
       model: "city",
       select: "city_mm city_en",
     })

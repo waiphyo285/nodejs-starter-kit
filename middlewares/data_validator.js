@@ -9,9 +9,7 @@ const validateWare = (schema, property) => {
     const prev = () => {
       const { details } = error;
       const message = details.map((i) => i.message).join(",");
-      res.status(422).json(
-        createResponse(422, { data: { message } }, locales)
-      );
+      res.status(400).json(createResponse(400, { data: { message } }, locales));
     };
     error === null ? next() : prev();
   };

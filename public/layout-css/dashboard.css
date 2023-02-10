@@ -39,51 +39,51 @@ nav.navbar {
   border-right: 3px solid var(--primary);
 }
 
-.o-nav-items>.nav-item {
+.o-nav-items > .nav-item {
   margin: 0 3px;
   line-height: 1.3;
   border-radius: 0.2rem;
   background: var(--back-white);
 }
 
-.o-nav-items>.nav-item>a {
+.o-nav-items > .nav-item > a {
   color: var(--secondary);
   font-weight: 500;
 }
 
 /* Dropdown */
 
-.nav-item.dropdown>.dropdown-menu {
+.nav-item.dropdown > .dropdown-menu {
   top: 38px;
   left: -110px;
 }
 
-.nav-item.dropdown>.dropdown-menu>a {
+.nav-item.dropdown > .dropdown-menu > a {
   font-size: 14px;
   padding: 5px 10px;
   margin: 3px auto;
 }
 
-.nav-item.dropdown>.dropdown-menu>a:hover,
-.nav-item.dropdown>.dropdown-menu>a:focus {
+.nav-item.dropdown > .dropdown-menu > a:hover,
+.nav-item.dropdown > .dropdown-menu > a:focus {
   color: var(--primary);
   background-color: var(--back-white);
 }
 
-.nav-item.dropdown>.dropdown-menu>.dropdown-divider {
+.nav-item.dropdown > .dropdown-menu > .dropdown-divider {
   background-color: var(--back-gray);
 }
 
 /* Dialog modal */
 
-.custom-modal-lg>.modal-content {
+.custom-modal-lg > .modal-content {
   min-height: 500px !important;
   max-height: 500px !important;
-  overflow: hidden !important
+  overflow: hidden !important;
 }
 
-.custom-modal-lg>.modal-content>.modal-body {
-  overflow-y: scroll !important
+.custom-modal-lg > .modal-content > .modal-body {
+  overflow-y: scroll !important;
 }
 
 /* Container fulid */
@@ -98,7 +98,11 @@ nav.navbar {
 /* Data Table */
 
 div.dataTables_scrollBody table {
-  table-layout: fixed;
+  /* table-layout: fixed; */
+}
+
+.dataTables_filter {
+  display: none;
 }
 
 /* Select 2 */
@@ -115,9 +119,10 @@ div.dataTables_scrollBody table {
   line-height: 36px !important;
 }
 
-.select2-container--default .select2-results__option--highlighted[aria-selected] {
+.select2-container--default
+  .select2-results__option--highlighted[aria-selected] {
   background-color: var(--primary);
-  color: #fff
+  color: #fff;
 }
 
 .dropdown-item.active,
@@ -240,7 +245,7 @@ textarea:focus {
   left: 0;
   right: 0;
   bottom: 0;
-  opacity: .3;
+  opacity: 0.3;
   z-index: 990;
 }
 
@@ -264,13 +269,13 @@ textarea:focus {
 
 @keyframes typing {
   from {
-    width: 0
+    width: 0;
   }
 }
 
 @keyframes blink {
   50% {
-    border-color: transparent
+    border-color: transparent;
   }
 }
 
@@ -289,9 +294,11 @@ textarea:focus {
 /* Card design */
 
 .card {
-  background-image: linear-gradient(to right,
-      rgba(255, 255, 255, 1),
-      rgba(250, 250, 250, 1));
+  background-image: linear-gradient(
+    to right,
+    rgba(255, 255, 255, 1),
+    rgba(250, 250, 250, 1)
+  );
   box-shadow: 3px 3px 5px rgb(244, 244, 244);
 }
 
@@ -309,9 +316,7 @@ textarea:focus {
   overflow: hidden;
   border-radius: 8px;
   padding: 30px 20px 15px;
-  background: var(--back-white);
-  box-shadow: var(--back-gray) 0px 0px 1px 0px,
-              var(--back-gray) 0px 0px 1px 0px;
+  background: var(--back-gray);
 }
 
 .card-counter .wrap:after {

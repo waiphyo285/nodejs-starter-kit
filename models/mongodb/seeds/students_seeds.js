@@ -30,7 +30,7 @@ const seedDatabase = async function () {
 };
 
 // Drop DB then seed
-mongoose.connection.collections.students.drop(async function () {
+Student.drop(async function () {
   await seedDatabase();
   mongoose.connection.close();
 });

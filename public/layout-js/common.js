@@ -5,40 +5,50 @@
 const version = apiVersionNum;
 
 const headers = {
-  "userrole": userRole,
+  userrole: role,
   "x-access-method": signJwtMethod,
-  "authorization": "Bearer " + token,
+  authorization: "Bearer " + token,
 };
 
-$("#dialogDeleteConfirm").on("show.bs.modal", function (event) {
-  var button = $(event.relatedTarget);
-  var id = button.data("id");
-  $(this).attr("data-id", id);
-  $(this).find("#dialogDelete").on("click", function () {
-    var deleteUrl = `./api/${version}` + `${pageEntry}/${id}`;
-    submitAction({
-      url: deleteUrl,
-      type: "delete",
-      data: {},
-      timer: 1000
-    }, function () {
-      table.ajax.reload();
-    });
+$("#dialogDeleteConfirm")
+  .on("show.bs.modal", function (event) {
+    var button = $(event.relatedTarget);
+    var id = button.data("id");
+    $(this).attr("data-id", id);
+    $(this)
+      .find("#dialogDelete")
+      .on("click", function () {
+        var deleteUrl = `./api/${version}${pageEntry}/${id}`;
+        submitAction(
+          {
+            url: deleteUrl,
+            type: "delete",
+            data: {},
+            timer: 1000,
+          },
+          function () {
+            table.ajax.reload();
+          }
+        );
+      });
+  })
+  .on("hide.bs.modal", function (event) {
+    $(this).attr("data-id", "");
+    $(this).find("#dialogDelete").off("click");
   });
-}).on("hide.bs.modal", function (event) {
-  $(this).attr("data-id", "");
-  $(this).find("#dialogDelete").off("click");
-});
 
 $("#entryForm").submit(function (e) {
   e.preventDefault();
-  $(this).find(":submit").attr('disabled', true);
-  submitAction({
-    url: $(this).attr("action"),
-    type: $(this).attr("method"),
-    data: $(this).serialize(),
-    timer: 1500
-  }, function () { });
+  $(this).find(":submit").attr("disabled", true);
+  submitAction(
+    {
+      url: $(this).attr("action"),
+      type: $(this).attr("method"),
+      data: $(this).serialize(),
+      timer: 1500,
+    },
+    function () {}
+  );
 });
 
 function submitAction(args, callback) {
@@ -73,8 +83,7 @@ function handleAlert(args, redirect = true) {
       if (redirect) $("#postSuccessForm").submit();
       $("#alertHandler").removeClass("alert-success").hide();
     }, 1 * 1500);
-  }
-  else {
+  } else {
     $("#alertTitle").text("Error: ");
     $("#alertMessage").text("Your request is failed.");
     $("#alertHandler").addClass("alert-danger").show();
@@ -100,13 +109,14 @@ function ajaxLoadOption(args) {
     data: { ...filerObj },
     success: function (data) {
       var items = "";
-      items += "<option value='' disabled selected>-- Please Select --</option>";
+      items +=
+        "<option value='' disabled selected>-- Please Select --</option>";
       if (data.code == "200" && $.isArray(data.data)) {
         $.each(data.data, function (i, item) {
           items += `<option value="${item["_id"]}">${item[showKey]}</option>`;
         });
-      }
-      else if (data.code == "200") { // for userrole [deprecated]
+      } else if (data.code == "200") {
+        // for userrole [deprecated]
         $.each(Object.entries(data.data), function (i, item) {
           items += `<option value="${item[0]}">${item[0]}</option>`;
         });
@@ -137,7 +147,7 @@ function ajaxUploadForm(args) {
       }
     },
     error: function (error) {
-      handleAlert(error.responseJSON)
+      handleAlert(error.responseJSON);
     },
   });
 }
@@ -152,12 +162,15 @@ function makeDivImage(setSrc) {
 }
 
 function swalWarning(args) {
-  const config = Object.assign({
-    icon: "warning",
-    title: "Warning",
-    position: "center",
-    description: "Something went wrong. Please try again.",
-  }, args);
+  const config = Object.assign(
+    {
+      icon: "warning",
+      title: "Warning",
+      position: "center",
+      description: "Something went wrong. Please try again.",
+    },
+    args
+  );
 
   Swal.fire({
     icon: config.icon,

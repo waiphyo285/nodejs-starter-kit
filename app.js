@@ -1,18 +1,20 @@
-require('module-alias/register');
-
 const fs = require("fs");
 const path = require("path");
 const cors = require("cors");
 const logger = require("morgan");
 const express = require("express");
+const swaggerUi = require("swagger-ui-express");
 const createError = require("http-errors");
 const cookieParser = require("cookie-parser");
 const passport = require("passport");
 
 // config app
 const config = require("@config/index");
+
+// app settings
 const { corsOptions } = require("@config/settings/cors");
 const { cookieConfig } = require("@config/settings/cookies");
+const { rateLimiter } = require("@config/settings/rate-limit");
 
 // jwt middleware
 const { tokenRouter } = require("@middlewares/authentication");
@@ -20,12 +22,14 @@ const { verifyToken } = require("@middlewares/authentication");
 
 // api router
 const genRouter = require("./generator");
-const authRouter = require("@src/web/routes/auth");
-const apiV1Router = require("@src/web/routes/api/v1");
-const fileRouter = require("@src/web/routes/files");
+const authRouter = require("@src/routes/auth");
+const apiV1Router = require("@src/routes/api/v1");
+const fileRouter = require("@src/routes/files");
 
 // app feature
-const { langI18n } = require("@helpers/locale")
+const { langI18n } = require("@helpers/locale");
+const { swgDocs } = require("@helpers/swagger");
+
 
 // get environment variables
 const COOKIE_SECRET = config.APP.COOKIE_SECRET;
@@ -37,13 +41,16 @@ const routeModules = [];
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "pug");
 
+app.use(rateLimiter);
 app.use(cors(corsOptions));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(logger(`:date[clf] :method :url :status :response-time ms`));
 app.use(cookieParser(COOKIE_SECRET));
 app.use(langI18n.middleware());
 app.use(cookieConfig);
+
+if (process.env.NODE_ENV !== "testing")
+  app.use(logger(`:date[clf] :method :url :status :response-time ms`));
 
 app.use(passport.initialize());
 app.use(passport.session());
@@ -51,8 +58,8 @@ app.use(passport.session());
 app.use(express.static(path.join(__dirname, "public")));
 
 // set routes module
-fs.readdirSync(__dirname + "/src/web/routes/pages").forEach(function (name) {
-  const obj = require(path.join(__dirname, "/src/web/routes/pages/" + name));
+fs.readdirSync(__dirname + "/src/routes/pages").forEach(function (name) {
+  const obj = require(path.join(__dirname, "/src/routes/pages/" + name));
   routeModules.push(obj);
 });
 
@@ -67,14 +74,11 @@ app.use(genRouter);
 app.use(authRouter);
 app.use(routeModules);
 
-// connect to jwt routes
-app.use("/d-mar", tokenRouter);
-
 // connect to api routes
-app.use("/api/v1", verifyToken, apiV1Router);
-
-// connect to file routes
+app.use("/d-mar", tokenRouter);
 app.use("/file", verifyToken, fileRouter);
+app.use("/api/v1", verifyToken, apiV1Router);
+app.use("/api/docs", swaggerUi.serve, swaggerUi.setup(swgDocs));
 
 // import passport local auth
 require("./config/settings/passport");

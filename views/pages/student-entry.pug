@@ -17,30 +17,19 @@ block content
           div.row.remove-img-list
 
         div.form-group  
-          div.row.img-list
-            .col-4.col-md-2.col-lg-1.img-container
-              img.m-1.img.img-thumbnail#add-image(src="/images/heroicons/plus.svg", alt="", srcset="" width="100" height="100")
-
-            - var imageArray = data.images || [];
-            if imageArray.length > 0
-              each progfile_image in data.images
-                .col-4.col-md-2.col-lg-1.img-container
-                  input.uploaded-files(type="hidden", name="images[]", value=`${progfile_image}`)
-                  img.m-1.img.img-thumbnail(src=`${progfile_image}`, alt="", srcset="" width="100" height="100")
-                  button.btn.btn-sm.remove-file(type="button")
-                    i.bi.bi-trash3
+          include ./../includes/common/input-image
 
         div.form-group.row
           div.col-sm-6.mb-3
-            label.control-label(for='name') Name
-            input.form-control.input-sm#name(type='text', name='name', value=data.name, maxlength="55" required autofocus)
+            label.control-label(for='name') Name *
+            input.form-control.input-sm#name(type='text', name='name', value=data.name, maxlength="55" autocomplete="off" required autofocus)
           
           div.col-sm-6.mb-3
-            label.control-label(for='age') Age
+            label.control-label(for='age') Age *
             input.form-control.input-sm#age(type='number', name='age', role='number', min='16' max='120' onkeyup="if(parseInt(this.value)>this.max){ this.value=this.max; return false; }" value=data.age autocomplete="off" required)
             
           div.col-sm-6.mb-3
-            label.control-label(for='grade') Grade
+            label.control-label(for='grade') Grade *
             input.form-control.input-sm#grade(type='number', name='grade', role='number', min='1' max='11' onkeyup="if(parseInt(this.value)>this.max){ this.value=this.max; return false; }" value=data.grade autocomplete="off" required)
 
           include ./../includes/common/input-status

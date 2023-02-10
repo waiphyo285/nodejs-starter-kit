@@ -68,8 +68,8 @@ const handleDatabase = (getDb, utils, res) => {
 
 const handleResponse = (data, utils, locales) => {
   const create_response = !utils(data)
-    ? createResponse(200, { data }, locales)
-    : createResponse(403, {}, locales);
+    ? createResponse(data.http_code || 200, { data }, locales)
+    : createResponse(data.http_code || 400, {}, locales);
   return create_response;
 };
 

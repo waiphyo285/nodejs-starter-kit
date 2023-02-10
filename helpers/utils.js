@@ -4,6 +4,8 @@ const _ = require("lodash");
 const moment = require("moment");
 const crypto = require("crypto");
 const handle_tz = require("./config/time_zone");
+const { mongoose } = require("@models/mongodb/connection");
+const GenerateCode = require("@models/mongodb/schemas/generate_code");
 
 /**
  * Utils Functions
@@ -144,15 +146,15 @@ module.exports.getDateRange = async function (args) {
       : new Date("1900-01-01"),
     $lte: args.lt
       ? new Date(moment(args.lt, ["DD/MM/YYYY"]).format("YYYY-MM-D"))
-      : new Date()
-  }
+      : new Date(),
+  };
 };
 
-module.exports.removeImages = function (remove_images) {
+module.exports.removeImages = function (images) {
   let canDelete = true;
   return new Promise((resolve, reject) => {
-    if (remove_images && remove_images.length > 0) {
-      remove_images.map((file, Idx) => {
+    if (images && images.length > 0) {
+      images.map((file, Idx) => {
         fs.unlink("./public" + file.replace(/\\/g, "/"), (err) => {
           if (err) console.error("File ", err), (canDelete = false);
           else console.log(`File ${file} is removed`), (canDelete = true);
@@ -161,4 +163,57 @@ module.exports.removeImages = function (remove_images) {
     }
     canDelete ? resolve() : reject();
   });
+};
+
+module.exports.generateCode = async function (args) {
+  const { type, prefix = "" } = args;
+  const updateCode = await GenerateCode.findOneAndUpdate(
+    { type, prefix },
+    { $inc: { count: 1 } },
+    { upsert: true, new: true }
+  );
+  // return XXX-NNNNNNNN => INV-00000001 format
+  return `${prefix}-${String(updateCode.count).padStart(8, "0")}`;
+};
+
+module.exports.existRelation = async function (args) {
+  const { model, key, value } = args;
+  const getModel = mongoose.model(model);
+  const result = await getModel.findOne({ [key]: value }, { _id: 1 });
+  return result;
+};
+
+module.exports.getQueryParams = async function (args, words) {
+  const { draw, columns, order, start, length, search, created_at } = args;
+  const sort = {};
+  const filter = {};
+  const w_regx = words;
+  const skip = parseInt(start) || 0;
+  let limit = parseInt(length) || 10;
+
+  if (limit === -1) {
+    limit = undefined;
+  }
+
+  if (created_at) {
+    filter.created_at = await this.getDateRange(created_at);
+  }
+
+  if (order) {
+    for (const i in order) {
+      sort[columns[i].data] = order[i].dir === "asc" ? 1 : -1;
+    }
+  }
+
+  if (search) {
+    for (const i in w_regx) {
+      const regx = new RegExp(
+        search.value.replace(/[&\/\\#,+()$~%.'":*?<>{}]/g, ""),
+        "i"
+      );
+      w_regx[i] = { [w_regx[i]]: { $regex: regx } };
+    }
+  }
+
+  return { filter, w_regx, sort, skip, limit, draw };
 };

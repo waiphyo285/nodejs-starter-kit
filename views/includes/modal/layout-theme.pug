@@ -57,7 +57,7 @@ script.
           type: "PUT",
           url: `/api/v1/user-no-pass/${userId}`,
           headers: {
-            "userrole": userRole,
+            "userrole": role,
             "x-access-method": signJwtMethod,
             "authorization": "Bearer " + token,
           },

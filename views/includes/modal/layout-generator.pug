@@ -35,7 +35,7 @@ script.
         dataType: 'json',
         url:  '/d-mar/new-template/'+ modal_name +'?is_page=true',
         headers: {
-          "userrole": userRole,
+          "userrole": role,
           "x-access-method": signJwtMethod,
           "authorization": "Bearer " + token,
         },

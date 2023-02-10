@@ -7,11 +7,14 @@ const serializer = (data) => {
   if (!data) {
     return null;
   }
-  else if (Array.isArray(data)) {
-    return data.map(single);
+  else if (Array.isArray(data.data)) {
+    return { 
+      ...data, 
+      data: data.data.map(single) 
+    };
   }
   else {
-    return single(data);
+    return { data: single(data) };
   }
 };
 

@@ -1,6 +1,8 @@
 doctype html
 head
-  title !{app.NAME}
+  title 
+    | !{app.NAME}
+    | !{page.title && " | " + page.title}
   meta(charset='utf-8')
   meta(name='description' content='')
   meta(name='author' content='Wai Phyo')
@@ -50,15 +52,13 @@ head
 
     .container-fluid
       block content
-      span.dev-mode 
-        | 🚀
 
-    .footer.bg-light
-      footer#sticky-footer.flex-shrink-0.py-3
-        .container.text-center
-          span Copyright &copy;
-            a(href="https://waiphyonaing.me") 
-              | Wai Phyo Naing
+    //- .footer.bg-light
+    //-   footer#sticky-footer.flex-shrink-0.py-3
+    //-     .container.text-center
+    //-       span Copyright &copy;
+    //-         a(href="https://waiphyonaing.me") 
+    //-           | Wai Phyo Naing
 
 #overlay
 
@@ -67,8 +67,7 @@ script.
   var table, pageEntry;
   var token = '!{user.latmat}';
   var userId = '!{user._id}';
-  var userRole = '!{user.role}';
-  var decimalPoint = ".01";
+  var role = '!{user.role}';
   var signJwtMethod = "one";
   var apiVersionNum = "v1";
   var maxImageCount = 5;
@@ -105,6 +104,7 @@ script.
       return {
         filename: curPage,
         extend: button,
+        footer: false,
         ...options
       }
     });
@@ -117,12 +117,15 @@ script.
     return {
       "destroy": true,
       "scrollX": true,
+      "processing": true,
       "serverSide": true,
-      //- "processing": true,
       "pagingType": "full_numbers",
       "language": langOptions,
       "buttons": buttonOptions,
       "lengthMenu": lengthOptions,
+      "dom":"<'row'<'col-sm-12'f>><'row'<'col-sm-12'tr>> \
+             <'row d-flex justify-content-center'<'col-4 d-none d-lg-inline'l> \
+             <'col-4 d-none d-lg-inline'i><'col-sm-4'p>>"
     };
   }
 
@@ -130,13 +133,14 @@ script.
     return {
       "url": `./api/${apiVersionNum}` + curUrl,
       "headers": {
-        "userrole": userRole,
+        "userrole": role,
         "x-access-method": signJwtMethod,
         "authorization": "Bearer " + token
       },
       "dataSrc": "data",
     };
   }
+
 
 <!-- Layout Lib -->
 script(src='/layout-js/lib/moment/moment.js')

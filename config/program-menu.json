@@ -11,7 +11,7 @@
   {
     "menuid": "administrative",
     "url": "#",
-    "title": "Administrative",
+    "title": "System",
     "icon": "bi bi-folder",
     "access": false,
     "active": false,
@@ -91,7 +91,7 @@
   {
     "menuid": "course",
     "url": "#",
-    "title": "Demo Course",
+    "title": "Course",
     "icon": "bi bi-folder",
     "access": false,
     "active": false,

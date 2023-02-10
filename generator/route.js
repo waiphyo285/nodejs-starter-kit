@@ -7,7 +7,7 @@ router
   .get("/routing/:id", routes.show)
   .get("/routing", routes.showBy)
   .post("/routing", routes.create)
-  .post("/routing/:id", routes.update)
+  .put("/routing/:id", routes.update)
   .delete("/routing/:id", routes.delete);
 
 /* end generator api */

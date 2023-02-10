@@ -8,28 +8,43 @@ block content
   
   if isAccess
     main.mx-3(role='main')
-      .d-flex.mt-1
+      .d-flex.mt-2
         h5.animate-typing.mr-auto Welcome back 👋🏻
         span.show-date-time Jan 01 00:00 AM
-
+      
       .row
-        .card-counter.col-md-4(onclick="location.href='/users';")
-          .wrap
-            h4.card-counter-title 
-              span.bi.bi-person-check  Administrators
-            span.card-counter-number !{data[0]}
+        .col-xl-2.col-sm-4.col-12.mt-3(onclick="location.href='/users';")
+          .card
+            .card-content
+              .card-body
+                .media.d-flex
+                  .align-self-center(style="font-size: 26px")
+                    i.bi.bi-person-check.text-warning.float-left
+                  .media-body.text-right
+                    h3.count-to.text-secondary !{data[0]}
+                    span Administrators
 
-        .card-counter.col-md-4(onclick="location.href='/user_roles';")
-          .wrap
-            h4.card-counter-title
-              span.bi.bi-file-ruled  Access role/level
-            span.card-counter-number !{data[1]}
+        .col-xl-2.col-sm-4.col-12.mt-3(onclick="location.href='/user_roles';")
+          .card
+            .card-content
+              .card-body
+                .media.d-flex
+                  .align-self-center(style="font-size: 26px")
+                    i.bi.bi-file-ruled.text-warning.float-left
+                  .media-body.text-right
+                    h3.count-to.text-secondary !{data[1]}
+                    span Access role/level
 
-        .card-counter.col-md-4(onclick="location.href='/students';")
-          .wrap
-            h4.card-counter-title
-              span.bi.bi-mortarboard  Students
-            span.card-counter-number !{data[2]}
+        .col-xl-2.col-sm-4.col-12.mt-3(onclick="location.href='/students';")
+          .card
+            .card-content
+              .card-body
+                .media.d-flex
+                  .align-self-center(style="font-size: 26px")
+                    i.bi.bi-mortarboard.text-warning.float-left
+                  .media-body.text-right
+                    h3.count-to.text-secondary !{data[2]}
+                    span Students
 
       hr
 
@@ -130,7 +145,7 @@ block content
   script(src='../layout-js/lib/chart-js/chart-init.js')
   script.
     $(document).ready(function() {
-      $('.count-numbers').each(function () {
+      $('.count-to').each(function () {
         const $this = $(this);
         jQuery({ Counter: 0 }).animate({ Counter: $this.text() }, {
           duration: 1200,

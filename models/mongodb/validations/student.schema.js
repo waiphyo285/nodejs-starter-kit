@@ -1,10 +1,12 @@
 const Joi = require("joi");
 
-module.exports = Joi.object().keys({
-  name: Joi.string()
-    .required()
-    .error(() => "must have name as string"),
-  age: Joi.number().error(() => "age must be a number"),
-  grade: Joi.number().error(() => "grade must be a number"),
-  status: Joi.boolean().error(() => "status must be a boolean"),
-});
+module.exports = Joi.object()
+  .keys({
+    name: Joi.string()
+      .required()
+      .error(() => "must have name as string"),
+    age: Joi.number().error(() => "age must be a number"),
+    grade: Joi.number().error(() => "grade must be a number"),
+    // status: Joi.boolean().error(() => "status must be a boolean"),
+  })
+  .unknown(true);

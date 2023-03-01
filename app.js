@@ -30,7 +30,6 @@ const fileRouter = require("@src/routes/files");
 const { langI18n } = require("@helpers/locale");
 const { swgDocs } = require("@helpers/swagger");
 
-
 // get environment variables
 const COOKIE_SECRET = config.APP.COOKIE_SECRET;
 
@@ -41,7 +40,7 @@ const routeModules = [];
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "pug");
 
-app.use(rateLimiter);
+// app.use(rateLimiter);
 app.use(cors(corsOptions));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));

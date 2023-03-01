@@ -145,6 +145,7 @@ $("#btnSearch").on("click", function (e) {
     });
     return false;
   }
+  $("#tb_search").attr({ autofocus: true });
   $("#tb_search_wrap").toggleClass("d-none");
 });
 

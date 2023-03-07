@@ -2,13 +2,13 @@ const express = require("express");
 const router = express.Router();
 const utils = require("@helpers/utils");
 const studentsDb = require("@controllers/students");
-const checkAuth = require("@middlewares/is_logged_user");
-const validateWare = require("@middlewares/data_validator");
+const checkAuth = require("@middlewares/dto/is_valid_user");
+const validateWare = require("@middlewares/dto/is_valid_dto");
 const studentJoi = require("@models/mongodb/validations/student.schema");
 const {
   handleRenderer,
   handleDatabase,
-} = require("@helpers/handlers/create_response");
+} = require("@helpers/handlers/response");
 
 router
   .get("/students", checkAuth, (req, res, next) => {

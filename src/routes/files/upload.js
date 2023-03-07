@@ -3,7 +3,7 @@ const path = require("path");
 const multer = require("multer");
 const helpers = require("./helpers");
 const config = require("@config/index");
-const { createResponse } = require("@helpers/handlers/create_response");
+const { createResponse } = require("@helpers/handlers/response");
 
 const upload = (module.exports = {});
 
@@ -45,41 +45,58 @@ upload.index = (req, res, next) => {
 
     if (req.fileValidationError) {
       return res.status(400).json(
-        createResponse(400, {
-          data: { message: req.fileValidationError },
-        }, locales)
+        createResponse(
+          400,
+          {
+            data: { message: req.fileValidationError },
+          },
+          locales
+        )
       );
-    }
-    else if (!req.file) {
+    } else if (!req.file) {
       return res.status(400).json(
-        createResponse(400, {
-          data: { message: "Please select an image to upload." },
-        }, locales)
+        createResponse(
+          400,
+          {
+            data: { message: "Please select an image to upload." },
+          },
+          locales
+        )
       );
-    }
-    else if (err instanceof multer.MulterError) {
+    } else if (err instanceof multer.MulterError) {
       return res.status(400).json(
-        createResponse(400, {
-          data: { message: err },
-        }, locales)
+        createResponse(
+          400,
+          {
+            data: { message: err },
+          },
+          locales
+        )
       );
-    }
-    else if (err) {
+    } else if (err) {
       return res.status(400).json(
-        createResponse(400, {
-          data: { message: err },
-        }, locales)
+        createResponse(
+          400,
+          {
+            data: { message: err },
+          },
+          locales
+        )
       );
     }
 
     // Display uploaded image for user validation
     res.status(200).json(
-      createResponse(200, {
-        data: {
-          message: "File is successfully uploaded.",
-          data: req.file,
+      createResponse(
+        200,
+        {
+          data: {
+            message: "File is successfully uploaded.",
+            data: req.file,
+          },
         },
-      }, locales)
+        locales
+      )
     );
   });
 };
@@ -97,41 +114,58 @@ upload.multiUpload = (req, res, next) => {
   uploadWithMulter(req, res, function (err) {
     if (req.fileValidationError) {
       return res.status(400).json(
-        createResponse(400, {
-          data: { message: req.fileValidationError },
-        }, locales)
+        createResponse(
+          400,
+          {
+            data: { message: req.fileValidationError },
+          },
+          locales
+        )
       );
-    }
-    else if (!req.files) {
+    } else if (!req.files) {
       return res.status(400).json(
-        createResponse(400, {
-          data: { message: "Please select images to upload." },
-        }, locales)
+        createResponse(
+          400,
+          {
+            data: { message: "Please select images to upload." },
+          },
+          locales
+        )
       );
-    }
-    else if (err instanceof multer.MulterError) {
+    } else if (err instanceof multer.MulterError) {
       return res.status(400).json(
-        createResponse(400, {
-          data: { message: err },
-        }, locales)
+        createResponse(
+          400,
+          {
+            data: { message: err },
+          },
+          locales
+        )
       );
-    }
-    else if (err) {
+    } else if (err) {
       return res.status(400).json(
-        createResponse(400, {
-          data: { message: err },
-        }, locales)
+        createResponse(
+          400,
+          {
+            data: { message: err },
+          },
+          locales
+        )
       );
     }
 
     // Display uploaded image for user validation
     res.status(200).json(
-      createResponse(200, {
-        data: {
-          message: "File are successfully uploaded.",
-          data: req.files,
+      createResponse(
+        200,
+        {
+          data: {
+            message: "File are successfully uploaded.",
+            data: req.files,
+          },
         },
-      }, locales)
+        locales
+      )
     );
   });
 };

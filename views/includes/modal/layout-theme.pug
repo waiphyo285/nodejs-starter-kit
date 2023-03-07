@@ -58,6 +58,7 @@ script.
           url: `/api/v1/user-no-pass/${userId}`,
           headers: {
             "userrole": role,
+            "x-csrf-token": csrf,
             "x-access-method": signJwtMethod,
             "authorization": "Bearer " + token,
           },

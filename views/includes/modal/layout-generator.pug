@@ -36,6 +36,7 @@ script.
         url:  '/d-mar/new-template/'+ modal_name +'?is_page=true',
         headers: {
           "userrole": role,
+          "x-csrf-token": csrf,
           "x-access-method": signJwtMethod,
           "authorization": "Bearer " + token,
         },

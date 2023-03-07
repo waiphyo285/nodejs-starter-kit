@@ -23,7 +23,10 @@ module.exports = {
     USER_ROLES: [D, A, M, S],
     USER_ROLE_ACCESS: USER_ROLE_ACCESS,
     DATABASE: process.env.DATABASE_NAME,
+    CSRF_COOKIE: process.env.CSRF_COOKIE,
+    CSRF_SECRET: process.env.CSRF_SECRET,
     COOKIE_SECRET: process.env.COOKIE_SECRET,
+    COOKIE_SESSION: process.env.COOKIE_SESSION,
     WHITELISTED_DOMAINS: process.env.WHITELISTED_DOMAINS,
   },
   MONGO: {

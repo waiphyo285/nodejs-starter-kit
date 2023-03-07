@@ -1,5 +1,5 @@
 const config = require("@config/index");
-const { isAuth } = require("@middlewares/authentication");
+const { isAuth } = require("@middlewares/token/jwt_token");
 
 // Util authorized methods
 

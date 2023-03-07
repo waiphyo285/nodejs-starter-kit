@@ -17,8 +17,12 @@ const { cookieConfig } = require("@config/settings/cookies");
 const { rateLimiter } = require("@config/settings/rate-limit");
 
 // jwt middleware
-const { tokenRouter } = require("@middlewares/authentication");
-const { verifyToken } = require("@middlewares/authentication");
+const {
+  csrfRouter,
+  doubleCsrfProtection,
+} = require("@middlewares/token/csrf_token");
+const { tokenRouter } = require("@middlewares/token/jwt_token");
+const { verifyToken } = require("@middlewares/token/jwt_token");
 
 // api router
 const genRouter = require("./generator");
@@ -30,7 +34,10 @@ const fileRouter = require("@src/routes/files");
 const { langI18n } = require("@helpers/locale");
 const { swgDocs } = require("@helpers/swagger");
 
+const { handleCsrfError } = require("@helpers/handlers/response");
+
 // get environment variables
+const NODE_ENV = config.NODE_ENV;
 const COOKIE_SECRET = config.APP.COOKIE_SECRET;
 
 const app = express();
@@ -48,7 +55,7 @@ app.use(cookieParser(COOKIE_SECRET));
 app.use(langI18n.middleware());
 app.use(cookieConfig);
 
-if (process.env.NODE_ENV !== "testing")
+if (NODE_ENV !== "testing")
   app.use(logger(`:date[clf] :method :url :status :response-time ms`));
 
 app.use(passport.initialize());
@@ -71,9 +78,10 @@ app.use(function (req, res, next) {
 // connect to page routes
 app.use(genRouter);
 app.use(authRouter);
-app.use(routeModules);
+app.use(doubleCsrfProtection, routeModules);
 
 // connect to api routes
+app.use("/d-mar", csrfRouter);
 app.use("/d-mar", tokenRouter);
 app.use("/file", verifyToken, fileRouter);
 app.use("/api/v1", verifyToken, apiV1Router);

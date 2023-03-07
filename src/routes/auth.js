@@ -3,7 +3,8 @@ const router = express.Router();
 const passport = require("passport");
 const config = require("@config/index");
 const User = require("@models/mongodb/schemas/user");
-const { signToken_1 } = require("@middlewares/authentication");
+const { signToken_1 } = require("@middlewares/token/jwt_token");
+const { generateToken } = require("@middlewares/token/csrf_token");
 
 router
   .get("/signup", (req, res, next) => {
@@ -16,6 +17,7 @@ router
   .post("/signup", (req, res) => {
     // handle the case where we don't detect the browser
     const errMsg = "Username or phone is already existed.";
+
     const user = new User({
       ...req.body,
       role: "developer", // just dev
@@ -25,13 +27,14 @@ router
       if (err) {
         console.log("Registration Error ", err);
         res.redirect("/signup?message=" + errMsg);
-      }
-      else {
+      } else {
+        user["csrf"] = generateToken(res, req);
         user["latmat"] = signToken_1({
           userrole: user.role,
           username: user.username,
           password: user.password,
         });
+
         req.session.user = user;
         res.redirect("/");
       }
@@ -49,24 +52,30 @@ router
   .post("/login", (req, res, next) => {
     // handle the case where we don't detect the browser
     const errMsg = "Incorrect access is found. Try again.";
-    passport.authenticate("local", { failureRedirect: "/login" }, function (err, user, info) {
-      if (err) return next(err);
-      if (!user) return res.redirect("/login?message=" + errMsg);
+    const redirectTo = req.session.redirectTo;
 
-      req.logIn(user, function (err) {
+    passport.authenticate(
+      "local",
+      { failureRedirect: "/login" },
+      function (err, user, info) {
         if (err) return next(err);
-        user["latmat"] = signToken_1({
-          userrole: user.role,
-          username: user.username,
-          password: user.password,
-        });
+        if (!user) return res.redirect("/login?message=" + errMsg);
 
-        req.session.user = user;
-        const redirectTo = req.session.redirectTo;
-        delete req.session.redirectTo;
-        res.redirect(redirectTo || "/");
-      });
-    }
+        req.logIn(user, function (err) {
+          if (err) return next(err);
+          delete req.session.redirectTo;
+
+          user["csrf"] = generateToken(res, req);
+          user["latmat"] = signToken_1({
+            userrole: user.role,
+            username: user.username,
+            password: user.password,
+          });
+
+          req.session.user = user;
+          res.redirect(redirectTo || "/");
+        });
+      }
     )(req, res, next);
   });
 

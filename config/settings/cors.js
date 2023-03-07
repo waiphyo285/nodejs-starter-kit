@@ -5,6 +5,7 @@ const WHITELISTED_DOMAINS = config.APP.WHITELISTED_DOMAINS;
 
 // add the client URL to the CORS policy
 const whitelist = WHITELISTED_DOMAINS ? WHITELISTED_DOMAINS.split(",") : [];
+
 const corsOptions = {
   origin: function (origin, callback) {
     if (!origin || whitelist.indexOf(origin) !== -1) {

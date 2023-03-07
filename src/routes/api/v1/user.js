@@ -1,6 +1,6 @@
 const utils = require("@helpers/utils");
 const usersDb = require("@controllers/users");
-const { handleDatabase } = require("@helpers/handlers/create_response");
+const { handleDatabase } = require("@helpers/handlers/response");
 
 const users = (module.exports = {});
 
@@ -27,7 +27,9 @@ users.updateWithPass = (req, res, next) => {
 
 users.updateWithoutPass = (req, res, next) => {
   const getDb = usersDb.updateWithoutPass(req.params.id, req.body);
-  getDb.then(data => { req.user.theme = data.data.theme });
+  getDb.then((data) => {
+    req.user.theme = data.data.theme;
+  });
   handleDatabase(getDb, utils.isEmptyObject, res);
 };
 

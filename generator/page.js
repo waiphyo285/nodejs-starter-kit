@@ -2,8 +2,11 @@ const express = require("express");
 const router = express.Router();
 const utils = require("@helpers/utils");
 const genDatabase = require("@controllers/generators");
-const checkAuth = require("@middlewares/is_logged_user");
-const { handleRenderer, handleDatabase, } = require("@helpers/handlers/create_response");
+const checkAuth = require("@middlewares/dto/is_valid_user");
+const {
+  handleRenderer,
+  handleDatabase,
+} = require("@helpers/handlers/response");
 
 router
   .get("/routings", checkAuth, (req, res, next) => {

@@ -13,7 +13,7 @@ const userRoles = require("./user_role");
 const { isDA } = require("@helpers/handlers/access_url");
 
 // middlewares
-const validateWare = require("@middlewares/data_validator");
+const validateWare = require("@middlewares/dto/is_valid_dto");
 
 // schema validations
 const studentJoi = require("@models/mongodb/validations/student.schema");

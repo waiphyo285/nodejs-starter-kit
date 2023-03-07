@@ -1,7 +1,11 @@
 const utils = require("@helpers/utils");
 const userRolesDb = require("@controllers/user_roles");
 const programConfig = require("@config/program-config.json");
-const { createResponse, handleDatabase, handleError } = require("@helpers/handlers/create_response");
+const {
+  createResponse,
+  handleDatabase,
+  handleError,
+} = require("@helpers/handlers/response");
 
 const userRole = (module.exports = {});
 
@@ -9,11 +13,8 @@ userRole.config = (req, res, next) => {
   try {
     const data = JSON.parse(JSON.stringify(programConfig.role));
     const locales = res.locals.i18n.translations;
-    res
-      .status(200)
-      .json(createResponse(200, { data: { data } }, locales));
-  }
-  catch (error) {
+    res.status(200).json(createResponse(200, { data: { data } }, locales));
+  } catch (error) {
     console.log(`Error ${err}`);
     res.status(500).json(handleError(err, locales));
   }

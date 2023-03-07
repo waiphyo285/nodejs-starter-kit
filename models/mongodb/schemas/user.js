@@ -35,6 +35,10 @@ const makeSchema = new Schema({
     type: String,
     default: "",
   },
+  csrf: {
+    type: String,
+    default: "",
+  },
   status: {
     type: Boolean,
     default: true,
@@ -47,18 +51,18 @@ makeSchema.plugin(SchemaPlugin);
 
 makeSchema.pre("save", function (next) {
   const _ = this;
-  return hashPassword(_, next)
+  return hashPassword(_, next);
 });
 
 makeSchema.pre("findOneAndUpdate", function (next) {
   const _ = this.getUpdate();
-  return hashPassword(_, next)
+  return hashPassword(_, next);
 });
 
 makeSchema.methods.comparePassword = function (candidatePass, cb) {
   const _ = this;
-  const callBack = (err, isMatch) => err ? cb(err) : cb(null, isMatch);
-  bcrypt.compare(candidatePass, _.password, callBack)
+  const callBack = (err, isMatch) => (err ? cb(err) : cb(null, isMatch));
+  bcrypt.compare(candidatePass, _.password, callBack);
 };
 
 const User = mongoose.model("user", makeSchema);

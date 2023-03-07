@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const async = require("async");
 const config = require("@config/index");
-const checkAuth = require("@middlewares/is_logged_user");
+const checkAuth = require("@middlewares/dto/is_valid_user");
 const { getProgram } = require("@helpers/handlers/access_user");
 
 // Import Models

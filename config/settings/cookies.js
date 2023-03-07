@@ -2,14 +2,24 @@ const cookieSession = require("cookie-session");
 const config = require("@config/index");
 
 // get environment variables
-const COOKIE_SESSION = config.APP.COOKIE_SESSION;
+const NODE_ENV = config.NODE_ENV;
+const COOKIE_SESSION = config.CONFIDENTIAL.COOKIE_SESSION;
+
+const cookieOption = {
+  developement: {
+    maxAge: 8 * 60 * 60 * 1000, // 8h
+  },
+  production: {
+    maxAge: 1 * 60 * 60 * 1000, // 1h
+  },
+};
 
 // set cookie config
 const cookieConfig = cookieSession({
   name: "session",
   keys: [COOKIE_SESSION],
   // Cookie Options
-  maxAge: 24 * 60 * 60 * 1000, // 24 hours
+  ...cookieOption[NODE_ENV],
 });
 
 module.exports = { cookieConfig };

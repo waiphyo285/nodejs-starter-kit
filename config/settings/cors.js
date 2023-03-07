@@ -1,17 +1,16 @@
 const config = require("../index");
 
 // get environment variables
-const WHITELISTED_DOMAINS = config.APP.WHITELISTED_DOMAINS;
+const WHITELISTED = config.CONFIDENTIAL.WHITELISTED;
 
 // add the client URL to the CORS policy
-const whitelist = WHITELISTED_DOMAINS ? WHITELISTED_DOMAINS.split(",") : [];
+const whitelist = WHITELISTED ? WHITELISTED.split(",") : [];
 
 const corsOptions = {
   origin: function (origin, callback) {
     if (!origin || whitelist.indexOf(origin) !== -1) {
       callback(null, true);
-    }
-    else {
+    } else {
       callback(new Error("Not allowed by CORS"));
     }
   },

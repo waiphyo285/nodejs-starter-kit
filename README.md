@@ -64,5 +64,3 @@ node index --show=623210497fc2cb28840d1448
 ```
 
 \_Note: this application is different to the Clean Architecture diagram above but attempts to achieve the same outcome.
-
-https://github.com/Psifi-Solutions/csrf-csrf/blob/main/example/simple/src/index.js

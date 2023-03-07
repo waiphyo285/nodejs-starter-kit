@@ -10,24 +10,26 @@ const USER_ROLE_ACCESS = {
   [A]: "1,1,1",
   [M]: "1,1,0",
   [S]: "1,0,0",
-}
+};
 
 module.exports = {
   HOST: process.env.APP_HOST,
   PORT: process.env.APP_PORT,
   NODE_ENV: process.env.NODE_ENV,
   APP: {
-    NAME: "Template",
-    FILE: "template-file",
-    DESC: "Itemplate Core Project",
+    NAME: process.env.APP_NAME,
+    FILE: process.env.APP_FILE,
+    DESC: process.env.APP_DESC,
     USER_ROLES: [D, A, M, S],
     USER_ROLE_ACCESS: USER_ROLE_ACCESS,
+  },
+  CONFIDENTIAL: {
     DATABASE: process.env.DATABASE_NAME,
+    WHITELISTED: process.env.WHITELISTED,
     CSRF_COOKIE: process.env.CSRF_COOKIE,
     CSRF_SECRET: process.env.CSRF_SECRET,
     COOKIE_SECRET: process.env.COOKIE_SECRET,
     COOKIE_SESSION: process.env.COOKIE_SESSION,
-    WHITELISTED_DOMAINS: process.env.WHITELISTED_DOMAINS,
   },
   MONGO: {
     HOST: process.env.MONGO_HOST,
@@ -49,9 +51,9 @@ module.exports = {
   },
   JWT: {
     HASH: "SHA256",
-    TEXT: "HYPERPOS",
+    TEXT: "THETEMPLATE",
     ALGO: "aes-256-cbc",
-    SECRET: "C57B465081874C256CFD78D9EC226DCD111D03E08E21ABB8DCAF0CF7DA71D362",
+    SECRET: process.env.JWT_SECRET,
     CREDENTIAL: {
       USER: process.env.JWT_USER,
       PASS: process.env.JWT_PASS,
@@ -65,7 +67,10 @@ module.exports = {
       EXP2: process.env.JWT_EXP2,
     },
     ROLE_OPTION: {
-      D, A, M, S
-    }
+      D,
+      A,
+      M,
+      S,
+    },
   },
 };

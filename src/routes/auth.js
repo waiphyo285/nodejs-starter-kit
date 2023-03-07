@@ -4,7 +4,7 @@ const passport = require("passport");
 const config = require("@config/index");
 const User = require("@models/mongodb/schemas/user");
 const { signToken_1 } = require("@middlewares/token/jwt_token");
-const { generateToken } = require("@middlewares/token/csrf_token");
+const { generateCsrf } = require("@middlewares/token/csrf_token");
 
 router
   .get("/signup", (req, res, next) => {
@@ -28,7 +28,7 @@ router
         console.log("Registration Error ", err);
         res.redirect("/signup?message=" + errMsg);
       } else {
-        user["csrf"] = generateToken(res, req);
+        user["csrf"] = generateCsrf(res, req);
         user["latmat"] = signToken_1({
           userrole: user.role,
           username: user.username,
@@ -65,7 +65,7 @@ router
           if (err) return next(err);
           delete req.session.redirectTo;
 
-          user["csrf"] = generateToken(res, req);
+          user["csrf"] = generateCsrf(res, req);
           user["latmat"] = signToken_1({
             userrole: user.role,
             username: user.username,

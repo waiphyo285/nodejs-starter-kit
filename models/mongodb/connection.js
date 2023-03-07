@@ -17,7 +17,7 @@ const host = config.MONGO.HOST || "localhost";
 const port = config.MONGO.PORT || 27017;
 const user = config.MONGO.USER || "root";
 const pass = config.MONGO.PASS || "no-pass";
-const database = config.APP.DATABASE || "hyper_pos_v1";
+const database = config.CONFIDENTIAL.DATABASE || "it_backend_uat";
 
 let connect_urls = {
   development: `mongodb://${host}:${port}/${database}`,

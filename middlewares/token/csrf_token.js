@@ -7,8 +7,8 @@ const { createResponse } = require("@helpers/handlers/response");
 
 // get environment variables
 const NODE_ENV = config.NODE_ENV;
-const CSRF_COOKIE = config.APP.CSRF_COOKIE;
-const CSRF_SECRET = config.APP.CSRF_SECRET;
+const CSRF_COOKIE = config.CONFIDENTIAL.CSRF_COOKIE;
+const CSRF_SECRET = config.CONFIDENTIAL.CSRF_SECRET;
 
 const cookieOption = {
   production: { sameSite: true, secure: true, signed: true },
@@ -21,7 +21,7 @@ const { generateToken, doubleCsrfProtection } = doubleCsrf({
   cookieName: CSRF_COOKIE,
   cookieOptions: cookieOption[NODE_ENV],
   ignoredMethods: ["GET", "HEAD", "OPTIONS"],
-  getSecret: (req) => req.secret,
+  getSecret: (req) => req.session.secret,
 });
 
 // Generate Token Routes
@@ -39,6 +39,6 @@ router.get("/u-csrf", (req, res) => {
 
 module.exports = {
   csrfRouter: router,
-  generateToken,
-  doubleCsrfProtection,
+  generateCsrf: generateToken,
+  csrfProtection: doubleCsrfProtection,
 };

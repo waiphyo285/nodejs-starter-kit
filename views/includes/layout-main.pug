@@ -69,7 +69,7 @@ script.
   var token = '!{user.latmat}';
   var userId = '!{user._id}';
   var role = '!{user.role}';
-  var signJwtMethod = "one";
+  var signJwtMethod = "eno";
   var apiVersionNum = "v1";
   var maxImageCount = 5;
 
@@ -135,6 +135,7 @@ script.
       "url": `./api/${apiVersionNum}` + curUrl,
       "headers": {
         "userrole": role,
+        "x-csrf-token": csrf,
         "x-access-method": signJwtMethod,
         "authorization": "Bearer " + token
       },

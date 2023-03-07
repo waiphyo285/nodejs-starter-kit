@@ -92,14 +92,13 @@ const checkPayload = ({ username, password, userrole, method_id }) => {
 
 const getSignMethod = (obj, { username, password, userrole, method_id }) => {
   const signJwtMethod = {
-    one: () => obj.method_1({ username, userrole }),
-    two: () => obj.method_2({ username, userrole, password }),
+    eno: () => obj.method_1({ username, userrole }),
+    owt: () => obj.method_2({ username, userrole, password }),
   };
   return signJwtMethod[method_id]();
 };
 
 const signJwtToken = {
-  // dev: expires in 24h for method 1 && 2
   method_1: (payload) => {
     return jwt.sign(payload, authConfig.jwtSecret, {
       expiresIn: authConfig.jwtExpiry,
@@ -133,8 +132,8 @@ const checkJwtToken = (req, res, next) => {
 
 const getVerifyMethod = (obj, { token, method_id }) => {
   const verifyJwtMethod = {
-    one: () => obj.method_1(token),
-    two: () => obj.method_2(token),
+    eno: () => obj.method_1(token),
+    owt: () => obj.method_2(token),
   };
   return verifyJwtMethod[method_id]();
 };

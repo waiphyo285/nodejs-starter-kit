@@ -17,10 +17,7 @@ const { cookieConfig } = require("@config/settings/cookies");
 const { rateLimiter } = require("@config/settings/rate-limit");
 
 // jwt middleware
-const {
-  csrfRouter,
-  doubleCsrfProtection,
-} = require("@middlewares/token/csrf_token");
+const { csrfRouter, csrfProtection } = require("@middlewares/token/csrf_token");
 const { tokenRouter } = require("@middlewares/token/jwt_token");
 const { verifyToken } = require("@middlewares/token/jwt_token");
 
@@ -38,7 +35,7 @@ const { handleCsrfError } = require("@helpers/handlers/response");
 
 // get environment variables
 const NODE_ENV = config.NODE_ENV;
-const COOKIE_SECRET = config.APP.COOKIE_SECRET;
+const COOKIE_SECRET = config.CONFIDENTIAL.COOKIE_SECRET;
 
 const app = express();
 const routeModules = [];
@@ -75,17 +72,17 @@ app.use(function (req, res, next) {
   next();
 });
 
-// connect to page routes
-app.use(genRouter);
-app.use(authRouter);
-app.use(doubleCsrfProtection, routeModules);
-
 // connect to api routes
 app.use("/d-mar", csrfRouter);
 app.use("/d-mar", tokenRouter);
 app.use("/file", verifyToken, fileRouter);
 app.use("/api/v1", verifyToken, apiV1Router);
 app.use("/api/docs", swaggerUi.serve, swaggerUi.setup(swgDocs));
+
+// connect to page routes
+app.use(genRouter);
+app.use(authRouter);
+app.use(csrfProtection, routeModules);
 
 // import passport local auth
 require("./config/settings/passport");

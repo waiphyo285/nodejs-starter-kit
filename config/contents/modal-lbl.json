@@ -1,0 +1,12 @@
+{
+    "en_US": {
+        "from_date": "From",
+        "to_date": "To",
+        "logout_q": "Are you sure you want to log out? Confirm and log out."
+    },
+    "my_MM": {
+        "from_date": "မှ",
+        "to_date": "သို့",
+        "logout_q": "ထွက်ချင်တာ သေချာပြီလား ? သေချာရင် ထွက်လိုက်ပါ။"
+    }
+}

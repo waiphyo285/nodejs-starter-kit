@@ -1,0 +1,20 @@
+{
+    "en_US": {
+        "menu": "Menu",
+        "en_US": "English",
+        "my_MM": "Myanmar",
+        "setting": "Setting",
+        "theme": "Edit theme",
+        "template": "New template",
+        "logout": "Logout"
+    },
+    "my_MM": {
+        "menu": "မီနူး",
+        "en_US": "အင်္ဂလိပ်",
+        "my_MM": "မြန်မာ",
+        "setting": "ဆက်တင်များ",
+        "theme": "အရောင်ချိန်",
+        "template": "အပိုင်းသစ်",
+        "logout": "ထွက်မည်"
+    }
+}

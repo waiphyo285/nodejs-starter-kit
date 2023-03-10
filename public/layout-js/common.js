@@ -180,7 +180,7 @@ function swalWarning(args) {
         position: config.position,
         buttonsStyling: true,
         showConfirmButton: true,
-        confirmButtonText: 'CLOSE',
+        confirmButtonText: 'OK',
         customClass: 'swal-style',
     })
 }

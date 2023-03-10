@@ -1,0 +1,26 @@
+{
+    "en_US": {
+        "status": "Status",
+        "created_at": "Created_at",
+        "updated_at": "Updated_at",
+        "actions": "Actions",
+        "cancel": "Cancel",
+        "save": "Save",
+        "close": "Close",
+        "reset": "Reset",
+        "filter": "Filter",
+        "search": "Search"
+    },
+    "my_MM": {
+        "status": "မှတ်ချက်",
+        "created_at": "ဖန်တီးရက်စွဲ",
+        "updated_at": "ပြင်ဆင်ရက်စွဲ",
+        "actions": "လုပ်ဆောင်ချက်များ",
+        "cancel": "ပယ်ဖျက်",
+        "save": "သိမ်းဆည်း",
+        "close": "ပိတ်ပါ",
+        "reset": "ပြန်ထား",
+        "filter": "စစ်ထုတ်",
+        "search": "ရှာဖွေ"
+    }
+}

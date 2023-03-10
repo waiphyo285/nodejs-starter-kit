@@ -3,16 +3,16 @@ div.modal.fade#dialogLogoutConfirm(tabindex='-1', role='dialog', aria-labelledby
     div.modal-content
       div.modal-header
         h5.modal-title 
-          | Warning
+          | !{content.warning}
         button.close(type='button', data-dismiss='modal', aria-label='Close')
           span(aria-hidden='true') &times;
       div.modal-body
         h1.text-center
           i.bi.bi-box-arrow-right.text-warning
-        p.text-center Are you sure you want to log out? Confirm and log out.
+        p.text-center !{content.logout_q}
       div.modal-footer.justify-content-md-center
         button.btn.material-button.material-secondary#dialogCancel(type='button', data-dismiss='modal')
-          |  CANCEL
+          |  !{content.close}
         button.btn.material-button.material-primary#dialogLogout(type='button', data-dismiss='modal')
           i.bi.bi-box-arrow-right
-          |  Logout
+          |  !{content.logout}

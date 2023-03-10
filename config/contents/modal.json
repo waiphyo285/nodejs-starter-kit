@@ -1,0 +1,14 @@
+{
+    "en_US": {
+        "warning": "Warning",
+        "change_theme": "Change theme",
+        "new_template": "New template",
+        "filter_table": "Filter table"
+    },
+    "my_MM": {
+        "warning": "သတိ",
+        "change_theme": "အရောင်ပြောင်း",
+        "new_template": "အပိုင်းသစ်",
+        "filter_table": "ဇယားစစ်ထုတ်"
+    }
+}

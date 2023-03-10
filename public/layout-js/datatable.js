@@ -63,11 +63,11 @@ function dataTableMoneyRenderer() {
     return function (d, type, row) {
         return d !== ''
             ? `<span class="font-weight-bold" style="font-size:12px; text-align: right;"> 
-          ${dataTableDigitSeperator(d)}
-        </span>`
+                ${dataTableDigitSeperator(d)}
+            </span>`
             : `<span class="font-weight-bold" style="font-size:12px; text-align: right;">
-          ${dataTableDigitSeperator(0)}
-        </span>`
+                ${dataTableDigitSeperator(0)}
+            </span>`
     }
 }
 
@@ -88,17 +88,17 @@ function dataTableActionsRenderer(editUrl, read, edit, del) {
             // read && write access
             // icon as <img src="/images/heroicons/edit.svg" height="22" width="22"/>
             html += `
-        <a class="btn btn-sm border list-action" href="./${editUrl}/${id}">
-          <i class="bi bi-pencil-square text-warning"></i>
-        </a>`
+                <a class="btn btn-sm border list-action" href="./${editUrl}/${id}">
+                  <i class="bi bi-pencil-square text-warning"></i>
+                </a>`
         }
         if (del == 'true') {
             // delete access
             // icon as <img src="/images/heroicons/delete.svg" height="22" width="22"/>
             html += `
-        <a class="btn btn-sm border list-action" role="button" data-toggle="modal" data-target="#dialogDeleteConfirm" data-loading-text="Deleting..." data-id="${id}">
-          <i class="bi bi-trash3 text-danger"></i>
-        </a>`
+                <a class="btn btn-sm border list-action" role="button" data-toggle="modal" data-target="#dialogDeleteConfirm" data-loading-text="Deleting..." data-id="${id}">
+                  <i class="bi bi-trash3 text-danger"></i>
+                </a>`
         }
         return html + '</div>'
     }

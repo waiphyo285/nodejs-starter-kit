@@ -1,7 +1,7 @@
 nav(class="navbar fixed-top")
   button.btn.material-button.material-secondary#menu-toggle
     i.bi.bi-menu-button-wide
-    |  Menu
+    |  !{content.menu}
 
   .o-nav-items.d-flex.align-items-end
     .nav-item
@@ -15,12 +15,12 @@ nav(class="navbar fixed-top")
         i.bi.bi-translate
       
       .dropdown-menu(aria-labelledby='langDropdown')
-        button.btn.dropdown-item(role='button' title="English language" onclick="changeLang('en_US')")
+        button.btn.dropdown-item(role='button' title="" onclick="changeLang('en_US')")
           img(src="https://img.icons8.com/color/48/000000/usa-circular.png" width="22" height="22")
-          | &nbsp; English
-        button.btn.dropdown-item(role='button' title="Myanmar language" onclick="changeLang('my_MM')") 
+          | &nbsp; !{content.en_US}
+        button.btn.dropdown-item(role='button' title="" onclick="changeLang('my_MM')") 
           img(src="https://img.icons8.com/color/48/000000/myanmar-circular.png" width="22" height="22")
-          | &nbsp; Myanmar
+          | &nbsp; !{content.my_MM}
         
         // free icon sources from icons8.com
         // https://icons8.com/icons/set/flags
@@ -31,17 +31,17 @@ nav(class="navbar fixed-top")
       .dropdown-menu(aria-labelledby='settingDropdown')
         a.dropdown-item#settings(href='/settings') 
           span.bi.bi-gear-wide-connected(data-toggle="tooltip" data-placement="left" title="Settings")
-            | &nbsp; Settings
+            | &nbsp; !{content.setting}
         a.dropdown-item(href="#" role='button' data-toggle="modal", data-target="#dialogSetTheme") 
-          span.bi.bi-palette(data-toggle="tooltip" data-placement="left" title="New Theme")
-            | &nbsp; Edit theme
+          span.bi.bi-palette(data-toggle="tooltip" data-placement="left" title="New theme")
+            | &nbsp; !{content.theme}
         a.dropdown-item(href="#" role='button' data-toggle="modal", data-target="#dialogNewTemplate")
           span.bi.bi-filetype-json(data-toggle="tooltip" data-placement="left" title="New template")
-            | &nbsp; New template
+            | &nbsp; !{content.template}
         .dropdown-divider
         a.dropdown-item(href="#" role='button' data-toggle="modal", data-target="#dialogLogoutConfirm")
           span.bi.bi-box-arrow-right(data-toggle="tooltip" data-placement="left" title="Logout")
-            | &nbsp; Logout
+            | &nbsp; !{content.logout}
 
 include ./modal/modal-logout
 include ./modal/modal-theme

@@ -2,7 +2,7 @@ div.modal.fade#dialogSetTheme(tabindex='-1', role='dialog', aria-labelledby='dia
   div.modal-dialog.modal-dialog-centered.modal-lg.custom-modal-lg(role='document')
     div.modal-content
       div.modal-header
-        h5.modal-title Change theme
+        h5.modal-title !{content.change_theme}
         button.close(type='button', data-dismiss='modal', aria-label='Close')
           span(aria-hidden='true') &times;
       div.modal-body
@@ -41,10 +41,10 @@ div.modal.fade#dialogSetTheme(tabindex='-1', role='dialog', aria-labelledby='dia
               span Sports
       div.modal-footer.justify-content-md-center
         button.btn.material-button.material-secondary#dialogCancel(type='button', data-dismiss='modal')
-          |  CANCEL
+          |  !{content.close}
         button.btn.material-button.material-primary#dialogTheme(type='button', data-dismiss='modal')
           i.bi.bi-save
-          |  CHANGE
+          |  !{content.save}
 
 script.
   $(document).ready(function() {

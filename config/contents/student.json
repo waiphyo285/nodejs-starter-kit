@@ -3,36 +3,24 @@
         "list": {
             "name": "Name",
             "age": "Age",
-            "grade": "Grade",
-            "status": "Status",
-            "updated_at": "Updated_at",
-            "actions": "Actions"
+            "grade": "Grade"
         },
         "entry": {
             "name": "Name",
             "age": "Age",
-            "grade": "Grade",
-            "status": "Status",
-            "cancel": "Cancel",
-            "save": "Save"
+            "grade": "Grade"
         }
     },
     "my_MM": {
         "list": {
             "name": "အမည်",
             "age": "အသက်",
-            "grade": "အတန်း",
-            "status": "မှတ်ချက်",
-            "updated_at": "ပြင်ဆင်သည့်ရက်စွဲ",
-            "actions": "လုပ်ဆောင်ချက်များ"
+            "grade": "အတန်း"
         },
         "entry": {
             "name": "အမည်",
             "age": "အသက်",
-            "grade": "အတန်း",
-            "status": "မှတ်ချက်",
-            "cancel": "ပယ်ဖျက်",
-            "save": "သိမ်းဆည်း"
+            "grade": "အတန်း"
         }
     }
 }

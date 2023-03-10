@@ -8,6 +8,7 @@ const makeSchema = new Schema({
     levelid: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'user_role',
+        default: null,
     },
     role: {
         type: String,

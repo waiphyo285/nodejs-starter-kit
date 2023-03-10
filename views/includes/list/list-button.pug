@@ -1,12 +1,12 @@
 div.mb-2
   div#tableButton.d-flex
     block extend-btns
-      include ./layout-list-title
+      include ./list-title
         
       .btn-group.btn-group-sm(role='group' aria-label='Basic example')
-        include ./layout-list-export
+        include ./list-export
           block append
-            include ./layout-list-filter
+            include ./list-filter
           if ((page.read && page.edit) == true)
             block append
-              include ./layout-list-plus
+              include ./list-plus

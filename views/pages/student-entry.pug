@@ -21,15 +21,15 @@ block content
 
         div.form-group.row
           div.col-sm-6.mb-3
-            label.control-label(for='name') Name *
+            label.control-label(for='name') !{content.name} *
             input.form-control.input-sm#name(type='text', name='name', value=data.name, maxlength="55" autocomplete="off" required autofocus)
           
           div.col-sm-6.mb-3
-            label.control-label(for='age') Age *
+            label.control-label(for='age') !{content.age} *
             input.form-control.input-sm#age(type='number', name='age', role='number', min='16' max='120' onkeyup="if(parseInt(this.value)>this.max){ this.value=this.max; return false; }" value=data.age autocomplete="off" required)
             
           div.col-sm-6.mb-3
-            label.control-label(for='grade') Grade *
+            label.control-label(for='grade') !{content.grade} *
             input.form-control.input-sm#grade(type='number', name='grade', role='number', min='1' max='11' onkeyup="if(parseInt(this.value)>this.max){ this.value=this.max; return false; }" value=data.grade autocomplete="off" required)
 
           include ./../includes/common/input-status

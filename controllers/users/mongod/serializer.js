@@ -1,33 +1,31 @@
 const single = (dataObj) => {
     let showObj = {
-        level: "Undefined"
-    };
+        level: 'Undefined',
+    }
 
     if (dataObj.levelid) {
         showObj = {
-            level: dataObj.levelid.level
+            level: dataObj.levelid.level,
         }
     }
 
     // prevent key
     const returnObj = {
         ...dataObj,
-        ...showObj
-    };
+        ...showObj,
+    }
 
-    return returnObj;
-};
+    return returnObj
+}
 
 const serializer = (data) => {
     if (!data) {
-        return null;
+        return null
+    } else if (Array.isArray(data)) {
+        return { data: data.map(single) }
+    } else {
+        return { data: single(data) }
     }
-    else if (Array.isArray(data)) {
-        return { data: data.map(single) };
-    }
-    else {
-        return { data: single(data) };
-    }
-};
+}
 
-module.exports = serializer;
+module.exports = serializer

@@ -1,19 +1,19 @@
 const {
-  listUsers,
-  findUserById,
-  addUser,
-  updateWithPass,
-  updateWithoutPass,
-  deleteUser,
-} = require("./mongod/index");
+    listUsers,
+    findUserById,
+    addUser,
+    updateWithPass,
+    updateWithoutPass,
+    deleteUser,
+} = require('./mongod/index')
 
 const exportDb = {
-  listUsers,
-  findUserById,
-  addUser,
-  updateWithPass,
-  updateWithoutPass,
-  deleteUser,
-};
+    listUsers,
+    findUserById,
+    addUser,
+    updateWithPass,
+    updateWithoutPass,
+    deleteUser,
+}
 
-module.exports = exportDb;
+module.exports = exportDb

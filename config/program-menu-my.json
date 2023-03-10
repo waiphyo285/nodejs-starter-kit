@@ -1,0 +1,136 @@
+[
+    {
+        "menuid": "dashboard",
+        "url": "/",
+        "title": "ပင်မ",
+        "icon": "bi bi-speedometer",
+        "access": false,
+        "active": false,
+        "submenu": []
+    },
+    {
+        "menuid": "administrative",
+        "url": "#",
+        "title": "စနစ်",
+        "icon": "bi bi-folder",
+        "access": false,
+        "active": false,
+        "submenu": [
+            {
+                "menuid": "user",
+                "url": "/users",
+                "title": "စနစ်အသုံးပြုသူ",
+                "icon": "bi bi-list",
+                "access": false,
+                "active": false,
+                "list": {
+                    "url": "/users",
+                    "title": "စနစ်အသုံးပြုသူများ",
+                    "breadcrumb": [
+                        {
+                            "url": "",
+                            "text": "စနစ်အသုံးပြုသူများ"
+                        }
+                    ]
+                },
+                "entry": {
+                    "url": "/user",
+                    "title": "စနစ်အသုံးပြုသူ",
+                    "breadcrumb": [
+                        {
+                            "url": "/users",
+                            "text": "စနစ်အသုံးပြုသူများ"
+                        },
+                        {
+                            "url": "",
+                            "text": "စနစ်အသုံးပြုသူ"
+                        }
+                    ]
+                },
+                "read": false,
+                "edit": false,
+                "delete": false
+            },
+            {
+                "menuid": "role",
+                "url": "/user_roles",
+                "title": "စနစ်သတ်မှတ်ချက်",
+                "icon": "bi bi-list",
+                "access": false,
+                "active": false,
+                "list": {
+                    "url": "/user_roles",
+                    "title": "စနစ်သတ်မှတ်ချက်များ",
+                    "breadcrumb": [
+                        {
+                            "url": "",
+                            "text": "စနစ်သတ်မှတ်ချက်များ"
+                        }
+                    ]
+                },
+                "entry": {
+                    "url": "/user_role",
+                    "title": "စနစ်သတ်မှတ်ချက်",
+                    "breadcrumb": [
+                        {
+                            "url": "/user_roles",
+                            "text": "စနစ်သတ်မှတ်ချက်များ"
+                        },
+                        {
+                            "url": "",
+                            "text": "စနစ်သတ်မှတ်ချက်"
+                        }
+                    ]
+                },
+                "read": false,
+                "edit": false,
+                "delete": false
+            }
+        ]
+    },
+    {
+        "menuid": "course",
+        "url": "#",
+        "title": "သင်တန်း",
+        "icon": "bi bi-folder",
+        "access": false,
+        "active": false,
+        "submenu": [
+            {
+                "menuid": "student",
+                "url": "/students",
+                "title": "‌သင်တန်းသား",
+                "icon": "bi bi-list",
+                "access": false,
+                "active": false,
+                "list": {
+                    "url": "/students",
+                    "title": "သင်တန်းသားများ",
+                    "breadcrumb": [
+                        {
+                            "url": "",
+                            "text": "သင်တန်းသားများ"
+                        }
+                    ]
+                },
+                "entry": {
+                    "url": "/student",
+                    "title": "သင်တန်းသား",
+                    "breadcrumb": [
+                        {
+                            "url": "/students",
+                            "text": "သင်တန်းသားများ"
+                        },
+                        {
+                            "url": "",
+                            "text": "သင်တန်းသား"
+                        }
+                    ]
+                },
+                "read": false,
+                "edit": false,
+                "delete": false
+            }
+        ]
+    }
+]

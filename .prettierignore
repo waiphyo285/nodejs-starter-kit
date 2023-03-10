@@ -1,0 +1,4 @@
+# Public uploads dir
+public/assets/dist/*
+public/layout-js/lib/*
+public/layout-css/lib/*

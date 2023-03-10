@@ -1,53 +1,40 @@
-
-const serialize = require("./serializer");
-const Controller = require("@models/mongodb/schemas/generator");
+const serialize = require('./serializer')
+const Controller = require('@models/mongodb/schemas/generator')
 
 const listData = () => {
-  return Controller
-    .find({})
-    .then(serialize);
-};
+    return Controller.find({}).then(serialize)
+}
 
 const findDataById = (id) => {
-  return Controller
-    .findById(id)
-    .then(serialize);
-};
+    return Controller.findById(id).then(serialize)
+}
 
 const findDataBy = (params) => {
-  return Controller
-    .find(params)
-    .then(serialize);
-};
+    return Controller.find(params).then(serialize)
+}
 
 const addData = (dataObj) => {
-  return Controller
-    .create(dataObj)
-    .then(serialize);
-};
+    return Controller.create(dataObj).then(serialize)
+}
 
 const updateData = (id, dataObj) => {
-  return Controller
-    .findByIdAndUpdate(id, dataObj)
-    .then(serialize);
-};
+    return Controller.findByIdAndUpdate(id, dataObj).then(serialize)
+}
 
 const deleteData = (id) => {
-  return Controller
-    .findByIdAndDelete(id)
-    .then(serialize);
-};
+    return Controller.findByIdAndDelete(id).then(serialize)
+}
 
 const dropAll = () => {
-  return Controller.remove();
-};
+    return Controller.remove()
+}
 
 module.exports = {
-  listData,
-  findDataById,
-  findDataBy,
-  addData,
-  updateData,
-  deleteData,
-  dropAll,
-};
+    listData,
+    findDataById,
+    findDataBy,
+    addData,
+    updateData,
+    deleteData,
+    dropAll,
+}

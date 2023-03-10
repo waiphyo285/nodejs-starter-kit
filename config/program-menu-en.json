@@ -1,0 +1,136 @@
+[
+    {
+        "menuid": "dashboard",
+        "url": "/",
+        "title": "Dashboard",
+        "icon": "bi bi-speedometer",
+        "access": false,
+        "active": false,
+        "submenu": []
+    },
+    {
+        "menuid": "administrative",
+        "url": "#",
+        "title": "System",
+        "icon": "bi bi-folder",
+        "access": false,
+        "active": false,
+        "submenu": [
+            {
+                "menuid": "user",
+                "url": "/users",
+                "title": "System User",
+                "icon": "bi bi-list",
+                "access": false,
+                "active": false,
+                "list": {
+                    "url": "/users",
+                    "title": "System User List",
+                    "breadcrumb": [
+                        {
+                            "url": "",
+                            "text": "System User List"
+                        }
+                    ]
+                },
+                "entry": {
+                    "url": "/user",
+                    "title": "System User Entry",
+                    "breadcrumb": [
+                        {
+                            "url": "/users",
+                            "text": "System User List"
+                        },
+                        {
+                            "url": "",
+                            "text": "System User Entry"
+                        }
+                    ]
+                },
+                "read": false,
+                "edit": false,
+                "delete": false
+            },
+            {
+                "menuid": "role",
+                "url": "/user_roles",
+                "title": "System Role",
+                "icon": "bi bi-list",
+                "access": false,
+                "active": false,
+                "list": {
+                    "url": "/user_roles",
+                    "title": "System Role List",
+                    "breadcrumb": [
+                        {
+                            "url": "",
+                            "text": "System Role List"
+                        }
+                    ]
+                },
+                "entry": {
+                    "url": "/user_role",
+                    "title": "System Role Entry",
+                    "breadcrumb": [
+                        {
+                            "url": "/user_roles",
+                            "text": "System Role List"
+                        },
+                        {
+                            "url": "",
+                            "text": "System Role Entry"
+                        }
+                    ]
+                },
+                "read": false,
+                "edit": false,
+                "delete": false
+            }
+        ]
+    },
+    {
+        "menuid": "course",
+        "url": "#",
+        "title": "Course",
+        "icon": "bi bi-folder",
+        "access": false,
+        "active": false,
+        "submenu": [
+            {
+                "menuid": "student",
+                "url": "/students",
+                "title": "Student",
+                "icon": "bi bi-list",
+                "access": false,
+                "active": false,
+                "list": {
+                    "url": "/students",
+                    "title": "Student List",
+                    "breadcrumb": [
+                        {
+                            "url": "",
+                            "text": "Student List"
+                        }
+                    ]
+                },
+                "entry": {
+                    "url": "/student",
+                    "title": "Student Entry",
+                    "breadcrumb": [
+                        {
+                            "url": "/students",
+                            "text": "Student List"
+                        },
+                        {
+                            "url": "",
+                            "text": "Student Entry"
+                        }
+                    ]
+                },
+                "read": false,
+                "edit": false,
+                "delete": false
+            }
+        ]
+    }
+]

@@ -10,20 +10,20 @@ block content
 
           div.form-group.border.border-warning.p-2.row(class=disabledMode ? "d-none" : "")
             div.col-sm-6.mb-3
-              label.control-label(for='role') Access Role *
+              label.control-label(for='role') !{content.access_role} *
               select.form-control.input-sm.selectpicker#roleid(name='role' value=data.role data-value=data.role, data-live-search="true", data-size="8" required disabled=disabledMode)
 
             div.col-sm-6.mb-3
-              label.control-label(for='level') Access Level *
+              label.control-label(for='level') !{content.access_level} *
               select.form-control.input-sm.selectpicker#levelid(name='levelid' value=data.levelid data-value=data.levelid, data-live-search="true", data-size="8" required disabled=disabledMode)
 
         div.form-group.row       
           div.col-sm-6.mb-3
-            label.control-label(for='username') Username *
+            label.control-label(for='username') !{content.username} *
             input.form-control.input-sm#username(type='text', name='username', value=data.username, maxlength="55" autocomplete="off" required autofocus)
           
           div.col-sm-6.mb-3
-            label.control-label(for='password') Password *
+            label.control-label(for='password') !{content.password} *
             div.input-group
               input.form-control.input-sm#password(type='password', name='password', role='password' value="" data-toggle="password-validator" data-match-pass=".conf-pass" data-target=".pwd-errors" required)
               div.input-group-append
@@ -31,7 +31,7 @@ block content
                   i.bi.bi-eye-slash(aria-hidden='true')
 
           div.col-sm-6.mb-3
-            label.control-label(for='phone') Phone
+            label.control-label(for='phone') !{content.phone}
             input.form-control.input-sm#phone(type='tel', name='phone', max='12' value=data.phone  pattern="[+,0][1-9]{1}[0-9]{1,2}[0-9]{4,12}" autocomplete="off")
       
           include ./../includes/common/input-status

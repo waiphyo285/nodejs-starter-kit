@@ -7,7 +7,7 @@ block content
 
         div.form-group.row
           div.col-lg-6.mb-3
-            label.control-label(for='role') ACCESS ROLE
+            label.control-label(for='role') !{content.access_role}
             select.form-control.input-sm.selectpicker#roleid(name='role' value=data.role data-value=data.role, data-live-search="true", data-size="8" required)
         
           div.col-lg-6
@@ -20,7 +20,7 @@ block content
         
         div.form-group.row
           div.col-sm-6.mb-3
-            label.control-label(for='level') Access Level
+            label.control-label(for='level') !{content.access_level}
             input.form-control.input-sm#level(type='text', name='level', value=data.level, maxlength="55" autocomplete="off" required)
           
           include ./../includes/common/input-status

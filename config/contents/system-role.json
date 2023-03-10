@@ -1,0 +1,34 @@
+{
+    "en_US": {
+        "list": {
+            "access_role": "Access_role",
+            "access_level": "Access_level",
+            "status": "Status",
+            "updated_at": "Updated_at",
+            "actions": "Actions"
+        },
+        "entry": {
+            "access_role": "Access Role",
+            "access_level": "Access Level",
+            "status": "Status",
+            "cancel": "Cancel",
+            "save": "Save"
+        }
+    },
+    "my_MM": {
+        "list": {
+            "access_role": "အဆင့်",
+            "access_level": "သတ်မှတ်ချက်",
+            "status": "မှတ်ချက်",
+            "updated_at": "ပြင်ဆင်သည့်ရက်စွဲ",
+            "actions": "လုပ်ဆောင်ချက်များ"
+        },
+        "entry": {
+            "access_role": "အဆင့်",
+            "access_level": "သတ်မှတ်ချက်",
+            "status": "မှတ်ချက်",
+            "cancel": "ပယ်ဖျက်",
+            "save": "သိမ်းဆည်း"
+        }
+    }
+}

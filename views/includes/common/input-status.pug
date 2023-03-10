@@ -1,6 +1,6 @@
 div.col-sm-3.mb-3
   -var initStatus = data.status == undefined ? true : false;
-  label.control-label.d-block(for='status') Status 
+  label.control-label.d-block(for='status') !{content.status} 
   .btn-group.btn-group-sm.btn-group-toggle(data-toggle='buttons')
     label.btn.btn-outline-success.btn-toggle(class=`${initStatus || data.status == true ? "active" : ""}`)
       input(type='radio' name=`status` value="1" autocomplete='off' checked=(initStatus || data.status == true))

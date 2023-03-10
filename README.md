@@ -20,9 +20,9 @@ I am introduced a simple API template for backend developers using clean archite
 
 **The followings must be pre-installed on your machine:**
 
-- Node.js,
-- MongoDB,
-- Redis
+-   Node.js,
+-   MongoDB,
+-   Redis
 
 **Clone itemplate repository**
 

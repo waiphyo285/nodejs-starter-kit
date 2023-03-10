@@ -5,12 +5,16 @@
 
 # Node artifact files
 node_modules/
+package-lock.json
 
 # Environments
 .env
 
 # Public uploads dir
 public/uploads/*
+public/assets/dist/*
+public/layout-js/lib/*
+public/layout-css/lib/*
 
 # Text editor setting
 .vscode

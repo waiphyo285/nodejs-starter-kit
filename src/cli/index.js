@@ -1,50 +1,50 @@
-const yargs = require("yargs/yargs");
-const { hideBin } = require("yargs/helpers");
-const args = yargs(hideBin(process.argv)).argv;
-const usersDb = require("@controllers/users/index");
+const yargs = require('yargs/yargs')
+const { hideBin } = require('yargs/helpers')
+const args = yargs(hideBin(process.argv)).argv
+const usersDb = require('@controllers/users/index')
 
 const printHelp = function () {
-  console.log(`
+    console.log(`
     Help usage:
     --index  list users
     --show   find user by {ID}
     --help   print help
-  `);
-};
+  `)
+}
 
-const valid = args.index || args.show;
+const valid = args.index || args.show
 
 if (args.help || !valid) {
-  printHelp();
-  process.exit(1);
+    printHelp()
+    process.exit(1)
 }
 
 if (args.index) {
-  usersDb
-    .listUsers()
-    .then((data) => {
-      console.log("Cli Data ", data);
-    })
-    .catch((err) => {
-      console.log("Cli Error ", err);
-    })
-    .finally(() => {
-      process.exit(1);
-    });
+    usersDb
+        .listUsers()
+        .then((data) => {
+            console.log('Cli Data ', data)
+        })
+        .catch((err) => {
+            console.log('Cli Error ', err)
+        })
+        .finally(() => {
+            process.exit(1)
+        })
 }
 
 if (args.show) {
-  usersDb
-    .findUserById(args.show)
-    .then((data) => {
-      console.log("Cli Data ", data);
-    })
-    .catch((err) => {
-      console.log("Cli Error ", err);
-    })
-    .finally(() => {
-      process.exit(1);
-    });
+    usersDb
+        .findUserById(args.show)
+        .then((data) => {
+            console.log('Cli Data ', data)
+        })
+        .catch((err) => {
+            console.log('Cli Error ', err)
+        })
+        .finally(() => {
+            process.exit(1)
+        })
 }
 
 /**

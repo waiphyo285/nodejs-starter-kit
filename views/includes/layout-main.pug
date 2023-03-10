@@ -65,13 +65,18 @@ head
 script.
   // Global Variable
   var table, pageEntry;
+
   var csrf = '!{user.csrf}';
   var token = '!{user.latmat}';
+  var locale = '!{user.locale}';
   var userId = '!{user._id}';
   var role = '!{user.role}';
+
   var signJwtMethod = "eno";
   var apiVersionNum = "v1";
   var maxImageCount = 5;
+
+  locale = locale || '!{app.DEF_LANG}';
 
   function dataTableDef (curPage) { 
     const buttons = [

@@ -1,11 +1,11 @@
-const { mongoose } = require("../connection");
-const SchemaPlugin = require("./helpers/schema-plugin");
+const { mongoose } = require('../connection')
+const SchemaPlugin = require('./helpers/schema-plugin')
 
-const Schema = mongoose.Schema;
+const Schema = mongoose.Schema
 
 // set properties
-const makeSchema = new Schema();
+const makeSchema = new Schema()
 
-makeSchema.plugin(SchemaPlugin);
+makeSchema.plugin(SchemaPlugin)
 
-module.exports = mongoose.model("generator", makeSchema);
+module.exports = mongoose.model('generator', makeSchema)

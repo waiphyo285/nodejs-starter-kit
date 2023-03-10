@@ -1,18 +1,16 @@
 const single = (dataObj) => {
     // prevent key
-    return dataObj;
-};
+    return dataObj
+}
 
 const serializer = (data) => {
     if (!data) {
-        return null;
+        return null
+    } else if (Array.isArray(data)) {
+        return { data: data.map(single) }
+    } else {
+        return { data: single(data) }
     }
-    else if (Array.isArray(data)) {
-        return { data: data.map(single) };
-    }
-    else {
-        return { data: single(data) };
-    }
-};
+}
 
-module.exports = serializer;
+module.exports = serializer

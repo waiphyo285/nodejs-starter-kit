@@ -15,10 +15,10 @@ nav(class="navbar fixed-top")
         i.bi.bi-translate
       
       .dropdown-menu(aria-labelledby='langDropdown')
-        a.dropdown-item(href="#" role='button' title="English language")
+        button.btn.dropdown-item(role='button' title="English language" onclick="changeLang('en_US')")
           img(src="https://img.icons8.com/color/48/000000/usa-circular.png" width="22" height="22")
           | &nbsp; English
-        a.dropdown-item(href="#" role='button' title="Myanmar language") 
+        button.btn.dropdown-item(role='button' title="Myanmar language" onclick="changeLang('my_MM')") 
           img(src="https://img.icons8.com/color/48/000000/myanmar-circular.png" width="22" height="22")
           | &nbsp; Myanmar
         
@@ -50,6 +50,47 @@ include ./modal/layout-generator
 script.
   $(document).ready(function() {
     $("#dialogLogout").on('click', function() {
-      setTimeout(()=> { window.location.replace("/logout") }, 1000)
-    })
-  })
+      setTimeout(()=> { 
+        window.location.replace("/logout") 
+      }, 1000);
+    });
+  });
+
+  function changeLang(lang) {
+    $.ajax({
+      type: "PUT",
+      url: `/api/v1/user-no-pass/${userId}`,
+      headers: {
+        "userrole": role,
+        "x-csrf-token": csrf,
+        "x-access-method": signJwtMethod,
+        "authorization": "Bearer " + token,
+      },
+      data: { locale: lang } ,
+      success: function (response) {
+        if (response.code != 200) {
+          swalWarning({
+            title: "Warning",
+            description: "Sorry, your language was not changed.",
+          })
+        }
+        else {
+          swalWarning({
+            icon: "success",
+            title: "Success",
+            description: "Your language is successfully changed.",
+          });
+          
+          setTimeout(()=> {
+            window.location.reload();
+          }, 3000);
+        }
+      },
+      error: function (jqXHR, textStatus, errorThrown) {
+        swalWarning({
+          title: "Warning",
+          description: "Description: " + errorThrown,
+        });
+      },
+    });
+  }

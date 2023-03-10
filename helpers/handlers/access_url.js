@@ -1,12 +1,12 @@
-const config = require("@config/index");
-const { isAuth } = require("@middlewares/token/jwt_token");
+const config = require('@config/index')
+const { isAuth } = require('@middlewares/token/jwt_token')
 
 // Util authorized methods
 
-const D = config.JWT.ROLE_OPTION.D;
-const A = config.JWT.ROLE_OPTION.A;
-const M = config.JWT.ROLE_OPTION.M;
-const S = config.JWT.ROLE_OPTION.S;
+const D = config.JWT.ROLE_OPTION.D
+const A = config.JWT.ROLE_OPTION.A
+const M = config.JWT.ROLE_OPTION.M
+const S = config.JWT.ROLE_OPTION.S
 
 const isD = isAuth([D])
 const isDA = isAuth([D, A])
@@ -21,5 +21,5 @@ module.exports = {
     isD,
     isDA,
     isDAM,
-    isDAMS
+    isDAMS,
 }

@@ -8,12 +8,12 @@ block content
       thead
         tr
           th #
-          th Username
-          th Access_role
-          th Access_level
-          th Status
-          th Updated_at
-          th.text-right Actions
+          th !{content.username}
+          th !{content.access_role}
+          th !{content.access_level}
+          th !{content.status}
+          th !{content.updated_at}
+          th.text-right !{content.actions}
       tbody
       //- tfoot
       //-   tr 

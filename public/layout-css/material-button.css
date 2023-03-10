@@ -1,23 +1,23 @@
 .material-primary {
-  color: var(--text-white) !important;
-  background: var(--primary);
+    color: var(--text-white) !important;
+    background: var(--primary);
 }
 
 .material-secondary {
-  color: var(--text-black) !important;
-  background: var(--back-white);
+    color: var(--text-black) !important;
+    background: var(--back-white);
 }
 
 .material-button {
-  position: relative;
-  display: inline-block;
-  height: 30px;
-  min-width: 30px;
-  padding: 0px 6px;
-  border-radius: 4px;
-  color: var(--text-white);
-  text-align: center;
-  line-height: 30px;
-  overflow: hidden;
-  cursor: pointer;
+    position: relative;
+    display: inline-block;
+    height: 30px;
+    min-width: 30px;
+    padding: 0px 6px;
+    border-radius: 4px;
+    color: var(--text-white);
+    text-align: center;
+    line-height: 30px;
+    overflow: hidden;
+    cursor: pointer;
 }

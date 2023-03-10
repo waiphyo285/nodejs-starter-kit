@@ -8,12 +8,12 @@ block content
       thead
         tr
           th #
-          th Name
-          th Age
-          th Grade
-          th Status
-          th Updated_at
-          th.text-right Actions
+          th !{content.name}
+          th !{content.age}
+          th !{content.grade}
+          th !{content.status}
+          th !{content.updated_at}
+          th.text-right !{content.actions}
       tbody
   script.
     $(document).ready(function() {

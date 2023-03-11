@@ -1,7 +1,7 @@
 nav(class="navbar fixed-top")
   button.btn.material-button.material-secondary#menu-toggle
     i.bi.bi-menu-button-wide
-    |  !{content.menu}
+    |  !{content.navbar.menu}
 
   .o-nav-items.d-flex.align-items-end
     .nav-item
@@ -17,10 +17,10 @@ nav(class="navbar fixed-top")
       .dropdown-menu(aria-labelledby='langDropdown')
         button.btn.dropdown-item(role='button' title="" onclick="changeLang('en_US')")
           img(src="https://img.icons8.com/color/48/000000/usa-circular.png" width="22" height="22")
-          | &nbsp; !{content.en_US}
+          | &nbsp; !{content.navbar.en_US}
         button.btn.dropdown-item(role='button' title="" onclick="changeLang('my_MM')") 
           img(src="https://img.icons8.com/color/48/000000/myanmar-circular.png" width="22" height="22")
-          | &nbsp; !{content.my_MM}
+          | &nbsp; !{content.navbar.my_MM}
         
         // free icon sources from icons8.com
         // https://icons8.com/icons/set/flags
@@ -31,17 +31,17 @@ nav(class="navbar fixed-top")
       .dropdown-menu(aria-labelledby='settingDropdown')
         a.dropdown-item#settings(href='/settings') 
           span.bi.bi-gear-wide-connected(data-toggle="tooltip" data-placement="left" title="Settings")
-            | &nbsp; !{content.setting}
+            | &nbsp; !{content.navbar.setting}
         a.dropdown-item(href="#" role='button' data-toggle="modal", data-target="#dialogSetTheme") 
           span.bi.bi-palette(data-toggle="tooltip" data-placement="left" title="New theme")
-            | &nbsp; !{content.theme}
+            | &nbsp; !{content.navbar.theme}
         a.dropdown-item(href="#" role='button' data-toggle="modal", data-target="#dialogNewTemplate")
           span.bi.bi-filetype-json(data-toggle="tooltip" data-placement="left" title="New template")
-            | &nbsp; !{content.template}
+            | &nbsp; !{content.navbar.template}
         .dropdown-divider
         a.dropdown-item(href="#" role='button' data-toggle="modal", data-target="#dialogLogoutConfirm")
           span.bi.bi-box-arrow-right(data-toggle="tooltip" data-placement="left" title="Logout")
-            | &nbsp; !{content.logout}
+            | &nbsp; !{content.navbar.logout}
 
 include ./modal/modal-logout
 include ./modal/modal-theme
@@ -70,15 +70,15 @@ script.
       success: function (response) {
         if (response.code != 200) {
           swalWarning({
-            title: "Warning",
-            description: "Sorry, your language was not changed.",
+            title: content['modal'].warning,
+            description: content['swal-msg'].lang_warning,
           })
         }
         else {
           swalWarning({
             icon: "success",
-            title: "Success",
-            description: "Your language is successfully changed.",
+            title: content['modal'].success,
+            description: content['swal-msg'].lang_success,
           });
           
           setTimeout(()=> {
@@ -88,7 +88,7 @@ script.
       },
       error: function (jqXHR, textStatus, errorThrown) {
         swalWarning({
-          title: "Warning",
+          title: content['modal'].warning,
           description: "Description: " + errorThrown,
         });
       },

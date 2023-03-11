@@ -5,10 +5,10 @@
 function dataTableCallback(e, settings, techNote, message) {
     const description =
         settings.ajax.data == undefined
-            ? 'Your request is required authorization.'
-            : 'Your request is something wrong. Please try again.'
+            ? content['swal-msg'].unauthorized
+            : content['swal-msg'].unknown_desc
     swalWarning({
-        title: 'Warning',
+        title: content['modal'].warning,
         description: description,
     })
 }
@@ -107,8 +107,8 @@ function dataTableActionsRenderer(editUrl, read, edit, del) {
 $('#btnExcel').on('click', function (e) {
     if (!table.data().count()) {
         swalWarning({
-            title: 'Warning',
-            description: 'No data available in table to export.',
+            title: content['modal'].warning,
+            description: content['swal-msg'].no_data_excel,
         })
         return false
     }
@@ -118,8 +118,8 @@ $('#btnExcel').on('click', function (e) {
 $('#btnPdf').on('click', function (e) {
     if (!table.data().count()) {
         swalWarning({
-            title: 'Warning',
-            description: 'No data available in table to export.',
+            title: content['modal'].warning,
+            description: content['swal-msg'].no_data_pdf,
         })
         return false
     }
@@ -129,8 +129,8 @@ $('#btnPdf').on('click', function (e) {
 $('#btnPrint').on('click', function (e) {
     if (!table.data().count()) {
         swalWarning({
-            title: 'Warning',
-            description: 'No data available in table to print.',
+            title: content['modal'].warning,
+            description: content['swal-msg'].no_data_print,
         })
         return false
     }
@@ -140,8 +140,8 @@ $('#btnPrint').on('click', function (e) {
 $('#btnSearch').on('click', function (e) {
     if (!table.data().count()) {
         swalWarning({
-            title: 'Warning',
-            description: 'No data available in table to search.',
+            title: content['modal'].warning,
+            description: content['swal-msg'].no_data_search,
         })
         return false
     }

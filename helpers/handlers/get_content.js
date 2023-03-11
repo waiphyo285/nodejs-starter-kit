@@ -2,7 +2,7 @@ const path = require('path')
 const config = require('@config/index')
 
 const DEF_LANG = config.APP.DEF_LANG
-const DEF_PAGE = ['navbar', 'modal', 'modal-lbl', 'common']
+const DEF_PAGE = ['common', 'navbar', 'modal', 'modal-lbl', 'swal-msg']
 
 const getContentPath = (pageName) => {
     return `../../config/contents/${pageName}.json`
@@ -31,7 +31,7 @@ const getContent = (locale = DEF_LANG, pageName, keys) => {
     DEF_PAGE.forEach((pageName) => {
         defaultContentJson = {
             ...defaultContentJson,
-            ...extractData(getJsonData(pageName), [locale]),
+            [pageName]: extractData(getJsonData(pageName), [locale]),
         }
     })
 

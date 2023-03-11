@@ -68,7 +68,7 @@ function submitAction(args, callback) {
             error: function (jqXHR, textStatus, errorThrown) {
                 swalWarning({
                     title: 'Warning',
-                    description: errorThrown,
+                    description: 'Description: ' + errorThrown,
                 })
             },
         })

@@ -2,7 +2,7 @@ div.modal.fade#dialogNewTemplate(tabindex='-1', role='dialog', aria-labelledby='
   div.modal-dialog.modal-dialog-centered.modal-lg.custom-modal-lg(role='document')
     div.modal-content
       div.modal-header
-        h5.modal-title !{content.new_template}
+        h5.modal-title !{content.modal.new_template}
         button.close(type='button', data-dismiss='modal', aria-label='Close')
           span(aria-hidden='true') &times;
       
@@ -18,10 +18,10 @@ div.modal.fade#dialogNewTemplate(tabindex='-1', role='dialog', aria-labelledby='
             
       div.modal-footer.justify-content-md-center
         button.btn.material-button.material-secondary#dialogCancel(type='button', data-dismiss='modal')
-          |  !{content.close}
+          |  !{content.common.close}
         button.btn.material-button.material-primary#dialogGenerate(type='button', data-dismiss='modal')
           i.bi.bi-save
-          |  !{content.save}
+          |  !{content.common.save}
 
 script.
   $(document).ready(function() {
@@ -46,18 +46,18 @@ script.
         success: function (response) {
           response.status !== '200' 
           ? swalWarning({
-              title: "Warning",
-              description: "Sorry, your template was not generated.",
+              title: content['modal'].warning,
+              description: content['swal-msg'].template_warning,
             })
           : swalWarning({
               icon: "success",
-              title: "Success",
-              description: "Your template is successfully generated.",
+              title: content['modal'].success,
+              description: content['swal-msg'].template_success,
             });
         },
         error: function (jqXHR, textStatus, errorThrown) {
           swalWarning({
-            title: "Warning",
+            title: content['modal'].warning,
             description: "Description: " + errorThrown,
           });
         },

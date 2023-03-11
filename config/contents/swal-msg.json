@@ -1,0 +1,32 @@
+{
+    "en_US": {
+        "unknown_desc": "The request is something wrong. Try again.",
+        "unauthorized": "The request is required authorization.",
+        "no_data_search": "No data available in table to search.",
+        "no_data_print": "No data available in table to print file.",
+        "no_data_excel": "No data available in table to export excel.",
+        "no_data_pdf": "No data available in table to export pdf.",
+        "max_images": "The number of images has been limited.",
+        "lang_warning": "Sorry, the language was not changed.",
+        "lang_success": "The language is successfully changed.",
+        "theme_warning": "Sorry, the theme was not changed.",
+        "theme_success": "The theme is successfully changed.",
+        "template_warning": "Sorry, new template was not generated.",
+        "template_success": "New template is successfully generated."
+    },
+    "my_MM": {
+        "unknown_desc": "တစုံတရာ မှားယွင်းနေပါသည် ပြန်လည်ကြိုးစားပါ။",
+        "unauthorized": "တောင်းဆိုချက်သည် ခွင့်ပြုချက် လိုအပ်ပါသည်။",
+        "no_data_search": "ရှာဖွေရန် အချက်အလက်များ မရှိသေးပါ။",
+        "no_data_print": "ပရင့်ထုတ်ရန် အချက်အလက်များ မရှိသေးပါ။",
+        "no_data_excel": "excel ထုတ်ရန် အချက်အလက်များ မရှိသေးပါ။",
+        "no_data_pdf": "pdf ထုတ်ရန် အချက်အလက်များ မရှိသေးပါ။",
+        "max_images": "သတ်မှတ်ထားသော ပုံအရေအတွက် ပြည့်သွားပါပြီ။",
+        "lang_warning": "ဝမ်းနည်းပါတယ်၊ ဘာသာစကားကို မပြောင်းထားပါဘူး။",
+        "lang_success": "ဘာသာစကားကို အောင်မြင်စွာ ပြောင်းလဲလိုက်ပါပြီ။",
+        "theme_warning": "ဝမ်းနည်းပါတယ်၊ အပြင်အဆင်ကို မပြောင်းထားပါဘူး။",
+        "theme_success": "အပြင်အဆင်ကို အောင်မြင်စွာ ပြောင်းလဲလိုက်ပါပြီ။",
+        "template_warning": "ဝမ်းနည်းပါသည်၊ ပုံစံပလိတ်ကို ထုတ်လုပ်မထားပါ။",
+        "template_success": "ပုံစံပလိတ်ကို အောင်မြင်စွာ ထုတ်လုပ်ပြီးပါပြီ။"
+    }
+}

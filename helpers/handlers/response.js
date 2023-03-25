@@ -67,7 +67,7 @@ const handleDatabase = (getDb, utils, res) => {
         .catch((err) => {
             console.log(`Error ${err}`)
             const responseError = handleError(err, locales)
-            res.status(responseError.code).json(responseError)
+            res.status(+responseError.code).json(responseError)
         })
 }
 

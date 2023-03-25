@@ -4,19 +4,35 @@
 
 First of all, let me admit [this article](https://mannhowie.com/clean-architecture-node) is inspired to develop this project. Uncle Bob's famous [Clean Architecture](https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html) is a way to write resilient software.
 
-I am introduced a simple API template for backend developers using clean architecture based on express application. This template is meant to help you with improved code.
+I am introduced a simple API template for backend developers using clean architecture based on express application. When you choose Node.js + MongoDb as your backend stack, the template is based on the following frameworks and libraries to completely cover a project that is ready for production.
 
-**Main features**
+[**Express**](https://bit.ly/3FeNkRi)
 
-| Title                                   | Description                 |
-| --------------------------------------- | --------------------------- |
-| [**Bootstrap**](https://bit.ly/3VQCqXA) | Responsive frontend toolkit |
-| [**Express**](https://bit.ly/3FeNkRi)   | Web application framework   |
-| [**Mongoose**](https://bit.ly/3TA0ZGT)  | Object-document mapping     |
-| [**Passport**](https://bit.ly/3W24cAr)  | Make authenticated requests |
-| [**Multer**](https://bit.ly/3NhgEZr)    | Multipart/form-data upload  |
-| [**JWT**](https://bit.ly/3W2dNrg)       | Secure between two parties  |
-| [**Mocha**](https://bit.ly/3f95w3Q)     | JavaScript test framework   |
+-   a powerful and flexible framework that makes it easy to build web applications and APIs using Node.js. Its minimalist approach and large ecosystem make it a popular choice for developers who want to build scalable and maintainable web applications.
+
+[**Mongoose**](https://bit.ly/3TA0ZGT)
+
+-   a powerful and flexible ODM library for MongoDB and Node.js that provides a rich set of tools for working with data. Its schema-based approach, data validation tools, and powerful
+
+[**Bootstrap**](https://bit.ly/3VQCqXA)
+
+-   a popular front-end framework for building responsive and mobile-first web applications. It was originally developed by Twitter and is now maintained by the open-source community.
+
+[**Passport**](https://bit.ly/3W24cAr)
+
+-   an open-source authentication middleware for Node.js. It provides a simple and modular approach to authentication that makes it easy to add user authentication to web applications.
+
+[**Multer**](https://bit.ly/3NhgEZr)
+
+-   a popular package that provides middleware for handling multipart/form-data in Node.js. It's commonly used in web applications to handle file uploads from users.
+
+[**JWT**](https://bit.ly/3W2dNrg)
+
+-   in the context of Node.js, the jsonwebtoken package is a popular npm package that provides a simple way to create and verify JWTs.
+
+[**Mocha**](https://bit.ly/3f95w3Q)
+
+-   a testing framework for Node.js applications. It's designed to provide a simple and flexible way to write and run tests, with support for a variety of testing styles and frameworks.
 
 **The followings must be pre-installed on your machine:**
 
@@ -27,7 +43,7 @@ I am introduced a simple API template for backend developers using clean archite
 **Clone itemplate repository**
 
 ```bash
-git clone https://github.com/waiphyo285/itemplate-node-js.git
+git clone https://github.com/waiphyo285/nodejs-starter-kit.git
 ```
 
 **Visit Public Postman Collection**
@@ -40,6 +56,12 @@ https://documenter.getpostman.com/view/10018411/2s83mbr5iK
 
 ```bash
 npm install
+```
+
+**Copy `.env.example` to `.env`**
+
+```bash
+cp .env.example .env
 ```
 
 **Run app and then go to browser**

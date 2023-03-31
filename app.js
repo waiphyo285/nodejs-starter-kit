@@ -7,7 +7,10 @@ const createError = require('http-errors')
 const cookieParser = require('cookie-parser')
 const passport = require('passport')
 
-// config app
+// passport local auth
+require('./config/settings/passport')
+
+// app configs
 const config = require('@config/index')
 
 // app settings
@@ -17,9 +20,6 @@ const { rateLimiter } = require('@config/settings/rate-limit')
 const { morganLogger } = require('@config/settings/logger')
 const { langI18n } = require('@config/settings/locale')
 
-// app features
-const { swgDocs } = require('@middlewares/swagger/index')
-
 // protect routes
 const { tokenRouter } = require('@middlewares/token/jwt_token')
 const { verifyToken } = require('@middlewares/token/jwt_token')
@@ -27,6 +27,9 @@ const {
     csrfRouter,
     csrfProtection: doubleCsrfProtection,
 } = require('@middlewares/token/csrf_token')
+
+// app features
+const { swgDocs } = require('@middlewares/swagger/index')
 
 // api router
 const genRouter = require('./generator')
@@ -82,9 +85,6 @@ app.use('/api/docs', swaggerUi.serve, swaggerUi.setup(swgDocs))
 app.use(genRouter)
 app.use(authRouter)
 app.use(doubleCsrfProtection, routeModules)
-
-// import passport local auth
-require('./config/settings/passport')
 
 // catch 404 and hanlde error
 app.use(function (req, res, next) {

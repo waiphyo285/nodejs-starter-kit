@@ -8,59 +8,65 @@ const listData = async (params) => {
 
     const recordsTotal = await Student.countDocuments()
 
-    return Student.find(filter)
-        .or({ $or: w_regx })
-        .sort(sort)
-        .skip(skip)
-        .limit(limit)
-        .populate({
-            path: 'regionid',
-            model: 'city',
-            select: 'city_mm city_en',
-        })
-        .populate({
-            path: 'townshipid',
-            model: 'township',
-            select: 'township_mm township_en',
-        })
-        .then((data) => {
-            return serialize({
-                data,
-                draw,
-                recordsTotal,
-                recordsFiltered: recordsTotal,
+    return (
+        Student.find(filter)
+            .or({ $or: w_regx })
+            .sort(sort)
+            .skip(skip)
+            .limit(limit)
+            // .populate({
+            //     path: 'regionid',
+            //     model: 'city',
+            //     select: 'city_mm city_en',
+            // })
+            // .populate({
+            //     path: 'townshipid',
+            //     model: 'township',
+            //     select: 'township_mm township_en',
+            // })
+            .then((data) => {
+                return serialize({
+                    data,
+                    draw,
+                    recordsTotal,
+                    recordsFiltered: recordsTotal,
+                })
             })
-        })
+    )
 }
 
 const findDataById = (id) => {
-    return Student.findById(id)
-        .populate({
-            path: 'regionid',
-            model: 'city',
-            select: 'city_mm city_en',
-        })
-        .populate({
-            path: 'townshipid',
-            model: 'township',
-            select: 'township_mm township_en',
-        })
-        .then(serialize)
+    return (
+        Student.findById(id)
+            // .populate({
+            //     path: 'regionid',
+            //     model: 'city',
+            //     select: 'city_mm city_en',
+            // })
+            // .populate({
+            //     path: 'townshipid',
+            //     model: 'township',
+            //     select: 'township_mm township_en',
+            // })
+            .then(serialize)
+    )
 }
 
 const findDataBy = (params) => {
-    return Student.find(params)
-        .populate({
-            path: 'regionid',
-            model: 'city',
-            select: 'city_mm city_en',
-        })
-        .populate({
-            path: 'townshipid',
-            model: 'township',
-            select: 'township_mm township_en',
-        })
-        .then(serialize)
+    return (
+        Student.find(params)
+            // .populate({
+            //     path: 'regionid',
+            //     model: 'city',
+            //     select: 'city_mm city_en',
+            // })
+            // .populate({
+            //     path: 'townshipid',
+            //     model: 'township',
+            //     select: 'township_mm township_en',
+            // })
+            .then(serialize)
+    )
 }
 
 const addData = (dataObj) => {

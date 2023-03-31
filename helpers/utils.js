@@ -5,7 +5,7 @@ const moment = require('moment')
 const crypto = require('crypto')
 const handle_tz = require('./config/time_zone')
 const { mongoose } = require('@models/mongodb/connection')
-const GenerateCode = require('@models/mongodb/schemas/generate_code')
+const GenerateCode = require('@models/mongodb/schemas/code')
 
 /**
  * Utils Functions

@@ -3,14 +3,14 @@ const SchemaPlugin = require('./helpers/schema-plugin')
 
 const Schema = mongoose.Schema
 const makeSchema = new Schema({
-    cityid: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'city',
-    },
-    townshipid: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'township',
-    },
+    // cityid: {
+    //     type: mongoose.Schema.Types.ObjectId,
+    //     ref: 'city',
+    // },
+    // townshipid: {
+    //     type: mongoose.Schema.Types.ObjectId,
+    //     ref: 'township',
+    // },
     name: {
         type: String,
     },

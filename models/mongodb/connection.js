@@ -17,18 +17,18 @@ const host = config.MONGO.HOST || 'localhost'
 const port = config.MONGO.PORT || 27017
 const user = config.MONGO.USER || 'root'
 const pass = config.MONGO.PASS || 'no-pass'
-const database = config.ETAVIRP.DATABASE || 'it_backend_uat'
+const dbName = config.ETAVIRP.DATABASE || 'no_db'
 
 let connect_urls = {
-    development: `mongodb://${host}:${port}/${database}`,
-    production: `mongodb://${user}:${pass}@${host}:${port}/${database}?authSource=admin`,
+    development: `mongodb://${host}:${port}/${dbName}`,
+    production: `mongodb://${user}:${pass}@${host}:${port}/${dbName}?authSource=admin`,
 }
 
 const checkTesting = async () => {
     if (env === 'testing') {
         const memoryServer = await MongoMemoryServer.create({
             instance: {
-                dbName: database,
+                dbName: dbName,
             },
         })
         connect_urls = {

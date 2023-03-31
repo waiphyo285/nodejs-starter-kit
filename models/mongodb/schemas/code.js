@@ -5,8 +5,8 @@ const Schema = mongoose.Schema
 const makeSchema = new Schema({
     type: {
         type: String,
-        enum: ['category', 'product'],
-        default: 'category',
+        enum: ['teacher', 'student'],
+        default: 'teacher',
     },
     count: {
         type: Number,
@@ -22,4 +22,4 @@ const makeSchema = new Schema({
 
 makeSchema.plugin(SchemaPlugin)
 
-module.exports = mongoose.model('generage_code', makeSchema)
+module.exports = mongoose.model('auto_code', makeSchema)

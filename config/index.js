@@ -37,6 +37,11 @@ module.exports = {
         PORT: process.env.MONGO_PORT,
         USER: process.env.MONGO_USER,
         PASS: process.env.MONGO_PASS,
+        DIALECT: process.env.MYSQL_DIALECT,
+        POOL_MIN: process.env.MYSQL_POOL_MIN,
+        POOL_MAX: process.env.MYSQL_POOL_MAX,
+        POOL_IDL: process.env.MYSQL_POOL_IDL,
+        POOL_ACQ: process.env.MYSQL_POOL_ACQ,
     },
     MYSQL: {
         HOST: process.env.MYSQL_HOST,

@@ -13,10 +13,10 @@ const userRoles = require('./user_role')
 const { isDA } = require('@helpers/handlers/access_url')
 
 // middlewares
-const validateWare = require('@middlewares/dto/is_valid_dto')
+const isValidData = require('@middlewares/dto/is_valid_dto')
 
 // schema validations
-const studentJoi = require('@models/mongodb/validations/student.schema')
+const studentSchema = require('@models/validations/student.schema')
 
 module.exports = router
 
@@ -41,6 +41,6 @@ router
     .get('/students', students.index)
     .get('/student/:id', students.show)
     .get('/student', students.showBy)
-    .post('/student', validateWare(studentJoi), students.create)
-    .put('/student/:id', validateWare(studentJoi), students.update)
+    .post('/student', isValidData(studentSchema), students.create)
+    .put('/student/:id', isValidData(studentSchema), students.update)
     .delete('/student/:id', students.delete) /* start product api */

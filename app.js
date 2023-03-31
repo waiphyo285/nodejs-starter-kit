@@ -18,7 +18,7 @@ const { morganLogger } = require('@config/settings/logger')
 const { langI18n } = require('@config/settings/locale')
 
 // app features
-const { swgDocs } = require('@helpers/swagger')
+const { swgDocs } = require('@middlewares/swagger/index')
 
 // protect routes
 const { tokenRouter } = require('@middlewares/token/jwt_token')

@@ -1,7 +1,7 @@
 const Joi = require('joi')
 const { createResponse } = require('@helpers/handlers/response')
 
-const validateWare = (schema, property) => {
+const isValidData = (schema, property) => {
     return (req, res, next) => {
         const { error } = Joi.validate(req.body, schema)
         const locales = res.locals.i18n.translations
@@ -17,4 +17,4 @@ const validateWare = (schema, property) => {
     }
 }
 
-module.exports = validateWare
+module.exports = isValidData

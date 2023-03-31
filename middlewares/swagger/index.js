@@ -1,7 +1,7 @@
 const swgDocs = {
     openapi: '3.0.3',
     info: {
-        title: 'ITemplate - OpenAPI 3.0',
+        title: 'Node.js Template',
         description:
             'This is a sample ITemplate Server based on the OpenAPI 3.0 specification.',
         termsOfService: 'http://swagger.io/terms/',

@@ -3,8 +3,8 @@ const router = express.Router()
 const utils = require('@helpers/utils')
 const studentsDb = require('@controllers/students')
 const checkAuth = require('@middlewares/dto/is_valid_user')
-const validateWare = require('@middlewares/dto/is_valid_dto')
-const studentJoi = require('@models/mongodb/validations/student.schema')
+const isValidData = require('@middlewares/dto/is_valid_dto')
+const studentSchema = require('@models/validations/student.schema')
 const { handleRenderer, handleDatabase } = require('@helpers/handlers/response')
 
 router
@@ -27,14 +27,14 @@ router
         }
         handleRenderer(req.user, pages, res)
     })
-    .post('/student', validateWare(studentJoi), (req, res, next) => {
+    .post('/student', isValidData(studentSchema), (req, res, next) => {
         utils.removeImages(req.body.remove_images || []).then((result) => {
             req.body.images = req.body.images
             const insertDb = studentsDb.addData(req.body)
             handleDatabase(insertDb, utils.isEmptyObject, res)
         })
     })
-    .put('/student/:id?', validateWare(studentJoi), (req, res, next) => {
+    .put('/student/:id?', isValidData(studentSchema), (req, res, next) => {
         utils.removeImages(req.body.remove_images || []).then((result) => {
             const { ['id']: rmId, ...data } = req.body
             data.images = data.images

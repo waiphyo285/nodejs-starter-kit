@@ -7,6 +7,5 @@ module.exports = Joi.object()
             .error(() => 'must have name as string'),
         age: Joi.number().error(() => 'age must be a number'),
         grade: Joi.number().error(() => 'grade must be a number'),
-        // status: Joi.boolean().error(() => "status must be a boolean"),
     })
     .unknown(true)

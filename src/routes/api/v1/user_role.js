@@ -1,6 +1,6 @@
 const utils = require('@helpers/utils')
 const userRolesDb = require('@controllers/user_roles')
-const programConfig = require('@config/program-config.json')
+const programConfig = require('@config/program/config.json')
 const {
     createResponse,
     handleDatabase,

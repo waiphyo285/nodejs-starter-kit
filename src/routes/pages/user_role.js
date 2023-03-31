@@ -4,7 +4,7 @@ const utils = require('@helpers/utils')
 const userRolesDb = require('@controllers/user_roles')
 const checkAuth = require('@middlewares/dto/is_valid_user')
 const { handleRenderer, handleDatabase } = require('@helpers/handlers/response')
-const programMenu = require('@config/program-menu-en.json')
+const programMenu = require('@config/program/menu-en.json')
 
 router
     .get('/user_roles', checkAuth, (req, res, next) => {

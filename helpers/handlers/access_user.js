@@ -3,8 +3,8 @@ const userRolesDb = require('@controllers/user_roles')
 
 const getMenuPath = (locale) => {
     const menuConfig = {
-        en_US: `../../config/program-menu-en.json`,
-        my_MM: `../../config/program-menu-my.json`,
+        en_US: `../../config/program/menu-en.json`,
+        my_MM: `../../config/program/menu-my.json`,
     }
 
     return menuConfig[locale || 'my_MM']

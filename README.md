@@ -4,7 +4,7 @@
 
 First of all, let me admit [this article](https://mannhowie.com/clean-architecture-node) is inspired to develop this project. Uncle Bob's famous [Clean Architecture](https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html) is a way to write resilient software.
 
-I am introduced a simple API template for backend developers using clean architecture based on express application. When you choose Node.js + MongoDb as your backend stack, the template is based on the following frameworks and libraries to completely cover a project that is ready for production.
+I am introduced a simple API template for backend developers using clean architecture based on express application. When you choose Node.js + SQL (MySQL) or NoSQL (MongoDB) as your backend stack, the template is based on the following frameworks and libraries to completely cover a project that is ready for production.
 
 ## Demo Video
 
@@ -15,6 +15,10 @@ https://user-images.githubusercontent.com/51906662/227724690-de3e7e44-1aa4-45e8-
 [**Express**](https://bit.ly/3FeNkRi)
 
 -   a powerful and flexible framework that makes it easy to build web applications and APIs using Node.js. Its minimalist approach and large ecosystem make it a popular choice for developers who want to build scalable and maintainable web applications.
+
+[**Sequelize**](https://bit.ly/40zuH2f)
+
+-   an Object-Relational Mapping (ORM) library for Node.js, which allows you to work with relational databases such as MySQL, PostgreSQL, and SQLite using JavaScript syntax.
 
 [**Mongoose**](https://bit.ly/3TA0ZGT)
 
@@ -92,7 +96,3 @@ node index --show=623210497fc2cb28840d1448
 ```
 
 \_Note: this application is different to the Clean Architecture diagram above but attempts to achieve the same outcome.
-
-// Next features
-
--   https://www.npmjs.com/package/ratelimiter

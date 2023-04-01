@@ -16,7 +16,6 @@ const config = require('@config/index')
 // app settings
 const { corsOptions } = require('@config/settings/cors')
 const { cookieConfig } = require('@config/settings/cookies')
-const { rateLimiter } = require('@config/settings/rate-limit')
 const { morganLogger } = require('@config/settings/logger')
 const { langI18n } = require('@config/settings/locale')
 
@@ -30,6 +29,7 @@ const {
 
 // app features
 const { swgDocs } = require('@middlewares/swagger/index')
+const { rateLimiter } = require('@middlewares/rate-limit/index')
 
 // api router
 const genRouter = require('./generator')
@@ -49,14 +49,15 @@ const routeModules = []
 app.set('views', path.join(__dirname, 'views'))
 app.set('view engine', 'pug')
 
-// app.use(rateLimiter);
 app.use(cors(corsOptions))
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 app.use(cookieParser(COOKIE_SECRET))
-app.use(langI18n.middleware())
 app.use(cookieConfig)
+
+app.use(rateLimiter)
 app.use(morganLogger)
+app.use(langI18n.middleware())
 
 app.use(passport.initialize())
 app.use(passport.session())

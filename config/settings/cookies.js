@@ -6,7 +6,7 @@ const NODE_ENV = config.NODE_ENV
 const COOKIE_SESSION = config.ETAVIRP.COOKIE_SESSION
 
 const cookieOption = {
-    developement: {
+    development: {
         maxAge: 8 * 60 * 60 * 1000, // 8h
     },
     production: {

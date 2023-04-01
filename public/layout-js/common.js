@@ -2,7 +2,7 @@
  * Common Scripts
  */
 
-const version = apiVersionNum
+const version = apiVersionNo1
 
 const headers = {
     userrole: role,
@@ -15,6 +15,8 @@ $('#dialogDeleteConfirm')
     .on('show.bs.modal', function (event) {
         var button = $(event.relatedTarget)
         var id = button.data('id')
+        var version = button.data('version')
+
         $(this).attr('data-id', id)
         $(this)
             .find('#dialogDelete')
@@ -95,11 +97,24 @@ function handleAlert(args, redirect = true) {
 }
 
 function ajaxLoadOption(args) {
-    var url = args.url || '#',
-        type = args.type || 'GET',
-        showKey = args.showKey || '',
-        selectId = args.selectId || '#',
-        filerObj = args.filterObj || {}
+    const config = Object.assign(
+        {
+            url: '#',
+            type: 'GET',
+            showKey: '',
+            selectId: '#',
+            filerObj: {},
+            version: 'v1',
+        },
+        args
+    )
+
+    var url = config.url,
+        type = config.type,
+        showKey = config.showKey,
+        selectId = config.selectId,
+        filerObj = config.filterObj,
+        version = config.version
 
     var apiUrl = `/api/${version}` + url
 

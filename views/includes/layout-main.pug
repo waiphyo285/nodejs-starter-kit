@@ -73,7 +73,8 @@ script.
   var role = '!{user.role}';
 
   var signJwtMethod = "eno";
-  var apiVersionNum = "v1";
+  var apiVersionNo1 = "v1";
+  var apiVersionNo2 = "v2";
   var maxImageCount = 5;
 
   locale = locale || '!{app.DEF_LANG}';
@@ -139,7 +140,7 @@ script.
 
   function fetchDataDef (curUrl) {
     return {
-      "url": `./api/${apiVersionNum}` + curUrl,
+      "url": `./api/${curUrl}`,
       "headers": {
         "userrole": role,
         "x-csrf-token": csrf,

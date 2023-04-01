@@ -35,6 +35,7 @@ const { swgDocs } = require('@middlewares/swagger/index')
 const genRouter = require('./generator')
 const authRouter = require('@src/routes/auth')
 const apiV1Router = require('@src/routes/api/v1')
+const apiV2Router = require('@src/routes/api/v2')
 const fileRouter = require('@src/routes/files')
 
 // get environment variables
@@ -79,6 +80,7 @@ app.use('/d-mar', csrfRouter)
 app.use('/d-mar', tokenRouter)
 app.use('/file', verifyToken, fileRouter)
 app.use('/api/v1', verifyToken, apiV1Router)
+app.use('/api/v2', verifyToken, apiV2Router)
 app.use('/api/docs', swaggerUi.serve, swaggerUi.setup(swgDocs))
 
 // connect to page routes

@@ -1,4 +1,4 @@
-const serialize = require('./serializer')
+const serialize = require('../serializer')
 const Controller = require('@models/mongodb/schemas/generator')
 
 const listData = () => {

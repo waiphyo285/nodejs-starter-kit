@@ -1,5 +1,5 @@
 const utils = require('@helpers/utils')
-const serialize = require('@controllers/serializer')
+const serialize = require('../serializer')
 const UserRole = require('@models/mongodb/schemas/user_role')
 const { clearKey } = require('@models/cache/services/index')
 

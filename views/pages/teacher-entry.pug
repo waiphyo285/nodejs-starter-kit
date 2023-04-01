@@ -1,0 +1,25 @@
+extends ../includes/layout-main
+block content
+  main.mx-3(role='main')
+    include ./../includes/entry/entry-header
+    include ./../includes/entry/entry-form
+      block inputs
+        div.form-group.row
+          div.col-sm-4.mb-3
+            label.control-label(for='name') !{content.name} *
+            input.form-control.input-sm#name(type='text', name='name', value=data.name, maxlength="55" autocomplete="off" required autofocus)
+          
+          div.col-sm-4.mb-3
+            label.control-label(for='age') !{content.age} *
+            input.form-control.input-sm#age(type='number', name='age', role='number', min='16' max='120' onkeyup="if(parseInt(this.value)>this.max){ this.value=this.max; return false; }" value=data.age autocomplete="off" required)
+            
+        div.form-group.row
+          div.col-sm-4.mb-3
+            label.control-label(for='degree') !{content.degree} *
+            input.form-control.input-sm#degree(type='text', name='degree', value=data.degree, maxlength="55" autocomplete="off" required)
+
+          include ./../includes/common/input-status
+
+        include ./../includes/entry/entry-btn
+
+    form#postSuccessForm(method='GET', action=page.list.url)

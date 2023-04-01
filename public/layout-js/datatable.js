@@ -79,7 +79,7 @@ function dataTableThumbRenderer(isSrc = false) {
     }
 }
 
-function dataTableActionsRenderer(editUrl, read, edit, del) {
+function dataTableActionsRenderer(editUrl, read, edit, del, version = 'v1') {
     return function (d, type, row) {
         var id = row._id || row.id || '#'
         var html =
@@ -96,7 +96,7 @@ function dataTableActionsRenderer(editUrl, read, edit, del) {
             // delete access
             // icon as <img src="/images/heroicons/delete.svg" height="22" width="22"/>
             html += `
-                <a class="btn btn-sm border list-action" role="button" data-toggle="modal" data-target="#dialogDeleteConfirm" data-loading-text="Deleting..." data-id="${id}">
+                <a class="btn btn-sm border list-action" role="button" data-toggle="modal" data-target="#dialogDeleteConfirm" data-loading-text="Deleting..." data-id="${id}" data-version="${version}">
                   <i class="bi bi-trash3 text-danger"></i>
                 </a>`
         }

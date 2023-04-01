@@ -1,5 +1,5 @@
 const utils = require('@helpers/utils')
-const serialize = require('./serializer')
+const serialize = require('../serializer')
 const Student = require('@models/mongodb/schemas/student')
 
 const listData = async (params) => {

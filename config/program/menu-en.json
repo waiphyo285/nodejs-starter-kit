@@ -97,6 +97,41 @@
         "active": false,
         "submenu": [
             {
+                "menuid": "teacher",
+                "url": "/teachers",
+                "title": "Teacher",
+                "icon": "bi bi-list",
+                "access": false,
+                "active": false,
+                "list": {
+                    "url": "/teachers",
+                    "title": "Teacher List",
+                    "breadcrumb": [
+                        {
+                            "url": "",
+                            "text": "Teacher List"
+                        }
+                    ]
+                },
+                "entry": {
+                    "url": "/teacher",
+                    "title": "Teacher Entry",
+                    "breadcrumb": [
+                        {
+                            "url": "/teachers",
+                            "text": "Teacher List"
+                        },
+                        {
+                            "url": "",
+                            "text": "Teacher Entry"
+                        }
+                    ]
+                },
+                "read": false,
+                "edit": false,
+                "delete": false
+            },
+            {
                 "menuid": "student",
                 "url": "/students",
                 "title": "Student",

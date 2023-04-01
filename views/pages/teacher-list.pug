@@ -3,23 +3,18 @@ block content
   main.mx-3(role='main')
     include ./../includes/modal/filter-table
     include ./../includes/list/list-header
-    
+
     table#example.table.table-striped(style='width:100%')
       thead
         tr
           th #
-          th !{content.username}
-          th !{content.access_role}
-          th !{content.access_level}
+          th !{content.name}
+          th !{content.age}
+          th !{content.degree}
           th !{content.common.status}
           th !{content.common.updated_at}
           th.text-right !{content.common.actions}
       tbody
-      //- tfoot
-      //-   tr 
-      //-     td(colspan="7").bg-light
-      //-       input.form-control.input-sm#tb_search(type="text" placeholder="Search...")
-
   script.
     $(document).ready(function() {
       pageEntry = '!{page.entry.url}';
@@ -29,26 +24,25 @@ block content
       table = $('#example').on('error.dt', dataTableCallback)
         .DataTable({
           ...dataTableDef('!{page.list.title}'),
-          "ajax": fetchDataDef(apiVersionNo1 + '!{page.list.url}'),
-          "columns":  [
+          "ajax": fetchDataDef(apiVersionNo2 + '!{page.list.url}'),
+          "columns": [
             { "data": "_id" },
-            { "data": "username"},
-            { "data": "role"},
-            { "data": "level"},
-            { "data": "status"},
-            { "data": "updated_at"},
-            { "data": "actions", "className":"nowrap" }
+            { "data": "name"},
+            { "data": "age" },
+            { "data": "degree" },
+            { "data": "status" },
+            { "data": "updatedAt" },
+            { "data": "actions" },
           ],
           "columnDefs": [
             { targets: 0, render: dataTableIndexRenderer() },
-            { targets: 4, render: dataTableActiveRenderer() },
-            { targets: 5, render: dataTableDateTimeRenderer() },
+            { targets: 4, orderable: false, render: dataTableActiveRenderer() },
+            { targets: 5, orderable: false, render: dataTableDateTimeRenderer() },
             { targets: 6, orderable: false, render: dataTableActionsRenderer(
-                ".!{page.entry.url}", "!{page.read}", "!{page.edit}", "!{page.delete}"
+                ".!{page.entry.url}", "!{page.read}", "!{page.edit}", "!{page.delete}", apiVersionNo2
               )
             }
-          ],
-          "serverSide": false,
+          ]
       });
 
       $("#dialogFilter").on("click", function() {

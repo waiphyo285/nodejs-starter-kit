@@ -28,23 +28,21 @@ const instance = new Sequelize(dbName, user, '', {
         idle: Number(pool_idl),
         acquire: Number(pool_acq),
     },
-    logging: console.log(
-        `${clr.fg.magenta}Database: 😃 MySQL (${env}) is connected!`
-    ),
+    logging: console.log(''),
 })
 
 database.Sequelize = Sequelize
 database.sequelize = instance
 
-database.tutorials = require('./schemas/teacher')(instance, Sequelize)
+database.teachers = require('./schemas/teacher')(instance, Sequelize)
 
-// database.sequelize
-//     .sync()
-//     .then(() => {
-//         console.log(
-//             `${clr.fg.magenta}Database: 😃 MySQL (${env}) is dropped and re-synced!`
-//         )
-//     })
-//     .catch((error) =>
-//         console.log(`${clr.fg.red}Database: 😡 MySQL connection error`, error)
-//     )
+database.sequelize
+    .sync()
+    .then(() => {
+        console.log(
+            `${clr.fg.magenta}Database: 😃 MySQL (${env}) is connected!`
+        )
+    })
+    .catch((error) =>
+        console.log(`${clr.fg.red}Database: 😡 MySQL connection error`, error)
+    )

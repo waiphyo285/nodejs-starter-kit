@@ -97,6 +97,41 @@
         "active": false,
         "submenu": [
             {
+                "menuid": "teacher",
+                "url": "/teachers",
+                "title": "‌သင်တန်းဆရာ",
+                "icon": "bi bi-list",
+                "access": false,
+                "active": false,
+                "list": {
+                    "url": "/teachers",
+                    "title": "‌သင်တန်းဆရာများ",
+                    "breadcrumb": [
+                        {
+                            "url": "",
+                            "text": "‌သင်တန်းဆရာများ"
+                        }
+                    ]
+                },
+                "entry": {
+                    "url": "/teacher",
+                    "title": "‌သင်တန်းဆရာ",
+                    "breadcrumb": [
+                        {
+                            "url": "/teachers",
+                            "text": "‌သင်တန်းဆရာများ"
+                        },
+                        {
+                            "url": "",
+                            "text": "‌သင်တန်းဆရာ"
+                        }
+                    ]
+                },
+                "read": false,
+                "edit": false,
+                "delete": false
+            },
+            {
                 "menuid": "student",
                 "url": "/students",
                 "title": "‌သင်တန်းသား",

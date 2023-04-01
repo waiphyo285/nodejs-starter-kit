@@ -23,7 +23,7 @@ block content
       table = $('#example').on('error.dt', dataTableCallback)
         .DataTable({
           ...dataTableDef('!{page.list.title}'),
-          "ajax": fetchDataDef('!{page.list.url}'),
+          "ajax": fetchDataDef(apiVersionNo1 + '!{page.list.url}'),
           "columns":  [
             { "data": "_id" },
             { "data": "role"},
@@ -52,7 +52,7 @@ block content
         e.preventDefault();
         const listUrl = '!{page.list.url}';
         const query = $(this).serialize();
-        table.ajax.url(`./api/${apiVersionNum}${listUrl}?${query}`).load();
+        table.ajax.url(`./api/${apiVersionNo1}${listUrl}?${query}`).load();
         $('#dialogFilterTable').modal('hide');
       });
     });

@@ -1,42 +1,42 @@
 const utils = require('@helpers/utils')
-const Service = require('@controllers/generators')
+const Services = require('@controllers/generators')
 const { handleDatabase } = require('@helpers/handlers/response')
 
-const genExport = (module.exports = {})
+const modExport = (module.exports = {})
 
-genExport.index = (req, res, next) => {
-    const getService = Service.listData()
+modExport.index = (req, res, next) => {
+    const getService = Services.listData()
     handleDatabase(getService, utils.isEmptyObject, res)
 }
 
-genExport.show = (req, res, next) => {
-    const getService = Service.findDataById(req.params.id)
+modExport.show = (req, res, next) => {
+    const getService = Services.findDataById(req.params.id)
     handleDatabase(getService, utils.isEmptyObject, res)
 }
 
-genExport.showBy = (req, res, next) => {
+modExport.showBy = (req, res, next) => {
     delete req.query._
-    const getService = Service.findDataBy(req.query)
+    const getService = Services.findDataBy(req.query)
     handleDatabase(getService, utils.isEmptyObject, res)
 }
 
-genExport.create = (req, res, next) => {
-    const getService = Service.addData(req.body)
+modExport.create = (req, res, next) => {
+    const getService = Services.addData(req.body)
     handleDatabase(getService, utils.isEmptyObject, res)
 }
 
-genExport.update = (req, res, next) => {
-    const getService = Service.updateData(req.params.id, req.body)
+modExport.update = (req, res, next) => {
+    const getService = Services.updateData(req.params.id, req.body)
     handleDatabase(getService, utils.isEmptyObject, res)
 }
 
-genExport.delete = (req, res, next) => {
-    const getService = Service.deleteData(req.params.id)
+modExport.delete = (req, res, next) => {
+    const getService = Services.deleteData(req.params.id)
     handleDatabase(getService, utils.isEmptyObject, res)
 }
 
-genExport.deleteAll = (req, res, next) => {
-    Service.dropAll()
+modExport.deleteAll = (req, res, next) => {
+    Services.dropAll()
         .then((data) => res.send(data))
         .catch(next)
 }

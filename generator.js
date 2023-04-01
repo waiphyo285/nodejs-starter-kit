@@ -9,20 +9,21 @@ const clr = require('@helpers/config/log_color')
 
 const newTemplate = (req, res, next) => {
     const bodyData = req.body.data
-    const templateName = req.params.name || 'test'
+    const template = req.params.name || 'test'
     const renderPage = req.query.is_page || false
     const propData = bodyData.data || {}
     const menuData = bodyData.menu || {}
 
-    console.log('Tempalte Name', templateName)
+    console.log('Template Name', template)
     console.log('Render Page', renderPage)
     console.log('propData', propData)
     console.log('menuData', menuData)
 
-    const templateString = templateName.split('_').join(' ')
+    const templateString = template.split('_').join(' ')
+    const templateTitle = utils.toTitleCase(template, '_', '')
     const templateCamel = utils.toCamelCase(templateString)
-    const templateNames = pluralize(templateName)
     const templateCamels = pluralize(templateCamel)
+    const templateNames = pluralize(template)
 
     const checkData =
         !Object.keys(propData).length ||
@@ -38,16 +39,16 @@ const newTemplate = (req, res, next) => {
     const configPath = {
         model: [
             `./generator/model.js`,
-            `./models/mongodb/schemas/${templateName}.js`,
+            `./models/mongodb/schemas/${template}.js`,
         ],
         controller: [
             `./generator/controller`,
             `./controllers/${templateNames}`,
-            `./controllers/${templateNames}/mongod/index.js`,
+            `./controllers/${templateNames}/service.js`,
         ],
-        api: [`./generator/api.js`, `./src/routes/api/v1/${templateName}.js`],
+        api: [`./generator/api.js`, `./src/routes/api/v1/${template}.js`],
+        page: [`./generator/page.js`, `./src/routes/pages/${template}.js`],
         route: [`./generator/route.js`, `./src/routes/api/v1/index.js`],
-        page: [`./generator/page.js`, `./src/routes/pages/${templateName}.js`],
     }
 
     copyFile({
@@ -60,7 +61,7 @@ const newTemplate = (req, res, next) => {
                 created_at: { type: 'Date' },
                 updated_at: { type: 'Date' },
             })})`,
-            generator: templateName,
+            generator: template,
         },
     })
 
@@ -70,18 +71,18 @@ const newTemplate = (req, res, next) => {
         destFile: configPath.controller[2],
         regexStr: /Controller|generator/gi,
         mapObj: {
-            Controller: utils.toTitleCase(templateName, '_', ''),
-            generator: templateName,
+            Controller: templateTitle,
+            generator: template,
         },
     })
 
     copyFile({
         origPath: configPath.api[0],
         destFile: configPath.api[1],
-        regexStr: /genExport|Service|generators/gi,
+        regexStr: /modExport|Services|generators/gi,
         mapObj: {
-            genExport: templateCamel,
-            Service: templateCamels,
+            Services: templateTitle,
+            modExport: templateCamel,
             generators: templateNames,
         },
     })
@@ -91,9 +92,9 @@ const newTemplate = (req, res, next) => {
         destFile: configPath.route[1],
         regexStr: /generator|routing|routings|routes/gi,
         mapObj: {
-            generator: templateName,
+            generator: template,
             routes: templateCamels,
-            routing: templateName,
+            routing: template,
             routings: templateNames,
         },
     })
@@ -103,18 +104,19 @@ const newTemplate = (req, res, next) => {
             origPath: configPath.page[0],
             destFile: configPath.page[1],
             regexStr:
-                /routing|routings|runnerPage|Service|generators|menuList|menuEntry/gi,
+                /routing|routings|runnerPage|Services|generators|menuList|menuEntry/gi,
             mapObj: {
-                routing: templateName,
+                routing: template,
                 routings: templateNames,
-                runnerPage: templateName.split('_').join('-'),
-                Service: templateCamels,
+                Services: templateTitle,
                 generators: templateNames,
+                runnerPage: template.split('_').join('-'),
                 menuList: menuData.list,
                 menuEntry: menuData.entry,
             },
         })
     }
+
     res.send({
         status: '200',
         data: 'A new template is generated.',

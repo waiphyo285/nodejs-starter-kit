@@ -1,7 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const utils = require('@helpers/utils')
-const Service = require('@controllers/generators')
+const Services = require('@controllers/generators')
 const checkAuth = require('@middlewares/dto/is_valid_user')
 const { handleRenderer, handleDatabase } = require('@helpers/handlers/response')
 
@@ -15,7 +15,7 @@ router
     })
     .get('/routing/:id?', checkAuth, async (req, res, next) => {
         const id = req.params.id
-        const data = id ? await Service.findDataById(id) : {}
+        const data = id ? await Services.findDataById(id) : {}
         const pages = {
             data: data.data || {},
             runPage: 'pages/runnerPage-entry',
@@ -24,12 +24,12 @@ router
         handleRenderer(req.user, pages, res)
     })
     .post('/routing', (req, res, next) => {
-        const getService = Service.addData(req.body)
+        const getService = Services.addData(req.body)
         handleDatabase(getService, utils.isEmptyObject, res)
     })
     .put('/routing/:id?', (req, res, next) => {
         const { ['id']: rmId, ...data } = req.body
-        const getService = Service.updateData(rmId, data)
+        const getService = Services.updateData(rmId, data)
         handleDatabase(getService, utils.isEmptyObject, res)
     })
 

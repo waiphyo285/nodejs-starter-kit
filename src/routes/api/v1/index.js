@@ -43,4 +43,4 @@ router
     .get('/student', students.showBy)
     .post('/student', isValidData(studentSchema), students.create)
     .put('/student/:id', isValidData(studentSchema), students.update)
-    .delete('/student/:id', students.delete) /* start product api */
+    .delete('/student/:id', students.delete)

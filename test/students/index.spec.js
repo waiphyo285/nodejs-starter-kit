@@ -5,6 +5,7 @@ const expect = chai.expect
 chai.use(chaiHttp)
 
 process.env.NODE_ENV = 'testing'
+
 const app = require('../../app')
 const testApp = chai.request(app)
 

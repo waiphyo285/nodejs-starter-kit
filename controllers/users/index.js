@@ -5,7 +5,7 @@ const {
     updateWithPass,
     updateWithoutPass,
     deleteUser,
-} = require('./mongod/index')
+} = require('./service')
 
 const exportDb = {
     listUsers,

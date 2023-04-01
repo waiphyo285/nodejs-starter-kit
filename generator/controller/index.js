@@ -6,12 +6,9 @@ const {
     updateData,
     deleteData,
     dropAll,
-} = require('./mongod/index')
-// = require('./memory/index')
-// = require('./postgres/index')
-// switch out db as dev require
+} = require('./service')
 
-const exportDb = {
+module.exports = {
     listData,
     findDataById,
     findDataBy,
@@ -20,5 +17,3 @@ const exportDb = {
     deleteData,
     dropAll,
 }
-
-module.exports = exportDb

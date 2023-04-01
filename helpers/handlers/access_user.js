@@ -1,5 +1,5 @@
 const path = require('path')
-const userRolesDb = require('@controllers/user_roles')
+const UserRole = require('@controllers/user_roles')
 
 const getMenuPath = (locale) => {
     const menuConfig = {
@@ -44,7 +44,7 @@ const getProgram = async (user, pageId) => {
 
     // other account based on role & level
     else {
-        const data = await userRolesDb.findDataById(user.levelid)
+        const data = await UserRole.findDataById(user.levelid)
         const userProgram = data.data.program
 
         const curUserProgram = initProgram.map((initMenu) => {

@@ -55,9 +55,9 @@ const handleRenderer = async (user, pages, res) => {
     })
 }
 
-const handleDatabase = (getDb, utils, res) => {
+const handleDatabase = (getService, utils, res) => {
     const locales = res.locals.i18n.translations
-    getDb
+    getService
         .then((data) => {
             return handleResponse(data, utils, locales)
         })

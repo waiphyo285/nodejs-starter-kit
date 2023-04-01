@@ -1,7 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const utils = require('@helpers/utils')
-const usersDb = require('@controllers/users')
+const User = require('@controllers/users')
 const checkAuth = require('@middlewares/dto/is_valid_user')
 const { handleRenderer, handleDatabase } = require('@helpers/handlers/response')
 
@@ -24,7 +24,7 @@ router
     })
     .get('/user/:id?', checkAuth, async (req, res, next) => {
         const id = req.params.id
-        const data = id ? await usersDb.findUserById(id) : {}
+        const data = id ? await User.findUserById(id) : {}
         const pages = {
             data: data.data || {},
             runPage: 'pages/user-entry',
@@ -34,13 +34,13 @@ router
         handleRenderer(req.user, pages, res)
     })
     .post('/user', (req, res, next) => {
-        const insertDb = usersDb.addUser(req.body)
-        handleDatabase(insertDb, utils.isEmptyObject, res)
+        const getService = User.addUser(req.body)
+        handleDatabase(getService, utils.isEmptyObject, res)
     })
     .put('/user/:id?', (req, res, next) => {
         const { ['id']: rmId, ...data } = req.body
-        const updateDb = usersDb.updateWithPass(rmId, data)
-        handleDatabase(updateDb, utils.isEmptyObject, res)
+        const getService = User.updateWithPass(rmId, data)
+        handleDatabase(getService, utils.isEmptyObject, res)
     })
 
 module.exports = router

@@ -1,7 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const utils = require('@helpers/utils')
-const userRolesDb = require('@controllers/user_roles')
+const UserRole = require('@controllers/user_roles')
 const checkAuth = require('@middlewares/dto/is_valid_user')
 const { handleRenderer, handleDatabase } = require('@helpers/handlers/response')
 const programMenu = require('@config/program/menu-en.json')
@@ -22,7 +22,7 @@ router
 
         if (id) {
             // edit role
-            data = await userRolesDb.findDataById(id)
+            data = await UserRole.findDataById(id)
             const userProgram = data.data.program
 
             data.data.program = initProgram.map((initMenu) => {
@@ -55,13 +55,13 @@ router
         handleRenderer(req.user, pages, res)
     })
     .post('/user_role', (req, res, next) => {
-        const insertDb = userRolesDb.addData(req.body)
-        handleDatabase(insertDb, utils.isEmptyObject, res)
+        const getService = UserRole.addData(req.body)
+        handleDatabase(getService, utils.isEmptyObject, res)
     })
     .put('/user_role/:id?', (req, res, next) => {
         const { ['id']: rmId, ...data } = req.body
-        const updateDb = userRolesDb.updateData(rmId, data)
-        handleDatabase(updateDb, utils.isEmptyObject, res)
+        const getService = UserRole.updateData(rmId, data)
+        handleDatabase(getService, utils.isEmptyObject, res)
     })
 
 module.exports = router

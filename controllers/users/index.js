@@ -7,7 +7,7 @@ const {
     deleteUser,
 } = require('./service')
 
-const exportDb = {
+module.exports = {
     listUsers,
     findUserById,
     addUser,
@@ -15,5 +15,3 @@ const exportDb = {
     updateWithoutPass,
     deleteUser,
 }
-
-module.exports = exportDb

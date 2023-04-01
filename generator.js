@@ -78,10 +78,10 @@ const newTemplate = (req, res, next) => {
     copyFile({
         origPath: configPath.api[0],
         destFile: configPath.api[1],
-        regexStr: /genExport|genDatabase|generators/gi,
+        regexStr: /genExport|Service|generators/gi,
         mapObj: {
             genExport: templateCamel,
-            genDatabase: templateCamels + 'Db',
+            Service: templateCamels,
             generators: templateNames,
         },
     })
@@ -103,12 +103,12 @@ const newTemplate = (req, res, next) => {
             origPath: configPath.page[0],
             destFile: configPath.page[1],
             regexStr:
-                /routing|routings|runnerPage|genDatabase|generators|menuList|menuEntry/gi,
+                /routing|routings|runnerPage|Service|generators|menuList|menuEntry/gi,
             mapObj: {
                 routing: templateName,
                 routings: templateNames,
                 runnerPage: templateName.split('_').join('-'),
-                genDatabase: templateCamels + 'Db',
+                Service: templateCamels,
                 generators: templateNames,
                 menuList: menuData.list,
                 menuEntry: menuData.entry,

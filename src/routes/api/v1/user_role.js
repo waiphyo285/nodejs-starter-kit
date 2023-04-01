@@ -1,5 +1,5 @@
 const utils = require('@helpers/utils')
-const userRolesDb = require('@controllers/user_roles')
+const UserRole = require('@controllers/user_roles')
 const programConfig = require('@config/program/config.json')
 const {
     createResponse,
@@ -22,39 +22,38 @@ userRole.config = (req, res, next) => {
 
 userRole.index = (req, res, next) => {
     delete req.query._
-    const getDb = userRolesDb.listData(req.query)
-    handleDatabase(getDb, utils.isEmptyObject, res)
+    const getService = UserRole.listData(req.query)
+    handleDatabase(getService, utils.isEmptyObject, res)
 }
 
 userRole.show = (req, res, next) => {
-    const getDb = userRolesDb.findDataById(req.params.id)
-    handleDatabase(getDb, utils.isEmptyObject, res)
+    const getService = UserRole.findDataById(req.params.id)
+    handleDatabase(getService, utils.isEmptyObject, res)
 }
 
 userRole.showBy = (req, res, next) => {
     delete req.query._
-    const getDb = userRolesDb.findDataBy(req.query)
-    handleDatabase(getDb, utils.isEmptyObject, res)
+    const getService = UserRole.findDataBy(req.query)
+    handleDatabase(getService, utils.isEmptyObject, res)
 }
 
 userRole.create = (req, res, next) => {
-    const getDb = userRolesDb.addData(req.body)
-    handleDatabase(getDb, utils.isEmptyObject, res)
+    const getService = UserRole.addData(req.body)
+    handleDatabase(getService, utils.isEmptyObject, res)
 }
 
 userRole.update = (req, res, next) => {
-    const getDb = userRolesDb.updateData(req.params.id, req.body)
-    handleDatabase(getDb, utils.isEmptyObject, res)
+    const getService = UserRole.updateData(req.params.id, req.body)
+    handleDatabase(getService, utils.isEmptyObject, res)
 }
 
 userRole.delete = (req, res, next) => {
-    const getDb = userRolesDb.deleteData(req.params.id)
-    handleDatabase(getDb, utils.isEmptyObject, res)
+    const getService = UserRole.deleteData(req.params.id)
+    handleDatabase(getService, utils.isEmptyObject, res)
 }
 
 userRole.deleteAll = (req, res, next) => {
-    userRolesDb
-        .dropAll()
+    UserRole.dropAll()
         .then((data) => res.send(data))
         .catch(next)
 }

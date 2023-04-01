@@ -1,7 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const utils = require('@helpers/utils')
-const studentsDb = require('@controllers/students')
+const Student = require('@controllers/students')
 const checkAuth = require('@middlewares/dto/is_valid_user')
 const isValidData = require('@middlewares/dto/is_valid_dto')
 const studentSchema = require('@models/validations/student.schema')
@@ -18,7 +18,7 @@ router
     })
     .get('/student/:id?', checkAuth, async (req, res, next) => {
         const id = req.params.id
-        const data = id ? await studentsDb.findDataById(id) : {}
+        const data = id ? await Student.findDataById(id) : {}
         const pages = {
             data: data.data || {},
             runPage: 'pages/student-entry',
@@ -30,16 +30,16 @@ router
     .post('/student', isValidData(studentSchema), (req, res, next) => {
         utils.removeImages(req.body.remove_images || []).then((result) => {
             req.body.images = req.body.images
-            const insertDb = studentsDb.addData(req.body)
-            handleDatabase(insertDb, utils.isEmptyObject, res)
+            const getService = Student.addData(req.body)
+            handleDatabase(getService, utils.isEmptyObject, res)
         })
     })
     .put('/student/:id?', isValidData(studentSchema), (req, res, next) => {
         utils.removeImages(req.body.remove_images || []).then((result) => {
             const { ['id']: rmId, ...data } = req.body
             data.images = data.images
-            const updateDb = studentsDb.updateData(rmId, data)
-            handleDatabase(updateDb, utils.isEmptyObject, res)
+            const getService = Student.updateData(rmId, data)
+            handleDatabase(getService, utils.isEmptyObject, res)
         })
     })
 

@@ -1,44 +1,43 @@
 const utils = require('@helpers/utils')
-const studentsDb = require('@controllers/students')
+const Student = require('@controllers/students')
 const { handleDatabase } = require('@helpers/handlers/response')
 
 const students = (module.exports = {})
 
 students.index = (req, res, next) => {
     delete req.query._
-    const getDb = studentsDb.listData(req.query)
-    handleDatabase(getDb, utils.isEmptyObject, res)
+    const getService = Student.listData(req.query)
+    handleDatabase(getService, utils.isEmptyObject, res)
 }
 
 students.show = (req, res, next) => {
-    const getDb = studentsDb.findDataById(req.params.id)
-    handleDatabase(getDb, utils.isEmptyObject, res)
+    const getService = Student.findDataById(req.params.id)
+    handleDatabase(getService, utils.isEmptyObject, res)
 }
 
 students.showBy = (req, res, next) => {
     delete req.query._
-    const getDb = studentsDb.findDataBy(req.query)
-    handleDatabase(getDb, utils.isEmptyObject, res)
+    const getService = Student.findDataBy(req.query)
+    handleDatabase(getService, utils.isEmptyObject, res)
 }
 
 students.create = (req, res, next) => {
-    const getDb = studentsDb.addData(req.body)
-    handleDatabase(getDb, utils.isEmptyObject, res)
+    const getService = Student.addData(req.body)
+    handleDatabase(getService, utils.isEmptyObject, res)
 }
 
 students.update = (req, res, next) => {
-    const getDb = studentsDb.updateData(req.params.id, req.body)
-    handleDatabase(getDb, utils.isEmptyObject, res)
+    const getService = Student.updateData(req.params.id, req.body)
+    handleDatabase(getService, utils.isEmptyObject, res)
 }
 
 students.delete = (req, res, next) => {
-    const getDb = studentsDb.deleteData(req.params.id)
-    handleDatabase(getDb, utils.isEmptyObject, res)
+    const getService = Student.deleteData(req.params.id)
+    handleDatabase(getService, utils.isEmptyObject, res)
 }
 
 students.deleteAll = (req, res, next) => {
-    studentsDb
-        .dropAll()
+    Student.dropAll()
         .then((data) => res.send(data))
         .catch(next)
 }

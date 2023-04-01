@@ -1,7 +1,7 @@
 const yargs = require('yargs/yargs')
 const { hideBin } = require('yargs/helpers')
 const args = yargs(hideBin(process.argv)).argv
-const usersDb = require('@controllers/users/index')
+const User = require('@controllers/users/index')
 
 const printHelp = function () {
     console.log(`
@@ -20,8 +20,7 @@ if (args.help || !valid) {
 }
 
 if (args.index) {
-    usersDb
-        .listUsers()
+    User.listUsers()
         .then((data) => {
             console.log('Cli Data ', data)
         })
@@ -34,8 +33,7 @@ if (args.index) {
 }
 
 if (args.show) {
-    usersDb
-        .findUserById(args.show)
+    User.findUserById(args.show)
         .then((data) => {
             console.log('Cli Data ', data)
         })
